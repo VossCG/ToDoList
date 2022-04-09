@@ -9,11 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
+import com.voss.todolist.UpdateRecyclerData
 import com.voss.todolist.Util.MyDiffUtil
 import com.voss.todolist.databinding.RowContenmonthlytitemBinding
 import kotlinx.parcelize.Parcelize
 
-class ContentMonthlyAdapter : RecyclerView.Adapter<ContentMonthlyViewHolder>() {
+class ContentMonthlyAdapter(val updateRecyclerData: UpdateRecyclerData) : RecyclerView.Adapter<ContentMonthlyViewHolder>() {
     var oldList = emptyList<EventTypes>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentMonthlyViewHolder {
         return ContentMonthlyViewHolder(
@@ -46,7 +47,14 @@ class ContentMonthlyAdapter : RecyclerView.Adapter<ContentMonthlyViewHolder>() {
         holder.title.text = oldList[position].title
         holder.date.text = oldList[position].date.substring(5, 10)
 
+        // set EditButton
+        holder.editButton.setOnClickListener {
+            updateRecyclerData.updateContentItem(oldList[position])
+        }
+
     }
+
+
     fun setData(newList: List<EventTypes>) {
         val diffUtil = MyDiffUtil(newList, oldList)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
@@ -62,16 +70,19 @@ class ContentMonthlyAdapter : RecyclerView.Adapter<ContentMonthlyViewHolder>() {
         return oldList.size
     }
 
+
 }
 
-class ContentMonthlyViewHolder(private val binding: RowContenmonthlytitemBinding) :
+class ContentMonthlyViewHolder(binding: RowContenmonthlytitemBinding) :
     RecyclerView.ViewHolder(binding.root) {
     val title: TextView = binding.rowContentTitleTextView
     val content: TextView = binding.rowContentTextView
     val date: TextView = binding.rowContentDateTextView
     val showMoreContent: TextView = binding.rowShowMoreContentTextView
+    val editButton: ImageButton = binding.rowContentEditBut
 
 }
+
 @Parcelize
 data class ArgsToContent(val position: Int, val year: Int, val months: Int) : Parcelable
 

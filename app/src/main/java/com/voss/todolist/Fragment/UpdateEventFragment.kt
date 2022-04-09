@@ -26,7 +26,6 @@ class UpdateEventFragment :
     private val args: UpdateEventFragmentArgs by navArgs()
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
     private var mYear by Delegates.notNull<Int>()
     private var mMonth by Delegates.notNull<Int>()
     private var mDay by Delegates.notNull<Int>()

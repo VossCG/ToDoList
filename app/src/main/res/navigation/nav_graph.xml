@@ -55,6 +55,9 @@
         <argument
             android:name="ContentArgs"
             app:argType="com.voss.todolist.Adapter.ArgsToContent" />
+        <action
+            android:id="@+id/action_contentFragment_to_updateEventFragment"
+            app:destination="@id/updateEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/browseFragment"
