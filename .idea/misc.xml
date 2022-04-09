@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/arrowchange_selector.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/button_shape1.xml" value="0.1824074074074074" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.18981481481481483" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowlist_shape.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowmonth_shape.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowyearitem_shape.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/spalsh_screen.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/splash_screen.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/textview_shape.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/browsefragment.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/contentfragment.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/dayfragment.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/editeventfragment.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/editeventrowitemfragment.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/homefragment.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemcontentfragment.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/monthcontentfragment.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/monthfragment.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/row_contenmonthlytitem.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/row_contentitem.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/row_listitem.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/row_monthitem.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/row_yearitem.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/row_yearitme.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/rownested_item.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/searchfragment.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/updateeventfragment.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/yearfragment.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/menu/navigationbottom.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/menu/toolbarmenu.xml" value="0.17916666666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

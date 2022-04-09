@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:title="首頁"
+        android:icon="@drawable/ic_baseline_home_24"
+        />
+    <item
+        android:id="@+id/searchFragment"
+        android:title="搜尋"
+        android:icon="@drawable/ic_baseline_search_24"
+        />
+    <item
+        android:id="@+id/editEventFragment"
+        android:title="編輯"
+        android:icon="@drawable/ic_baseline_edit_24"
+        />
+    <item
+        android:id="@+id/browseFragment"
+        android:title="總覽"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        />
+</menu>

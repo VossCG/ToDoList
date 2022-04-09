@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.voss.todolist.Fragment.HomeFragment"
+        tools:layout="@layout/homefragment"
+        android:label="HomeFragment" >
+
+        <action
+            android:id="@+id/action_homeFragment_to_contentFragment"
+            app:destination="@id/contentFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_updateEventFragment"
+            app:destination="@id/updateEventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editEventFragment"
+        tools:layout="@layout/editeventfragment"
+        android:name="com.voss.todolist.Fragment.EditEventFragment"
+        android:label="EditEventFragment" >
+        <action
+            android:id="@+id/action_editEventFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.voss.todolist.Fragment.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/updateEventFragment"
+        tools:layout="@layout/updateeventfragment"
+        android:name="com.voss.todolist.Fragment.UpdateEventFragment"
+        android:label="UpdateEventFragment" >
+        <argument
+            android:name="EventTypes"
+            app:argType="com.voss.todolist.Data.EventTypes" />
+        <action
+            android:id="@+id/action_updateEventFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/contentFragment"
+        tools:layout="@layout/contentmonthlyfragment"
+        android:name="com.voss.todolist.Fragment.ContentMonthlyFragment"
+        android:label="ContentFragment" >
+
+        <argument
+            android:name="ContentArgs"
+            app:argType="com.voss.todolist.Adapter.ArgsToContent" />
+    </fragment>
+    <fragment
+        android:id="@+id/browseFragment"
+        tools:layout="@layout/browsefragment"
+        android:name="com.voss.todolist.Fragment.BrowseFragment"
+        android:label="YearFragment" >
+        <action
+            android:id="@+id/action_browseFragment_to_monthFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:destination="@id/monthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/monthFragment"
+        tools:layout="@layout/monthfragment"
+        android:name="com.voss.todolist.Fragment.MonthFragment"
+        android:label="MonthFragment" >
+        <argument
+            android:name="year"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_monthFragment_to_contentFragment"
+            app:destination="@id/contentFragment" />
+
+    </fragment>
+
+
+</navigation>
