@@ -1,5 +1,6 @@
 package com.voss.todolist.Fragment
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -76,10 +77,19 @@ class UpdateEventFragment :
         // init but
         binding.updateUploadBut.setOnClickListener {
             updateItemData()
-            navController.navigate(R.id.action_updateEventFragment_to_homeFragment)
-        }
-        binding.cancelUpdateBut.setOnClickListener {
             navController.popBackStack()
+        }
+
+        binding.cancelUpdateBut.setOnClickListener {
+
+            AlertDialog.Builder(this.context)
+                .setTitle("Message")
+                .setMessage("是否要取消編輯?")
+                .setPositiveButton("Yes") { _, _ ->
+                    navController.popBackStack()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         binding.dateUpdateBut.setOnClickListener {
@@ -112,7 +122,6 @@ class UpdateEventFragment :
     private fun inputCheck(title: String, content: String): Boolean {
         return !(TextUtils.isEmpty(title) && TextUtils.isEmpty(content))
     }
-
 
 
     override fun onStart() {

@@ -6,8 +6,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.voss.todolist.Adapter.ExpandableListViewAdapter
 import com.voss.todolist.Data.EventTypes
+import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.MonthfragmentBinding
 
@@ -17,6 +19,7 @@ class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::i
     private val viewModel: EventViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         binding.topTitleTv.text = "${args.year}  Months"
         setExpandableListView()
@@ -36,6 +39,18 @@ class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::i
             list.add(data.filter { it.month == i && it.year == args.year })
         }
         return list
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.GONE
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.VISIBLE
 
     }
 
