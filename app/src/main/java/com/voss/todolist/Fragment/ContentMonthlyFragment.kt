@@ -6,9 +6,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.DiffUtil.ItemCallback
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.voss.todolist.Adapter.ContentMonthlyAdapter
@@ -18,13 +15,16 @@ import com.voss.todolist.UpdateRecyclerData
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.ContentmonthlyfragmentBinding
 
-class ContentMonthlyFragment :
-    BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
+class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
 
     private val callback = object : UpdateRecyclerData {
         override fun updateContentItem(data: EventTypes) {
             val direction = ContentMonthlyFragmentDirections.actionContentFragmentToUpdateEventFragment(data)
             navController.navigate(direction)
+        }
+
+        override fun deleteContentItem(data: EventTypes) {
+            viewModel.deleteEvent(data)
         }
     }
 

@@ -14,7 +14,8 @@ import com.voss.todolist.Util.MyDiffUtil
 import com.voss.todolist.databinding.RowContenmonthlytitemBinding
 import kotlinx.parcelize.Parcelize
 
-class ContentMonthlyAdapter(val updateRecyclerData: UpdateRecyclerData) : RecyclerView.Adapter<ContentMonthlyViewHolder>() {
+class ContentMonthlyAdapter(val updateRecyclerData: UpdateRecyclerData) :
+    RecyclerView.Adapter<ContentMonthlyAdapter.ContentMonthlyViewHolder>() {
     var oldList = emptyList<EventTypes>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentMonthlyViewHolder {
         return ContentMonthlyViewHolder(
@@ -30,7 +31,8 @@ class ContentMonthlyAdapter(val updateRecyclerData: UpdateRecyclerData) : Recycl
         val contentText = holder.content
         val mContent = oldList[position].content
 
-        if (mContent.length >= 100) {
+        // control readMore textView
+        if (mContent.length >= 200) {
             val shortText = mContent.subSequence(0, 100)
             contentText.text = "$shortText..."
             holder.showMoreContent.visibility = View.VISIBLE
@@ -70,17 +72,21 @@ class ContentMonthlyAdapter(val updateRecyclerData: UpdateRecyclerData) : Recycl
         return oldList.size
     }
 
+    inner class ContentMonthlyViewHolder(binding: RowContenmonthlytitemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val title: TextView = binding.rowContentTitleTextView
+        val content: TextView = binding.rowContentTextView
+        val date: TextView = binding.rowContentDateTextView
+        val showMoreContent: TextView = binding.rowShowMoreContentTextView
+        val editButton: ImageButton = binding.rowContentEditBut
+        val deleteButton: ImageButton = binding.rowContentDeleteBut
 
-}
-
-class ContentMonthlyViewHolder(binding: RowContenmonthlytitemBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    val title: TextView = binding.rowContentTitleTextView
-    val content: TextView = binding.rowContentTextView
-    val date: TextView = binding.rowContentDateTextView
-    val showMoreContent: TextView = binding.rowShowMoreContentTextView
-    val editButton: ImageButton = binding.rowContentEditBut
-
+        init {
+            deleteButton.setOnClickListener {
+                updateRecyclerData.deleteContentItem(oldList[absoluteAdapterPosition])
+            }
+        }
+    }
 }
 
 @Parcelize

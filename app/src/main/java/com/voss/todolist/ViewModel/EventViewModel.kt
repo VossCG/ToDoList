@@ -3,6 +3,7 @@ package com.voss.todolist.ViewModel
 import android.app.Application
 import android.icu.text.SimpleDateFormat
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,6 +14,7 @@ import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.Room.EventDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class EventViewModel(application: Application) : AndroidViewModel(application) {
@@ -44,14 +46,17 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteEvent(eventType: EventTypes) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteEvent(eventType)
+            withContext(Dispatchers.Main) {
+                Toast.makeText(getApplication(), "刪除完成", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
 
     fun getDateFormat(year: Int, month: Int, day: Int): String {
         calendar.set(year, month, day)
-        val date= calendar.time
-        Log.d("ViewModel","$date")
+        val date = calendar.time
+        Log.d("ViewModel", "$date")
         val format = SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN)
         return format.format(date)
     }
