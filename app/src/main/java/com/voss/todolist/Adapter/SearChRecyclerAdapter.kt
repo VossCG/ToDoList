@@ -1,6 +1,10 @@
 package com.voss.todolist.Adapter
 
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
@@ -11,15 +15,25 @@ class SearChRecyclerAdapter : RecyclerView.Adapter<SearChRecyclerAdapter.SearChV
     private var oldList = emptyList<EventTypes>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearChViewHolder {
-        TODO("Not yet implemented")
+        return SearChViewHolder(
+            RowSearchitemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.title.text = oldList[position].title
+        holder.month.text = oldList[position].month.toString()+"月"
+        holder.day.text = oldList[position].day.toString()
+        holder.content.text = oldList[position].content
+
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return oldList.size
     }
 
     fun setData(newList: List<EventTypes>) {
@@ -31,6 +45,21 @@ class SearChRecyclerAdapter : RecyclerView.Adapter<SearChRecyclerAdapter.SearChV
     }
 
     class SearChViewHolder(binding: RowSearchitemBinding) : RecyclerView.ViewHolder(binding.root) {
+        val title: TextView = binding.rowSearchTitleTextView
+        val month: TextView = binding.rowSearchMonthTextView
+        val day: TextView = binding.rowSearchDayTextView
+        val expand = binding.rowSearchExpandLayout
+        val deleteBut = binding.rowSearchDeleteBut
+        val content = binding.rowSearchContentTextView
+        val complete = binding.rowSearchContentCompleteTextView
 
+        init {
+            title.setOnClickListener {
+                if (expand.visibility == View.GONE)
+                    expand.visibility = View.VISIBLE
+                else
+                    expand.visibility = View.GONE
+            }
+        }
     }
 }

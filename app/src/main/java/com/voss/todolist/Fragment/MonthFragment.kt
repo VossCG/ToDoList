@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.voss.todolist.Adapter.ExpandableListViewAdapter
+import com.voss.todolist.Adapter.BrowseExpandableListAdapter
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
@@ -29,7 +29,7 @@ class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::i
         val data = viewModel.readAllEvent.value ?: emptyList()
         val listByMonths = getTwoDimensionMonthsList(data)
 
-        val mAdapter = ExpandableListViewAdapter(this.context!!, listByMonths,navController)
+        val mAdapter = BrowseExpandableListAdapter(this.context!!, listByMonths,navController)
         binding.monthsExpandableListView.setAdapter(mAdapter)
     }
 

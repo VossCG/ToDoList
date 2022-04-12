@@ -12,7 +12,7 @@ import com.voss.todolist.Fragment.MonthFragmentDirections
 import com.voss.todolist.R
 
 
-class ExpandableListViewAdapter(
+class BrowseExpandableListAdapter(
     val context: Context,
     val childMonthsList: List<List<EventTypes>>,
     val navController: NavController
