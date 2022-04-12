@@ -2311,6 +2311,7 @@ id rowSearchTitle_textView
 id rowSearch_cardView
 id rowSearch_deleteBut
 id rowSearch_expandLayout
+id rowSearch_outLayout
 id rowShowMoreContent_TextView
 id rowTitle_textView
 id row_index_key
@@ -2328,6 +2329,7 @@ id scrollable
 id searCh_InputLayout
 id searCh_editText
 id searchFragment
+id searchGo_but
 id search_badge
 id search_bar
 id search_button

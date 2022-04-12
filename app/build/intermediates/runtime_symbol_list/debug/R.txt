@@ -2310,6 +2310,7 @@ int id rowSearchTitle_textView 0x7f080236
 int id rowSearch_cardView 0x7f080237
 int id rowSearch_deleteBut 0x7f080238
 int id rowSearch_expandLayout 0x7f080239
+int id rowSearch_outLayout 0x7f08023d
 int id rowShowMoreContent_TextView 0x7f08017d
 int id rowTitle_textView 0x7f08017e
 int id row_index_key 0x7f08017f
@@ -2327,6 +2328,7 @@ int id scrollable 0x7f08018a
 int id searCh_InputLayout 0x7f08023a
 int id searCh_editText 0x7f08023b
 int id searchFragment 0x7f08018b
+int id searchGo_but 0x7f08023e
 int id search_badge 0x7f08018c
 int id search_bar 0x7f08018d
 int id search_button 0x7f08018e

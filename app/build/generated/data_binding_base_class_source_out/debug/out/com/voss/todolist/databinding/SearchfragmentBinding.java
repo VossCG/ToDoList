@@ -4,6 +4,7 @@ package com.voss.todolist.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -28,14 +29,18 @@ public final class SearchfragmentBinding implements ViewBinding {
   public final TextInputLayout searChInputLayout;
 
   @NonNull
+  public final Button searchGoBut;
+
+  @NonNull
   public final RecyclerView searchRecycler;
 
   private SearchfragmentBinding(@NonNull ConstraintLayout rootView,
       @NonNull TextInputEditText searChEditText, @NonNull TextInputLayout searChInputLayout,
-      @NonNull RecyclerView searchRecycler) {
+      @NonNull Button searchGoBut, @NonNull RecyclerView searchRecycler) {
     this.rootView = rootView;
     this.searChEditText = searChEditText;
     this.searChInputLayout = searChInputLayout;
+    this.searchGoBut = searchGoBut;
     this.searchRecycler = searchRecycler;
   }
 
@@ -78,6 +83,12 @@ public final class SearchfragmentBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.searchGo_but;
+      Button searchGoBut = ViewBindings.findChildViewById(rootView, id);
+      if (searchGoBut == null) {
+        break missingId;
+      }
+
       id = R.id.search_recycler;
       RecyclerView searchRecycler = ViewBindings.findChildViewById(rootView, id);
       if (searchRecycler == null) {
@@ -85,7 +96,7 @@ public final class SearchfragmentBinding implements ViewBinding {
       }
 
       return new SearchfragmentBinding((ConstraintLayout) rootView, searChEditText,
-          searChInputLayout, searchRecycler);
+          searChInputLayout, searchGoBut, searchRecycler);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

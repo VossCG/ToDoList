@@ -26,7 +26,7 @@ class SearChRecyclerAdapter : RecyclerView.Adapter<SearChRecyclerAdapter.SearChV
 
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
         holder.title.text = oldList[position].title
-        holder.month.text = oldList[position].month.toString()+"月"
+        holder.month.text = (oldList[position].month+1).toString()+"月"
         holder.day.text = oldList[position].day.toString()
         holder.content.text = oldList[position].content
 
