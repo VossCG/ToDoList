@@ -17,7 +17,6 @@ import java.util.*
 
 class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
-    private val keyboardManager: InputMethodManager by lazy { activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager }
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -33,15 +32,14 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
                 if (inputTitle.isNotEmpty()) {
                     // 獲得關鍵字過濾資料
                     val filterData = viewModel.readAllEvent.value?.filter { it.title.contains(inputTitle) }
-                    // 查詢完畢 關閉鍵盤
-                    keyboardManager.hideSoftInputFromWindow(view.windowToken,0)
+                    // 關閉鍵盤
+                    closeKeyboard(view,requireActivity())
                     mAdapter.setData(filterData ?: emptyList())
                 } else Toast.makeText(
                     this.context,
                     "Please enter title to SearCh",
                     Toast.LENGTH_SHORT
-                )
-                    .show()
+                ).show()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false

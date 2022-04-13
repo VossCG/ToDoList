@@ -18,7 +18,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searCh_InputLayout"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="#4D4D4D"
         app:endIconMode="clear_text"
         android:paddingBottom="3dp"

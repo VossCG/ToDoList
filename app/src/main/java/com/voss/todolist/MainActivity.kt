@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -14,10 +15,11 @@ import com.voss.todolist.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
+
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mNavController: NavController
-    private val keyboardManager: InputMethodManager by lazy { getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,10 +35,5 @@ class MainActivity : AppCompatActivity() {
         binding.navBottom.setupWithNavController(mNavController)
 
     }
-
-    fun closeKeyboard(view: View) {
-        keyboardManager.hideSoftInputFromWindow(view.windowToken,0)
-    }
-
-
 }
+
