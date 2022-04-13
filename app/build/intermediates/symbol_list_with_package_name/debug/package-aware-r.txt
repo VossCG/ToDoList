@@ -1857,6 +1857,7 @@ drawable ic_baseline_home_24
 drawable ic_baseline_keyboard_arrow_down_24
 drawable ic_baseline_keyboard_arrow_left_24
 drawable ic_baseline_keyboard_arrow_right_24
+drawable ic_baseline_menu_24
 drawable ic_baseline_search_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
@@ -2036,6 +2037,7 @@ id center_vertical
 id chain
 id chain2
 id chains
+id changeSearch_item
 id checkbox
 id checked
 id chip
@@ -2057,6 +2059,7 @@ id container
 id content
 id contentFragment
 id contentPanel
+id contentSearch_item
 id contentTitle_textView
 id content_InputLayout
 id content_editText
@@ -2070,6 +2073,7 @@ id currentState
 id custom
 id customPanel
 id cut
+id dateSearch_item
 id dateUpdate_but
 id date_TextView
 id date_picker_actions
@@ -2106,7 +2110,6 @@ id easeInOut
 id easeOut
 id east
 id editEventFragment
-id editFragment
 id editFragmentTitle_textView
 id edit_query
 id elastic
@@ -2306,11 +2309,11 @@ id rowSearchContent_CompleteTextView
 id rowSearchContent_textView
 id rowSearchDay_textView
 id rowSearchMonth_textView
-id rowSearchText_InnerLayout
 id rowSearchTitle_textView
 id rowSearch_cardView
 id rowSearch_deleteBut
 id rowSearch_expandLayout
+id rowSearch_guideline
 id rowSearch_outLayout
 id rowShowMoreContent_TextView
 id rowTitle_textView
@@ -2329,7 +2332,6 @@ id scrollable
 id searCh_InputLayout
 id searCh_editText
 id searchFragment
-id searchGo_but
 id search_badge
 id search_bar
 id search_button
@@ -2340,6 +2342,7 @@ id search_mag_icon
 id search_plate
 id search_recycler
 id search_src_text
+id search_toolbar
 id search_voice_btn
 id select_dialog_listview
 id selected
@@ -2424,6 +2427,7 @@ id time
 id time_textView
 id title
 id titleDividerNoCustom
+id titleSearch_item
 id title_Edittext
 id title_InputLayout
 id title_template

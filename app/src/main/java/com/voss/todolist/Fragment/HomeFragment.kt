@@ -46,9 +46,6 @@ class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::infl
         recyclerView.adapter = mAdapter
 
         // 設定item滑動 刪除與編輯
-        val itemTouchHelper = ItemTouchHelper(simpleItemCallback)
-        itemTouchHelper.attachToRecyclerView(recyclerView)
-
         // ViewModel
         // readAllEvent was created by ViewModel init
         // it's call eventDao.getAll and return LiveData<List<EventType>>

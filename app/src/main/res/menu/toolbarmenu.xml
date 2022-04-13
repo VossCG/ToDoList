@@ -2,15 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/searchFragment"
-        android:title="搜尋"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:id="@+id/changeSearch_item"
+        android:title="選擇"
+        android:iconTintMode="src_in"
+        android:icon="@drawable/ic_baseline_menu_24"
         app:showAsAction="always"
-        />
-    <item
-        android:id="@+id/editFragment"
-        android:title="編輯"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_edit_24"
-        />
+        >
+        <menu>
+            <item
+                android:id="@+id/dateSearch_item"
+                android:title="日期查詢"
+                />
+            <item
+                android:id="@+id/titleSearch_item"
+                android:title="標題查詢"
+                />
+            <item
+                android:id="@+id/contentSearch_item"
+                android:title="內文查詢"
+                />
+        </menu>
+
+    </item>
 </menu>

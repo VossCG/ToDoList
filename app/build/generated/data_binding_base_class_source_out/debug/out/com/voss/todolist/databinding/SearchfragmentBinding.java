@@ -4,9 +4,9 @@ package com.voss.todolist.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -29,19 +29,19 @@ public final class SearchfragmentBinding implements ViewBinding {
   public final TextInputLayout searChInputLayout;
 
   @NonNull
-  public final Button searchGoBut;
+  public final RecyclerView searchRecycler;
 
   @NonNull
-  public final RecyclerView searchRecycler;
+  public final Toolbar searchToolbar;
 
   private SearchfragmentBinding(@NonNull ConstraintLayout rootView,
       @NonNull TextInputEditText searChEditText, @NonNull TextInputLayout searChInputLayout,
-      @NonNull Button searchGoBut, @NonNull RecyclerView searchRecycler) {
+      @NonNull RecyclerView searchRecycler, @NonNull Toolbar searchToolbar) {
     this.rootView = rootView;
     this.searChEditText = searChEditText;
     this.searChInputLayout = searChInputLayout;
-    this.searchGoBut = searchGoBut;
     this.searchRecycler = searchRecycler;
+    this.searchToolbar = searchToolbar;
   }
 
   @Override
@@ -83,20 +83,20 @@ public final class SearchfragmentBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.searchGo_but;
-      Button searchGoBut = ViewBindings.findChildViewById(rootView, id);
-      if (searchGoBut == null) {
-        break missingId;
-      }
-
       id = R.id.search_recycler;
       RecyclerView searchRecycler = ViewBindings.findChildViewById(rootView, id);
       if (searchRecycler == null) {
         break missingId;
       }
 
+      id = R.id.search_toolbar;
+      Toolbar searchToolbar = ViewBindings.findChildViewById(rootView, id);
+      if (searchToolbar == null) {
+        break missingId;
+      }
+
       return new SearchfragmentBinding((ConstraintLayout) rootView, searChEditText,
-          searChInputLayout, searchGoBut, searchRecycler);
+          searChInputLayout, searchRecycler, searchToolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

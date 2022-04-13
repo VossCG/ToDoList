@@ -28,14 +28,15 @@
                 android:id="@+id/rowContentTitle_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:ellipsize="end"
                 android:gravity="start"
-                android:maxLength="15"
+                android:maxLength="20"
                 android:text="Title"
-                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textSize="23sp"
                 app:layout_constraintEnd_toStartOf="@+id/rowContentEdit_but"
                 app:layout_constraintStart_toEndOf="@+id/rowContentDate_textView"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -68,7 +69,7 @@
                 android:layout_marginTop="10dp"
                 android:text="03/04"
                 android:textColor="#E48BA1DA"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,7 +95,7 @@
                 android:gravity="start"
                 android:padding="10dp"
                 android:text="Content"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/itemContent_divider" />
