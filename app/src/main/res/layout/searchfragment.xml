@@ -1,52 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/search_toolbar"
-        android:layout_width="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_height="60dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/toolbarmenu" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/search_toolbar"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/toolbarmenu" />
+
+        <TextView
+            android:id="@+id/changeStatus_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="標題"
+            android:textSize="20sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="-10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/search_toolbar"
+            />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searCh_InputLayout"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="#4D4D4D"
-        app:endIconMode="clear_text"
-        android:paddingBottom="3dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/search_toolbar"
-        app:startIconDrawable="@drawable/ic_baseline_search_24">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searCh_InputLayout"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="#4D4D4D"
+            android:paddingBottom="8dp"
+            app:endIconMode="clear_text"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/changeStatus_textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_baseline_search_24">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/searCh_editText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searCh_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textSize="20sp"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searCh_InputLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchSheet_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="false"
+        android:background="@color/black"
+        app:behavior_peekHeight="0dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+        <TextView
+            android:id="@+id/changeTitle_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:background="@android:color/transparent"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="18sp"
+            android:gravity="start"
+            android:layout_margin="12dp"
+            android:text="切換搜尋條件"
+            />
+        <Button
+            android:id="@+id/changeTitle_but"
+            android:text="標題"
+            android:textSize="30sp"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/changeTitle_text"
+            />
+        <Button
+            android:id="@+id/changeContent_but"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="內容"
+            android:layout_margin="10dp"
+            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@+id/changeTitle_but"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searCh_InputLayout" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

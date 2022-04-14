@@ -12,6 +12,10 @@
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\contentmonthlyfragment.xml"
     },
     {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\searchtitlefragment.xml",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\searchtitlefragment.xml"
+    },
+    {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\rownested_item.xml",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\rownested_item.xml"
     },
@@ -42,6 +46,10 @@
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_contenmonthlytitem.xml",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\row_contenmonthlytitem.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\drawerheader_layout.xml",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\drawerheader_layout.xml"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_monthitem.xml",

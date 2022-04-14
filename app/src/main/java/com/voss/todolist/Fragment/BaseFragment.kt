@@ -1,10 +1,13 @@
 package com.voss.todolist.Fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<VB : ViewBinding>
@@ -26,4 +29,9 @@ abstract class BaseFragment<VB : ViewBinding>
         super.onDestroy()
         _binding = null
     }
+}
+
+fun closeKeyboard(view: View,activity: FragmentActivity) {
+    val keyboardManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    keyboardManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
