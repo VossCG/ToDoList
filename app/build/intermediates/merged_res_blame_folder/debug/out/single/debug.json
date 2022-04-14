@@ -72,6 +72,10 @@
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\drawable\\button_shape1.xml"
     },
     {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\drawable_rowitem_shape.xml.flat",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\drawable\\rowitem_shape.xml"
+    },
+    {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_content_paste_24.xml.flat",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\drawable\\ic_baseline_content_paste_24.xml"
     },
@@ -160,6 +164,10 @@
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\drawable\\ic_baseline_keyboard_arrow_down_24.xml"
     },
     {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\layout_bottomsheet.xml.flat",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\bottomsheet.xml"
+    },
+    {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\layout_browsefragment.xml.flat",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\browsefragment.xml"
     },
@@ -198,10 +206,6 @@
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_arrow_forward_ios_24.xml.flat",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\drawable\\ic_baseline_arrow_forward_ios_24.xml"
-    },
-    {
-        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\menu_toolbarmenu.xml.flat",
-        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\menu\\toolbarmenu.xml"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",

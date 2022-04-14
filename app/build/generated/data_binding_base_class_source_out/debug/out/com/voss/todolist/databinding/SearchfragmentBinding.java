@@ -4,13 +4,11 @@ package com.voss.todolist.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -23,19 +21,10 @@ import java.lang.String;
 
 public final class SearchfragmentBinding implements ViewBinding {
   @NonNull
-  private final CoordinatorLayout rootView;
-
-  @NonNull
-  public final Button changeContentBut;
+  private final ConstraintLayout rootView;
 
   @NonNull
   public final TextView changeStatusTextView;
-
-  @NonNull
-  public final Button changeTitleBut;
-
-  @NonNull
-  public final TextView changeTitleText;
 
   @NonNull
   public final TextInputEditText searChEditText;
@@ -44,39 +33,26 @@ public final class SearchfragmentBinding implements ViewBinding {
   public final TextInputLayout searChInputLayout;
 
   @NonNull
-  public final ConstraintLayout searchLayout;
+  public final AppCompatImageButton searchFilterBut;
 
   @NonNull
   public final RecyclerView searchRecycler;
 
-  @NonNull
-  public final ConstraintLayout searchSheetLayout;
-
-  @NonNull
-  public final Toolbar searchToolbar;
-
-  private SearchfragmentBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull Button changeContentBut, @NonNull TextView changeStatusTextView,
-      @NonNull Button changeTitleBut, @NonNull TextView changeTitleText,
-      @NonNull TextInputEditText searChEditText, @NonNull TextInputLayout searChInputLayout,
-      @NonNull ConstraintLayout searchLayout, @NonNull RecyclerView searchRecycler,
-      @NonNull ConstraintLayout searchSheetLayout, @NonNull Toolbar searchToolbar) {
+  private SearchfragmentBinding(@NonNull ConstraintLayout rootView,
+      @NonNull TextView changeStatusTextView, @NonNull TextInputEditText searChEditText,
+      @NonNull TextInputLayout searChInputLayout, @NonNull AppCompatImageButton searchFilterBut,
+      @NonNull RecyclerView searchRecycler) {
     this.rootView = rootView;
-    this.changeContentBut = changeContentBut;
     this.changeStatusTextView = changeStatusTextView;
-    this.changeTitleBut = changeTitleBut;
-    this.changeTitleText = changeTitleText;
     this.searChEditText = searChEditText;
     this.searChInputLayout = searChInputLayout;
-    this.searchLayout = searchLayout;
+    this.searchFilterBut = searchFilterBut;
     this.searchRecycler = searchRecycler;
-    this.searchSheetLayout = searchSheetLayout;
-    this.searchToolbar = searchToolbar;
   }
 
   @Override
   @NonNull
-  public CoordinatorLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -101,27 +77,9 @@ public final class SearchfragmentBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.changeContent_but;
-      Button changeContentBut = ViewBindings.findChildViewById(rootView, id);
-      if (changeContentBut == null) {
-        break missingId;
-      }
-
       id = R.id.changeStatus_textView;
       TextView changeStatusTextView = ViewBindings.findChildViewById(rootView, id);
       if (changeStatusTextView == null) {
-        break missingId;
-      }
-
-      id = R.id.changeTitle_but;
-      Button changeTitleBut = ViewBindings.findChildViewById(rootView, id);
-      if (changeTitleBut == null) {
-        break missingId;
-      }
-
-      id = R.id.changeTitle_text;
-      TextView changeTitleText = ViewBindings.findChildViewById(rootView, id);
-      if (changeTitleText == null) {
         break missingId;
       }
 
@@ -137,9 +95,9 @@ public final class SearchfragmentBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.search_layout;
-      ConstraintLayout searchLayout = ViewBindings.findChildViewById(rootView, id);
-      if (searchLayout == null) {
+      id = R.id.searchFilter_but;
+      AppCompatImageButton searchFilterBut = ViewBindings.findChildViewById(rootView, id);
+      if (searchFilterBut == null) {
         break missingId;
       }
 
@@ -149,21 +107,8 @@ public final class SearchfragmentBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.searchSheet_layout;
-      ConstraintLayout searchSheetLayout = ViewBindings.findChildViewById(rootView, id);
-      if (searchSheetLayout == null) {
-        break missingId;
-      }
-
-      id = R.id.search_toolbar;
-      Toolbar searchToolbar = ViewBindings.findChildViewById(rootView, id);
-      if (searchToolbar == null) {
-        break missingId;
-      }
-
-      return new SearchfragmentBinding((CoordinatorLayout) rootView, changeContentBut,
-          changeStatusTextView, changeTitleBut, changeTitleText, searChEditText, searChInputLayout,
-          searchLayout, searchRecycler, searchSheetLayout, searchToolbar);
+      return new SearchfragmentBinding((ConstraintLayout) rootView, changeStatusTextView,
+          searChEditText, searChInputLayout, searchFilterBut, searchRecycler);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

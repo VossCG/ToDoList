@@ -21,6 +21,7 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
 
     val readAllEvent: LiveData<List<EventTypes>>
     val date = MutableLiveData<String>()
+    val filterFactor = MutableLiveData<String>()
     private val repository: EventRepository
     private val calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
 
@@ -51,8 +52,6 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
-
-
     fun getDateFormat(year: Int, month: Int, day: Int): String {
         calendar.set(year, month, day)
         val date = calendar.time
@@ -63,6 +62,17 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getDateInteger(year: Int, month: Int, day: Int): Int {
         return year * 10000 + month * 100 + day
+    }
+
+    fun filterDataWithFactor(inputData: String): List<EventTypes> {
+        val filterList = readAllEvent.value?.filter {
+            when (filterFactor.value) {
+                "標題" -> it.title.contains(inputData)
+                "內容" -> it.content.contains(inputData)
+                else -> false
+            }
+        }
+        return filterList ?: emptyList()
     }
 
 

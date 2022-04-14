@@ -36,6 +36,10 @@
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\bottomsheet.xml",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\bottomsheet.xml"
+    },
+    {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\row_yearitem.xml",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\row_yearitem.xml"
     },

@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -19,6 +20,9 @@ import java.lang.String;
 public final class RowContenmonthlytitemBinding implements ViewBinding {
   @NonNull
   private final ConstraintLayout rootView;
+
+  @NonNull
+  public final CardView cardView;
 
   @NonNull
   public final View itemContentDivider;
@@ -42,11 +46,12 @@ public final class RowContenmonthlytitemBinding implements ViewBinding {
   public final TextView rowShowMoreContentTextView;
 
   private RowContenmonthlytitemBinding(@NonNull ConstraintLayout rootView,
-      @NonNull View itemContentDivider, @NonNull TextView rowContentDateTextView,
-      @NonNull ImageButton rowContentDeleteBut, @NonNull ImageButton rowContentEditBut,
-      @NonNull TextView rowContentTextView, @NonNull TextView rowContentTitleTextView,
-      @NonNull TextView rowShowMoreContentTextView) {
+      @NonNull CardView cardView, @NonNull View itemContentDivider,
+      @NonNull TextView rowContentDateTextView, @NonNull ImageButton rowContentDeleteBut,
+      @NonNull ImageButton rowContentEditBut, @NonNull TextView rowContentTextView,
+      @NonNull TextView rowContentTitleTextView, @NonNull TextView rowShowMoreContentTextView) {
     this.rootView = rootView;
+    this.cardView = cardView;
     this.itemContentDivider = itemContentDivider;
     this.rowContentDateTextView = rowContentDateTextView;
     this.rowContentDeleteBut = rowContentDeleteBut;
@@ -83,6 +88,12 @@ public final class RowContenmonthlytitemBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.cardView;
+      CardView cardView = ViewBindings.findChildViewById(rootView, id);
+      if (cardView == null) {
+        break missingId;
+      }
+
       id = R.id.itemContent_divider;
       View itemContentDivider = ViewBindings.findChildViewById(rootView, id);
       if (itemContentDivider == null) {
@@ -125,9 +136,9 @@ public final class RowContenmonthlytitemBinding implements ViewBinding {
         break missingId;
       }
 
-      return new RowContenmonthlytitemBinding((ConstraintLayout) rootView, itemContentDivider,
-          rowContentDateTextView, rowContentDeleteBut, rowContentEditBut, rowContentTextView,
-          rowContentTitleTextView, rowShowMoreContentTextView);
+      return new RowContenmonthlytitemBinding((ConstraintLayout) rootView, cardView,
+          itemContentDivider, rowContentDateTextView, rowContentDeleteBut, rowContentEditBut,
+          rowContentTextView, rowContentTitleTextView, rowShowMoreContentTextView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
