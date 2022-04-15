@@ -22,6 +22,7 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
     val readAllEvent: LiveData<List<EventTypes>>
     val date = MutableLiveData<String>()
     val filterFactor = MutableLiveData<String>()
+    val searchItemRollPosition = MutableLiveData<Int>()
     private val repository: EventRepository
     private val calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
 

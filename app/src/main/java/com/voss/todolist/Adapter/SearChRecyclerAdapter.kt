@@ -8,11 +8,13 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
+import com.voss.todolist.R
 import com.voss.todolist.Util.MyDiffUtil
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.RowSearchitemBinding
 
-class SearChRecyclerAdapter(val viewModel: EventViewModel) : RecyclerView.Adapter<SearChRecyclerAdapter.SearChViewHolder>() {
+class SearChRecyclerAdapter(val viewModel: EventViewModel) :
+    RecyclerView.Adapter<SearChRecyclerAdapter.SearChViewHolder>() {
     private var oldList = emptyList<EventTypes>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearChViewHolder {
@@ -27,7 +29,7 @@ class SearChRecyclerAdapter(val viewModel: EventViewModel) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
         holder.title.text = oldList[position].title
-        holder.month.text = (oldList[position].month+1).toString()+"月"
+        holder.month.text = (oldList[position].month + 1).toString() + "月"
         holder.day.text = oldList[position].day.toString()
         holder.content.text = oldList[position].content
 
@@ -45,22 +47,26 @@ class SearChRecyclerAdapter(val viewModel: EventViewModel) : RecyclerView.Adapte
         oldList = newList
     }
 
-    inner class SearChViewHolder(binding: RowSearchitemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class SearChViewHolder(binding: RowSearchitemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.rowSearchTitleTextView
         val month: TextView = binding.rowSearchMonthTextView
         val day: TextView = binding.rowSearchDayTextView
         val expand = binding.rowSearchExpandLayout
         val content = binding.rowSearchContentTextView
         val complete = binding.rowSearchContentCompletebut
-        val card = binding.rowSearchCardView
+        val arrow = binding.expandArrowImg
 
         init {
 
-            card.setOnClickListener {
-                if (expand.visibility == View.GONE)
-                expand.visibility = View.VISIBLE
-                else
-                expand.visibility = View.GONE
+            arrow.setOnClickListener {
+                if (expand.visibility == View.GONE) {
+                    expand.visibility = View.VISIBLE
+                    arrow.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+                } else {
+                    expand.visibility = View.GONE
+                    arrow.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
+                }
             }
             complete.setOnClickListener {
                 viewModel.deleteEvent(oldList[absoluteAdapterPosition])

@@ -133,6 +133,7 @@
 
             <CalendarView
                 android:id="@+id/calendarView"
+                style="@android:style/Widget.Material.CalendarView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintEnd_toEndOf="parent"

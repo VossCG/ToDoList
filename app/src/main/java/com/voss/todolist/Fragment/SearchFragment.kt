@@ -20,7 +20,6 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         viewModel.filterFactor.observe(this) {
             binding.changeStatusTextView.text = it
         }
@@ -48,7 +47,8 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
                     // 獲得關鍵字過濾資料，放入adapter
                     val filterData = viewModel.filterDataWithFactor(inputData)
                     if (filterData.isNullOrEmpty())
-                        Toast.makeText(this.context, "搜尋條件 找不到相關資料 請重新查詢", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this.context, "搜尋條件 找不到相關資料 請重新查詢", Toast.LENGTH_SHORT)
+                            .show()
                     else mAdapter.setData(filterData)
                 } else Toast.makeText(
                     this.context,
