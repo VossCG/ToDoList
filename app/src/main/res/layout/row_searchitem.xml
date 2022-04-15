@@ -97,30 +97,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/rowSearchContent_CompleteTextView"
+        <Button
+            android:id="@+id/rowSearchContent_Completebut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="完成"
+            android:background="@drawable/rowbut_shape"
+            android:layout_margin="20dp"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rowSearchContent_textView" />
 
-        <ImageButton
-            android:id="@+id/rowSearch_deleteBut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/ic_baseline_delete_24"
-            android:minWidth="30dp"
-            android:minHeight="30dp"
-            android:focusable="true"
-            app:layout_constraintEnd_toStartOf="@+id/rowSearchContent_CompleteTextView"
-            app:layout_constraintTop_toBottomOf="@+id/rowSearchContent_textView"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline

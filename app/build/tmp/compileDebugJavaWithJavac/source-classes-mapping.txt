@@ -58,8 +58,6 @@ com/voss/todolist/Fragment/ContentMonthlyFragmentDirections.java
  com.voss.todolist.Fragment.ContentMonthlyFragmentDirections$ActionContentFragmentToUpdateEventFragment
 com/voss/todolist/databinding/BottomsheetBinding.java
  com.voss.todolist.databinding.BottomsheetBinding
-com/voss/todolist/databinding/RownestedItemBinding.java
- com.voss.todolist.databinding.RownestedItemBinding
 com/voss/todolist/databinding/HomefragmentBinding.java
  com.voss.todolist.databinding.HomefragmentBinding
 com/voss/todolist/Room/EventDao_Impl.java

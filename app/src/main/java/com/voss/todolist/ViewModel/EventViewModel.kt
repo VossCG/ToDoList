@@ -52,6 +52,7 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
     fun getDateFormat(year: Int, month: Int, day: Int): String {
         calendar.set(year, month, day)
         val date = calendar.time
@@ -69,11 +70,12 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
             when (filterFactor.value) {
                 "標題" -> it.title.contains(inputData)
                 "內容" -> it.content.contains(inputData)
-                else -> false
+                else -> {
+
+                    false
+                }
             }
         }
         return filterList ?: emptyList()
     }
-
-
 }

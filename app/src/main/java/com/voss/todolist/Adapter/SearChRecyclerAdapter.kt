@@ -50,16 +50,20 @@ class SearChRecyclerAdapter(val viewModel: EventViewModel) : RecyclerView.Adapte
         val month: TextView = binding.rowSearchMonthTextView
         val day: TextView = binding.rowSearchDayTextView
         val expand = binding.rowSearchExpandLayout
-        val deleteBut = binding.rowSearchDeleteBut
         val content = binding.rowSearchContentTextView
-        val complete = binding.rowSearchContentCompleteTextView
+        val complete = binding.rowSearchContentCompletebut
+        val card = binding.rowSearchCardView
 
         init {
-            title.setOnClickListener {
+
+            card.setOnClickListener {
                 if (expand.visibility == View.GONE)
-                    expand.visibility = View.VISIBLE
+                expand.visibility = View.VISIBLE
                 else
-                    expand.visibility = View.GONE
+                expand.visibility = View.GONE
+            }
+            complete.setOnClickListener {
+                viewModel.deleteEvent(oldList[absoluteAdapterPosition])
             }
 
         }

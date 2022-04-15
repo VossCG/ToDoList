@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
-    },
-    {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_keyboard_arrow_right_24.xml.flat",
@@ -32,12 +32,12 @@
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\drawable\\ic_baseline_edit_24.xml"
     },
     {
-        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\layout_row_monthitem.xml.flat",
-        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\row_monthitem.xml"
-    },
-    {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\layout_row_listitem.xml.flat",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\row_listitem.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\layout_row_monthitem.xml.flat",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\row_monthitem.xml"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\drawable_rowlist_shape.xml.flat",
@@ -84,10 +84,6 @@
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\layout_rownested_item.xml.flat",
-        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\rownested_item.xml"
-    },
-    {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\layout_searchfragment.xml.flat",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\searchfragment.xml"
     },
@@ -130,6 +126,10 @@
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\drawable_rowbut_shape.xml.flat",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\drawable\\rowbut_shape.xml"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",

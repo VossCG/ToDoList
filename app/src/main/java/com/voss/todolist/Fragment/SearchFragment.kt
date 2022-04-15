@@ -15,6 +15,7 @@ import java.util.*
 class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter(viewModel) }
+    private var inputData: String = "null"
     private val bottomSheetFragment: BottomSheetFragment by lazy { BottomSheetFragment() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,6 +23,9 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
 
         viewModel.filterFactor.observe(this) {
             binding.changeStatusTextView.text = it
+        }
+        viewModel.readAllEvent.observe(this) {
+            mAdapter.setData(viewModel.filterDataWithFactor(inputData))
         }
 
         binding.searchRecycler.apply {
@@ -37,12 +41,15 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
 
         binding.searChEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val inputData = binding.searChEditText.text.toString()
+                inputData = binding.searChEditText.text.toString()
                 if (inputData.isNotEmpty()) {
                     // 關閉鍵盤
                     closeKeyboard(view, requireActivity())
                     // 獲得關鍵字過濾資料，放入adapter
-                    mAdapter.setData(viewModel.filterDataWithFactor(inputData))
+                    val filterData = viewModel.filterDataWithFactor(inputData)
+                    if (filterData.isNullOrEmpty())
+                        Toast.makeText(this.context, "搜尋條件 找不到相關資料 請重新查詢", Toast.LENGTH_SHORT).show()
+                    else mAdapter.setData(filterData)
                 } else Toast.makeText(
                     this.context,
                     "Please enter title to SearCh",
