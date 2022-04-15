@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:textViewStyle">@style/Widget.MaterialComponents.TextView</item>
     </style>
-    
+
     <style name="SplashScreenTheme" parent="Theme.MaterialComponents.NoActionBar.Bridge">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>

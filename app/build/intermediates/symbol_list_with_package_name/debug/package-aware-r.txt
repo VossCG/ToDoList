@@ -1834,6 +1834,7 @@ drawable abc_vector_test
 drawable arrowchange_selector
 drawable avd_hide_password
 drawable avd_show_password
+drawable bottomsheet_shape
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -1842,6 +1843,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable button_corner_shape
 drawable button_shape1
 drawable design_fab_background
 drawable design_ic_visibility
@@ -2339,6 +2341,7 @@ id scrollable
 id searCh_InputLayout
 id searCh_editText
 id searchFilter_but
+id searchFilter_item
 id searchFragment
 id search_badge
 id search_bar
@@ -2556,7 +2559,6 @@ layout bottomsheet
 layout browsefragment
 layout contentmonthlyfragment
 layout custom_dialog
-layout dayfragment
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -2663,6 +2665,7 @@ layout updateeventfragment
 menu example_menu
 menu example_menu2
 menu navigationbottom
+menu toolbarmenu
 mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_graph

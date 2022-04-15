@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="10dp"
-        android:text="標題"
+        android:text="error"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/searchFilter_but"
         app:layout_constraintTop_toTopOf="parent" />

@@ -28,7 +28,7 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val eventDao = EventDataBase.getInstance(application).eventRoomDao()
         repository = EventRepository(eventDao)
-
+        filterFactor.value = "標題"
         readAllEvent = repository.eventDataList
     }
 

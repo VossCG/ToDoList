@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.Util.MyDiffUtil
+import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.RowSearchitemBinding
 
-class SearChRecyclerAdapter : RecyclerView.Adapter<SearChRecyclerAdapter.SearChViewHolder>() {
+class SearChRecyclerAdapter(val viewModel: EventViewModel) : RecyclerView.Adapter<SearChRecyclerAdapter.SearChViewHolder>() {
     private var oldList = emptyList<EventTypes>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearChViewHolder {
@@ -44,7 +45,7 @@ class SearChRecyclerAdapter : RecyclerView.Adapter<SearChRecyclerAdapter.SearChV
         oldList = newList
     }
 
-    class SearChViewHolder(binding: RowSearchitemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class SearChViewHolder(binding: RowSearchitemBinding) : RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.rowSearchTitleTextView
         val month: TextView = binding.rowSearchMonthTextView
         val day: TextView = binding.rowSearchDayTextView
@@ -60,6 +61,8 @@ class SearChRecyclerAdapter : RecyclerView.Adapter<SearChRecyclerAdapter.SearChV
                 else
                     expand.visibility = View.GONE
             }
+
         }
+
     }
 }

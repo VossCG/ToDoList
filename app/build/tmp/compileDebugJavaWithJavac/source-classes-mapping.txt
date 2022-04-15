@@ -50,8 +50,6 @@ com/voss/todolist/databinding/RowContenmonthlytitemBinding.java
  com.voss.todolist.databinding.RowContenmonthlytitemBinding
 com/voss/todolist/databinding/ActivityMainBinding.java
  com.voss.todolist.databinding.ActivityMainBinding
-com/voss/todolist/databinding/DayfragmentBinding.java
- com.voss.todolist.databinding.DayfragmentBinding
 com/voss/todolist/databinding/RowMonthitemBinding.java
  com.voss.todolist.databinding.RowMonthitemBinding
 com/voss/todolist/Fragment/ContentMonthlyFragmentDirections.java

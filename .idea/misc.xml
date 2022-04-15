@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable-v31/buttondefault_ripple.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/arrowchange_selector.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/bottomsheet_shape.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/button_corner.xml" value="0.16944444444444445" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/button_corner_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/button_shape1.xml" value="0.1824074074074074" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/buttondefault_ripple.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.1953125" />
@@ -16,7 +21,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/splash_screen.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/textview_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/bottomsheet.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/bottomsheet.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/browsefragment.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/contentfragment.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/contentmonthlyfragment.xml" value="0.3333333333333333" />
@@ -39,6 +44,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/rownested_item.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/searchfragment.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/test.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/testbottomsheet.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/updateeventfragment.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/yearfragment.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/menu/drawermenu.xml" value="0.3333333333333333" />

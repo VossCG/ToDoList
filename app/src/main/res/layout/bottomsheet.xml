@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp"
+    android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -13,16 +13,22 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="20sp"
+        style="@style/Widget.MaterialComponents.TextView"
+        android:textColor="@color/white"
         android:gravity="start"
         android:layout_margin="12dp"
         android:text="切換搜尋條件" />
     <Button
         android:id="@+id/changeTitle_but"
-        android:text="Dialog 標題"
+        android:text="標題"
         style="@style/Widget.MaterialComponents.TextView"
         android:textSize="30sp"
         android:padding="10dp"
-        android:layout_margin="10dp"
+        android:background="@drawable/button_corner_shape"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/changeTitle_text" />
@@ -30,9 +36,16 @@
         android:id="@+id/changeContent_but"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_corner_shape"
         style="@style/Widget.MaterialComponents.TextView"
-        android:text="Dialog 內容"
-        android:layout_margin="10dp"
+        android:text="內容"
+        android:padding="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintTop_toBottomOf="@+id/changeTitle_but"
         />

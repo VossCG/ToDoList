@@ -14,9 +14,8 @@ import java.util.*
 
 class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
-    private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
+    private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter(viewModel) }
     private val bottomSheetFragment: BottomSheetFragment by lazy { BottomSheetFragment() }
-    private var filterFactor: String = "標題"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -53,7 +52,10 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
             }
             return@setOnEditorActionListener false
         }
+    }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.searChEditText.setText("")
     }
 }

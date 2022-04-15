@@ -14,10 +14,6 @@ class BottomSheetFragment() : BottomSheetDialogFragment() {
     private val viewModel: EventViewModel by activityViewModels()
     private var _binding: BottomsheetBinding? = null
     private val binding get() = _binding!!
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.Theme_MaterialComponents_BottomSheetDialog)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,5 +36,4 @@ class BottomSheetFragment() : BottomSheetDialogFragment() {
             dismiss()
         }
     }
-
 }
