@@ -10,35 +10,34 @@
         android:id="@+id/searchFilter_but"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:minHeight="35dp"
-        android:minWidth="35dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/ic_baseline_filter_alt_24"
+        android:minWidth="30dp"
+        android:minHeight="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/changeStatus_textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/changeStatus_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="15dp"
         android:text="error"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/searchFilter_but"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/search_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchFilter_but" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searCh_InputLayout"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
         android:background="#4D4D4D"
         android:paddingBottom="8dp"
         app:endIconMode="clear_text"
-        app:layout_constraintEnd_toStartOf="@+id/changeStatus_textView"
+        app:layout_constraintEnd_toStartOf="@+id/searchFilter_but"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_search_24">
@@ -48,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:background="@android:color/transparent"
+            android:background="@null"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:textSize="20sp"

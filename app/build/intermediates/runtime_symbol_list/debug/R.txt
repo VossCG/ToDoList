@@ -3297,6 +3297,7 @@ int style ThemeOverlay_MaterialComponents_TimePicker_Display 0x7f110206
 int style ThemeOverlay_MaterialComponents_Toolbar_Primary 0x7f110207
 int style ThemeOverlay_MaterialComponents_Toolbar_Surface 0x7f110208
 int style ThemeOverlayColorAccentRed 0x7f110209
+int style TitleTextView 0x7f1102da
 int style Widget_AppCompat_ActionBar 0x7f11020a
 int style Widget_AppCompat_ActionBar_Solid 0x7f11020b
 int style Widget_AppCompat_ActionBar_TabBar 0x7f11020c
