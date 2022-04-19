@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start|center"
         android:layout_margin="10dp"
+
         android:background="@drawable/rowyearitem_shape"
         android:padding="10dp"
         android:text="2022"

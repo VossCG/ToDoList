@@ -6,38 +6,14 @@
     android:layout_height="match_parent">
 
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/searchFilter_but"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/ic_baseline_filter_alt_24"
-        android:minWidth="30dp"
-        android:minHeight="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/changeStatus_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/changeStatus_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:text="error"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/search_recycler"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchFilter_but" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searCh_InputLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
         android:background="#4D4D4D"
         android:paddingBottom="8dp"
         app:endIconMode="clear_text"
-        app:layout_constraintEnd_toStartOf="@+id/searchFilter_but"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_search_24">
@@ -57,10 +33,52 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recycler"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searCh_InputLayout" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/filter_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/teal_700"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_filter_alt_24"
+        app:backgroundTint="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/changeTitle_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:clickable="false"
+        android:src="@drawable/ic_baseline_title_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/filter_fab"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/changeContent_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        android:clickable="false"
+        android:src="@drawable/ic_baseline_content_paste_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/changeTitle_fab"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

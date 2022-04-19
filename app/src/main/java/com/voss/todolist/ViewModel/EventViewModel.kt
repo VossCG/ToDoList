@@ -22,7 +22,6 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
     val readAllEvent: LiveData<List<EventTypes>>
     val date = MutableLiveData<String>()
     val filterFactor = MutableLiveData<String>()
-    val searchItemRollPosition = MutableLiveData<Int>()
     private val repository: EventRepository
     private val calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
 
@@ -69,8 +68,8 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
     fun filterDataWithFactor(inputData: String): List<EventTypes> {
         val filterList = readAllEvent.value?.filter {
             when (filterFactor.value) {
-                "標題" -> it.title.contains(inputData)
-                "內容" -> it.content.contains(inputData)
+                "title" -> it.title.contains(inputData)
+                "content" -> it.content.contains(inputData)
                 else -> {
 
                     false

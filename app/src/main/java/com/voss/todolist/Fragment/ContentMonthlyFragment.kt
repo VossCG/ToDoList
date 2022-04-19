@@ -38,10 +38,11 @@ class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(Conte
         setRecyclerView(args.contentArgs.position)
         setViewModel()
 
+        binding.contentAddFab.setOnClickListener {
+            navController.navigate(R.id.action_contentFragment_to_editEventFragment)
+        }
+
     }
-
-
-
     private fun setRecyclerView(position: Int) {
         val recyclerView = binding.contentRecyclerview
         recyclerView.apply {

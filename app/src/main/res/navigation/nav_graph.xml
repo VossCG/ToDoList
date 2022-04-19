@@ -25,6 +25,8 @@
         android:label="EditEventFragment" >
         <action
             android:id="@+id/action_editEventFragment_to_homeFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/editEventFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 
@@ -58,6 +60,11 @@
         <action
             android:id="@+id/action_contentFragment_to_updateEventFragment"
             app:destination="@id/updateEventFragment" />
+        <action
+            android:id="@+id/action_contentFragment_to_editEventFragment"
+            app:destination="@id/editEventFragment"
+            app:popUpTo="@id/editEventFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/browseFragment"
@@ -83,7 +90,6 @@
         <action
             android:id="@+id/action_monthFragment_to_contentFragment"
             app:destination="@id/contentFragment" />
-
     </fragment>
 
 

@@ -56,10 +56,11 @@ class SearChRecyclerAdapter(val viewModel: EventViewModel) :
         val content = binding.rowSearchContentTextView
         val complete = binding.rowSearchContentCompletebut
         val arrow = binding.expandArrowImg
+        val cardView = binding.rowSearchCardView
 
         init {
 
-            arrow.setOnClickListener {
+            cardView.setOnClickListener {
                 if (expand.visibility == View.GONE) {
                     expand.visibility = View.VISIBLE
                     arrow.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
