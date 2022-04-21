@@ -3,6 +3,7 @@ package com.voss.todolist.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
+import androidx.navigation.ActionOnlyNavDirections;
 import androidx.navigation.NavDirections;
 import com.voss.todolist.Data.EventTypes;
 import com.voss.todolist.R;
@@ -22,6 +23,11 @@ public class ContentMonthlyFragmentDirections {
   public static ActionContentFragmentToUpdateEventFragment actionContentFragmentToUpdateEventFragment(
       @NonNull EventTypes EventTypes) {
     return new ActionContentFragmentToUpdateEventFragment(EventTypes);
+  }
+
+  @NonNull
+  public static NavDirections actionContentFragmentToEditEventFragment() {
+    return new ActionOnlyNavDirections(R.id.action_contentFragment_to_editEventFragment);
   }
 
   public static class ActionContentFragmentToUpdateEventFragment implements NavDirections {

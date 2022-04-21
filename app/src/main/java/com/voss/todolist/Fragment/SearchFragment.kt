@@ -84,8 +84,8 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
     }
 
     private fun onAddButtonClicked(){
-        setVisibility(isExpanded)
         setAnimation(isExpanded)
+        setVisibility(isExpanded)
         setInVisibleUnClickable(isExpanded)
     }
 

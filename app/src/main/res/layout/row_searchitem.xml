@@ -108,13 +108,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <ImageButton
             android:id="@+id/rowSearchContent_Completebut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="完成"
-            android:background="@drawable/rowbut_shape"
+            android:padding="5dp"
+            android:background="@drawable/button_corner_shape"
+            android:src="@drawable/ic_baseline_done_24"
             android:layout_marginTop="15dp"
             android:textSize="15sp"
             android:textStyle="bold"

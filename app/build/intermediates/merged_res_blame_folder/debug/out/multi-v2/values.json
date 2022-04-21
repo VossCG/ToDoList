@@ -253,20 +253,20 @@
                 {
                     "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\values\\themes.xml",
                     "from": {
-                        "startLines": "-1,2",
-                        "startColumns": "-1,4",
-                        "startOffsets": "-1,102",
-                        "endLines": "-1,15",
-                        "endColumns": "-1,12",
-                        "endOffsets": "-1,905"
+                        "startLines": "-1,2,-1",
+                        "startColumns": "-1,4,-1",
+                        "startOffsets": "-1,102,-1",
+                        "endLines": "-1,15,-1",
+                        "endColumns": "-1,12,-1",
+                        "endOffsets": "-1,905,-1"
                     },
                     "to": {
-                        "startLines": "3650,4051",
-                        "startColumns": "4,4",
-                        "startOffsets": "234549,263937",
-                        "endLines": "3652,4064",
-                        "endColumns": "12,12",
-                        "endOffsets": "234724,264725"
+                        "startLines": "3650,4051,5166",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "234549,263937,335184",
+                        "endLines": "3652,4064,5169",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "234724,264725,335296"
                     }
                 },
                 {

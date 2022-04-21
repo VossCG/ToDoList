@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.voss.todolist.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -21,14 +22,19 @@ public final class ContentmonthlyfragmentBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final FloatingActionButton contentAddFab;
+
+  @NonNull
   public final RecyclerView contentRecyclerview;
 
   @NonNull
   public final TextView contentTitleTextView;
 
   private ContentmonthlyfragmentBinding(@NonNull ConstraintLayout rootView,
-      @NonNull RecyclerView contentRecyclerview, @NonNull TextView contentTitleTextView) {
+      @NonNull FloatingActionButton contentAddFab, @NonNull RecyclerView contentRecyclerview,
+      @NonNull TextView contentTitleTextView) {
     this.rootView = rootView;
+    this.contentAddFab = contentAddFab;
     this.contentRecyclerview = contentRecyclerview;
     this.contentTitleTextView = contentTitleTextView;
   }
@@ -60,6 +66,12 @@ public final class ContentmonthlyfragmentBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.contentAdd_fab;
+      FloatingActionButton contentAddFab = ViewBindings.findChildViewById(rootView, id);
+      if (contentAddFab == null) {
+        break missingId;
+      }
+
       id = R.id.content_recyclerview;
       RecyclerView contentRecyclerview = ViewBindings.findChildViewById(rootView, id);
       if (contentRecyclerview == null) {
@@ -72,8 +84,8 @@ public final class ContentmonthlyfragmentBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ContentmonthlyfragmentBinding((ConstraintLayout) rootView, contentRecyclerview,
-          contentTitleTextView);
+      return new ContentmonthlyfragmentBinding((ConstraintLayout) rootView, contentAddFab,
+          contentRecyclerview, contentTitleTextView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
