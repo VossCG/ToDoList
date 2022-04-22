@@ -22,7 +22,6 @@ import java.util.*
 class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
     private val calendar by lazy { Calendar.getInstance() }
-    private val handler = Handler(Looper.getMainLooper())
     private val navController: NavController by lazy { findNavController() }
 
     private val mAdapter by lazy { HomeEventAdapter(
@@ -32,7 +31,6 @@ class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::infl
         )
     }
 
-    private val TAG = HomeFragment::class.java.simpleName
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -59,56 +57,5 @@ class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::infl
             }
             mAdapter.setData(monthsList)
         }
-    }
-
-    private val simpleItemCallback = object :
-        ItemTouchHelper.SimpleCallback(
-            0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ) {
-        override fun onMove(
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder
-        ): Boolean {
-            return false
-        }
-
-        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            val position = viewHolder.absoluteAdapterPosition
-            Log.d(TAG, "position:$position")
-            val eventData = viewModel.readAllEvent.value?.get(position)!!
-
-            when (direction) {
-                ItemTouchHelper.LEFT -> {
-                    val runnable = Runnable {
-                        runDeleteEvent(eventData)
-                        mAdapter.notifyItemChanged(position)
-                    }
-                    handler.postDelayed((runnable), 1000)
-                    Snackbar.make(
-                        binding.homeRecyclerview,
-                        "List was deleted",
-                        1000
-                    )
-                        .setAction("Undo", View.OnClickListener {
-                            mAdapter.notifyItemChanged(position)
-                            handler.removeCallbacks(runnable)
-                        }).show()
-                }
-
-                ItemTouchHelper.RIGHT -> {
-                    Log.d(TAG, "Parcelable[${eventData.date}]")
-
-                    val directions =
-                        HomeFragmentDirections.actionHomeFragmentToUpdateEventFragment(eventData)
-                    navController.navigate(directions)
-                }
-            }
-        }
-    }
-
-    private fun runDeleteEvent(eventType: EventTypes) {
-        viewModel.deleteEvent(eventType)
     }
 }

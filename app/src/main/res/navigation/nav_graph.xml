@@ -13,10 +13,12 @@
 
         <action
             android:id="@+id/action_homeFragment_to_contentFragment"
+            app:enterAnim="@anim/slide_in_right_enter"
+            app:exitAnim="@anim/slide_out_left_exit"
+            app:popEnterAnim="@anim/slide_in_left_pop_enter"
+            app:popExitAnim="@anim/slide_out_right_pop_exit"
             app:destination="@id/contentFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_updateEventFragment"
-            app:destination="@id/updateEventFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/editEventFragment"
@@ -73,10 +75,11 @@
         android:label="YearFragment" >
         <action
             android:id="@+id/action_browseFragment_to_monthFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:enterAnim="@anim/slide_in_right_enter"
+            app:exitAnim="@anim/slide_out_left_exit"
+            app:popEnterAnim="@anim/slide_in_left_pop_enter"
+            app:popExitAnim="@anim/slide_out_right_pop_exit"
+
             app:destination="@id/monthFragment" />
     </fragment>
     <fragment
