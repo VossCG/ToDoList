@@ -5,7 +5,6 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.navigation.NavDirections;
 import com.voss.todolist.Adapter.ArgsToContent;
-import com.voss.todolist.Data.EventTypes;
 import com.voss.todolist.R;
 import java.io.Serializable;
 import java.lang.IllegalArgumentException;
@@ -23,12 +22,6 @@ public class HomeFragmentDirections {
   public static ActionHomeFragmentToContentFragment actionHomeFragmentToContentFragment(
       @NonNull ArgsToContent ContentArgs) {
     return new ActionHomeFragmentToContentFragment(ContentArgs);
-  }
-
-  @NonNull
-  public static ActionHomeFragmentToUpdateEventFragment actionHomeFragmentToUpdateEventFragment(
-      @NonNull EventTypes EventTypes) {
-    return new ActionHomeFragmentToUpdateEventFragment(EventTypes);
   }
 
   public static class ActionHomeFragmentToContentFragment implements NavDirections {
@@ -114,93 +107,6 @@ public class HomeFragmentDirections {
     public String toString() {
       return "ActionHomeFragmentToContentFragment(actionId=" + getActionId() + "){"
           + "ContentArgs=" + getContentArgs()
-          + "}";
-    }
-  }
-
-  public static class ActionHomeFragmentToUpdateEventFragment implements NavDirections {
-    private final HashMap arguments = new HashMap();
-
-    @SuppressWarnings("unchecked")
-    private ActionHomeFragmentToUpdateEventFragment(@NonNull EventTypes EventTypes) {
-      if (EventTypes == null) {
-        throw new IllegalArgumentException("Argument \"EventTypes\" is marked as non-null but was passed a null value.");
-      }
-      this.arguments.put("EventTypes", EventTypes);
-    }
-
-    @NonNull
-    @SuppressWarnings("unchecked")
-    public ActionHomeFragmentToUpdateEventFragment setEventTypes(@NonNull EventTypes EventTypes) {
-      if (EventTypes == null) {
-        throw new IllegalArgumentException("Argument \"EventTypes\" is marked as non-null but was passed a null value.");
-      }
-      this.arguments.put("EventTypes", EventTypes);
-      return this;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    @NonNull
-    public Bundle getArguments() {
-      Bundle __result = new Bundle();
-      if (arguments.containsKey("EventTypes")) {
-        EventTypes EventTypes = (EventTypes) arguments.get("EventTypes");
-        if (Parcelable.class.isAssignableFrom(EventTypes.class) || EventTypes == null) {
-          __result.putParcelable("EventTypes", Parcelable.class.cast(EventTypes));
-        } else if (Serializable.class.isAssignableFrom(EventTypes.class)) {
-          __result.putSerializable("EventTypes", Serializable.class.cast(EventTypes));
-        } else {
-          throw new UnsupportedOperationException(EventTypes.class.getName() + " must implement Parcelable or Serializable or must be an Enum.");
-        }
-      }
-      return __result;
-    }
-
-    @Override
-    public int getActionId() {
-      return R.id.action_homeFragment_to_updateEventFragment;
-    }
-
-    @SuppressWarnings("unchecked")
-    @NonNull
-    public EventTypes getEventTypes() {
-      return (EventTypes) arguments.get("EventTypes");
-    }
-
-    @Override
-    public boolean equals(Object object) {
-      if (this == object) {
-          return true;
-      }
-      if (object == null || getClass() != object.getClass()) {
-          return false;
-      }
-      ActionHomeFragmentToUpdateEventFragment that = (ActionHomeFragmentToUpdateEventFragment) object;
-      if (arguments.containsKey("EventTypes") != that.arguments.containsKey("EventTypes")) {
-        return false;
-      }
-      if (getEventTypes() != null ? !getEventTypes().equals(that.getEventTypes()) : that.getEventTypes() != null) {
-        return false;
-      }
-      if (getActionId() != that.getActionId()) {
-        return false;
-      }
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      int result = 1;
-      result = 31 * result + (getEventTypes() != null ? getEventTypes().hashCode() : 0);
-      result = 31 * result + getActionId();
-      return result;
-    }
-
-    @Override
-    public String toString() {
-      return "ActionHomeFragmentToUpdateEventFragment(actionId=" + getActionId() + "){"
-          + "EventTypes=" + getEventTypes()
           + "}";
     }
   }

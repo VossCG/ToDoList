@@ -14,16 +14,26 @@ import androidx.navigation.ui.setupWithNavController
 import com.voss.todolist.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mNavController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (BuildConfig.DEBUG) {Timber.plant(TimberTree())}
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setBottomNavigation()
+
+        Timber.d("1")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.d("2")
     }
 
     private fun setBottomNavigation() {

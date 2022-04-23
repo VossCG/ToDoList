@@ -14,6 +14,8 @@ import com.voss.todolist.R
 import com.voss.todolist.UpdateRecyclerData
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.ContentmonthlyfragmentBinding
+import timber.log.Timber
+import java.util.*
 
 class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
 
@@ -44,6 +46,7 @@ class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(Conte
 
     }
     private fun setRecyclerView(position: Int) {
+        Timber.d("now:$position")
         val recyclerView = binding.contentRecyclerview
         recyclerView.apply {
             setHasFixedSize(true)

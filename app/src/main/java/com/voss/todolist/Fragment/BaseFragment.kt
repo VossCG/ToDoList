@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
+import timber.log.Timber
 
 abstract class BaseFragment<VB : ViewBinding>
     (private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> VB) :
@@ -21,12 +22,14 @@ abstract class BaseFragment<VB : ViewBinding>
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Timber.d("BaseFragment OnCreate")
         _binding =inflate(inflater,container,false)
         return binding.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        Timber.d("BaseFragment OnDestroy")
         _binding = null
     }
 }

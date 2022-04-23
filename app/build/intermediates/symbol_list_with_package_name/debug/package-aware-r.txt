@@ -38,10 +38,10 @@ anim nav_default_pop_enter_anim
 anim nav_default_pop_exit_anim
 anim rotate_close_anim
 anim rotate_open_anim
-anim slide_in_left_enter
-anim slide_in_right_exit
-anim slide_out_left_pop
-anim slide_out_right_pop
+anim slide_in_left_pop_enter
+anim slide_in_right_enter
+anim slide_out_left_exit
+anim slide_out_right_pop_exit
 anim to_bottom_anim
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
@@ -1992,7 +1992,6 @@ id action_context_bar
 id action_divider
 id action_editEventFragment_to_homeFragment
 id action_homeFragment_to_contentFragment
-id action_homeFragment_to_updateEventFragment
 id action_image
 id action_menu_divider
 id action_menu_presenter
