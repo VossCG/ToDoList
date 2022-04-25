@@ -37,13 +37,13 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
             isExpanded = !isExpanded
         }
         binding.changeContentFab.setOnClickListener {
-            viewModel.filterFactor.value = "content"
+            viewModel.setFilterFactor( "content")
             Toast.makeText(this.context,"Content",Toast.LENGTH_SHORT).show()
             onAddButtonClicked()
             isExpanded = !isExpanded
         }
         binding.changeTitleFab.setOnClickListener {
-            viewModel.filterFactor.value = "title"
+            viewModel.setFilterFactor( "title")
             Toast.makeText(this.context,"title",Toast.LENGTH_SHORT).show()
             onAddButtonClicked()
             isExpanded = !isExpanded

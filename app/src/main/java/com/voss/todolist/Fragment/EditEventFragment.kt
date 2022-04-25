@@ -12,6 +12,7 @@ import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.EditeventfragmentBinding
+import timber.log.Timber
 
 class EditEventFragment :
     BaseFragment<EditeventfragmentBinding>(EditeventfragmentBinding::inflate) {
@@ -39,9 +40,8 @@ class EditEventFragment :
 
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             dateDetail = CalendarViewDetail(year, month, dayOfMonth)
-            Log.d(TAG,"$dateDetail")
-            Log.d(TAG, evenViewModel.getDateFormat(year, month, dayOfMonth))
-            evenViewModel.date.value = evenViewModel.getDateFormat(year, month, dayOfMonth)
+            Timber.d("$dateDetail")
+            evenViewModel.setDate(year, month, dayOfMonth)
         }
     }
 
@@ -80,7 +80,7 @@ class EditEventFragment :
 
             // When insert the event to Room , navigate Fragment to HomeFragment check event show on or not
             navController.navigate(R.id.action_editEventFragment_to_homeFragment)
-            }
+        }
 
         // When it's Empty Toast talk User fill out all fields
         else Toast.makeText(this.context, "Please fill out all fields", Toast.LENGTH_SHORT).show()

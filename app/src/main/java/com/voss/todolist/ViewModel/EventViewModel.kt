@@ -53,10 +53,16 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun setDate(year: Int, month: Int, day: Int) {
+        this.date.postValue(getDateFormat(year, month, day))
+    }
+    fun setFilterFactor(factor:String){
+        this.filterFactor.postValue(factor)
+    }
+
     fun getDateFormat(year: Int, month: Int, day: Int): String {
         calendar.set(year, month, day)
         val date = calendar.time
-        Log.d("ViewModel", "$date")
         val format = SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN)
         return format.format(date)
     }
@@ -71,7 +77,6 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
                 "title" -> it.title.contains(inputData)
                 "content" -> it.content.contains(inputData)
                 else -> {
-
                     false
                 }
             }
