@@ -18,9 +18,12 @@ import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.UpdateeventfragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.properties.Delegates
 
+
+@AndroidEntryPoint
 class UpdateEventFragment :
     BaseFragment<UpdateeventfragmentBinding>(UpdateeventfragmentBinding::inflate) {
 

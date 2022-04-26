@@ -32,7 +32,7 @@ class BrowseRecyclerAdapter(val list: List<Int>, val navController: NavControlle
         init {
             year.setOnClickListener {
                 val direction =
-                    BrowseFragmentDirections.actionBrowseFragmentToMonthFragment(list[absoluteAdapterPosition])
+                    BrowseFragmentDirections.actionBrowseFragmentToMonthFragment(list[adapterPosition])
                 navController.navigate(direction)
             }
         }

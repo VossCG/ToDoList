@@ -83,7 +83,7 @@ class ContentMonthlyAdapter(val updateRecyclerData: UpdateRecyclerData) :
 
         init {
             deleteButton.setOnClickListener {
-                updateRecyclerData.deleteContentItem(oldList[absoluteAdapterPosition])
+                updateRecyclerData.deleteContentItem(oldList[adapterPosition])
             }
         }
     }

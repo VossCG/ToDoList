@@ -16,9 +16,12 @@ import com.voss.todolist.Adapter.HomeEventAdapter
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.HomefragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Runnable
 import java.util.*
 
+
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
     private val calendar by lazy { Calendar.getInstance() }

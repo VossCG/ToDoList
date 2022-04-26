@@ -70,7 +70,7 @@ class SearChRecyclerAdapter(val viewModel: EventViewModel) :
                 }
             }
             complete.setOnClickListener {
-                viewModel.deleteEvent(oldList[absoluteAdapterPosition])
+                viewModel.deleteEvent(oldList[adapterPosition])
             }
 
         }

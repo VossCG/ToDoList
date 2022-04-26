@@ -12,7 +12,10 @@ import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.MonthfragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::inflate) {
     private val args: MonthFragmentArgs by navArgs()
     private val navController:NavController by lazy { findNavController() }

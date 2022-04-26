@@ -58,7 +58,7 @@ class HomeEventAdapter(val navController: NavController,val year:Int,val month:I
                 val directions =
                     HomeFragmentDirections.actionHomeFragmentToContentFragment(
                         ArgsToContent(
-                            absoluteAdapterPosition,
+                            adapterPosition,
                             year,
                             month
                         )

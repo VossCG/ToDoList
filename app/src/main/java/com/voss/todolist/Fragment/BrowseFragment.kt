@@ -7,7 +7,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.BrowseRecyclerAdapter
 import com.voss.todolist.databinding.BrowsefragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BrowseFragment : BaseFragment<BrowsefragmentBinding>(BrowsefragmentBinding::inflate) {
     // 先使用假資料代替，之後替換成 從資料庫拿出一個年份的list
     // 只顯示有寫入事件的year，沒寫入的 不顯示在當中

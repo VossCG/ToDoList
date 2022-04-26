@@ -9,13 +9,13 @@ import com.voss.todolist.Data.EventTypes
 interface EventDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(event: EventTypes)
+    suspend fun insert(event: EventTypes)
 
     @Delete
-    fun delete(event: EventTypes)
+    suspend fun delete(event: EventTypes)
 
     @Update
-    fun update(event: EventTypes)
+    suspend fun update(event: EventTypes)
 
     // ORDER BY  dateInteger   排序結果  ASC 代表由小往大 DESC 大到小
     @Query("select * from EventTypes ORDER BY dateInteger ASC")

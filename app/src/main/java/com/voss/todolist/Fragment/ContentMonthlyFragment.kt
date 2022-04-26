@@ -14,9 +14,11 @@ import com.voss.todolist.R
 import com.voss.todolist.UpdateRecyclerData
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.ContentmonthlyfragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.*
 
+@AndroidEntryPoint
 class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
 
     private val callback = object : UpdateRecyclerData {

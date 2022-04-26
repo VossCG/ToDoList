@@ -11,93 +11,95 @@
 9-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml
 10
 11    <application
-11-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:5:5-25:19
-12        android:allowBackup="true"
-12-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:6:9-35
-13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.7.0] C:\Users\USER\.gradle\caches\transforms-3\43930708d3b2d7dce274bf0754d3e00a\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
-14        android:debuggable="true"
-15        android:extractNativeLibs="false"
-16        android:icon="@mipmap/ic_launcher"
-16-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:7:9-43
-17        android:label="@string/app_name"
-17-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:8:9-41
-18        android:roundIcon="@mipmap/ic_launcher_round"
-18-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:9:9-54
-19        android:supportsRtl="true"
-19-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:10:9-35
-20        android:testOnly="true"
-21        android:theme="@style/Theme.ToDoList" >
-21-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:11:9-46
-22        <activity
-22-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:12:9-21:20
-23            android:name="com.voss.todolist.SplashActivity"
-23-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:13:13-43
-24            android:exported="true"
-24-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:15:13-36
-25            android:theme="@style/SplashScreenTheme" >
-25-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:14:13-53
-26            <intent-filter>
-26-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:16:13-20:29
-27                <action android:name="android.intent.action.MAIN" />
-27-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:17:17-69
-27-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:17:25-66
-28
-29                <category android:name="android.intent.category.LAUNCHER" />
-29-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:19:17-77
-29-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:19:27-74
-30            </intent-filter>
-31        </activity>
-32        <activity
-32-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:22:9-24:38
-33            android:name="com.voss.todolist.MainActivity"
-33-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:23:13-41
-34            android:exported="true" />
-34-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:24:13-36
-35
-36        <uses-library
-36-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\f0a217b04797a936d0dfc74c84f966d6\transformed\jetified-window-1.0.0\AndroidManifest.xml:25:9-27:40
-37            android:name="androidx.window.extensions"
-37-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\f0a217b04797a936d0dfc74c84f966d6\transformed\jetified-window-1.0.0\AndroidManifest.xml:26:13-54
-38            android:required="false" />
-38-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\f0a217b04797a936d0dfc74c84f966d6\transformed\jetified-window-1.0.0\AndroidManifest.xml:27:13-37
-39        <uses-library
-39-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\f0a217b04797a936d0dfc74c84f966d6\transformed\jetified-window-1.0.0\AndroidManifest.xml:28:9-30:40
-40            android:name="androidx.window.sidecar"
-40-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\f0a217b04797a936d0dfc74c84f966d6\transformed\jetified-window-1.0.0\AndroidManifest.xml:29:13-51
-41            android:required="false" />
-41-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\f0a217b04797a936d0dfc74c84f966d6\transformed\jetified-window-1.0.0\AndroidManifest.xml:30:13-37
-42
-43        <service
-43-->[androidx.room:room-runtime:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\5b2bd438c1eb751e1f36b348431b4437\transformed\room-runtime-2.3.0\AndroidManifest.xml:25:9-28:40
-44            android:name="androidx.room.MultiInstanceInvalidationService"
-44-->[androidx.room:room-runtime:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\5b2bd438c1eb751e1f36b348431b4437\transformed\room-runtime-2.3.0\AndroidManifest.xml:26:13-74
-45            android:directBootAware="true"
-45-->[androidx.room:room-runtime:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\5b2bd438c1eb751e1f36b348431b4437\transformed\room-runtime-2.3.0\AndroidManifest.xml:27:13-43
-46            android:exported="false" />
-46-->[androidx.room:room-runtime:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\5b2bd438c1eb751e1f36b348431b4437\transformed\room-runtime-2.3.0\AndroidManifest.xml:28:13-37
-47
-48        <provider
-48-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\21af36c57b370ad37c504ed2d74c19e3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
-49            android:name="androidx.startup.InitializationProvider"
-49-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\21af36c57b370ad37c504ed2d74c19e3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
-50            android:authorities="com.voss.todolist.androidx-startup"
-50-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\21af36c57b370ad37c504ed2d74c19e3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
-51            android:exported="false" >
-51-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\21af36c57b370ad37c504ed2d74c19e3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
-52            <meta-data
-52-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\21af36c57b370ad37c504ed2d74c19e3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
-53                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-53-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\21af36c57b370ad37c504ed2d74c19e3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
-54                android:value="androidx.startup" />
-54-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\21af36c57b370ad37c504ed2d74c19e3\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
-55            <meta-data
-55-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\USER\.gradle\caches\transforms-3\8416e0dd4b6ef6b1132d7a0f88640f7b\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
-56                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-56-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\USER\.gradle\caches\transforms-3\8416e0dd4b6ef6b1132d7a0f88640f7b\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
-57                android:value="androidx.startup" />
-57-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\USER\.gradle\caches\transforms-3\8416e0dd4b6ef6b1132d7a0f88640f7b\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
-58        </provider>
-59    </application>
-60
-61</manifest>
+11-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:5:5-26:19
+12        android:name="com.voss.todolist.DI.MyApplication"
+12-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:6:9-41
+13        android:allowBackup="true"
+13-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:7:9-35
+14        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+14-->[androidx.core:core:1.7.0] C:\Users\USER\.gradle\caches\transforms-3\5ab8bc8aadc929ecc6ca9b2aa75e3f8d\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+15        android:debuggable="true"
+16        android:extractNativeLibs="false"
+17        android:icon="@mipmap/ic_launcher"
+17-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:8:9-43
+18        android:label="@string/app_name"
+18-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:9:9-41
+19        android:roundIcon="@mipmap/ic_launcher_round"
+19-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:10:9-54
+20        android:supportsRtl="true"
+20-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:11:9-35
+21        android:testOnly="true"
+22        android:theme="@style/Theme.ToDoList" >
+22-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:12:9-46
+23        <activity
+23-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:13:9-22:20
+24            android:name="com.voss.todolist.SplashActivity"
+24-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:14:13-43
+25            android:exported="true"
+25-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:16:13-36
+26            android:theme="@style/SplashScreenTheme" >
+26-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:15:13-53
+27            <intent-filter>
+27-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:17:13-21:29
+28                <action android:name="android.intent.action.MAIN" />
+28-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:18:17-69
+28-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:18:25-66
+29
+30                <category android:name="android.intent.category.LAUNCHER" />
+30-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:20:17-77
+30-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:20:27-74
+31            </intent-filter>
+32        </activity>
+33        <activity
+33-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:23:9-25:38
+34            android:name="com.voss.todolist.MainActivity"
+34-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:24:13-41
+35            android:exported="true" />
+35-->C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:25:13-36
+36
+37        <uses-library
+37-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\7faa01aab667f2c47c0c20799ca88daa\transformed\jetified-window-1.0.0\AndroidManifest.xml:25:9-27:40
+38            android:name="androidx.window.extensions"
+38-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\7faa01aab667f2c47c0c20799ca88daa\transformed\jetified-window-1.0.0\AndroidManifest.xml:26:13-54
+39            android:required="false" />
+39-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\7faa01aab667f2c47c0c20799ca88daa\transformed\jetified-window-1.0.0\AndroidManifest.xml:27:13-37
+40        <uses-library
+40-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\7faa01aab667f2c47c0c20799ca88daa\transformed\jetified-window-1.0.0\AndroidManifest.xml:28:9-30:40
+41            android:name="androidx.window.sidecar"
+41-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\7faa01aab667f2c47c0c20799ca88daa\transformed\jetified-window-1.0.0\AndroidManifest.xml:29:13-51
+42            android:required="false" />
+42-->[androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\7faa01aab667f2c47c0c20799ca88daa\transformed\jetified-window-1.0.0\AndroidManifest.xml:30:13-37
+43
+44        <service
+44-->[androidx.room:room-runtime:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\ea48c95d67bb850acfbf8578a28857c3\transformed\room-runtime-2.3.0\AndroidManifest.xml:25:9-28:40
+45            android:name="androidx.room.MultiInstanceInvalidationService"
+45-->[androidx.room:room-runtime:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\ea48c95d67bb850acfbf8578a28857c3\transformed\room-runtime-2.3.0\AndroidManifest.xml:26:13-74
+46            android:directBootAware="true"
+46-->[androidx.room:room-runtime:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\ea48c95d67bb850acfbf8578a28857c3\transformed\room-runtime-2.3.0\AndroidManifest.xml:27:13-43
+47            android:exported="false" />
+47-->[androidx.room:room-runtime:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\ea48c95d67bb850acfbf8578a28857c3\transformed\room-runtime-2.3.0\AndroidManifest.xml:28:13-37
+48
+49        <provider
+49-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\c2e9e94d89cbbda9ca687244b9ba6c21\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+50            android:name="androidx.startup.InitializationProvider"
+50-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\c2e9e94d89cbbda9ca687244b9ba6c21\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+51            android:authorities="com.voss.todolist.androidx-startup"
+51-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\c2e9e94d89cbbda9ca687244b9ba6c21\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+52            android:exported="false" >
+52-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\c2e9e94d89cbbda9ca687244b9ba6c21\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+53            <meta-data
+53-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\c2e9e94d89cbbda9ca687244b9ba6c21\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+54                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+54-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\c2e9e94d89cbbda9ca687244b9ba6c21\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+55                android:value="androidx.startup" />
+55-->[androidx.emoji2:emoji2:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\c2e9e94d89cbbda9ca687244b9ba6c21\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+56            <meta-data
+56-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\USER\.gradle\caches\transforms-3\26b6f54c806379141856efe9a3fa3bf5\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+57                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+57-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\USER\.gradle\caches\transforms-3\26b6f54c806379141856efe9a3fa3bf5\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+58                android:value="androidx.startup" />
+58-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\USER\.gradle\caches\transforms-3\26b6f54c806379141856efe9a3fa3bf5\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+59        </provider>
+60    </application>
+61
+62</manifest>

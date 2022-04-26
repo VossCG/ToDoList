@@ -12,8 +12,11 @@ import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.EditeventfragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+
+@AndroidEntryPoint
 class EditEventFragment :
     BaseFragment<EditeventfragmentBinding>(EditeventfragmentBinding::inflate) {
 

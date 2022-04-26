@@ -12,22 +12,22 @@ import androidx.lifecycle.viewModelScope
 import com.voss.todolist.Data.EventRepository
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.Room.EventDataBase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
+import javax.inject.Inject
 
-class EventViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class EventViewModel @Inject constructor(application: Application,var repository: EventRepository) : AndroidViewModel(application) {
 
     val readAllEvent: LiveData<List<EventTypes>>
     val date = MutableLiveData<String>()
     val filterFactor = MutableLiveData<String>()
-    private val repository: EventRepository
     private val calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
 
     init {
-        val eventDao = EventDataBase.getInstance(application).eventRoomDao()
-        repository = EventRepository(eventDao)
         filterFactor.value = "標題"
         readAllEvent = repository.eventDataList
     }
@@ -52,6 +52,7 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
 
     fun setDate(year: Int, month: Int, day: Int) {
         this.date.postValue(getDateFormat(year, month, day))

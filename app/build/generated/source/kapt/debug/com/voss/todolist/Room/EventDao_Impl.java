@@ -2,6 +2,7 @@ package com.voss.todolist.Room;
 
 import android.database.Cursor;
 import androidx.lifecycle.LiveData;
+import androidx.room.CoroutinesRoom;
 import androidx.room.EntityDeletionOrUpdateAdapter;
 import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
@@ -14,6 +15,7 @@ import com.voss.todolist.Data.EventTypes;
 import java.lang.Class;
 import java.lang.Exception;
 import java.lang.Integer;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -21,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
 
 @SuppressWarnings({"unchecked", "deprecation"})
 public final class EventDao_Impl implements EventDao {
@@ -128,39 +132,54 @@ public final class EventDao_Impl implements EventDao {
   }
 
   @Override
-  public void insert(final EventTypes event) {
-    __db.assertNotSuspendingTransaction();
-    __db.beginTransaction();
-    try {
-      __insertionAdapterOfEventTypes.insert(event);
-      __db.setTransactionSuccessful();
-    } finally {
-      __db.endTransaction();
-    }
+  public Object insert(final EventTypes event, final Continuation<? super Unit> continuation) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      public Unit call() throws Exception {
+        __db.beginTransaction();
+        try {
+          __insertionAdapterOfEventTypes.insert(event);
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, continuation);
   }
 
   @Override
-  public void delete(final EventTypes event) {
-    __db.assertNotSuspendingTransaction();
-    __db.beginTransaction();
-    try {
-      __deletionAdapterOfEventTypes.handle(event);
-      __db.setTransactionSuccessful();
-    } finally {
-      __db.endTransaction();
-    }
+  public Object delete(final EventTypes event, final Continuation<? super Unit> continuation) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      public Unit call() throws Exception {
+        __db.beginTransaction();
+        try {
+          __deletionAdapterOfEventTypes.handle(event);
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, continuation);
   }
 
   @Override
-  public void update(final EventTypes event) {
-    __db.assertNotSuspendingTransaction();
-    __db.beginTransaction();
-    try {
-      __updateAdapterOfEventTypes.handle(event);
-      __db.setTransactionSuccessful();
-    } finally {
-      __db.endTransaction();
-    }
+  public Object update(final EventTypes event, final Continuation<? super Unit> continuation) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      public Unit call() throws Exception {
+        __db.beginTransaction();
+        try {
+          __updateAdapterOfEventTypes.handle(event);
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, continuation);
   }
 
   @Override

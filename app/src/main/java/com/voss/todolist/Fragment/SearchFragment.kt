@@ -12,8 +12,11 @@ import com.voss.todolist.Adapter.SearChRecyclerAdapter
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.SearchfragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+
+@AndroidEntryPoint
 class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter(viewModel) }
