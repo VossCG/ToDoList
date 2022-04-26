@@ -19,13 +19,7 @@ class MyDiffUtil(private val newList: List<EventTypes>, private val oldlist: Lis
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return when {
-            oldlist[oldItemPosition].date != newList[newItemPosition].date -> false
-            oldlist[oldItemPosition].content != newList[newItemPosition].content -> false
-            oldlist[oldItemPosition].title != newList[newItemPosition].title -> false
-            oldlist[oldItemPosition].id != newList[newItemPosition].id -> false
-            else -> true
-        }
+        return oldlist[oldItemPosition].dateInteger == newList[newItemPosition].dateInteger
     }
 
 }

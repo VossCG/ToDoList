@@ -59,25 +59,26 @@
 
                 <TextView
                     android:id="@+id/rowSearchTitle_textView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:maxLength="20"
                     android:layout_margin="10dp"
+                    android:maxLength="20"
                     android:text="Title"
                     android:textSize="25sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/expandArrow_img"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
                     android:id="@+id/expandArrow_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:padding="5dp"
                     android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -101,7 +102,6 @@
             android:id="@+id/rowSearchContent_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:text="Content will filled out this area"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"

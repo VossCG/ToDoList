@@ -1,6 +1,7 @@
 package com.voss.todolist.Adapter
 
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.voss.todolist.UpdateRecyclerData
 import com.voss.todolist.Util.MyDiffUtil
 import com.voss.todolist.databinding.RowContenmonthlytitemBinding
 import kotlinx.parcelize.Parcelize
+import timber.log.Timber
 
 class ContentMonthlyAdapter(val updateRecyclerData: UpdateRecyclerData) :
     RecyclerView.Adapter<ContentMonthlyAdapter.ContentMonthlyViewHolder>() {
@@ -45,12 +47,14 @@ class ContentMonthlyAdapter(val updateRecyclerData: UpdateRecyclerData) :
             holder.showMoreContent.visibility = View.GONE
             contentText.text = mContent
         }
+
         // check more show is needed or not
         holder.title.text = oldList[position].title
         holder.date.text = oldList[position].date.substring(5, 10)
 
         // set EditButton
         holder.editButton.setOnClickListener {
+            Log.d("Timber","oldlist:${oldList[position]}")
             updateRecyclerData.updateContentItem(oldList[position])
         }
 

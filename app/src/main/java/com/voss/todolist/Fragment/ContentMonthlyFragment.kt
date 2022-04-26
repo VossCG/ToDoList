@@ -1,6 +1,7 @@
 package com.voss.todolist.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -8,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.voss.todolist.Adapter.ContentListAdapter
 import com.voss.todolist.Adapter.ContentMonthlyAdapter
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
@@ -19,7 +21,8 @@ import timber.log.Timber
 import java.util.*
 
 @AndroidEntryPoint
-class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
+class ContentMonthlyFragment :
+    BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
 
     private val callback = object : UpdateRecyclerData {
         override fun updateContentItem(data: EventTypes) {
@@ -32,7 +35,7 @@ class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(Conte
         }
     }
 
-    private val mAdapter: ContentMonthlyAdapter by lazy { ContentMonthlyAdapter(callback) }
+    private val mAdapter: ContentListAdapter by lazy { ContentListAdapter(callback) }
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     val args: ContentMonthlyFragmentArgs by navArgs()
@@ -47,6 +50,7 @@ class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(Conte
         }
 
     }
+
     private fun setRecyclerView(position: Int) {
         Timber.d("now:$position")
         val recyclerView = binding.contentRecyclerview
@@ -63,7 +67,9 @@ class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(Conte
             val monthsList = it.filter {
                 (it.year == args.contentArgs.year && it.month == args.contentArgs.months)
             }
-            mAdapter.setData(monthsList)
+            Log.d("Content:","list:${monthsList}")
+            mAdapter.submitList(monthsList)
+            mAdapter.notifyDataSetChanged()
         }
     }
 
