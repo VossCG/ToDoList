@@ -22,22 +22,17 @@ class EditEventFragment :
 
     private val evenViewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    private val TAG = EditEventFragment::class.java.simpleName
-
-    private var mYear: Int = 0
-    private var mMonth: Int = 0
-    private var mDays: Int = 0
-
-
     private val calendar: Calendar by lazy { Calendar.getInstance() }
+    private var mYear: Int = calendar.get(Calendar.YEAR)
+    private var mMonth: Int =  calendar.get(Calendar.MONTH)
+    private var mDays: Int =  calendar.get(Calendar.DAY_OF_MONTH)
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         itemViewOnClickEvent()
-
-        setViewModelObserve()
-
         setDatePickerListener()
     }
 
@@ -52,11 +47,7 @@ class EditEventFragment :
 
     }
 
-    private fun setViewModelObserve() {
-        evenViewModel.date.observe(this) {
-            binding.dateTextView.text = it
-        }
-    }
+
 
     private fun insertDataToDataBase() {
         // get text From EditText
@@ -65,7 +56,7 @@ class EditEventFragment :
 
         // get Date from calendar / DatePicker view
         val dateInteger = evenViewModel.getDateInteger(mYear,mMonth,mDays)
-        val date = evenViewModel.date.value!!
+        val date = evenViewModel.getDateFormat(mYear,mMonth,mDays)
 
         // check EditText Data not empty
         if (checkData(title, date, content,mYear)) {
@@ -98,7 +89,6 @@ class EditEventFragment :
                     mYear = year
                     mMonth = monthOfYear
                     mDays = dayOfMonth
-                    evenViewModel.setDate(year, monthOfYear, dayOfMonth)
                 }
             }
         )

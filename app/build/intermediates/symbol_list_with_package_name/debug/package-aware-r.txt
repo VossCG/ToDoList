@@ -2092,7 +2092,6 @@ id customPanel
 id cut
 id datePicker
 id dateUpdate_but
-id date_TextView
 id date_picker_actions
 id decelerate
 id decelerateAndComplete

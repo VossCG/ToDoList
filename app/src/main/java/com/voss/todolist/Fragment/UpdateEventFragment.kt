@@ -106,21 +106,15 @@ class UpdateEventFragment :
         }
     }
 
-    val datePickerListener = object : DatePickerDialog.OnDateSetListener {
-        override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-
-            // because DatePicker send back months was started from 0
-            // So when we show it on View , must plus 1 let back normal format
-
+    private val datePickerListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth -> // DatePicker send back months was started from 0
             mYear = year
             mDay = dayOfMonth
             mMonth = month
             mDateInteger = viewModel.getDateInteger(year, month, dayOfMonth)
             mDate = viewModel.getDateFormat(year, month, dayOfMonth)
 
-            viewModel.date.value = mDate
+            viewModel.setDate(mYear,mMonth,mDay)
         }
-    }
 
     private fun inputCheck(title: String, content: String): Boolean {
         return !(TextUtils.isEmpty(title) && TextUtils.isEmpty(content))

@@ -2091,7 +2091,6 @@ int id customPanel 0x7f0800a4
 int id cut 0x7f0800a5
 int id datePicker 0x7f0800a6
 int id dateUpdate_but 0x7f0800a7
-int id date_TextView 0x7f0800a8
 int id date_picker_actions 0x7f0800a9
 int id decelerate 0x7f0800aa
 int id decelerateAndComplete 0x7f0800ab

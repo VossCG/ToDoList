@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -29,16 +29,13 @@ public final class EditeventfragmentBinding implements ViewBinding {
   public final ImageButton backHomeArrowBut;
 
   @NonNull
-  public final CalendarView calendarView;
-
-  @NonNull
   public final TextInputEditText contentEditText;
 
   @NonNull
   public final TextInputLayout contentInputLayout;
 
   @NonNull
-  public final TextView dateTextView;
+  public final DatePicker datePicker;
 
   @NonNull
   public final TextView editFragmentTitleTextView;
@@ -62,18 +59,17 @@ public final class EditeventfragmentBinding implements ViewBinding {
   public final TextInputLayout titleInputLayout;
 
   private EditeventfragmentBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ImageButton backHomeArrowBut, @NonNull CalendarView calendarView,
-      @NonNull TextInputEditText contentEditText, @NonNull TextInputLayout contentInputLayout,
-      @NonNull TextView dateTextView, @NonNull TextView editFragmentTitleTextView,
-      @NonNull ScrollView evenContentScroll, @NonNull ConstraintLayout insideConstraintLayout,
-      @NonNull Button setUpEventBut, @NonNull TextView timeTextView,
-      @NonNull TextInputEditText titleEdittext, @NonNull TextInputLayout titleInputLayout) {
+      @NonNull ImageButton backHomeArrowBut, @NonNull TextInputEditText contentEditText,
+      @NonNull TextInputLayout contentInputLayout, @NonNull DatePicker datePicker,
+      @NonNull TextView editFragmentTitleTextView, @NonNull ScrollView evenContentScroll,
+      @NonNull ConstraintLayout insideConstraintLayout, @NonNull Button setUpEventBut,
+      @NonNull TextView timeTextView, @NonNull TextInputEditText titleEdittext,
+      @NonNull TextInputLayout titleInputLayout) {
     this.rootView = rootView;
     this.backHomeArrowBut = backHomeArrowBut;
-    this.calendarView = calendarView;
     this.contentEditText = contentEditText;
     this.contentInputLayout = contentInputLayout;
-    this.dateTextView = dateTextView;
+    this.datePicker = datePicker;
     this.editFragmentTitleTextView = editFragmentTitleTextView;
     this.evenContentScroll = evenContentScroll;
     this.insideConstraintLayout = insideConstraintLayout;
@@ -116,12 +112,6 @@ public final class EditeventfragmentBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.calendarView;
-      CalendarView calendarView = ViewBindings.findChildViewById(rootView, id);
-      if (calendarView == null) {
-        break missingId;
-      }
-
       id = R.id.content_editText;
       TextInputEditText contentEditText = ViewBindings.findChildViewById(rootView, id);
       if (contentEditText == null) {
@@ -134,9 +124,9 @@ public final class EditeventfragmentBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.date_TextView;
-      TextView dateTextView = ViewBindings.findChildViewById(rootView, id);
-      if (dateTextView == null) {
+      id = R.id.datePicker;
+      DatePicker datePicker = ViewBindings.findChildViewById(rootView, id);
+      if (datePicker == null) {
         break missingId;
       }
 
@@ -183,9 +173,9 @@ public final class EditeventfragmentBinding implements ViewBinding {
       }
 
       return new EditeventfragmentBinding((ConstraintLayout) rootView, backHomeArrowBut,
-          calendarView, contentEditText, contentInputLayout, dateTextView,
-          editFragmentTitleTextView, evenContentScroll, insideConstraintLayout, setUpEventBut,
-          timeTextView, titleEdittext, titleInputLayout);
+          contentEditText, contentInputLayout, datePicker, editFragmentTitleTextView,
+          evenContentScroll, insideConstraintLayout, setUpEventBut, timeTextView, titleEdittext,
+          titleInputLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
