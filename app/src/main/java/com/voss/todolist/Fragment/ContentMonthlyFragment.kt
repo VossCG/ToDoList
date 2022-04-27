@@ -24,18 +24,8 @@ import java.util.*
 class ContentMonthlyFragment :
     BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
 
-    private val callback = object : UpdateRecyclerData {
-        override fun updateContentItem(data: EventTypes) {
-            val direction = ContentMonthlyFragmentDirections.actionContentFragmentToUpdateEventFragment(data)
-            navController.navigate(direction)
-        }
 
-        override fun deleteContentItem(data: EventTypes) {
-            viewModel.deleteEvent(data)
-        }
-    }
-
-    private val mAdapter: ContentListAdapter by lazy { ContentListAdapter(callback) }
+    private val mAdapter: ContentListAdapter by lazy { ContentListAdapter() }
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     val args: ContentMonthlyFragmentArgs by navArgs()
@@ -44,6 +34,15 @@ class ContentMonthlyFragment :
         super.onViewCreated(view, savedInstanceState)
         setRecyclerView(args.contentArgs.position)
         setViewModel()
+
+        // Item OnClick callBack
+        mAdapter.itemClickUpdate = {
+            val direction = ContentMonthlyFragmentDirections.actionContentFragmentToUpdateEventFragment(it)
+            navController.navigate(direction)
+        }
+        mAdapter.itemClickDelete = {
+            viewModel.deleteEvent(it)
+        }
 
         binding.contentAddFab.setOnClickListener {
             navController.navigate(R.id.action_contentFragment_to_editEventFragment)
@@ -69,7 +68,6 @@ class ContentMonthlyFragment :
             }
             Log.d("Content:","list:${monthsList}")
             mAdapter.submitList(monthsList)
-            mAdapter.notifyDataSetChanged()
         }
     }
 

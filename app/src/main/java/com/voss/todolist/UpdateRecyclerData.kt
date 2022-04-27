@@ -7,4 +7,5 @@ interface UpdateRecyclerData {
     fun updateContentItem(data:EventTypes)
 
     fun deleteContentItem(data:EventTypes)
+
 }

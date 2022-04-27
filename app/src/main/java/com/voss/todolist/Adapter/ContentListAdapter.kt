@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
-import com.voss.todolist.UpdateRecyclerData
 import com.voss.todolist.databinding.RowContenmonthlytitemBinding
 
-class ContentListAdapter(private val updateRecyclerData: UpdateRecyclerData) :
+class ContentListAdapter() :
     ListAdapter<EventTypes, ContentListAdapter.ContentViewHolder>(ListAdapterDiffUtil()) {
 
+    var itemClickUpdate: (data: EventTypes) -> Unit = {}
+    var itemClickDelete: (data: EventTypes) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
         return ContentViewHolder(
@@ -27,16 +28,7 @@ class ContentListAdapter(private val updateRecyclerData: UpdateRecyclerData) :
     }
 
     override fun onBindViewHolder(holder: ContentViewHolder, position: Int) {
-        holder.title.text = getItem(position).title
-        holder.date.text = getItem(position).date.substring(5, 10)
-        holder.content.text = getItem(position).content
-
-        Log.d("Position",position.toString()+":"+getItem(position).date)
-
-        holder.editButton.setOnClickListener {
-            Log.d("Holder","list:${getItem(position).date}")
-            updateRecyclerData.updateContentItem(getItem(position))
-        }
+        holder.onBind(getItem(position))
     }
 
     inner class ContentViewHolder(binding: RowContenmonthlytitemBinding) :
@@ -44,15 +36,23 @@ class ContentListAdapter(private val updateRecyclerData: UpdateRecyclerData) :
         val title: TextView = binding.rowContentTitleTextView
         val content: TextView = binding.rowContentTextView
         val date: TextView = binding.rowContentDateTextView
-        val showMoreContent: TextView = binding.rowShowMoreContentTextView
         val editButton: ImageButton = binding.rowContentEditBut
         val deleteButton: ImageButton = binding.rowContentDeleteBut
 
 
         init {
             deleteButton.setOnClickListener {
-                updateRecyclerData.deleteContentItem(getItem(adapterPosition))
+                itemClickDelete.invoke(getItem(adapterPosition))
             }
+            editButton.setOnClickListener {
+                itemClickUpdate.invoke(getItem(adapterPosition))
+            }
+        }
+
+        fun onBind(data: EventTypes) {
+            title.text = data.title
+            date.text = data.date.substring(5, 10)
+            content.text = data.content
         }
     }
 }
@@ -63,7 +63,7 @@ class ListAdapterDiffUtil : DiffUtil.ItemCallback<EventTypes>() {
     }
 
     override fun areContentsTheSame(oldItem: EventTypes, newItem: EventTypes): Boolean {
-        return oldItem == newItem
+        return oldItem.dateInteger == newItem.dateInteger
     }
 }
 

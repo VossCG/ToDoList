@@ -19,6 +19,7 @@ import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.UpdateeventfragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -38,7 +39,6 @@ class UpdateEventFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initDateAttributesWithArgs()
         initView()
 
@@ -80,7 +80,7 @@ class UpdateEventFragment :
         // init but
         binding.updateUploadBut.setOnClickListener {
             updateItemData()
-            navController.popBackStack()
+            navController.navigateUp()
         }
 
         binding.cancelUpdateBut.setOnClickListener {
@@ -125,6 +125,7 @@ class UpdateEventFragment :
     private fun inputCheck(title: String, content: String): Boolean {
         return !(TextUtils.isEmpty(title) && TextUtils.isEmpty(content))
     }
+
 
 
     override fun onStart() {
