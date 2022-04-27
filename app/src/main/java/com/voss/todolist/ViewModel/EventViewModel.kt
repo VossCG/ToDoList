@@ -20,14 +20,16 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class EventViewModel @Inject constructor(application: Application,var repository: EventRepository) : AndroidViewModel(application) {
+class EventViewModel @Inject constructor(application: Application, var repository: EventRepository) : AndroidViewModel(application) {
 
     val readAllEvent: LiveData<List<EventTypes>>
     val date = MutableLiveData<String>()
     val filterFactor = MutableLiveData<String>()
-    private val calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
+
+    private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
 
     init {
+        date.value = "YY/MM/DD"
         filterFactor.value = "標題"
         readAllEvent = repository.eventDataList
     }
@@ -53,20 +55,21 @@ class EventViewModel @Inject constructor(application: Application,var repository
         }
     }
 
-
-    fun setDate(year: Int, month: Int, day: Int) {
-        this.date.postValue(getDateFormat(year, month, day))
-    }
-    fun setFilterFactor(factor:String){
-        this.filterFactor.postValue(factor)
-    }
-
     fun getDateFormat(year: Int, month: Int, day: Int): String {
         calendar.set(year, month, day)
         val date = calendar.time
         val format = SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN)
         return format.format(date)
     }
+
+    fun setDate(year: Int, month: Int, day: Int) {
+        this.date.postValue(getDateFormat(year, month, day))
+    }
+
+    fun setFilterFactor(factor: String) {
+        this.filterFactor.postValue(factor)
+    }
+
 
     fun getDateInteger(year: Int, month: Int, day: Int): Int {
         return year * 10000 + month * 100 + day

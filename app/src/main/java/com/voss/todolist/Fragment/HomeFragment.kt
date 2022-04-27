@@ -19,13 +19,14 @@ import com.voss.todolist.databinding.HomefragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Runnable
 import java.util.*
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
-    private val calendar by lazy { Calendar.getInstance() }
     private val navController: NavController by lazy { findNavController() }
+    private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
 
     private val mAdapter by lazy { HomeEventAdapter(
             navController,
@@ -45,14 +46,6 @@ class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::infl
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.adapter = mAdapter
-
-        // 設定item滑動 刪除與編輯
-        // ViewModel
-        // readAllEvent was created by ViewModel init
-        // it's call eventDao.getAll and return LiveData<List<EventType>>
-        // Then use readAllEvent to reference it
-        // So we don't use event.getAll in Fragment or Activity , it already create in ViewModel
-        // we just call observe scope , then set adapter data to complete RecyclerView Refresh
 
         viewModel.readAllEvent.observe(this) {
             val monthsList = it.filter {

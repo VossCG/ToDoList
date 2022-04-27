@@ -33,5 +33,4 @@ object AppModule {
     fun providesRepo(eventDao: EventDao): EventRepository {
         return EventRepository(eventDao)
     }
-
 }

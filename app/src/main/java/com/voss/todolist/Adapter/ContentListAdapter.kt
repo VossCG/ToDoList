@@ -1,6 +1,5 @@
 package com.voss.todolist.Adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
@@ -36,9 +35,8 @@ class ContentListAdapter() :
         val title: TextView = binding.rowContentTitleTextView
         val content: TextView = binding.rowContentTextView
         val date: TextView = binding.rowContentDateTextView
-        val editButton: ImageButton = binding.rowContentEditBut
-        val deleteButton: ImageButton = binding.rowContentDeleteBut
-
+        private val editButton: ImageButton = binding.rowContentEditBut
+        private val deleteButton: ImageButton = binding.rowContentDeleteBut
 
         init {
             deleteButton.setOnClickListener {

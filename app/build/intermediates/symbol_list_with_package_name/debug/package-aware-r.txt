@@ -2000,6 +2000,7 @@ id action_mode_bar_stub
 id action_mode_close_button
 id action_monthFragment_to_contentFragment
 id action_text
+id action_updateEventFragment_to_contentFragment
 id action_updateEventFragment_to_homeFragment
 id actions
 id activity_chooser_view_content
@@ -2037,7 +2038,6 @@ id browseFragment
 id browseTitle_textView
 id buttonPanel
 id cache_measures
-id calendarView
 id callMeasure
 id cancelUpdate_but
 id cancel_action
@@ -2090,6 +2090,7 @@ id currentState
 id custom
 id customPanel
 id cut
+id datePicker
 id dateUpdate_but
 id date_TextView
 id date_picker_actions

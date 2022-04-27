@@ -132,12 +132,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
-
-            <CalendarView
-                android:id="@+id/calendarView"
-                style="@android:style/Widget.Material.CalendarView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/date_TextView" />
@@ -156,6 +155,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/evenContent_scroll" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

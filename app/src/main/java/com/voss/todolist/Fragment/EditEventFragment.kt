@@ -1,8 +1,8 @@
 package com.voss.todolist.Fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -13,7 +13,7 @@ import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.EditeventfragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -23,13 +23,22 @@ class EditEventFragment :
     private val evenViewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     private val TAG = EditEventFragment::class.java.simpleName
-    private var dateDetail: CalendarViewDetail = CalendarViewDetail(0, 0, 0)
+
+    private var mYear: Int = 0
+    private var mMonth: Int = 0
+    private var mDays: Int = 0
+
+
+    private val calendar: Calendar by lazy { Calendar.getInstance() }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         itemViewOnClickEvent()
 
         setViewModelObserve()
+
+        setDatePickerListener()
     }
 
     private fun itemViewOnClickEvent() {
@@ -41,11 +50,6 @@ class EditEventFragment :
             insertDataToDataBase()
         }
 
-        binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            dateDetail = CalendarViewDetail(year, month, dayOfMonth)
-            Timber.d("$dateDetail")
-            evenViewModel.setDate(year, month, dayOfMonth)
-        }
     }
 
     private fun setViewModelObserve() {
@@ -57,26 +61,16 @@ class EditEventFragment :
     private fun insertDataToDataBase() {
         // get text From EditText
         val title = binding.titleEdittext.text.toString()
-        val eventDateDetail = dateDetail
         val content = binding.contentEditText.text.toString()
 
-        // get Date from calendar view
-        val dateInteger =
-            evenViewModel.getDateInteger(dateDetail.year, dateDetail.month, dateDetail.day)
-        val date = evenViewModel.getDateFormat(dateDetail.year, dateDetail.month, dateDetail.day)
+        // get Date from calendar / DatePicker view
+        val dateInteger = evenViewModel.getDateInteger(mYear,mMonth,mDays)
+        val date = evenViewModel.date.value!!
 
         // check EditText Data not empty
-        if (checkData(title, date, content, eventDateDetail.year)) {
-            val event = EventTypes(
-                title,
-                date,
-                content,
-                eventDateDetail.year,
-                eventDateDetail.month,
-                eventDateDetail.day,
-                dateInteger,
-                1
-            )
+        if (checkData(title, date, content,mYear)) {
+
+            val event = EventTypes(title, date, content, mYear, mMonth, mDays, dateInteger, 1)
             // insert Date To Room
             evenViewModel.addEvent(event)
             Toast.makeText(this.context, "Room in Successful", Toast.LENGTH_SHORT).show()
@@ -87,12 +81,31 @@ class EditEventFragment :
 
         // When it's Empty Toast talk User fill out all fields
         else Toast.makeText(this.context, "Please fill out all fields", Toast.LENGTH_SHORT).show()
-
-
     }
 
-    private fun checkData(title: String, data: String, content: String, year: Int): Boolean {
-        return (title.isNotEmpty() && data.isNotEmpty() && content.isNotEmpty() && year != 0)
+    private fun setDatePickerListener() {
+        binding.datePicker.init(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH),
+            object : DatePicker.OnDateChangedListener {
+                override fun onDateChanged(
+                    view: DatePicker?,
+                    year: Int,
+                    monthOfYear: Int,
+                    dayOfMonth: Int
+                ) {
+                    mYear = year
+                    mMonth = monthOfYear
+                    mDays = dayOfMonth
+                    evenViewModel.setDate(year, monthOfYear, dayOfMonth)
+                }
+            }
+        )
+    }
+
+    private fun checkData(title: String, date: String, content: String, year: Int): Boolean {
+        return (title.isNotEmpty() && date.isNotEmpty() && content.isNotEmpty() && year != 0)
     }
 
 
@@ -109,4 +122,3 @@ class EditEventFragment :
     }
 }
 
-data class CalendarViewDetail(val year: Int, val month: Int, val day: Int)
