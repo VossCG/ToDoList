@@ -11,10 +11,10 @@ import com.voss.todolist.Fragment.HomeFragmentDirections
 import com.voss.todolist.Util.MyDiffUtil
 import com.voss.todolist.databinding.RowListitemBinding
 
-class HomeEventAdapter(val navController: NavController,val year:Int,val month:Int) :
-    RecyclerView.Adapter<HomeEventAdapter.EventTodayViewHolder>() {
-    // temp list : it will be compared to newList from fun setData()
+class HomeEventAdapter() : RecyclerView.Adapter<HomeEventAdapter.EventTodayViewHolder>() {
+
     private var oldList = emptyList<EventTypes>()
+    var itemOnClick: (Int) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventTodayViewHolder {
         return EventTodayViewHolder(
@@ -30,7 +30,6 @@ class HomeEventAdapter(val navController: NavController,val year:Int,val month:I
         holder.date.text = oldList[position].date.subSequence(5..9)
         holder.title.text = oldList[position].title
     }
-
 
     override fun getItemCount(): Int {
         return oldList.size
@@ -55,15 +54,7 @@ class HomeEventAdapter(val navController: NavController,val year:Int,val month:I
 
         init {
             title.setOnClickListener {
-                val directions =
-                    HomeFragmentDirections.actionHomeFragmentToContentFragment(
-                        ArgsToContent(
-                            adapterPosition,
-                            year,
-                            month
-                        )
-                    )
-                navController.navigate(directions)
+                itemOnClick.invoke(adapterPosition)
             }
         }
     }

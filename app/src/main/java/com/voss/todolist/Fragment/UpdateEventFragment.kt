@@ -119,17 +119,5 @@ class UpdateEventFragment :
     private fun inputCheck(title: String, content: String): Boolean {
         return !(TextUtils.isEmpty(title) && TextUtils.isEmpty(content))
     }
-
-
-
-    override fun onStart() {
-        super.onStart()
-        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.GONE
-    }
-
-    override fun onStop() {
-        super.onStop()
-        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.VISIBLE
-    }
 }
 

@@ -21,9 +21,7 @@ import timber.log.Timber
 import java.util.*
 
 @AndroidEntryPoint
-class ContentMonthlyFragment :
-    BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
-
+class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
 
     private val mAdapter: ContentListAdapter by lazy { ContentListAdapter() }
     private val viewModel: EventViewModel by activityViewModels()
@@ -33,7 +31,8 @@ class ContentMonthlyFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setRecyclerView(args.contentArgs.position)
-        setViewModel()
+
+        setViewModelObserve()
 
         // Item OnClick callBack
         mAdapter.itemClickUpdate = {
@@ -51,9 +50,7 @@ class ContentMonthlyFragment :
     }
 
     private fun setRecyclerView(position: Int) {
-        Timber.d("now:$position")
-        val recyclerView = binding.contentRecyclerview
-        recyclerView.apply {
+        binding.contentRecyclerview.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this.context)
             adapter = mAdapter
@@ -61,27 +58,10 @@ class ContentMonthlyFragment :
         }
     }
 
-    private fun setViewModel() {
+    private fun setViewModelObserve() {
         viewModel.readAllEvent.observe(this) {
-            val monthsList = it.filter {
-                (it.year == args.contentArgs.year && it.month == args.contentArgs.months)
-            }
-            Log.d("Content:","list:${monthsList}")
+            val monthsList = it.filter { (it.year == args.contentArgs.year && it.month == args.contentArgs.months) }
             mAdapter.submitList(monthsList)
         }
     }
-
-    override fun onStart() {
-        super.onStart()
-        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.GONE
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.VISIBLE
-
-    }
-
-
 }

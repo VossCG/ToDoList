@@ -23,7 +23,6 @@ class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::i
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.topTitleTv.text = "${args.year}  Months"
         setExpandableListView()
     }

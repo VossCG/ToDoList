@@ -92,11 +92,6 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_homeFragment_to_updateEventFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -146,6 +141,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_updateEventFragment_to_contentFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_updateEventFragment_to_homeFragment">
                               <value>
                                 <LayoutPositions />

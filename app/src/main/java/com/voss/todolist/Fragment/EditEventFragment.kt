@@ -97,18 +97,5 @@ class EditEventFragment :
     private fun checkData(title: String, date: String, content: String, year: Int): Boolean {
         return (title.isNotEmpty() && date.isNotEmpty() && content.isNotEmpty() && year != 0)
     }
-
-
-    override fun onStart() {
-        super.onStart()
-        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.GONE
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.VISIBLE
-
-    }
 }
 
