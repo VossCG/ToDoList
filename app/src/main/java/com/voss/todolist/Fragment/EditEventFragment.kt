@@ -17,8 +17,7 @@ import java.util.*
 
 
 @AndroidEntryPoint
-class EditEventFragment :
-    BaseFragment<EditeventfragmentBinding>(EditeventfragmentBinding::inflate) {
+class EditEventFragment : BaseFragment<EditeventfragmentBinding>(EditeventfragmentBinding::inflate) {
 
     private val evenViewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
@@ -64,7 +63,7 @@ class EditEventFragment :
             val event = EventTypes(title, date, content, mYear, mMonth, mDays, dateInteger, 1)
             // insert Date To Room
             evenViewModel.addEvent(event)
-            Toast.makeText(this.context, "Room in Successful", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.context, "新增成功", Toast.LENGTH_SHORT).show()
 
             // When insert the event to Room , navigate Fragment to HomeFragment check event show on or not
             navController.navigate(R.id.action_editEventFragment_to_homeFragment)

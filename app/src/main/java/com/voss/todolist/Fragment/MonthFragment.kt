@@ -2,6 +2,7 @@ package com.voss.todolist.Fragment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -18,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::inflate) {
     private val args: MonthFragmentArgs by navArgs()
-    private val navController:NavController by lazy { findNavController() }
+    private val navController: NavController by lazy { findNavController() }
     private val viewModel: EventViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,8 +32,20 @@ class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::i
         val data = viewModel.readAllEvent.value ?: emptyList()
         val listByMonths = getTwoDimensionMonthsList(data)
 
-        val mAdapter = BrowseExpandableListAdapter(this.context!!, listByMonths,navController)
+        val mAdapter = BrowseExpandableListAdapter(this.context!!, listByMonths, navController)
         binding.monthsExpandableListView.setAdapter(mAdapter)
+
+        // 判斷點擊 groupItem 月份 裡面是否有child ，若沒有則用Toast顯示 並回傳true讓它無法展開
+        binding.monthsExpandableListView.setOnGroupClickListener { _, _, groupPosition, _ ->
+            val event = listByMonths[groupPosition]
+            if (event.isEmpty()) {
+                Toast.makeText(
+                    this.context, "${mAdapter.getGroup(groupPosition)} 沒有任何行程", Toast.LENGTH_SHORT
+                ).show()
+                return@setOnGroupClickListener true
+            } else
+                return@setOnGroupClickListener false
+        }
     }
 
     private fun getTwoDimensionMonthsList(data: List<EventTypes>): List<List<EventTypes>> {
@@ -41,18 +54,6 @@ class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::i
             list.add(data.filter { it.month == i && it.year == args.year })
         }
         return list
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.GONE
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-        activity?.findViewById<BottomNavigationView>(R.id.nav_bottom)?.visibility = View.VISIBLE
 
     }
 

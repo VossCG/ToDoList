@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.textfield.TextInputEditText;
@@ -41,7 +41,7 @@ public final class EditeventfragmentBinding implements ViewBinding {
   public final TextView editFragmentTitleTextView;
 
   @NonNull
-  public final ScrollView evenContentScroll;
+  public final NestedScrollView evenContentScroll;
 
   @NonNull
   public final ConstraintLayout insideConstraintLayout;
@@ -61,7 +61,7 @@ public final class EditeventfragmentBinding implements ViewBinding {
   private EditeventfragmentBinding(@NonNull ConstraintLayout rootView,
       @NonNull ImageButton backHomeArrowBut, @NonNull TextInputEditText contentEditText,
       @NonNull TextInputLayout contentInputLayout, @NonNull DatePicker datePicker,
-      @NonNull TextView editFragmentTitleTextView, @NonNull ScrollView evenContentScroll,
+      @NonNull TextView editFragmentTitleTextView, @NonNull NestedScrollView evenContentScroll,
       @NonNull ConstraintLayout insideConstraintLayout, @NonNull Button setUpEventBut,
       @NonNull TextView timeTextView, @NonNull TextInputEditText titleEdittext,
       @NonNull TextInputLayout titleInputLayout) {
@@ -137,7 +137,7 @@ public final class EditeventfragmentBinding implements ViewBinding {
       }
 
       id = R.id.evenContent_scroll;
-      ScrollView evenContentScroll = ViewBindings.findChildViewById(rootView, id);
+      NestedScrollView evenContentScroll = ViewBindings.findChildViewById(rootView, id);
       if (evenContentScroll == null) {
         break missingId;
       }

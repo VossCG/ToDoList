@@ -2050,11 +2050,8 @@ id center_vertical
 id chain
 id chain2
 id chains
-id changeContent_but
 id changeContent_fab
-id changeTitle_but
 id changeTitle_fab
-id changeTitle_text
 id checkbox
 id checked
 id chip
@@ -2075,7 +2072,7 @@ id constraint
 id container
 id content
 id contentAdd_fab
-id contentFragment
+id contentMonthlyFragment
 id contentPanel
 id contentTitle_textView
 id content_InputLayout
@@ -2560,7 +2557,6 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
-layout bottomsheet
 layout browsefragment
 layout contentmonthlyfragment
 layout custom_dialog

@@ -28,8 +28,8 @@ class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::infl
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
-    private val currentMonth: Int by lazy { calendar.get(Calendar.YEAR) }
-    private val currentYear: Int by lazy { calendar.get(Calendar.MONTH) }
+    private val currentYear: Int by lazy { calendar.get(Calendar.YEAR) }
+    private val currentMonth: Int by lazy { calendar.get(Calendar.MONTH) }
     private val mAdapter by lazy { HomeEventAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +44,7 @@ class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::infl
             val monthsList = it.filter {
                 it.year == currentYear && it.month == currentMonth
             }
-            mAdapter.setData(monthsList)
+            mAdapter.submitList(monthsList)
         }
     }
 

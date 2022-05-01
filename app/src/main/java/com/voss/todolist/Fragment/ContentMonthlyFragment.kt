@@ -1,24 +1,17 @@
 package com.voss.todolist.Fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.voss.todolist.Adapter.ContentListAdapter
-import com.voss.todolist.Adapter.ContentMonthlyAdapter
-import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
-import com.voss.todolist.UpdateRecyclerData
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.ContentmonthlyfragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
-import java.util.*
 
 @AndroidEntryPoint
 class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {

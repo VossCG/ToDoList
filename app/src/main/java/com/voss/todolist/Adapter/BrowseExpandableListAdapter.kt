@@ -1,7 +1,6 @@
 package com.voss.todolist.Adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,12 +71,13 @@ class BrowseExpandableListAdapter(
         convertView: View?,
         parent: ViewGroup?
     ): View {
+        val childData = childMonthsList[groupPosition][childPosition]
         val view = convertView ?: LayoutInflater.from(context)
             .inflate(R.layout.row_listitem, parent, false)
         val date = view.findViewById<TextView>(R.id.rowDate_textView)
         val title = view.findViewById<TextView>(R.id.rowTitle_textView)
-        date.text = childMonthsList[groupPosition][childPosition].date.subSequence(5..9)
-        title.text = childMonthsList[groupPosition][childPosition].title
+        date.text = childData.date.subSequence(5..9)
+        title.text = childData.title
 
         // 使用者操作上必須點選title才能跳轉，看能不能改成點選整個layout
 
