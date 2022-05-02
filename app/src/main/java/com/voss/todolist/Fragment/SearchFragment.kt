@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.SearChRecyclerAdapter
 import com.voss.todolist.R
+import com.voss.todolist.Util.AnimUtil
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.SearchfragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,12 +23,12 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter(viewModel) }
     private var inputData: String = "null"
 
-    private val rotateOpen :Animation by  lazy { AnimationUtils.loadAnimation(this.context,R.anim.rotate_open_anim) }
-    private val rotateClose :Animation by  lazy { AnimationUtils.loadAnimation(this.context,R.anim.rotate_close_anim) }
-    private val fromBottom :Animation by  lazy { AnimationUtils.loadAnimation(this.context,R.anim.from_button_anim) }
-    private val toBottom :Animation by  lazy { AnimationUtils.loadAnimation(this.context,R.anim.to_bottom_anim) }
+    private val rotateOpen: Animation by lazy { AnimUtil.getRotateOpen(this.context!!) }
+    private val rotateClose: Animation by lazy { AnimUtil.getRotateClose(this.context!!) }
+    private val fromBottom: Animation by lazy { AnimUtil.getFromBottom(this.context!!) }
+    private val toBottom: Animation by lazy { AnimUtil.getToBottom(this.context!!) }
 
-    private var isExpanded:Boolean = false
+    private var isExpanded: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -39,15 +40,17 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
             onAddButtonClicked()
             isExpanded = !isExpanded
         }
+
         binding.changeContentFab.setOnClickListener {
-            viewModel.setFilterFactor( "content")
-            Toast.makeText(this.context,"Content",Toast.LENGTH_SHORT).show()
+            viewModel.setFilterFactor("content")
+            Toast.makeText(this.context, "Content", Toast.LENGTH_SHORT).show()
             onAddButtonClicked()
             isExpanded = !isExpanded
         }
+
         binding.changeTitleFab.setOnClickListener {
-            viewModel.setFilterFactor( "title")
-            Toast.makeText(this.context,"title",Toast.LENGTH_SHORT).show()
+            viewModel.setFilterFactor("title")
+            Toast.makeText(this.context, "title", Toast.LENGTH_SHORT).show()
             onAddButtonClicked()
             isExpanded = !isExpanded
         }
@@ -67,14 +70,9 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
                     // 獲得關鍵字過濾資料，放入adapter
                     val filterData = viewModel.filterDataWithFactor(inputData)
                     if (filterData.isNullOrEmpty())
-                        Toast.makeText(this.context, "搜尋條件 找不到相關資料 請重新查詢", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this.context, "搜尋條件 找不到相關資料 請重新查詢", Toast.LENGTH_SHORT).show()
                     else mAdapter.setData(filterData)
-                } else Toast.makeText(
-                    this.context,
-                    "Please enter title to SearCh",
-                    Toast.LENGTH_SHORT
-                ).show()
+                } else Toast.makeText(this.context, "Please enter title to SearCh", Toast.LENGTH_SHORT).show()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
@@ -86,38 +84,43 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
         binding.searChEditText.setText("")
     }
 
-    private fun onAddButtonClicked(){
+    private fun onAddButtonClicked() {
         setAnimation(isExpanded)
         setVisibility(isExpanded)
         setInVisibleUnClickable(isExpanded)
     }
 
-    private fun setVisibility(isExpanded:Boolean){
-        if(!isExpanded){
+    private fun setVisibility(isExpanded: Boolean) {
+        if (!isExpanded) {
             binding.changeContentFab.visibility = View.VISIBLE
             binding.changeTitleFab.visibility = View.VISIBLE
-        }else {
+            binding.changeContentTv.visibility =View.VISIBLE
+            binding.changeTitleTv.visibility =View.VISIBLE
+        } else {
             binding.changeContentFab.visibility = View.GONE
             binding.changeTitleFab.visibility = View.GONE
+            binding.changeContentTv.visibility = View.GONE
+            binding.changeTitleTv.visibility = View.GONE
         }
     }
-    private fun setAnimation(isExpanded:Boolean){
-        if(!isExpanded){
+
+    private fun setAnimation(isExpanded: Boolean) {
+        if (!isExpanded) {
             binding.changeContentFab.startAnimation(fromBottom)
             binding.changeTitleFab.startAnimation(fromBottom)
             binding.filterFab.startAnimation(rotateOpen)
-        }else{
+        } else {
             binding.changeContentFab.startAnimation(toBottom)
             binding.changeTitleFab.startAnimation(toBottom)
             binding.filterFab.startAnimation(rotateClose)
         }
     }
-    private fun setInVisibleUnClickable(isExpanded: Boolean){
-        if(!isExpanded){
+
+    private fun setInVisibleUnClickable(isExpanded: Boolean) {
+        if (!isExpanded) {
             binding.changeTitleFab.isClickable = true
             binding.changeContentFab.isClickable = true
-        }
-        else{
+        } else {
             binding.changeTitleFab.isClickable = false
             binding.changeContentFab.isClickable = false
         }

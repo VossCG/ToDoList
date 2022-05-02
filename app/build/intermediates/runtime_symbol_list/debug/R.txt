@@ -27,7 +27,7 @@ int anim design_bottom_sheet_slide_out 0x7f010019
 int anim design_snackbar_in 0x7f01001a
 int anim design_snackbar_out 0x7f01001b
 int anim fragment_fast_out_extra_slow_in 0x7f01001c
-int anim from_button_anim 0x7f01001d
+int anim from_buttom_anim 0x7f01002c
 int anim mtrl_bottom_sheet_slide_in 0x7f01001e
 int anim mtrl_bottom_sheet_slide_out 0x7f01001f
 int anim mtrl_card_lowers_interpolator 0x7f010020
@@ -2050,7 +2050,9 @@ int id chain 0x7f08007a
 int id chain2 0x7f08007b
 int id chains 0x7f08007c
 int id changeContent_fab 0x7f08007d
+int id changeContent_tv 0x7f080233
 int id changeTitle_fab 0x7f08007e
+int id changeTitle_tv 0x7f080234
 int id checkbox 0x7f08007f
 int id checked 0x7f080080
 int id chip 0x7f080081

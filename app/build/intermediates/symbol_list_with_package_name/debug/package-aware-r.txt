@@ -28,7 +28,7 @@ anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
 anim fragment_fast_out_extra_slow_in
-anim from_button_anim
+anim from_buttom_anim
 anim mtrl_bottom_sheet_slide_in
 anim mtrl_bottom_sheet_slide_out
 anim mtrl_card_lowers_interpolator
@@ -2051,7 +2051,9 @@ id chain
 id chain2
 id chains
 id changeContent_fab
+id changeContent_tv
 id changeTitle_fab
+id changeTitle_tv
 id checkbox
 id checked
 id chip

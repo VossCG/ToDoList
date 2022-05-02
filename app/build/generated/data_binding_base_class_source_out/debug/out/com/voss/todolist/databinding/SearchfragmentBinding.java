@@ -4,6 +4,7 @@ package com.voss.todolist.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,7 +27,13 @@ public final class SearchfragmentBinding implements ViewBinding {
   public final FloatingActionButton changeContentFab;
 
   @NonNull
+  public final TextView changeContentTv;
+
+  @NonNull
   public final FloatingActionButton changeTitleFab;
+
+  @NonNull
+  public final TextView changeTitleTv;
 
   @NonNull
   public final FloatingActionButton filterFab;
@@ -41,12 +48,15 @@ public final class SearchfragmentBinding implements ViewBinding {
   public final RecyclerView searchRecycler;
 
   private SearchfragmentBinding(@NonNull ConstraintLayout rootView,
-      @NonNull FloatingActionButton changeContentFab, @NonNull FloatingActionButton changeTitleFab,
+      @NonNull FloatingActionButton changeContentFab, @NonNull TextView changeContentTv,
+      @NonNull FloatingActionButton changeTitleFab, @NonNull TextView changeTitleTv,
       @NonNull FloatingActionButton filterFab, @NonNull TextInputEditText searChEditText,
       @NonNull TextInputLayout searChInputLayout, @NonNull RecyclerView searchRecycler) {
     this.rootView = rootView;
     this.changeContentFab = changeContentFab;
+    this.changeContentTv = changeContentTv;
     this.changeTitleFab = changeTitleFab;
+    this.changeTitleTv = changeTitleTv;
     this.filterFab = filterFab;
     this.searChEditText = searChEditText;
     this.searChInputLayout = searChInputLayout;
@@ -86,9 +96,21 @@ public final class SearchfragmentBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.changeContent_tv;
+      TextView changeContentTv = ViewBindings.findChildViewById(rootView, id);
+      if (changeContentTv == null) {
+        break missingId;
+      }
+
       id = R.id.changeTitle_fab;
       FloatingActionButton changeTitleFab = ViewBindings.findChildViewById(rootView, id);
       if (changeTitleFab == null) {
+        break missingId;
+      }
+
+      id = R.id.changeTitle_tv;
+      TextView changeTitleTv = ViewBindings.findChildViewById(rootView, id);
+      if (changeTitleTv == null) {
         break missingId;
       }
 
@@ -117,7 +139,8 @@ public final class SearchfragmentBinding implements ViewBinding {
       }
 
       return new SearchfragmentBinding((ConstraintLayout) rootView, changeContentFab,
-          changeTitleFab, filterFab, searChEditText, searChInputLayout, searchRecycler);
+          changeContentTv, changeTitleFab, changeTitleTv, filterFab, searChEditText,
+          searChInputLayout, searchRecycler);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

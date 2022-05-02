@@ -2,26 +2,18 @@ package com.voss.todolist.Fragment
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.DatePicker
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.voss.todolist.Data.EventTypes
-import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.UpdateeventfragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
-import java.util.*
-import kotlin.properties.Delegates
 
 
 @AndroidEntryPoint
@@ -29,28 +21,20 @@ class UpdateEventFragment :
     BaseFragment<UpdateeventfragmentBinding>(UpdateeventfragmentBinding::inflate) {
 
     private val args: UpdateEventFragmentArgs by navArgs()
+    private val argsEventTypes get() = args.eventTypes
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    private var mYear by Delegates.notNull<Int>()
-    private var mMonth by Delegates.notNull<Int>()
-    private var mDay by Delegates.notNull<Int>()
     private var mDate: String = "yyyy/mm/dd"
     private var mDateInteger = 0
+    private var mYear = 0
+    private var mMonth = 0
+    private var mDay = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initDateAttributesWithArgs()
+
         initView()
 
-    }
-
-
-    private fun initDateAttributesWithArgs() {
-        mYear = args.eventTypes.year
-        mMonth = args.eventTypes.month
-        mDay = args.eventTypes.day
-        mDateInteger = viewModel.getDateInteger(mYear, mMonth, mDay)
-        mDate = viewModel.getDateFormat(mYear, mMonth, mDay)
     }
 
     private fun updateItemData() {
@@ -60,7 +44,7 @@ class UpdateEventFragment :
         if (inputCheck(newTitle, newContent)) {
             val newEvent =
                 EventTypes(newTitle, mDate, newContent, mYear, mMonth, mDay, mDateInteger, 0)
-            newEvent.id = args.eventTypes.id
+            newEvent.id = argsEventTypes.id
             viewModel.updateEvent(newEvent)
             Toast.makeText(this.context, "Change Successful!!", Toast.LENGTH_SHORT).show()
         }
@@ -68,14 +52,15 @@ class UpdateEventFragment :
 
     private fun initView() {
         // init editText with args
-        binding.updateContentEditText.setText(args.eventTypes.content)
-        binding.updateTitleEdittext.setText(args.eventTypes.title)
+        binding.updateContentEditText.setText(argsEventTypes.content)
+        binding.updateTitleEdittext.setText(argsEventTypes.title)
 
-        // init Date TextView
+        // init ViewModel  to  update TextView
         viewModel.date.observe(this) {
             binding.updateDateTextView.text = it
+            mDate = it
         }
-        viewModel.date.value = mDate
+        viewModel.setDate(argsEventTypes.year, argsEventTypes.month, argsEventTypes.day)
 
         // init but
         binding.updateUploadBut.setOnClickListener {
@@ -84,7 +69,6 @@ class UpdateEventFragment :
         }
 
         binding.cancelUpdateBut.setOnClickListener {
-
             AlertDialog.Builder(this.context)
                 .setTitle("Message")
                 .setMessage("是否要取消編輯?")
@@ -99,21 +83,21 @@ class UpdateEventFragment :
             DatePickerDialog(
                 this.context!!,
                 datePickerListener,
-                args.eventTypes.year,
-                args.eventTypes.month,
-                args.eventTypes.day
+                argsEventTypes.year,
+                argsEventTypes.month,
+                argsEventTypes.day
             ).show()
         }
     }
 
-    private val datePickerListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth -> // DatePicker send back months was started from 0
+    private val datePickerListener =
+        DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             mYear = year
-            mDay = dayOfMonth
             mMonth = month
+            mDay = dayOfMonth
             mDateInteger = viewModel.getDateInteger(year, month, dayOfMonth)
-            mDate = viewModel.getDateFormat(year, month, dayOfMonth)
 
-            viewModel.setDate(mYear,mMonth,mDay)
+            viewModel.setDate(year, month, dayOfMonth)
         }
 
     private fun inputCheck(title: String, content: String): Boolean {
