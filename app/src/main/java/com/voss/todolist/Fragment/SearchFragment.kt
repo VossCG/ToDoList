@@ -3,18 +3,15 @@ package com.voss.todolist.Fragment
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.SearChRecyclerAdapter
-import com.voss.todolist.R
 import com.voss.todolist.Util.AnimUtil
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.SearchfragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 
 @AndroidEntryPoint
@@ -22,17 +19,16 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
     private val viewModel: EventViewModel by activityViewModels()
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter(viewModel) }
     private var inputData: String = "null"
-
-    private val rotateOpen: Animation by lazy { AnimUtil.getRotateOpen(this.context!!) }
-    private val rotateClose: Animation by lazy { AnimUtil.getRotateClose(this.context!!) }
-    private val fromBottom: Animation by lazy { AnimUtil.getFromBottom(this.context!!) }
-    private val toBottom: Animation by lazy { AnimUtil.getToBottom(this.context!!) }
+    private val rotateOpen: Animation by lazy { AnimUtil.getRotateOpen(requireContext()) }
+    private val rotateClose: Animation by lazy { AnimUtil.getRotateClose(requireContext()) }
+    private val fromBottom: Animation by lazy { AnimUtil.getFromBottom(requireContext()) }
+    private val toBottom: Animation by lazy { AnimUtil.getToBottom(requireContext()) }
 
     private var isExpanded: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewModel.readAllEvent.observe(this) {
+        viewModel.readAllEvent.observe(viewLifecycleOwner) {
             mAdapter.setData(viewModel.filterDataWithFactor(inputData))
         }
 

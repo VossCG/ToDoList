@@ -32,7 +32,7 @@ class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::i
         val data = viewModel.readAllEvent.value ?: emptyList()
         val listByMonths = getTwoDimensionMonthsList(data)
 
-        val mAdapter = BrowseExpandableListAdapter(this.context!!, listByMonths, navController)
+        val mAdapter = BrowseExpandableListAdapter(requireContext(), listByMonths, navController)
         binding.monthsExpandableListView.setAdapter(mAdapter)
 
         // 判斷點擊 groupItem 月份 裡面是否有child ，若沒有則用Toast顯示 並回傳true讓它無法展開

@@ -24,5 +24,8 @@ interface EventDao {
     @Query("DELETE from EventTypes")
     fun clearAll()
 
+    @Query("select * from EventTypes where id=:id")
+    fun getEvent(id: Int): EventTypes
+
 }
 

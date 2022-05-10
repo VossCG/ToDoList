@@ -4,7 +4,6 @@ package com.voss.todolist.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,15 +20,11 @@ public final class RowYearitemBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ImageView goToMonthArrowImg;
-
-  @NonNull
   public final TextView yearTitleTextView;
 
   private RowYearitemBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ImageView goToMonthArrowImg, @NonNull TextView yearTitleTextView) {
+      @NonNull TextView yearTitleTextView) {
     this.rootView = rootView;
-    this.goToMonthArrowImg = goToMonthArrowImg;
     this.yearTitleTextView = yearTitleTextView;
   }
 
@@ -60,20 +55,13 @@ public final class RowYearitemBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.goToMonthArrow_img;
-      ImageView goToMonthArrowImg = ViewBindings.findChildViewById(rootView, id);
-      if (goToMonthArrowImg == null) {
-        break missingId;
-      }
-
       id = R.id.yearTitle_TextView;
       TextView yearTitleTextView = ViewBindings.findChildViewById(rootView, id);
       if (yearTitleTextView == null) {
         break missingId;
       }
 
-      return new RowYearitemBinding((ConstraintLayout) rootView, goToMonthArrowImg,
-          yearTitleTextView);
+      return new RowYearitemBinding((ConstraintLayout) rootView, yearTitleTextView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

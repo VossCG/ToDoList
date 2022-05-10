@@ -2153,7 +2153,6 @@ id fragment_container_view_tag
 id frost
 id ghost_view
 id ghost_view_holder
-id goToMonthArrow_img
 id gone
 id graph
 id graph_wrap

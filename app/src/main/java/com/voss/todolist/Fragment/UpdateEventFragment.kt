@@ -42,8 +42,7 @@ class UpdateEventFragment :
         val newContent = binding.updateContentEditText.text.toString()
 
         if (inputCheck(newTitle, newContent)) {
-            val newEvent =
-                EventTypes(newTitle, mDate, newContent, mYear, mMonth, mDay, mDateInteger, 0)
+            val newEvent = EventTypes(newTitle, mDate, newContent, mYear, mMonth, mDay, mDateInteger, 0)
             newEvent.id = argsEventTypes.id
             viewModel.updateEvent(newEvent)
             Toast.makeText(this.context, "Change Successful!!", Toast.LENGTH_SHORT).show()
@@ -56,7 +55,7 @@ class UpdateEventFragment :
         binding.updateTitleEdittext.setText(argsEventTypes.title)
 
         // init ViewModel  to  update TextView
-        viewModel.date.observe(this) {
+        viewModel.date.observe(viewLifecycleOwner) {
             binding.updateDateTextView.text = it
             mDate = it
         }
@@ -81,7 +80,7 @@ class UpdateEventFragment :
 
         binding.dateUpdateBut.setOnClickListener {
             DatePickerDialog(
-                this.context!!,
+                this.requireContext(),
                 datePickerListener,
                 argsEventTypes.year,
                 argsEventTypes.month,
