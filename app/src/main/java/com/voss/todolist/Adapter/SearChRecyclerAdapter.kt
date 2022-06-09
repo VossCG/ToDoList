@@ -4,50 +4,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
-import com.voss.todolist.Util.MyDiffUtil
+import com.voss.todolist.Util.ListAdapterDiffUtil
 import com.voss.todolist.ViewModel.EventViewModel
-import com.voss.todolist.databinding.RowSearchitemBinding
+import com.voss.todolist.databinding.ItemviewSearchEventCardviewBinding
 
-class SearChRecyclerAdapter(val viewModel: EventViewModel) :
-    RecyclerView.Adapter<SearChRecyclerAdapter.SearChViewHolder>() {
-    private var oldList = emptyList<EventTypes>()
+class SearChRecyclerAdapter() :
+    ListAdapter<EventTypes, SearChRecyclerAdapter.SearChViewHolder>(ListAdapterDiffUtil()) {
+
+    var itemClick : (Int)->Unit={}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearChViewHolder {
         return SearChViewHolder(
-            RowSearchitemBinding.inflate(
+            ItemviewSearchEventCardviewBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
         )
     }
-
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
-        holder.title.text = oldList[position].title
-        holder.month.text = (oldList[position].month + 1).toString() + "月"
-        holder.day.text = oldList[position].day.toString()
-        holder.content.text = oldList[position].content
+        holder.title.text = getItem(position).title
+        holder.month.text = (getItem(position).month + 1).toString() + "月"
+        holder.day.text = getItem(position).day.toString()
+        holder.content.text = getItem(position).content
 
     }
 
-    override fun getItemCount(): Int {
-        return oldList.size
-    }
-
-    fun setData(newList: List<EventTypes>) {
-        val diffUtil = MyDiffUtil(newList, oldList)
-        val diffResult = DiffUtil.calculateDiff(diffUtil)
-
-        diffResult.dispatchUpdatesTo(this)
-        oldList = newList
-    }
-
-    inner class SearChViewHolder(binding: RowSearchitemBinding) :
+    inner class SearChViewHolder(binding: ItemviewSearchEventCardviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.rowSearchTitleTextView
         val month: TextView = binding.rowSearchMonthTextView
@@ -70,7 +57,7 @@ class SearChRecyclerAdapter(val viewModel: EventViewModel) :
                 }
             }
             complete.setOnClickListener {
-                viewModel.deleteEvent(oldList[adapterPosition])
+               itemClick.invoke(absoluteAdapterPosition)
             }
 
         }

@@ -1,30 +1,21 @@
 package com.voss.todolist.Fragment
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.voss.todolist.Adapter.ArgsToContent
 import com.voss.todolist.Adapter.HomeEventAdapter
-import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.ViewModel.EventViewModel
-import com.voss.todolist.databinding.HomefragmentBinding
+import com.voss.todolist.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Runnable
 import java.util.*
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::inflate) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
@@ -40,7 +31,7 @@ class HomeFragment : BaseFragment<HomefragmentBinding>(HomefragmentBinding::infl
     }
 
     private fun setViewModelObserve() {
-        viewModel.readAllEvent.observe(this) {
+        viewModel.readAllEvent.observe(viewLifecycleOwner) {
             val monthsList = it.filter {
                 it.year == currentYear && it.month == currentMonth
             }

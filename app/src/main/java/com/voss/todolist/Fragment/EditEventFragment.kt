@@ -7,17 +7,16 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
-import com.voss.todolist.databinding.EditeventfragmentBinding
+import com.voss.todolist.databinding.FragmentEditeventBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 
 @AndroidEntryPoint
-class EditEventFragment : BaseFragment<EditeventfragmentBinding>(EditeventfragmentBinding::inflate) {
+class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeventBinding::inflate) {
 
     private val evenViewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }

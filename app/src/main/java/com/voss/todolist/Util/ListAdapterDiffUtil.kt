@@ -9,6 +9,6 @@ class ListAdapterDiffUtil : DiffUtil.ItemCallback<EventTypes>() {
     }
 
     override fun areContentsTheSame(oldItem: EventTypes, newItem: EventTypes): Boolean {
-        return oldItem.dateInteger == newItem.dateInteger
+        return oldItem == newItem
     }
 }

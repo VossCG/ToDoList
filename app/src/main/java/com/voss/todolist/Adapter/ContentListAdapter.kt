@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.Util.ListAdapterDiffUtil
-import com.voss.todolist.databinding.RowContenmonthlytitemBinding
+import com.voss.todolist.databinding.ItemviewDateEventContentBinding
 import kotlinx.parcelize.Parcelize
 
 class ContentListAdapter() : ListAdapter<EventTypes, ContentListAdapter.ContentViewHolder>(ListAdapterDiffUtil()) {
@@ -20,7 +19,7 @@ class ContentListAdapter() : ListAdapter<EventTypes, ContentListAdapter.ContentV
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
         return ContentViewHolder(
-            RowContenmonthlytitemBinding.inflate(
+            ItemviewDateEventContentBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -32,7 +31,7 @@ class ContentListAdapter() : ListAdapter<EventTypes, ContentListAdapter.ContentV
         holder.onBind(getItem(position))
     }
 
-    inner class ContentViewHolder(binding: RowContenmonthlytitemBinding) :
+    inner class ContentViewHolder(binding:ItemviewDateEventContentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.rowContentTitleTextView
         val content: TextView = binding.rowContentTextView
@@ -42,10 +41,11 @@ class ContentListAdapter() : ListAdapter<EventTypes, ContentListAdapter.ContentV
 
         init {
             deleteButton.setOnClickListener {
-                itemClickDelete.invoke(getItem(adapterPosition))
+                itemClickDelete.invoke(getItem(absoluteAdapterPosition))
             }
+            // check the diff between binding absolute adapterPosition
             editButton.setOnClickListener {
-                itemClickUpdate.invoke(getItem(adapterPosition))
+                itemClickUpdate.invoke(getItem(bindingAdapterPosition))
             }
         }
 

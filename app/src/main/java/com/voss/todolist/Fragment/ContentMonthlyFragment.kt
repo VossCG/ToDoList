@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.ContentListAdapter
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
-import com.voss.todolist.databinding.ContentmonthlyfragmentBinding
+import com.voss.todolist.databinding.FragmentContentmonthlyBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ContentMonthlyFragment : BaseFragment<ContentmonthlyfragmentBinding>(ContentmonthlyfragmentBinding::inflate) {
+class ContentMonthlyFragment : BaseFragment<FragmentContentmonthlyBinding>(FragmentContentmonthlyBinding::inflate) {
 
     private val mAdapter: ContentListAdapter by lazy { ContentListAdapter() }
     private val viewModel: EventViewModel by activityViewModels()

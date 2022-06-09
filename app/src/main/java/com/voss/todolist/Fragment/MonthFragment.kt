@@ -7,17 +7,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.voss.todolist.Adapter.BrowseExpandableListAdapter
 import com.voss.todolist.Data.EventTypes
-import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
-import com.voss.todolist.databinding.MonthfragmentBinding
+import com.voss.todolist.databinding.FragmentMonthBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::inflate) {
+class MonthFragment : BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate) {
     private val args: MonthFragmentArgs by navArgs()
     private val navController: NavController by lazy { findNavController() }
     private val viewModel: EventViewModel by activityViewModels()
@@ -40,7 +38,9 @@ class MonthFragment : BaseFragment<MonthfragmentBinding>(MonthfragmentBinding::i
             val event = listByMonths[groupPosition]
             if (event.isEmpty()) {
                 Toast.makeText(
-                    this.context, "${mAdapter.getGroup(groupPosition)} 沒有任何行程", Toast.LENGTH_SHORT
+                    this.context,
+                    "${mAdapter.getGroup(groupPosition)} 沒有任何行程",
+                    Toast.LENGTH_SHORT
                 ).show()
                 return@setOnGroupClickListener true
             } else

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.voss.todolist.Fragment.HomeFragment"
-        tools:layout="@layout/homefragment"
+        tools:layout="@layout/fragment_home"
         android:label="HomeFragment" >
 
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/editEventFragment"
-        tools:layout="@layout/editeventfragment"
+        tools:layout="@layout/fragment_editevent"
         android:name="com.voss.todolist.Fragment.EditEventFragment"
         android:label="EditEventFragment" >
         <action
@@ -38,7 +38,7 @@
         android:label="SearchFragment" />
     <fragment
         android:id="@+id/updateEventFragment"
-        tools:layout="@layout/updateeventfragment"
+        tools:layout="@layout/fragment_update_event"
         android:name="com.voss.todolist.Fragment.UpdateEventFragment"
         android:label="UpdateEventFragment" >
         <argument
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/contentMonthlyFragment"
-        tools:layout="@layout/contentmonthlyfragment"
+        tools:layout="@layout/fragment_contentmonthly"
         android:name="com.voss.todolist.Fragment.ContentMonthlyFragment"
         android:label="ContentFragment" >
 
@@ -75,7 +75,7 @@
     </fragment>
     <fragment
         android:id="@+id/browseFragment"
-        tools:layout="@layout/browsefragment"
+        tools:layout="@layout/fragment_browse"
         android:name="com.voss.todolist.Fragment.BrowseFragment"
         android:label="YearFragment" >
         <action
@@ -89,7 +89,7 @@
     </fragment>
     <fragment
         android:id="@+id/monthFragment"
-        tools:layout="@layout/monthfragment"
+        tools:layout="@layout/fragment_month"
         android:name="com.voss.todolist.Fragment.MonthFragment"
         android:label="MonthFragment" >
         <argument

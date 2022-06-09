@@ -44,6 +44,10 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def nav_version = "2.4.1"
     def room_version = "2.3.0"
+    def paging_version = "3.0.0"
+
+    // paging 2
+    implementation("androidx.paging:paging-runtime:$paging_version")
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

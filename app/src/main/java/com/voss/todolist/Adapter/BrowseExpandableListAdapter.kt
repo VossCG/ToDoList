@@ -54,7 +54,7 @@ class BrowseExpandableListAdapter(
         parent: ViewGroup?
     ): View {
         val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.row_monthitem, parent, false)
+            .inflate(R.layout.itemview_browse_month_group_item, parent, false)
         val title: TextView = view.findViewById(R.id.rowMonthTitle_TextView)
         title.text = groupList[groupPosition]
         val image: ImageView = view.findViewById(R.id.expandArrow_img)
@@ -73,7 +73,7 @@ class BrowseExpandableListAdapter(
     ): View {
         val childData = childMonthsList[groupPosition][childPosition]
         val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.row_listitem, parent, false)
+            .inflate(R.layout.itemview_date_event_title, parent, false)
         val date = view.findViewById<TextView>(R.id.rowDate_textView)
         val title = view.findViewById<TextView>(R.id.rowTitle_textView)
         date.text = childData.date.subSequence(5..9)

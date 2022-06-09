@@ -10,7 +10,6 @@
         android:layout_height="48dp"
         android:layout_margin="10dp"
         android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
-        android:contentDescription="backEditFragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/button_shape1"
+            android:background="@drawable/shape_radius30_pad5_stroke2_white_solid_darkblue"
             android:text="點選更換日期"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@id/update_Date_TextView"

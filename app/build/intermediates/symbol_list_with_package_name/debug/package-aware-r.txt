@@ -2193,6 +2193,7 @@ id jumpToEnd
 id jumpToStart
 id labeled
 id layout
+id layout_toolbar
 id left
 id leftToRight
 id legacy
@@ -2456,6 +2457,8 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tv_merge1
+id tv_merge2
 id unchecked
 id uniform
 id unlabeled
@@ -2578,6 +2581,8 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout editeventfragment
 layout homefragment
+layout layout_progress
+layout layout_toolbar
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider
@@ -2592,6 +2597,7 @@ layout material_time_input
 layout material_timepicker
 layout material_timepicker_dialog
 layout material_timepicker_textinput_display
+layout merge_test
 layout monthfragment
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions

@@ -12,13 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.ViewModel.EventViewModel
-import com.voss.todolist.databinding.UpdateeventfragmentBinding
+import com.voss.todolist.databinding.FragmentUpdateEventBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class UpdateEventFragment :
-    BaseFragment<UpdateeventfragmentBinding>(UpdateeventfragmentBinding::inflate) {
+class UpdateEventFragment : BaseFragment<FragmentUpdateEventBinding>(FragmentUpdateEventBinding::inflate) {
 
     private val args: UpdateEventFragmentArgs by navArgs()
     private val argsEventTypes get() = args.eventTypes

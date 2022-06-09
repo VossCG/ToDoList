@@ -9,15 +9,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.SearChRecyclerAdapter
 import com.voss.todolist.Util.AnimUtil
+import com.voss.todolist.Util.setPreventQuickerClick
 import com.voss.todolist.ViewModel.EventViewModel
-import com.voss.todolist.databinding.SearchfragmentBinding
+import com.voss.todolist.databinding.FragmentSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding::inflate) {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
-    private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter(viewModel) }
+    private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
     private var inputData: String = "null"
     private val rotateOpen: Animation by lazy { AnimUtil.getRotateOpen(requireContext()) }
     private val rotateClose: Animation by lazy { AnimUtil.getRotateClose(requireContext()) }
@@ -29,22 +30,22 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            mAdapter.setData(viewModel.filterDataWithFactor(inputData))
+            mAdapter.submitList(viewModel.filterDataWithFactor(inputData))
         }
-
-        binding.filterFab.setOnClickListener {
+        // 測試自定義的阻擋快速點擊是否有成功
+        binding.filterFab.setPreventQuickerClick {
             onAddButtonClicked()
             isExpanded = !isExpanded
         }
 
-        binding.changeContentFab.setOnClickListener {
+        binding.changeContentFab.setPreventQuickerClick {
             viewModel.setFilterFactor("content")
             Toast.makeText(this.context, "Content", Toast.LENGTH_SHORT).show()
             onAddButtonClicked()
             isExpanded = !isExpanded
         }
 
-        binding.changeTitleFab.setOnClickListener {
+        binding.changeTitleFab.setPreventQuickerClick {
             viewModel.setFilterFactor("title")
             Toast.makeText(this.context, "title", Toast.LENGTH_SHORT).show()
             onAddButtonClicked()
@@ -66,9 +67,14 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
                     // 獲得關鍵字過濾資料，放入adapter
                     val filterData = viewModel.filterDataWithFactor(inputData)
                     if (filterData.isNullOrEmpty())
-                        Toast.makeText(this.context, "搜尋條件 找不到相關資料 請重新查詢", Toast.LENGTH_SHORT).show()
-                    else mAdapter.setData(filterData)
-                } else Toast.makeText(this.context, "Please enter title to SearCh", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this.context, "搜尋條件 找不到相關資料 請重新查詢", Toast.LENGTH_SHORT)
+                            .show()
+                    else mAdapter.submitList(filterData)
+                } else Toast.makeText(
+                    this.context,
+                    "Please enter title to SearCh",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
@@ -90,8 +96,8 @@ class SearchFragment : BaseFragment<SearchfragmentBinding>(SearchfragmentBinding
         if (!isExpanded) {
             binding.changeContentFab.visibility = View.VISIBLE
             binding.changeTitleFab.visibility = View.VISIBLE
-            binding.changeContentTv.visibility =View.VISIBLE
-            binding.changeTitleTv.visibility =View.VISIBLE
+            binding.changeContentTv.visibility = View.VISIBLE
+            binding.changeTitleTv.visibility = View.VISIBLE
         } else {
             binding.changeContentFab.visibility = View.GONE
             binding.changeTitleFab.visibility = View.GONE

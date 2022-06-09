@@ -3,17 +3,20 @@ package com.voss.todolist.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
-import com.voss.todolist.Fragment.BrowseFragmentDirections
-import com.voss.todolist.R
-import com.voss.todolist.databinding.RowYearitemBinding
+import com.voss.todolist.databinding.ItemviewBrowseYearTitleItemBinding
 
-class BrowseRecyclerAdapter(val list: List<Int>, val navController: NavController) :
+class BrowseRecyclerAdapter() :
     RecyclerView.Adapter<BrowseRecyclerAdapter.YearRecyclerViewHolder>() {
+    private var list = emptyList<Int>()
+    var navigateToMonthFragment : (Int)->Unit = {}
+    fun setDataList(data: List<Int>) {
+        list = data
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YearRecyclerViewHolder {
         return YearRecyclerViewHolder(
-            RowYearitemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemviewBrowseYearTitleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -25,14 +28,13 @@ class BrowseRecyclerAdapter(val list: List<Int>, val navController: NavControlle
         return list.size
     }
 
-    inner class YearRecyclerViewHolder(binding: RowYearitemBinding) :
+    inner class YearRecyclerViewHolder(binding: ItemviewBrowseYearTitleItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val year: TextView = binding.yearTitleTextView
 
         init {
             year.setOnClickListener {
-                val direction = BrowseFragmentDirections.actionBrowseFragmentToMonthFragment(list[adapterPosition])
-                navController.navigate(direction)
+                navigateToMonthFragment.invoke(list[absoluteAdapterPosition])
             }
         }
     }

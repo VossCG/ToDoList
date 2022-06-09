@@ -33,8 +33,10 @@ com/voss/todolist/Fragment/HomeFragmentDirections.java
  com.voss.todolist.Fragment.HomeFragmentDirections
  com.voss.todolist.Fragment.HomeFragmentDirections$1
  com.voss.todolist.Fragment.HomeFragmentDirections$ActionHomeFragmentToContentFragment
-com/voss/todolist/Fragment/Hilt_BrowseFragment.java
- com.voss.todolist.Fragment.Hilt_BrowseFragment
+com/voss/todolist/databinding/MergeTestBinding.java
+ com.voss.todolist.databinding.MergeTestBinding
+hilt_aggregated_deps/_com_voss_todolist_Fragment_ContentMonthlyFragment_GeneratedInjector.java
+ hilt_aggregated_deps._com_voss_todolist_Fragment_ContentMonthlyFragment_GeneratedInjector
 com/voss/todolist/Fragment/BrowseFragmentDirections.java
  com.voss.todolist.Fragment.BrowseFragmentDirections
  com.voss.todolist.Fragment.BrowseFragmentDirections$1
@@ -45,6 +47,8 @@ com/voss/todolist/Fragment/Hilt_UpdateEventFragment.java
  com.voss.todolist.Fragment.Hilt_UpdateEventFragment
 com/voss/todolist/databinding/RowListitemBinding.java
  com.voss.todolist.databinding.RowListitemBinding
+com/voss/todolist/databinding/LayoutToolbarBinding.java
+ com.voss.todolist.databinding.LayoutToolbarBinding
 com/voss/todolist/Fragment/UpdateEventFragmentArgs.java
  com.voss.todolist.Fragment.UpdateEventFragmentArgs
  com.voss.todolist.Fragment.UpdateEventFragmentArgs$1
@@ -57,6 +61,8 @@ hilt_aggregated_deps/_com_voss_todolist_DI_AppModule.java
  hilt_aggregated_deps._com_voss_todolist_DI_AppModule
 com/voss/todolist/databinding/RowMonthitemBinding.java
  com.voss.todolist.databinding.RowMonthitemBinding
+com/voss/todolist/databinding/LayoutProgressBinding.java
+ com.voss.todolist.databinding.LayoutProgressBinding
 hilt_aggregated_deps/_com_voss_todolist_ViewModel_EventViewModel_HiltModules_KeyModule.java
  hilt_aggregated_deps._com_voss_todolist_ViewModel_EventViewModel_HiltModules_KeyModule
 com/voss/todolist/Room/EventDao_Impl.java
@@ -99,8 +105,8 @@ hilt_aggregated_deps/_com_voss_todolist_Fragment_HomeFragment_GeneratedInjector.
  hilt_aggregated_deps._com_voss_todolist_Fragment_HomeFragment_GeneratedInjector
 com/voss/todolist/databinding/UpdateeventfragmentBinding.java
  com.voss.todolist.databinding.UpdateeventfragmentBinding
-com/voss/todolist/Fragment/BrowseFragment_GeneratedInjector.java
- com.voss.todolist.Fragment.BrowseFragment_GeneratedInjector
+com/voss/todolist/databinding/MonthfragmentBinding.java
+ com.voss.todolist.databinding.MonthfragmentBinding
 com/voss/todolist/ViewModel/EventViewModel_HiltModules.java
  com.voss.todolist.ViewModel.EventViewModel_HiltModules
  com.voss.todolist.ViewModel.EventViewModel_HiltModules$BindsModule
@@ -117,6 +123,45 @@ com/voss/todolist/DI/Hilt_MyApplication.java
 com/voss/todolist/ViewModel/EventViewModel_HiltModules_KeyModule_ProvideFactory.java
  com.voss.todolist.ViewModel.EventViewModel_HiltModules_KeyModule_ProvideFactory
  com.voss.todolist.ViewModel.EventViewModel_HiltModules_KeyModule_ProvideFactory$InstanceHolder
+com/voss/todolist/BuildConfig.java
+ com.voss.todolist.BuildConfig
+hilt_aggregated_deps/_com_voss_todolist_Fragment_UpdateEventFragment_GeneratedInjector.java
+ hilt_aggregated_deps._com_voss_todolist_Fragment_UpdateEventFragment_GeneratedInjector
+com/voss/todolist/Fragment/HomeFragment_GeneratedInjector.java
+ com.voss.todolist.Fragment.HomeFragment_GeneratedInjector
+com/voss/todolist/databinding/SearchfragmentBinding.java
+ com.voss.todolist.databinding.SearchfragmentBinding
+com/voss/todolist/databinding/BrowsefragmentBinding.java
+ com.voss.todolist.databinding.BrowsefragmentBinding
+com/voss/todolist/databinding/RowContenmonthlytitemBinding.java
+ com.voss.todolist.databinding.RowContenmonthlytitemBinding
+com/voss/todolist/Hilt_MainActivity.java
+ com.voss.todolist.Hilt_MainActivity
+ com.voss.todolist.Hilt_MainActivity$1
+com/voss/todolist/Fragment/ContentMonthlyFragment_GeneratedInjector.java
+ com.voss.todolist.Fragment.ContentMonthlyFragment_GeneratedInjector
+com/voss/todolist/ViewModel/EventViewModel_Factory.java
+ com.voss.todolist.ViewModel.EventViewModel_Factory
+com/voss/todolist/Fragment/ContentMonthlyFragmentDirections.java
+ com.voss.todolist.Fragment.ContentMonthlyFragmentDirections
+ com.voss.todolist.Fragment.ContentMonthlyFragmentDirections$1
+ com.voss.todolist.Fragment.ContentMonthlyFragmentDirections$ActionContentFragmentToUpdateEventFragment
+com/voss/todolist/DI/AppModule_ProvidesRepoFactory.java
+ com.voss.todolist.DI.AppModule_ProvidesRepoFactory
+hilt_aggregated_deps/_com_voss_todolist_ViewModel_EventViewModel_HiltModules_BindsModule.java
+ hilt_aggregated_deps._com_voss_todolist_ViewModel_EventViewModel_HiltModules_BindsModule
+com/voss/todolist/MainActivity_GeneratedInjector.java
+ com.voss.todolist.MainActivity_GeneratedInjector
+com/voss/todolist/databinding/HomefragmentBinding.java
+ com.voss.todolist.databinding.HomefragmentBinding
+com/voss/todolist/DI/AppModule_ProvidesRoomDaoFactory.java
+ com.voss.todolist.DI.AppModule_ProvidesRoomDaoFactory
+com/voss/todolist/DI/MyApplication_ComponentTreeDeps.java
+ com.voss.todolist.DI.MyApplication_ComponentTreeDeps
+com/voss/todolist/Fragment/BrowseFragment_GeneratedInjector.java
+ com.voss.todolist.Fragment.BrowseFragment_GeneratedInjector
+com/voss/todolist/Fragment/Hilt_BrowseFragment.java
+ com.voss.todolist.Fragment.Hilt_BrowseFragment
 com/voss/todolist/DI/MyApplication_HiltComponents.java
  com.voss.todolist.DI.MyApplication_HiltComponents
  com.voss.todolist.DI.MyApplication_HiltComponents$ActivityC
@@ -141,27 +186,6 @@ com/voss/todolist/DI/MyApplication_HiltComponents.java
  com.voss.todolist.DI.MyApplication_HiltComponents$ViewWithFragmentC
  com.voss.todolist.DI.MyApplication_HiltComponents$ViewWithFragmentC$Builder
  com.voss.todolist.DI.MyApplication_HiltComponents$ViewWithFragmentCBuilderModule
-hilt_aggregated_deps/_com_voss_todolist_Fragment_UpdateEventFragment_GeneratedInjector.java
- hilt_aggregated_deps._com_voss_todolist_Fragment_UpdateEventFragment_GeneratedInjector
-com/voss/todolist/Fragment/HomeFragment_GeneratedInjector.java
- com.voss.todolist.Fragment.HomeFragment_GeneratedInjector
-com/voss/todolist/databinding/SearchfragmentBinding.java
- com.voss.todolist.databinding.SearchfragmentBinding
-com/voss/todolist/databinding/BrowsefragmentBinding.java
- com.voss.todolist.databinding.BrowsefragmentBinding
-com/voss/todolist/databinding/RowContenmonthlytitemBinding.java
- com.voss.todolist.databinding.RowContenmonthlytitemBinding
-com/voss/todolist/Hilt_MainActivity.java
- com.voss.todolist.Hilt_MainActivity
- com.voss.todolist.Hilt_MainActivity$1
-com/voss/todolist/Fragment/ContentMonthlyFragment_GeneratedInjector.java
- com.voss.todolist.Fragment.ContentMonthlyFragment_GeneratedInjector
-com/voss/todolist/ViewModel/EventViewModel_Factory.java
- com.voss.todolist.ViewModel.EventViewModel_Factory
-com/voss/todolist/Fragment/ContentMonthlyFragmentDirections.java
- com.voss.todolist.Fragment.ContentMonthlyFragmentDirections
- com.voss.todolist.Fragment.ContentMonthlyFragmentDirections$1
- com.voss.todolist.Fragment.ContentMonthlyFragmentDirections$ActionContentFragmentToUpdateEventFragment
 com/voss/todolist/DI/DaggerMyApplication_HiltComponents_SingletonC.java
  com.voss.todolist.DI.DaggerMyApplication_HiltComponents_SingletonC
  com.voss.todolist.DI.DaggerMyApplication_HiltComponents_SingletonC$1
@@ -181,21 +205,3 @@ com/voss/todolist/DI/DaggerMyApplication_HiltComponents_SingletonC.java
  com.voss.todolist.DI.DaggerMyApplication_HiltComponents_SingletonC$Builder
  com.voss.todolist.DI.DaggerMyApplication_HiltComponents_SingletonC$ServiceCBuilder
  com.voss.todolist.DI.DaggerMyApplication_HiltComponents_SingletonC$ServiceCImpl
-com/voss/todolist/DI/MyApplication_ComponentTreeDeps.java
- com.voss.todolist.DI.MyApplication_ComponentTreeDeps
-com/voss/todolist/MainActivity_GeneratedInjector.java
- com.voss.todolist.MainActivity_GeneratedInjector
-com/voss/todolist/databinding/HomefragmentBinding.java
- com.voss.todolist.databinding.HomefragmentBinding
-com/voss/todolist/DI/AppModule_ProvidesRoomDaoFactory.java
- com.voss.todolist.DI.AppModule_ProvidesRoomDaoFactory
-com/voss/todolist/DI/AppModule_ProvidesRepoFactory.java
- com.voss.todolist.DI.AppModule_ProvidesRepoFactory
-com/voss/todolist/BuildConfig.java
- com.voss.todolist.BuildConfig
-hilt_aggregated_deps/_com_voss_todolist_Fragment_ContentMonthlyFragment_GeneratedInjector.java
- hilt_aggregated_deps._com_voss_todolist_Fragment_ContentMonthlyFragment_GeneratedInjector
-hilt_aggregated_deps/_com_voss_todolist_ViewModel_EventViewModel_HiltModules_BindsModule.java
- hilt_aggregated_deps._com_voss_todolist_ViewModel_EventViewModel_HiltModules_BindsModule
-com/voss/todolist/databinding/MonthfragmentBinding.java
- com.voss.todolist.databinding.MonthfragmentBinding

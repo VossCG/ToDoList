@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.Util.ListAdapterDiffUtil
-import com.voss.todolist.databinding.RowListitemBinding
+import com.voss.todolist.databinding.ItemviewDateEventTitleBinding
 
 class HomeEventAdapter() :ListAdapter<EventTypes,HomeEventAdapter.EventTodayViewHolder>(ListAdapterDiffUtil()) {
 
@@ -15,7 +15,7 @@ class HomeEventAdapter() :ListAdapter<EventTypes,HomeEventAdapter.EventTodayView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventTodayViewHolder {
         return EventTodayViewHolder(
-            RowListitemBinding.inflate(
+            ItemviewDateEventTitleBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -28,7 +28,7 @@ class HomeEventAdapter() :ListAdapter<EventTypes,HomeEventAdapter.EventTodayView
         holder.title.text = getItem(position).title
     }
 
-    inner class EventTodayViewHolder(private val binding: RowListitemBinding) :
+    inner class EventTodayViewHolder(private val binding: ItemviewDateEventTitleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.rowTitleTextView
         val date: TextView = binding.rowDateTextView
