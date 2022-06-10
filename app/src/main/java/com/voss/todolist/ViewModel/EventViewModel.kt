@@ -30,7 +30,7 @@ class EventViewModel @Inject constructor(application: Application, var repositor
 
     init {
         date.value = "YY/MM/DD"
-        filterFactor.value = "標題"
+        filterFactor.value = "title"
         readAllEvent = repository.eventDataList
     }
 

@@ -66,7 +66,7 @@ class UpdateEventFragment : BaseFragment<FragmentUpdateEventBinding>(FragmentUpd
             navController.navigateUp()
         }
 
-        binding.cancelUpdateBut.setOnClickListener {
+        binding.cancelUpdateBut.backArrowBut.setOnClickListener {
             AlertDialog.Builder(this.context)
                 .setTitle("Message")
                 .setMessage("是否要取消編輯?")

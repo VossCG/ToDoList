@@ -1161,6 +1161,10 @@ color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
 color checkbox_themeable_attribute_color
+color darkBlue
+color darkBrown
+color darkGrey
+color darkYellow
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
 color design_dark_default_color_background
@@ -1209,6 +1213,9 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color lightBlue
+color lightBrown
+color lightGrey
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1297,6 +1304,11 @@ color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
 color notification_material_background_media_default_color
+color orange
+color primaryColor
+color primaryDarkColor
+color primaryLightColor
+color primaryTextColor
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -1311,6 +1323,10 @@ color purple_700
 color radiobutton_themeable_attribute_color
 color ripple_material_dark
 color ripple_material_light
+color secondaryColor
+color secondaryDarkColor
+color secondaryLightColor
+color secondaryTextColor
 color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
@@ -1321,6 +1337,7 @@ color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
+color tealBlue
 color teal_200
 color teal_700
 color test_mtrl_calendar_day
@@ -1835,10 +1852,8 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
-drawable arrowchange_selector
 drawable avd_hide_password
 drawable avd_show_password
-drawable bottomsheet_shape
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -1847,8 +1862,6 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
-drawable button_corner_shape
-drawable button_shape1
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
@@ -1900,7 +1913,6 @@ drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_dark
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
-drawable note
 drawable noteicon
 drawable notification_action_background
 drawable notification_bg
@@ -1914,15 +1926,18 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
-drawable rowbut_shape
-drawable rowitem_shape
-drawable rowlist_shape
-drawable rowmonth_shape
-drawable rowyearitem_shape
+drawable selector_arrow_rigjt_down
+drawable shape_radius15_solid_tealblue
+drawable shape_radius15_stroke1_white_solid_lightblue
+drawable shape_radius20_solid_darkbrown
+drawable shape_radius20_solid_darkgrey
+drawable shape_radius20_solid_lightgrey
+drawable shape_radius30_pad5_stroke2_white_solid_darkblue
+drawable shpae_radius_topleft15_topright15_solid_black
 drawable splash_screen
+drawable stroke_1dp_white
 drawable test_custom_background
 drawable test_level_drawable
-drawable textview_shape
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -2022,6 +2037,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id backArrow_but
 id backHomeArrow_but
 id barrier
 id baseline
@@ -2127,6 +2143,7 @@ id east
 id editEventFragment
 id editFragmentTitle_textView
 id edit_query
+id editevent_title_linearLayout
 id elastic
 id end
 id endToStart
@@ -2165,8 +2182,6 @@ id hideable
 id home
 id homeAsUp
 id homeFragment
-id homeTitle2_textView
-id homeTitle_textView
 id home_recyclerview
 id honorRequest
 id horizontal_only
@@ -2179,7 +2194,6 @@ id image
 id immediateStop
 id included
 id info
-id insideConstraintLayout
 id invisible
 id inward
 id italic
@@ -2438,7 +2452,6 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id time
-id time_textView
 id title
 id titleDividerNoCustom
 id title_Edittext
@@ -2457,8 +2470,6 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
-id tv_merge1
-id tv_merge2
 id unchecked
 id uniform
 id unlabeled
@@ -2466,6 +2477,7 @@ id up
 id updateContent_InputLayout
 id updateContent_editText
 id updateEventFragment
+id updateEvent_title_linearLayout
 id updateFragmentTitle_textView
 id updateInner_ConstrainLayout
 id updateTitle_Edittext
@@ -2561,8 +2573,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
-layout browsefragment
-layout contentmonthlyfragment
+layout custom_button_backarrow
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2579,10 +2590,20 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout editeventfragment
-layout homefragment
-layout layout_progress
-layout layout_toolbar
+layout fragment_browse
+layout fragment_contentmonthly
+layout fragment_editevent
+layout fragment_home
+layout fragment_month
+layout fragment_search
+layout fragment_update_event
+layout item_progress
+layout item_toolbar
+layout itemview_browse_month_group_item
+layout itemview_browse_year_title_item
+layout itemview_date_event_content
+layout itemview_date_event_title
+layout itemview_search_event_cardview
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider
@@ -2597,8 +2618,6 @@ layout material_time_input
 layout material_timepicker
 layout material_timepicker_dialog
 layout material_timepicker_textinput_display
-layout merge_test
-layout monthfragment
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -2643,12 +2662,6 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
-layout row_contenmonthlytitem
-layout row_listitem
-layout row_monthitem
-layout row_searchitem
-layout row_yearitem
-layout searchfragment
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -2668,7 +2681,6 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
-layout updateeventfragment
 menu example_menu
 menu example_menu2
 menu navigationbottom
@@ -3013,9 +3025,14 @@ style Base_Widget_MaterialComponents_Snackbar
 style Base_Widget_MaterialComponents_TextInputEditText
 style Base_Widget_MaterialComponents_TextInputLayout
 style Base_Widget_MaterialComponents_TextView
+style ButtonCornerShapeAppearance
 style CardView
 style CardView_Dark
 style CardView_Light
+style CustomOutlineButtonStyle
+style DefaultDarkTextViewStyle
+style DefaultMaterialButtonStyle
+style DefaultTextViewStyle
 style EmptyTheme
 style MaterialAlertDialog_MaterialComponents
 style MaterialAlertDialog_MaterialComponents_Body_Text
@@ -3514,7 +3531,6 @@ style Widget_MaterialComponents_Toolbar_PrimarySurface
 style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
-style floatButtonColor
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth

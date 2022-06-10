@@ -42,13 +42,13 @@ public final class BrowseRecyclerAdapter extends androidx.recyclerview.widget.Re
         return 0;
     }
     
-    @kotlin.Metadata(mv = {1, 6, 0}, k = 1, d1 = {"\u0000\u001a\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\b\u0086\u0004\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004R\u0011\u0010\u0005\u001a\u00020\u0006\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\b\u00a8\u0006\t"}, d2 = {"Lcom/voss/todolist/Adapter/BrowseRecyclerAdapter$YearRecyclerViewHolder;", "Landroidx/recyclerview/widget/RecyclerView$ViewHolder;", "binding", "Lcom/voss/todolist/databinding/RowYearitemBinding;", "(Lcom/voss/todolist/Adapter/BrowseRecyclerAdapter;Lcom/voss/todolist/databinding/RowYearitemBinding;)V", "year", "Landroid/widget/TextView;", "getYear", "()Landroid/widget/TextView;", "app_debug"})
+    @kotlin.Metadata(mv = {1, 6, 0}, k = 1, d1 = {"\u0000\u001a\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\b\u0086\u0004\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004R\u0011\u0010\u0005\u001a\u00020\u0006\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\b\u00a8\u0006\t"}, d2 = {"Lcom/voss/todolist/Adapter/BrowseRecyclerAdapter$YearRecyclerViewHolder;", "Landroidx/recyclerview/widget/RecyclerView$ViewHolder;", "binding", "Lcom/voss/todolist/databinding/ItemviewBrowseYearTitleItemBinding;", "(Lcom/voss/todolist/Adapter/BrowseRecyclerAdapter;Lcom/voss/todolist/databinding/ItemviewBrowseYearTitleItemBinding;)V", "year", "Landroid/widget/TextView;", "getYear", "()Landroid/widget/TextView;", "app_debug"})
     public final class YearRecyclerViewHolder extends androidx.recyclerview.widget.RecyclerView.ViewHolder {
         @org.jetbrains.annotations.NotNull()
         private final android.widget.TextView year = null;
         
         public YearRecyclerViewHolder(@org.jetbrains.annotations.NotNull()
-        com.voss.todolist.databinding.RowYearitemBinding binding) {
+        com.voss.todolist.databinding.ItemviewBrowseYearTitleItemBinding binding) {
             super(null);
         }
         

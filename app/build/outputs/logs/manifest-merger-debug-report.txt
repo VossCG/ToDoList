@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-28:12
+ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-29:12
 MERGED from [androidx.paging:paging-runtime:3.0.0] C:\Users\USER\.gradle\caches\transforms-3\3e13c66a53fbea98376df356f84f2c28\transformed\paging-runtime-3.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.2.0] C:\Users\USER\.gradle\caches\transforms-3\9f4a865efb0812243392a1a8185f5c47\transformed\jetified-lifecycle-livedata-ktx-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.room:room-ktx:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\54801bff92b2d5cbbebd894458dd4586\transformed\jetified-room-ktx-2.3.0\AndroidManifest.xml:17:1-24:12
@@ -77,25 +77,25 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\USER\.gradle\cache
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\3e6db60437a293fb05a7f1c7bae61c54\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\USER\.gradle\caches\transforms-3\8f6dc61b656fe614bcebc716a92f989c\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.dagger:dagger-lint-aar:2.37] C:\Users\USER\.gradle\caches\transforms-3\7f8ff2b1cfc9546fdf758a7c73652f59\transformed\jetified-dagger-lint-aar-2.37\AndroidManifest.xml:16:1-19:12
-INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-28:12
-INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-29:12
 	package
 		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:3:5-32
 		INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-28:12
+		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-29:12
 		INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-28:12
+		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:1-29:12
 		INJECTED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:5:5-26:19
+ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:5:5-27:19
 MERGED from [androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\7faa01aab667f2c47c0c20799ca88daa\transformed\jetified-window-1.0.0\AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.window:window:1.0.0] C:\Users\USER\.gradle\caches\transforms-3\7faa01aab667f2c47c0c20799ca88daa\transformed\jetified-window-1.0.0\AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.room:room-runtime:2.3.0] C:\Users\USER\.gradle\caches\transforms-3\ea48c95d67bb850acfbf8578a28857c3\transformed\room-runtime-2.3.0\AndroidManifest.xml:24:5-29:19
@@ -153,9 +153,11 @@ ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidMani
 	android:name
 		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:20:27-74
 activity#com.voss.todolist.MainActivity
-ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:23:9-25:38
+ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:23:9-26:38
+	android:screenOrientation
+		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:25:13-49
 	android:exported
-		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:25:13-36
+		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:26:13-36
 	android:name
 		ADDED from C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\AndroidManifest.xml:24:13-41
 uses-sdk

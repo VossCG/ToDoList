@@ -8,6 +8,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.ArgsToContent
 import com.voss.todolist.Adapter.HomeEventAdapter
+import com.voss.todolist.Util.LinearItemDecoration
+import com.voss.todolist.Util.dpToPx
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +27,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setViewModelObserve()
         setRecyclerView()
     }
@@ -44,6 +45,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this.context)
             adapter = mAdapter
+            addItemDecoration(LinearItemDecoration(dpToPx(requireContext(), 15.0f)))
         }
 
         mAdapter.itemOnClick = { adapterPosition ->

@@ -35,17 +35,14 @@ class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeve
     }
 
     private fun itemViewOnClickEvent() {
-        binding.backHomeArrowBut.setOnClickListener {
+        binding.backHomeArrowBut.backArrowBut.setOnClickListener {
             navController.popBackStack()
         }
 
         binding.setUpEventBut.setOnClickListener {
             insertDataToDataBase()
         }
-
     }
-
-
 
     private fun insertDataToDataBase() {
         // get text From EditText
