@@ -6,6 +6,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.BrowseRecyclerAdapter
+import com.voss.todolist.Util.LinearItemDecoration
+import com.voss.todolist.Util.dpToPx
 import com.voss.todolist.databinding.FragmentBrowseBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,6 +28,7 @@ class BrowseFragment : BaseFragment<FragmentBrowseBinding>(FragmentBrowseBinding
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@BrowseFragment.context)
             adapter = mAdapter
+            addItemDecoration(LinearItemDecoration(dpToPx(requireContext(),10f)))
         }
         mAdapter.setDataList(yearList)
         mAdapter.navigateToMonthFragment = {

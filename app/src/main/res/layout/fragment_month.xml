@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/topTitle_tv"
+        android:id="@+id/month_topTitle_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Month"
@@ -15,10 +16,13 @@
         />
 
     <ExpandableListView
-        android:id="@+id/months_expandableListView"
+        android:id="@+id/month_expandableListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:groupIndicator="@null"
+        android:divider="@null"
+        android:childDivider="@null"
+        android:dividerHeight="10dp"
         />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

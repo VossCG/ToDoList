@@ -9,6 +9,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.ContentListAdapter
 import com.voss.todolist.R
+import com.voss.todolist.Util.LinearItemDecoration
+import com.voss.todolist.Util.dpToPx
 import com.voss.todolist.ViewModel.EventViewModel
 import com.voss.todolist.databinding.FragmentContentmonthlyBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +50,7 @@ class ContentMonthlyFragment : BaseFragment<FragmentContentmonthlyBinding>(Fragm
             layoutManager = LinearLayoutManager(this.context)
             adapter = mAdapter
             scrollToPosition(position)
+            addItemDecoration(LinearItemDecoration(dpToPx(requireContext(),10f)))
         }
     }
 

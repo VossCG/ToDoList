@@ -3,128 +3,94 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="15dp"
-    >
+    android:padding="10dp"
+    android:background="@drawable/shape_radius10_solid_darkblue"
+    android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/rowContentDate_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="150dp"
-        app:cardBackgroundColor="#0A3143"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="10dp"
-        app:cardPreventCornerOverlap="true"
-        app:contentPadding="5dp"
+        android:text="03/04"
+        android:textColor="@color/ligjtblue"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rowContentTitle_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="start"
+        android:text="Title"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintTop_toBottomOf="@+id/rowContentDate_textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageButton
+        android:id="@+id/rowContentEdit_but"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="@+id/rowContentDate_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+    <ImageButton
+        android:id="@+id/rowContentDelete_but"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_delete_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+    <View
+        android:id="@+id/itemContent_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/lightGrey"
+        app:layout_constraintTop_toBottomOf="@+id/rowContentTitle_textView" />
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/event_content_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="rowShowMoreContent_TextView,rowContentDelete_but"
+        />
+    <TextView
+        android:id="@+id/rowContent_textView"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="start"
+        android:text="Content Body"
+        app:layout_constraintBottom_toTopOf="@+id/event_content_barrier"
+        app:layout_constraintTop_toBottomOf="@+id/itemContent_divider"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/rowShowMoreContent_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="read more..."
+        android:textStyle="italic"
+        style="@style/CustomOutlineButtonStyle"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/rowContentTitle_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:ellipsize="end"
-                android:gravity="start"
-                android:maxLength="20"
-                android:text="Title"
-                android:textSize="23sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/rowContentEdit_but"
-                app:layout_constraintStart_toEndOf="@+id/rowContentDate_textView"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/rowContentEdit_but"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/ic_baseline_edit_24"
-                app:layout_constraintBottom_toTopOf="@id/itemContent_divider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-
-            <ImageButton
-                android:id="@+id/rowContentDelete_but"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/ic_baseline_delete_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rowContent_textView"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/rowContentDate_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:text="03/04"
-                android:textColor="#E48BA1DA"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/itemContent_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:background="#AFBABA"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rowContentTitle_textView" />
-
-            <TextView
-                android:id="@+id/rowContent_textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:gravity="start"
-                android:padding="10dp"
-                android:text="Content"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/itemContent_divider" />
-
-            <TextView
-                android:id="@+id/rowShowMoreContent_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/shape_radius15_stroke1_white_solid_lightblue"
-                android:padding="7dp"
-                android:text="read more..."
-                android:textSize="10sp"
-                android:textStyle="italic"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rowContent_textView"
-                tools:visibility="visible" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+

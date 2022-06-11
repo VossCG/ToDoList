@@ -24,10 +24,10 @@
 
     <style name="DefaultMaterialButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:backgroundTint">@color/primaryColor</item>
-        <item name="shapeAppearance">@style/ButtonCornerShapeAppearance</item>
+        <item name="shapeAppearance">@style/ShapeAppearance_Radius_10dp</item>
     </style>
 
-    <style name="ButtonCornerShapeAppearance">
+    <style name="ShapeAppearance_Radius_10dp">
         <item name="cornerFamilyTopLeft">rounded</item>
         <item name="cornerFamilyBottomLeft">rounded</item>
         <item name="cornerFamilyTopRight">rounded</item>

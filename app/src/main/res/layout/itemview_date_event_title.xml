@@ -3,25 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_radius20_solid_darkgrey"
-    android:padding="20dp"
-    >
-        <TextView
-            android:id="@+id/rowDate_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="03/08"
-            android:gravity="center"
-            android:textSize="25sp"
-            />
+    android:background="@drawable/shape_radius10_solid_orange"
+    android:padding="10dp">
 
-        <TextView
-            android:id="@+id/rowTitle_textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="事件標題"
-            android:textSize="25sp"
-            />
+    <TextView
+        android:id="@+id/rowDate_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="03/08"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/rowTitle_textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="事件標題"
+        android:textSize="25sp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

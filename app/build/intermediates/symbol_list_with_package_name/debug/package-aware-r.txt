@@ -1216,6 +1216,7 @@ color highlighted_text_material_light
 color lightBlue
 color lightBrown
 color lightGrey
+color ligjtblue
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1926,14 +1927,13 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable ripple_white_radius10_darkgrey
 drawable selector_arrow_rigjt_down
-drawable shape_radius15_solid_tealblue
+drawable shape_radius10_solid_darkblue
+drawable shape_radius10_solid_darkbrown
+drawable shape_radius10_solid_orange
+drawable shape_radius10_solid_tealblue
 drawable shape_radius15_stroke1_white_solid_lightblue
-drawable shape_radius20_solid_darkbrown
-drawable shape_radius20_solid_darkgrey
-drawable shape_radius20_solid_lightgrey
-drawable shape_radius30_pad5_stroke2_white_solid_darkblue
-drawable shpae_radius_topleft15_topright15_solid_black
 drawable splash_screen
 drawable stroke_1dp_white
 drawable test_custom_background
@@ -2058,7 +2058,6 @@ id callMeasure
 id cancelUpdate_but
 id cancel_action
 id cancel_button
-id cardView
 id carryVelocity
 id center
 id center_horizontal
@@ -2151,6 +2150,7 @@ id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id evenContent_scroll
+id event_content_barrier
 id exitUntilCollapsed
 id expandArrow_img
 id expand_activities_button
@@ -2245,13 +2245,14 @@ id message
 id middle
 id mini
 id monthFragment
+id month_expandableListView
 id month_grid
 id month_navigation_bar
 id month_navigation_fragment_toggle
 id month_navigation_next
 id month_navigation_previous
 id month_title
-id months_expandableListView
+id month_topTitle_tv
 id motion_base
 id mtrl_anchor_parent
 id mtrl_calendar_day_selector_frame
@@ -2460,7 +2461,6 @@ id title_template
 id toggle
 id top
 id topPanel
-id topTitle_tv
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -3025,7 +3025,6 @@ style Base_Widget_MaterialComponents_Snackbar
 style Base_Widget_MaterialComponents_TextInputEditText
 style Base_Widget_MaterialComponents_TextInputLayout
 style Base_Widget_MaterialComponents_TextView
-style ButtonCornerShapeAppearance
 style CardView
 style CardView_Dark
 style CardView_Light
@@ -3096,6 +3095,7 @@ style ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Year
 style ShapeAppearanceOverlay_MaterialComponents_TextInputLayout_FilledBox
 style ShapeAppearanceOverlay_TopLeftCut
 style ShapeAppearanceOverlay_TopRightDifferentCornerSize
+style ShapeAppearance_Radius_10dp
 style SplashScreenTheme
 style Test_ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Day
 style Test_Theme_MaterialComponents_MaterialCalendar

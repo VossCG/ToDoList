@@ -14,15 +14,28 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_title_24.xml" value="0.1875" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ripple_text.xml" value="0.122" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowbut_shape.xml" value="0.1585" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowitem_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowlist_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowmonth_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowtext_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowyearitem_shape.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_solid_darkblue.xml" value="0.122" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_solid_darkbrown.xml" value="0.122" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_solid_orange.xml" value="0.122" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_solid_tealblue.xml" value="0.122" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_stroke1_white_solid_darkblue.xml" value="0.122" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius15_solid_tealblue.xml" value="0.122" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius15_stroke1_white_solid_lightblue.xml" value="0.122" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius20_solid_darkbrown.xml" value="0.122" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius20_solid_darkgrey.xml" value="0.132" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius20_solid_lightgrey.xml" value="0.122" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius30_pad5_stroke2_white_solid_darkblue.xml" value="0.1875" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shpae_radius_topleft15_topright15_solid_black.xml" value="0.122" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/spalsh_screen.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/splash_screen.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/stroke_1dp_white.xml" value="0.122" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/textview_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/backarrow_button.xml" value="0.178125" />
@@ -36,7 +49,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/editeventfragment.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/editeventrowitemfragment.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_browse.xml" value="0.22" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_contentmonthly.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_contentmonthly.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_editevent.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_month.xml" value="0.17916666666666667" />
@@ -45,7 +58,9 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/homefragment.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/item_progress.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemcontentfragment.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_date_event_content.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_browse_month_group_item.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_browse_year_title_item.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_date_event_content.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_date_event_title.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_search_event_cardview.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/layout_progress.xml" value="0.17916666666666667" />

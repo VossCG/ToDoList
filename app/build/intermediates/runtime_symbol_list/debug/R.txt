@@ -1215,6 +1215,7 @@ int color highlighted_text_material_light 0x7f05005e
 int color lightBlue 0x7f0500d9
 int color lightBrown 0x7f0500da
 int color lightGrey 0x7f0500db
+int color ligjtblue 0x7f0500e7
 int color material_blue_grey_800 0x7f05005f
 int color material_blue_grey_900 0x7f050060
 int color material_blue_grey_950 0x7f050061
@@ -1925,14 +1926,13 @@ int drawable notification_template_icon_bg 0x7f0700a1
 int drawable notification_template_icon_low_bg 0x7f0700a2
 int drawable notification_tile_bg 0x7f0700a3
 int drawable notify_panel_notification_icon_bg 0x7f0700a4
+int drawable ripple_white_radius10_darkgrey 0x7f0700bf
 int drawable selector_arrow_rigjt_down 0x7f0700b0
-int drawable shape_radius15_solid_tealblue 0x7f0700b1
+int drawable shape_radius10_solid_darkblue 0x7f0700bb
+int drawable shape_radius10_solid_darkbrown 0x7f0700bc
+int drawable shape_radius10_solid_orange 0x7f0700bd
+int drawable shape_radius10_solid_tealblue 0x7f0700ba
 int drawable shape_radius15_stroke1_white_solid_lightblue 0x7f0700b2
-int drawable shape_radius20_solid_darkbrown 0x7f0700b3
-int drawable shape_radius20_solid_darkgrey 0x7f0700b4
-int drawable shape_radius20_solid_lightgrey 0x7f0700b5
-int drawable shape_radius30_pad5_stroke2_white_solid_darkblue 0x7f0700b6
-int drawable shpae_radius_topleft15_topright15_solid_black 0x7f0700b7
 int drawable splash_screen 0x7f0700aa
 int drawable stroke_1dp_white 0x7f0700b8
 int drawable test_custom_background 0x7f0700ab
@@ -2057,7 +2057,6 @@ int id callMeasure 0x7f080071
 int id cancelUpdate_but 0x7f080072
 int id cancel_action 0x7f080073
 int id cancel_button 0x7f080074
-int id cardView 0x7f080075
 int id carryVelocity 0x7f080076
 int id center 0x7f080077
 int id center_horizontal 0x7f080078
@@ -2150,6 +2149,7 @@ int id end_padder 0x7f0800cd
 int id enterAlways 0x7f0800ce
 int id enterAlwaysCollapsed 0x7f0800cf
 int id evenContent_scroll 0x7f0800d0
+int id event_content_barrier 0x7f08023b
 int id exitUntilCollapsed 0x7f0800d1
 int id expandArrow_img 0x7f0800d2
 int id expand_activities_button 0x7f0800d3
@@ -2244,13 +2244,14 @@ int id message 0x7f08012e
 int id middle 0x7f08012f
 int id mini 0x7f080130
 int id monthFragment 0x7f080131
+int id month_expandableListView 0x7f08023c
 int id month_grid 0x7f080132
 int id month_navigation_bar 0x7f080133
 int id month_navigation_fragment_toggle 0x7f080134
 int id month_navigation_next 0x7f080135
 int id month_navigation_previous 0x7f080136
 int id month_title 0x7f080137
-int id months_expandableListView 0x7f080138
+int id month_topTitle_tv 0x7f08023d
 int id motion_base 0x7f080139
 int id mtrl_anchor_parent 0x7f08013a
 int id mtrl_calendar_day_selector_frame 0x7f08013b
@@ -2459,7 +2460,6 @@ int id title_template 0x7f080206
 int id toggle 0x7f080207
 int id top 0x7f080208
 int id topPanel 0x7f080209
-int id topTitle_tv 0x7f08020a
 int id touch_outside 0x7f08020b
 int id transitionToEnd 0x7f08020c
 int id transitionToStart 0x7f08020d
@@ -3024,7 +3024,6 @@ int style Base_Widget_MaterialComponents_Snackbar 0x7f1100e0
 int style Base_Widget_MaterialComponents_TextInputEditText 0x7f1100e1
 int style Base_Widget_MaterialComponents_TextInputLayout 0x7f1100e2
 int style Base_Widget_MaterialComponents_TextView 0x7f1100e3
-int style ButtonCornerShapeAppearance 0x7f1102da
 int style CardView 0x7f1100e4
 int style CardView_Dark 0x7f1100e5
 int style CardView_Light 0x7f1100e6
@@ -3095,6 +3094,7 @@ int style ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Year 0x7f11
 int style ShapeAppearanceOverlay_MaterialComponents_TextInputLayout_FilledBox 0x7f110123
 int style ShapeAppearanceOverlay_TopLeftCut 0x7f110124
 int style ShapeAppearanceOverlay_TopRightDifferentCornerSize 0x7f110125
+int style ShapeAppearance_Radius_10dp 0x7f1102df
 int style SplashScreenTheme 0x7f110126
 int style Test_ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Day 0x7f110127
 int style Test_Theme_MaterialComponents_MaterialCalendar 0x7f110128

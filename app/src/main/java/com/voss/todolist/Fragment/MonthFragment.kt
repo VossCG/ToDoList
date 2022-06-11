@@ -22,7 +22,7 @@ class MonthFragment : BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::i
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.topTitleTv.text = "${args.year}  Months"
+        binding.monthTopTitleTv.text = "${args.year}  Months"
         setExpandableListView()
     }
 
@@ -31,10 +31,10 @@ class MonthFragment : BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::i
         val listByMonths = getTwoDimensionMonthsList(data)
 
         val mAdapter = BrowseExpandableListAdapter(requireContext(), listByMonths, navController)
-        binding.monthsExpandableListView.setAdapter(mAdapter)
+        binding.monthExpandableListView.setAdapter(mAdapter)
 
         // 判斷點擊 groupItem 月份 裡面是否有child ，若沒有則用Toast顯示 並回傳true讓它無法展開
-        binding.monthsExpandableListView.setOnGroupClickListener { _, _, groupPosition, _ ->
+        binding.monthExpandableListView.setOnGroupClickListener { _, _, groupPosition, _ ->
             val event = listByMonths[groupPosition]
             if (event.isEmpty()) {
                 Toast.makeText(

@@ -72,7 +72,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/content_editText"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="150dp"
                     android:gravity="top|start"
                     android:imeOptions="actionDone"
                     android:maxLength="400" />
@@ -90,7 +90,7 @@
 
             <DatePicker
                 android:id="@+id/datePicker"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
