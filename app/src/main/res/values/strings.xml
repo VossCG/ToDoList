@@ -2,4 +2,50 @@
     <string name="app_name">ToDoList</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="transName_searchToolbar">searchToolbar</string>
+
+    <string-array name="months">
+        <item>一月</item>
+        <item>二月</item>
+        <item>三月</item>
+        <item>四月</item>
+        <item>五月</item>
+        <item>六月</item>
+        <item>七月</item>
+        <item>八月</item>
+        <item>九月</item>
+        <item>十月</item>
+        <item>十一月</item>
+        <item>十二月</item>
+    </string-array>
+    <string-array name="searchRecord">
+        <item>搭車</item>
+        <item>約會</item>
+        <item>吃飯</item>
+        <item>訂餐</item>
+        <item>送禮物</item>
+        <item>運動</item>
+        <item>跑步</item>
+        <item>健身</item>
+        <item>游泳</item>
+        <item>面試</item>
+        <item>報告</item>
+        <item>進度</item>
+    </string-array>
+
+    <integer-array name="year">
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+        <item>2027</item>
+        <item>2028</item>
+        <item>2029</item>
+        <item>2030</item>
+    </integer-array>
+
+
 </resources>

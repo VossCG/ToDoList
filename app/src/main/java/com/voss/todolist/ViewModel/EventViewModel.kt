@@ -24,7 +24,7 @@ class EventViewModel @Inject constructor(application: Application, var repositor
 
     val readAllEvent: LiveData<List<EventTypes>>
     val date = MutableLiveData<String>()
-    val filterFactor = MutableLiveData<String>()
+    private val filterFactor = MutableLiveData<String>()
 
     private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
 

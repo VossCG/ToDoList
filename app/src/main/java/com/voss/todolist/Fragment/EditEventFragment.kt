@@ -15,17 +15,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 
+
+
 @AndroidEntryPoint
 class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeventBinding::inflate) {
 
-    private val evenViewModel: EventViewModel by activityViewModels()
+    private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     private val calendar: Calendar by lazy { Calendar.getInstance() }
     private var mYear: Int = calendar.get(Calendar.YEAR)
     private var mMonth: Int =  calendar.get(Calendar.MONTH)
     private var mDays: Int =  calendar.get(Calendar.DAY_OF_MONTH)
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,15 +50,15 @@ class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeve
         val content = binding.contentEditText.text.toString()
 
         // get Date from calendar / DatePicker view
-        val dateInteger = evenViewModel.getDateInteger(mYear,mMonth,mDays)
-        val date = evenViewModel.getDateFormat(mYear,mMonth,mDays)
+        val dateInteger = viewModel.getDateInteger(mYear,mMonth,mDays)
+        val date = viewModel.getDateFormat(mYear,mMonth,mDays)
 
         // check EditText Data not empty
         if (checkData(title, date, content,mYear)) {
 
             val event = EventTypes(title, date, content, mYear, mMonth, mDays, dateInteger, 1)
             // insert Date To Room
-            evenViewModel.addEvent(event)
+            viewModel.addEvent(event)
             Toast.makeText(this.context, "新增成功", Toast.LENGTH_SHORT).show()
 
             // When insert the event to Room , navigate Fragment to HomeFragment check event show on or not

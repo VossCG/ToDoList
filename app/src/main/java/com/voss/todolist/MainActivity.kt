@@ -21,15 +21,18 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val TAG = MainActivity::class.java.simpleName
     private val imm: InputMethodManager by lazy { getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager }
     private lateinit var binding: ActivityMainBinding
     private lateinit var mNavController: NavController
     private val bottomViewGoneIdList = arrayListOf<Int>(
         R.id.contentMonthlyFragment,
-        R.id.monthFragment,
+        R.id.browseMonthFragment,
         R.id.editEventFragment,
-        R.id.updateEventFragment
+        R.id.updateEventFragment,
+        R.id.startSearchFragment
     )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (BuildConfig.DEBUG) Timber.plant(TimberTree())
@@ -40,16 +43,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setBottomNavigation() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navBottom = binding.navBottom
 
         mNavController = navHostFragment.navController
         navBottom.setupWithNavController(mNavController)
 
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
-            if(bottomViewGoneIdList.contains(destination.id)){
-                navBottom.visibility =View.GONE
-            }else{
+            if (bottomViewGoneIdList.contains(destination.id)) {
+                navBottom.visibility = View.GONE
+            } else {
                 navBottom.visibility = View.VISIBLE
             }
         }
@@ -61,18 +65,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 測試看看是否能成功收起鍵盤
-    private fun changeKeyboard(isShow: Boolean){
+    private fun closeKeyboard(isShow: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (isShow){
+            if (isShow) {
                 window?.insetsController?.show(WindowInsets.Type.ime())
-            } else{
+            } else {
                 window?.insetsController?.hide(WindowInsets.Type.ime())
             }
         } else {
             ViewCompat.getWindowInsetsController(binding.navBottom).let { controller ->
-                if (isShow){
+                if (isShow) {
                     controller?.show(WindowInsetsCompat.Type.ime())
-                } else{
+                } else {
                     controller?.hide(WindowInsetsCompat.Type.ime())
                 }
             }
@@ -80,8 +84,10 @@ class MainActivity : AppCompatActivity() {
     }
     private fun clearFocusOnOutsideClick(event: MotionEvent?) {
         currentFocus?.apply {
-            if (this is EditText) {
-                if (event == null) return@apply
+            if (event == null) return@apply
+            if (this is EditText && event.action == MotionEvent.ACTION_DOWN
+                || event.action == MotionEvent.ACTION_MOVE
+            ) {
                 // 設定當前View的左上角頂點的x,y 座標
                 // 這邊都設為 0,0 開始
                 val location = intArrayOf(0, 0)

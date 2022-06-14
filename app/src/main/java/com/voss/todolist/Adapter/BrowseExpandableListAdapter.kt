@@ -5,19 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.navigation.NavController
 import com.voss.todolist.Data.EventTypes
-import com.voss.todolist.Fragment.MonthFragmentDirections
 import com.voss.todolist.R
+import com.voss.todolist.databinding.ItemviewBrowseMonthGroupItemBinding
+import com.voss.todolist.databinding.ItemviewDateEventTitleBinding
 
 
 class BrowseExpandableListAdapter(
     val context: Context,
-    val childMonthsList: List<List<EventTypes>>,
-    val navController: NavController
+    private val childMonthsList: List<List<EventTypes>>,
+    private val groupList: Array<String>,
+    private var childItemClickListener: (position: Int, year: Int, month: Int) -> Unit = { _, _, _ -> }
 ) : BaseExpandableListAdapter() {
-    val groupList =
-        listOf<String>("一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月")
 
     override fun getGroupCount(): Int {
         return groupList.size
@@ -53,15 +52,16 @@ class BrowseExpandableListAdapter(
         convertView: View?,
         parent: ViewGroup?
     ): View {
-        val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.itemview_browse_month_group_item, parent, false)
-        val title: TextView = view.findViewById(R.id.rowMonthTitle_TextView)
-        title.text = groupList[groupPosition]
-        val image: ImageView = view.findViewById(R.id.expandArrow_img)
-        if (isExpanded) image.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
-        else image.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
-
-        return view
+        val binding =
+            ItemviewBrowseMonthGroupItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        binding.apply {
+            rowMonthTitleTextView.text = groupList[groupPosition]
+            expandArrowImg.setImageResource(
+                if (isExpanded) R.drawable.ic_baseline_keyboard_arrow_down_24
+                else R.drawable.ic_baseline_keyboard_arrow_right_24
+            )
+        }
+        return binding.root
     }
 
     override fun getChildView(
@@ -72,27 +72,20 @@ class BrowseExpandableListAdapter(
         parent: ViewGroup?
     ): View {
         val childData = childMonthsList[groupPosition][childPosition]
-        val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.itemview_date_event_title, parent, false)
-        val date = view.findViewById<TextView>(R.id.rowDate_textView)
-        val title = view.findViewById<TextView>(R.id.rowTitle_textView)
-        date.text = childData.date.subSequence(5..9)
-        title.text = childData.title
-
-        // 使用者操作上必須點選title才能跳轉，看能不能改成點選整個layout
-
-        title.setOnClickListener {
-            val direction = MonthFragmentDirections.actionMonthFragmentToContentFragment(
-                ArgsToContent(
+        val binding =
+            ItemviewDateEventTitleBinding.inflate(LayoutInflater.from(context), parent, false)
+        binding.apply {
+            rowDateTextView.text = childData.date.subSequence(5..9)
+            rowTitleTextView.text = childData.title
+            root.setOnClickListener {
+                childItemClickListener.invoke(
                     childPosition,
-                    childMonthsList[groupPosition][childPosition].year,
-                    childMonthsList[groupPosition][childPosition].month
+                    childData.year,
+                    childData.month
                 )
-            )
-            navController.navigate(direction)
+            }
         }
-
-        return view
+        return binding.root
     }
 
     override fun isChildSelectable(groupPosition: Int, childPosition: Int): Boolean {

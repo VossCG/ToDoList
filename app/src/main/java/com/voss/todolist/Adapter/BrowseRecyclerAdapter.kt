@@ -9,14 +9,18 @@ import com.voss.todolist.databinding.ItemviewBrowseYearTitleItemBinding
 class BrowseRecyclerAdapter() :
     RecyclerView.Adapter<BrowseRecyclerAdapter.YearRecyclerViewHolder>() {
     private var list = emptyList<Int>()
-    var navigateToMonthFragment : (Int)->Unit = {}
+    var navigateToMonthFragment: (Int) -> Unit = {}
     fun setDataList(data: List<Int>) {
         list = data
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YearRecyclerViewHolder {
         return YearRecyclerViewHolder(
-            ItemviewBrowseYearTitleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemviewBrowseYearTitleItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 

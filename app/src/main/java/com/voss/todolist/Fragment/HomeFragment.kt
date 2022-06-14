@@ -30,7 +30,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         setViewModelObserve()
         setRecyclerView()
     }
-
     private fun setViewModelObserve() {
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
             val monthsList = it.filter {

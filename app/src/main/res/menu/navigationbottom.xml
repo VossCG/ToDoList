@@ -16,7 +16,7 @@
         android:icon="@drawable/ic_baseline_edit_24"
         />
     <item
-        android:id="@+id/browseFragment"
+        android:id="@+id/browseYearFragment"
         android:title="總覽"
         android:icon="@drawable/ic_baseline_calendar_today_24"
         />

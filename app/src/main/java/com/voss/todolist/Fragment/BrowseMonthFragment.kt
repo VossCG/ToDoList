@@ -7,16 +7,19 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.voss.todolist.Adapter.ArgsToContent
 import com.voss.todolist.Adapter.BrowseExpandableListAdapter
 import com.voss.todolist.Data.EventTypes
+import com.voss.todolist.R
 import com.voss.todolist.ViewModel.EventViewModel
-import com.voss.todolist.databinding.FragmentMonthBinding
+import com.voss.todolist.databinding.FragmentBrowseMonthBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MonthFragment : BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate) {
-    private val args: MonthFragmentArgs by navArgs()
+class BrowseMonthFragment :
+    BaseFragment<FragmentBrowseMonthBinding>(FragmentBrowseMonthBinding::inflate) {
+    private val args: BrowseMonthFragmentArgs by navArgs()
     private val navController: NavController by lazy { findNavController() }
     private val viewModel: EventViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,8 +32,18 @@ class MonthFragment : BaseFragment<FragmentMonthBinding>(FragmentMonthBinding::i
     private fun setExpandableListView() {
         val data = viewModel.readAllEvent.value ?: emptyList()
         val listByMonths = getTwoDimensionMonthsList(data)
-
-        val mAdapter = BrowseExpandableListAdapter(requireContext(), listByMonths, navController)
+        val groupList = requireActivity().resources.getStringArray(R.array.months)
+        val mAdapter = BrowseExpandableListAdapter(requireContext(), listByMonths, groupList)
+        { position, year, month ->
+            val direction = BrowseMonthFragmentDirections.actionBrowseMonthFragmentToContentFragment(
+                    ArgsToContent(
+                        position,
+                        year,
+                        month
+                    )
+                )
+            navController.navigate(direction)
+        }
         binding.monthExpandableListView.setAdapter(mAdapter)
 
         // 判斷點擊 groupItem 月份 裡面是否有child ，若沒有則用Toast顯示 並回傳true讓它無法展開

@@ -34,8 +34,13 @@
 
     <fragment
         android:id="@+id/searchFragment"
+        tools:layout="@layout/fragment_search"
         android:name="com.voss.todolist.Fragment.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_startSearchFragment"
+            app:destination="@id/startSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/updateEventFragment"
         tools:layout="@layout/fragment_update_event"
@@ -74,31 +79,34 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/browseFragment"
-        tools:layout="@layout/fragment_browse"
-        android:name="com.voss.todolist.Fragment.BrowseFragment"
-        android:label="YearFragment" >
+        android:id="@+id/browseYearFragment"
+        tools:layout="@layout/fragment_browse_year"
+        android:name="com.voss.todolist.Fragment.BrowseYearFragment"
+        android:label="BrowseYearFragment" >
         <action
-            android:id="@+id/action_browseFragment_to_monthFragment"
+            android:id="@+id/action_browseYearFragment_to_browseMonthFragment"
             app:enterAnim="@anim/slide_in_right_enter"
             app:exitAnim="@anim/slide_out_left_exit"
             app:popEnterAnim="@anim/slide_in_left_pop_enter"
             app:popExitAnim="@anim/slide_out_right_pop_exit"
 
-            app:destination="@id/monthFragment" />
+            app:destination="@id/browseMonthFragment" />
     </fragment>
     <fragment
-        android:id="@+id/monthFragment"
-        tools:layout="@layout/fragment_month"
-        android:name="com.voss.todolist.Fragment.MonthFragment"
-        android:label="MonthFragment" >
+        android:id="@+id/browseMonthFragment"
+        android:name="com.voss.todolist.Fragment.BrowseMonthFragment"
+        android:label="BrowseMonthFragment"
+        tools:layout="@layout/fragment_browse_month">
         <argument
             android:name="year"
             app:argType="integer" />
         <action
-            android:id="@+id/action_monthFragment_to_contentFragment"
+            android:id="@+id/action_browseMonthFragment_to_contentFragment"
             app:destination="@id/contentMonthlyFragment" />
     </fragment>
-
-
+    <fragment
+        android:id="@+id/startSearchFragment"
+        tools:layout="@layout/fragment_start_search"
+        android:name="com.voss.todolist.Fragment.StartSearchFragment"
+        android:label="StartSearchFragment" />
 </navigation>

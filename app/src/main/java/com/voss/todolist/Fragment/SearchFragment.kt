@@ -6,8 +6,11 @@ import android.view.animation.Animation
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.SearChRecyclerAdapter
+import com.voss.todolist.R
 import com.voss.todolist.Util.AnimUtil
 import com.voss.todolist.Util.setPreventQuickerClick
 import com.voss.todolist.ViewModel.EventViewModel
@@ -19,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
+    private val navController by lazy { findNavController() }
     private var inputData: String = "null"
     private val rotateOpen: Animation by lazy { AnimUtil.getRotateOpen(requireContext()) }
     private val rotateClose: Animation by lazy { AnimUtil.getRotateClose(requireContext()) }
@@ -28,11 +32,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private var isExpanded: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
             mAdapter.submitList(viewModel.filterDataWithFactor(inputData))
         }
-        // 測試自定義的阻擋快速點擊是否有成功
+        binding.testSearchTv.setOnClickListener {
+            val extras = FragmentNavigatorExtras(it to getString(R.string.transName_searchToolbar))
+            navController.navigate(
+                R.id.action_searchFragment_to_startSearchFragment,
+                null,
+                null,
+                extras
+            )
+        }
+
         binding.filterFab.setPreventQuickerClick {
             onAddButtonClicked()
             isExpanded = !isExpanded
