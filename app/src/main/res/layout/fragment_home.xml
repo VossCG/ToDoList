@@ -9,13 +9,13 @@
 
 
     <TextView
+        android:id="@+id/home_title_tv"
         style="@style/TextAppearance.MaterialComponents.Headline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Monthly List"
         android:padding="8dp"
-        />
+        android:text="Monthly List" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

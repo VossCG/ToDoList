@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/ic_baseline_calendar_today_24"
+    android:layout_width="45dp"
+    android:layout_height="45dp">
+
+    <TextView
+        android:id="@+id/calendar_today_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="15"
+        />
+
+</FrameLayout>

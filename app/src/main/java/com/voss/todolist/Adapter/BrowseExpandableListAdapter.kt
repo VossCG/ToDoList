@@ -72,8 +72,7 @@ class BrowseExpandableListAdapter(
         parent: ViewGroup?
     ): View {
         val childData = childMonthsList[groupPosition][childPosition]
-        val binding =
-            ItemviewDateEventTitleBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemviewDateEventTitleBinding.inflate(LayoutInflater.from(context), parent, false)
         binding.apply {
             rowDateTextView.text = childData.date.subSequence(5..9)
             rowTitleTextView.text = childData.title

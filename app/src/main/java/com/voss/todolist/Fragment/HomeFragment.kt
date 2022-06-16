@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.ArgsToContent
 import com.voss.todolist.Adapter.HomeEventAdapter
+import com.voss.todolist.R
 import com.voss.todolist.Util.LinearItemDecoration
 import com.voss.todolist.Util.dpToPx
 import com.voss.todolist.ViewModel.EventViewModel
@@ -29,6 +30,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         super.onViewCreated(view, savedInstanceState)
         setViewModelObserve()
         setRecyclerView()
+        binding.homeTitleTv.setOnClickListener {
+            navController.navigate(R.id.action_homeFragment_to_browseEventFragment)
+        }
     }
     private fun setViewModelObserve() {
         viewModel.readAllEvent.observe(viewLifecycleOwner) {

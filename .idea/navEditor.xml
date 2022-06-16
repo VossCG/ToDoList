@@ -8,6 +8,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="browseEventFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-106" />
+                            <option name="y" value="-704" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="browseMonthFragment">
                     <value>
                       <LayoutPositions>
@@ -125,18 +137,6 @@
                           <Point>
                             <option name="x" value="-17" />
                             <option name="y" value="-405" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="startSearchFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-16" />
-                            <option name="y" value="-713" />
                           </Point>
                         </option>
                       </LayoutPositions>

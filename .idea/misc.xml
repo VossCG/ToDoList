@@ -10,6 +10,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/button_corner_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/button_shape1.xml" value="0.1824074074074074" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/buttondefault_ripple.xml" value="0.1953125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/custom_icon_calendar_today.xml" value="0.1185" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.1953125" />
@@ -23,8 +24,10 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowtext_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/rowyearitem_shape.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_outline.xml" value="0.103" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_oval_solid_lightgrey.xml" value="0.177" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_solid_darkblue.xml" value="0.122" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_solid_darkbrown.xml" value="0.122" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_solid_lightgrey.xml" value="0.1185" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_solid_orange.xml" value="0.122" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_solid_tealblue.xml" value="0.122" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius10_stroke1_white_solid_darkblue.xml" value="0.122" />
@@ -34,6 +37,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius20_solid_darkgrey.xml" value="0.132" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius20_solid_lightgrey.xml" value="0.122" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_radius30_pad5_stroke2_white_solid_darkblue.xml" value="0.1875" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shape_stroke1_white_radius15.xml" value="0.1425" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/shpae_radius_topleft15_topright15_solid_black.xml" value="0.122" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/spalsh_screen.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/splash_screen.xml" value="0.1953125" />
@@ -46,11 +50,13 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/contentfragment.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/contentmonthlyfragment.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/custom_button_backarrow.xml" value="0.11666666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/custom_icon_calendar_today.xml" value="0.6666666666666666" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/dayfragment.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/drawerheader_layout.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/editeventfragment.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/editeventrowitemfragment.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_browse.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_browse_event.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_contentmonthly.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_editevent.xml" value="0.1" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_home.xml" value="0.22" />
@@ -61,10 +67,14 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/homefragment.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/item_progress.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemcontentfragment.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemvie_calendar_grid.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_browse_month_group_item.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_browse_year_title_item.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_calendar_gridview.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_calendar_gridview_icon.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_date_event_content.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_date_event_title.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_gridview_calendar.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_row_textview.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/itemview_search_event_cardview.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/layout_progress.xml" value="0.17916666666666667" />
@@ -89,6 +99,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/menu/drawermenu.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/menu/navigationbottom.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/menu/toolbar.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/menu/toolbar_menu.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/menu/toolbarmenu.xml" value="0.3333333333333333" />
       </map>
     </option>

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         R.id.browseMonthFragment,
         R.id.editEventFragment,
         R.id.updateEventFragment,
-        R.id.startSearchFragment
+        R.id.browseEventFragment
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

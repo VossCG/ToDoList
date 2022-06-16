@@ -37,16 +37,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
             mAdapter.submitList(viewModel.filterDataWithFactor(inputData))
         }
-        binding.testSearchTv.setOnClickListener {
-            val extras = FragmentNavigatorExtras(it to getString(R.string.transName_searchToolbar))
-            navController.navigate(
-                R.id.action_searchFragment_to_startSearchFragment,
-                null,
-                null,
-                extras
-            )
-        }
-
         binding.filterFab.setPreventQuickerClick {
             onAddButtonClicked()
             isExpanded = !isExpanded

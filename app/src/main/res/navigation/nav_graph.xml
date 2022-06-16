@@ -18,7 +18,9 @@
             app:popEnterAnim="@anim/slide_in_left_pop_enter"
             app:popExitAnim="@anim/slide_out_right_pop_exit"
             app:destination="@id/contentMonthlyFragment" />
-
+        <action
+            android:id="@+id/action_homeFragment_to_browseEventFragment"
+            app:destination="@id/browseEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/editEventFragment"
@@ -37,9 +39,7 @@
         tools:layout="@layout/fragment_search"
         android:name="com.voss.todolist.Fragment.SearchFragment"
         android:label="SearchFragment" >
-        <action
-            android:id="@+id/action_searchFragment_to_startSearchFragment"
-            app:destination="@id/startSearchFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/updateEventFragment"
@@ -105,8 +105,8 @@
             app:destination="@id/contentMonthlyFragment" />
     </fragment>
     <fragment
-        android:id="@+id/startSearchFragment"
-        tools:layout="@layout/fragment_start_search"
-        android:name="com.voss.todolist.Fragment.StartSearchFragment"
-        android:label="StartSearchFragment" />
+        android:id="@+id/browseEventFragment"
+        tools:layout="@layout/fragment_browse_event"
+        android:name="com.voss.todolist.Fragment.BrowseEventFragment"
+        android:label="BrowseEventFragment" />
 </navigation>
