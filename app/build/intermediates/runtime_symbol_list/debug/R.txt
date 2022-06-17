@@ -1165,6 +1165,7 @@ int color cardview_shadow_start_color 0x7f06002d
 int color checkbox_themeable_attribute_color 0x7f06002e
 int color darkBlue 0x7f06002f
 int color darkBrown 0x7f060030
+int color darkGreen 0x7f0600e8
 int color darkGrey 0x7f060031
 int color darkYellow 0x7f060032
 int color design_bottom_navigation_shadow_color 0x7f060033
@@ -1217,6 +1218,7 @@ int color highlighted_text_material_dark 0x7f060061
 int color highlighted_text_material_light 0x7f060062
 int color lightBlue 0x7f060063
 int color lightBrown 0x7f060064
+int color lightGreen 0x7f0600e9
 int color lightGrey 0x7f060065
 int color ligjtblue 0x7f060066
 int color material_blue_grey_800 0x7f060067
@@ -1933,6 +1935,9 @@ int drawable notify_panel_notification_icon_bg 0x7f08009f
 int drawable ripple_white_radius10_darkgrey 0x7f0800a0
 int drawable ripple_white_radius10_solid_orange 0x7f0800ae
 int drawable selector_arrow_rigjt_down 0x7f0800a1
+int drawable shape_calendar_icon_multitude 0x7f0800b2
+int drawable shape_calendar_icon_single_event 0x7f0800b3
+int drawable shape_calendar_icon_some_event 0x7f0800b4
 int drawable shape_outline_stroke2_white_radius4 0x7f0800a2
 int drawable shape_oval_solid_lightgrey 0x7f0800af
 int drawable shape_radius10_solid_darkblue 0x7f0800a3
@@ -2061,13 +2066,15 @@ int id browseEventFragment 0x7f09024c
 int id browseMonthFragment 0x7f09006e
 int id browseTitle_textView 0x7f09006f
 int id browseYearFragment 0x7f090070
+int id browse_event_currentIcon 0x7f090250
 int id browse_event_month 0x7f09023f
 int id browse_event_toolbar 0x7f090240
 int id browse_event_year 0x7f090241
 int id buttonPanel 0x7f090071
 int id cache_measures 0x7f090072
 int id calendar_container_viewpager 0x7f09024d
-int id calendar_gridview 0x7f090242
+int id calendar_day_event_listView 0x7f09024e
+int id calendar_grid_recycler 0x7f09024f
 int id calendar_gridview_item_root 0x7f090243
 int id calendar_gridview_item_tv 0x7f090244
 int id calendar_today_tv 0x7f090245
@@ -2614,6 +2621,7 @@ int layout design_text_input_start_icon 0x7f0c002d
 int layout fragment_browse_event 0x7f0c008c
 int layout fragment_browse_month 0x7f0c002e
 int layout fragment_browse_year 0x7f0c002f
+int layout fragment_calendar 0x7f0c008f
 int layout fragment_contentmonthly 0x7f0c0030
 int layout fragment_editevent 0x7f0c0031
 int layout fragment_home 0x7f0c0032
@@ -2623,7 +2631,6 @@ int layout item_progress 0x7f0c0035
 int layout item_toolbar 0x7f0c0036
 int layout itemview_browse_month_group_item 0x7f0c0037
 int layout itemview_browse_year_title_item 0x7f0c0038
-int layout itemview_calendar_gridview 0x7f0c008d
 int layout itemview_calendar_gridview_icon 0x7f0c008e
 int layout itemview_date_event_content 0x7f0c0039
 int layout itemview_date_event_title 0x7f0c003a

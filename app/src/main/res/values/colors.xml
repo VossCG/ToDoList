@@ -28,4 +28,6 @@
     <color name="darkYellow">#CFB13C</color>
     <color name="orange">#C47525</color>
     <color name="ligjtblue">#E48BA1DA</color>
+    <color name="lightGreen">#76CC71</color>
+    <color name="darkGreen">#589653</color>
 </resources>
