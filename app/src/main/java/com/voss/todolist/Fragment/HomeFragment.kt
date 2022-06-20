@@ -21,29 +21,31 @@ import java.util.*
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
-    private val currentYear: Int by lazy { calendar.get(Calendar.YEAR) }
-    private val currentMonth: Int by lazy { calendar.get(Calendar.MONTH) }
     private val mAdapter by lazy { HomeEventAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setViewModelObserve()
-        setRecyclerView()
+        val calendar = viewModel.calendar
+        val currentYear = calendar.get(Calendar.YEAR)
+        val currentMonth = calendar.get(Calendar.MONTH) + 1
+
+        setViewModelObserve(currentYear, currentMonth)
+        setRecyclerView(currentYear, currentMonth)
+
         binding.homeTitleTv.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_browseEventFragment)
         }
     }
-    private fun setViewModelObserve() {
-        viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            val monthsList = it.filter {
-                it.year == currentYear && it.month == currentMonth
+
+    private fun setViewModelObserve(year: Int, month: Int) {
+        viewModel.readAllEvent.observe(viewLifecycleOwner) { allEvent ->
+            val monthsList = allEvent.filter { event ->
+                event.getYear() == year && event.getMonth() == month
             }
             mAdapter.submitList(monthsList)
         }
     }
 
-    private fun setRecyclerView() {
+    private fun setRecyclerView(year: Int, month: Int) {
         binding.homeRecyclerview.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this.context)
@@ -52,10 +54,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         mAdapter.itemOnClick = { adapterPosition ->
-
             val directions = HomeFragmentDirections.actionHomeFragmentToContentFragment(
-                ArgsToContent(adapterPosition, currentYear, currentMonth))
-
+                ArgsToContent(adapterPosition, year, month)
+            )
             navController.navigate(directions)
         }
     }

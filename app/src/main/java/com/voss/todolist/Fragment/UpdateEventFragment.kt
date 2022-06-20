@@ -17,17 +17,18 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class UpdateEventFragment : BaseFragment<FragmentUpdateEventBinding>(FragmentUpdateEventBinding::inflate) {
+class UpdateEventFragment :
+    BaseFragment<FragmentUpdateEventBinding>(FragmentUpdateEventBinding::inflate) {
 
     private val args: UpdateEventFragmentArgs by navArgs()
     private val argsEventTypes get() = args.eventTypes
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    private var mDate: String = "yyyy/mm/dd"
-    private var mDateInteger = 0
-    private var mYear = 0
-    private var mMonth = 0
-    private var mDay = 0
+    private var newDate: String = "yyyy/mm/dd"
+    private var newDateInteger = 0
+    private var newYear = 0
+    private var newMonth = 0
+    private var newDay = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +42,7 @@ class UpdateEventFragment : BaseFragment<FragmentUpdateEventBinding>(FragmentUpd
         val newContent = binding.updateContentEditText.text.toString()
 
         if (inputCheck(newTitle, newContent)) {
-            val newEvent = EventTypes(newTitle, mDate, newContent, mYear, mMonth, mDay, mDateInteger, 0)
+            val newEvent = EventTypes(newTitle, newContent, newDate, newDateInteger)
             newEvent.id = argsEventTypes.id
             viewModel.updateEvent(newEvent)
             Toast.makeText(this.context, "Change Successful!!", Toast.LENGTH_SHORT).show()
@@ -56,9 +57,13 @@ class UpdateEventFragment : BaseFragment<FragmentUpdateEventBinding>(FragmentUpd
         // init ViewModel  to  update TextView
         viewModel.date.observe(viewLifecycleOwner) {
             binding.updateDateTextView.text = it
-            mDate = it
+            newDate = it
         }
-        viewModel.setDate(argsEventTypes.year, argsEventTypes.month, argsEventTypes.day)
+        viewModel.setDate(
+            argsEventTypes.getYear(),
+            argsEventTypes.getMonth(),
+            argsEventTypes.getDay()
+        )
 
         // init but
         binding.updateUploadBut.setOnClickListener {
@@ -81,19 +86,19 @@ class UpdateEventFragment : BaseFragment<FragmentUpdateEventBinding>(FragmentUpd
             DatePickerDialog(
                 this.requireContext(),
                 datePickerListener,
-                argsEventTypes.year,
-                argsEventTypes.month,
-                argsEventTypes.day
+                argsEventTypes.getYear(),
+                argsEventTypes.getMonth(),
+                argsEventTypes.getDay()
             ).show()
         }
     }
 
     private val datePickerListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            mYear = year
-            mMonth = month
-            mDay = dayOfMonth
-            mDateInteger = viewModel.getDateInteger(year, month, dayOfMonth)
+            newYear = year
+            newMonth = month
+            newDay = dayOfMonth
+            newDateInteger = viewModel.getDateInteger(year, month, dayOfMonth)
 
             viewModel.setDate(year, month, dayOfMonth)
         }

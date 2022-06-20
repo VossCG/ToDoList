@@ -3,7 +3,6 @@ package com.voss.todolist.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
-import androidx.navigation.ActionOnlyNavDirections;
 import androidx.navigation.NavDirections;
 import com.voss.todolist.Adapter.ArgsToContent;
 import com.voss.todolist.R;
@@ -23,11 +22,6 @@ public class HomeFragmentDirections {
   public static ActionHomeFragmentToContentFragment actionHomeFragmentToContentFragment(
       @NonNull ArgsToContent ContentArgs) {
     return new ActionHomeFragmentToContentFragment(ContentArgs);
-  }
-
-  @NonNull
-  public static NavDirections actionHomeFragmentToBrowseEventFragment() {
-    return new ActionOnlyNavDirections(R.id.action_homeFragment_to_browseEventFragment);
   }
 
   public static class ActionHomeFragmentToContentFragment implements NavDirections {

@@ -12,6 +12,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
@@ -19,7 +20,7 @@ object AppModule {
     @Provides
     @Singleton
     fun providesRoomDatabase(@ApplicationContext context: Context): EventDataBase {
-        return Room.databaseBuilder(context, EventDataBase::class.java, "dataBaseWithHilt.db")
+        return Room.databaseBuilder(context, EventDataBase::class.java, "EventDataBase.db")
             .build()
     }
 

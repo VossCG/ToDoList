@@ -18,9 +18,6 @@
             app:popEnterAnim="@anim/slide_in_left_pop_enter"
             app:popExitAnim="@anim/slide_out_right_pop_exit"
             app:destination="@id/contentMonthlyFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_browseEventFragment"
-            app:destination="@id/browseEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/editEventFragment"
@@ -77,32 +74,6 @@
             app:destination="@id/editEventFragment"
             app:popUpTo="@id/editEventFragment"
             app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/browseYearFragment"
-        tools:layout="@layout/fragment_browse_year"
-        android:name="com.voss.todolist.Fragment.BrowseYearFragment"
-        android:label="BrowseYearFragment" >
-        <action
-            android:id="@+id/action_browseYearFragment_to_browseMonthFragment"
-            app:enterAnim="@anim/slide_in_right_enter"
-            app:exitAnim="@anim/slide_out_left_exit"
-            app:popEnterAnim="@anim/slide_in_left_pop_enter"
-            app:popExitAnim="@anim/slide_out_right_pop_exit"
-
-            app:destination="@id/browseMonthFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/browseMonthFragment"
-        android:name="com.voss.todolist.Fragment.BrowseMonthFragment"
-        android:label="BrowseMonthFragment"
-        tools:layout="@layout/fragment_browse_month">
-        <argument
-            android:name="year"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_browseMonthFragment_to_contentFragment"
-            app:destination="@id/contentMonthlyFragment" />
     </fragment>
     <fragment
         android:id="@+id/browseEventFragment"

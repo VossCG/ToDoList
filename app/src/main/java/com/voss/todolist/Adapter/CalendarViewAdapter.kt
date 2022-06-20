@@ -1,17 +1,19 @@
 package com.voss.todolist.Adapter
 
 import android.graphics.drawable.Drawable
-import android.icu.util.Calendar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.databinding.ItemviewCalendarGridviewIconBinding
 
-class CalendarViewAdapter : RecyclerView.Adapter<CalendarViewAdapter.CalendarViewHolder>() {
-    private var days: List<Int> = emptyList()
+class CalendarViewAdapter(private val size: Int) :
+    RecyclerView.Adapter<CalendarViewAdapter.CalendarViewHolder>() {
+    private var event: List<EventTypes> = emptyList()
+
     var getDrawableCallBack: ((String) -> Drawable)? = null
     private lateinit var oldSelectItemView: View
     private var isFirstSelected = true
@@ -25,22 +27,32 @@ class CalendarViewAdapter : RecyclerView.Adapter<CalendarViewAdapter.CalendarVie
         )
     }
 
+    // bind every date item and jude whether exist any event
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
-        holder.dateTextView.text = days[position].toString()
-        when (position) {
-            5 -> holder.dateTextView.background = getDrawableCallBack?.invoke("single")
-            15 -> holder.dateTextView.background = getDrawableCallBack?.invoke("some")
-            25 -> holder.dateTextView.background = getDrawableCallBack?.invoke("multitude")
+        val currentDay = position+1
+        holder.dateTextView.text = currentDay.toString()
+        // get current event size
+        val currentDayEvent: List<EventTypes> = event.filter {
+            it.id == currentDay
         }
-
+        // 當事件數量 到某一個數值時候，顯示不同的顏色
+        when (currentDayEvent.size) {
+            0 -> holder.dateTextView.background = getDrawableCallBack?.invoke("default")
+            1 -> holder.dateTextView.background = getDrawableCallBack?.invoke("single")
+            2 -> holder.dateTextView.background = getDrawableCallBack?.invoke("some")
+            else -> holder.dateTextView.background = getDrawableCallBack?.invoke("multitude")
+        }
     }
+
 
     override fun getItemCount(): Int {
-        return days.size
+        return size
     }
 
-    fun setData(newList: List<Int>) {
-        days = newList
+    // set current event data
+    fun setData(newList: List<EventTypes>) {
+        event = newList
+        notifyDataSetChanged()
     }
 
     inner class CalendarViewHolder(binding: ItemviewCalendarGridviewIconBinding) :

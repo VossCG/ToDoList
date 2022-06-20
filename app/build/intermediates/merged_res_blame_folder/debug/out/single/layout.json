@@ -20,16 +20,12 @@
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\fragment_contentmonthly.xml"
     },
     {
-        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\itemview_calendar_gridview.xml",
-        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\itemview_calendar_gridview.xml"
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\itemview_calendar_gridview_icon.xml",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\itemview_calendar_gridview_icon.xml"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\itemview_date_event_content.xml",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\itemview_date_event_content.xml"
-    },
-    {
-        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\itemview_calendar_gridview_icon.xml",
-        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\itemview_calendar_gridview_icon.xml"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_browse_month.xml",
@@ -44,12 +40,12 @@
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\itemview_date_event_title.xml",
-        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\itemview_date_event_title.xml"
-    },
-    {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_calendar.xml",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\fragment_calendar.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\itemview_date_event_title.xml",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\itemview_date_event_title.xml"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\itemview_browse_month_group_item.xml",
@@ -78,10 +74,6 @@
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_browse_event.xml",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\fragment_browse_event.xml"
-    },
-    {
-        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_start_search.xml",
-        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\fragment_start_search.xml"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\itemview_row_textview.xml",

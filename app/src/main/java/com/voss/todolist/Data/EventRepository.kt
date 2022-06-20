@@ -11,11 +11,20 @@ class EventRepository(private val eventDao: EventDao) {
     suspend fun insertEvent(event: EventTypes) {
         eventDao.insert(event)
     }
-    suspend fun updateEvent(event: EventTypes){
+
+    suspend fun updateEvent(event: EventTypes) {
         eventDao.update(event)
     }
-    suspend fun deleteEvent(event: EventTypes){
+
+    suspend fun deleteEvent(event: EventTypes) {
         eventDao.delete(event)
     }
 
+    suspend fun getEventByRange(start: Int, end: Int): List<EventTypes> {
+        return eventDao.getEventByRange(start, end)
+    }
+
+    suspend fun clearAll() {
+        eventDao.clearAll()
+    }
 }

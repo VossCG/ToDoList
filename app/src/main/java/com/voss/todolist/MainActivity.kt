@@ -1,16 +1,12 @@
 package com.voss.todolist
 
 import android.content.Context
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
-import android.view.WindowInsets
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -21,16 +17,13 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val TAG = MainActivity::class.java.simpleName
     private val imm: InputMethodManager by lazy { getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager }
     private lateinit var binding: ActivityMainBinding
     private lateinit var mNavController: NavController
     private val bottomViewGoneIdList = arrayListOf<Int>(
         R.id.contentMonthlyFragment,
-        R.id.browseMonthFragment,
         R.id.editEventFragment,
         R.id.updateEventFragment,
-        R.id.browseEventFragment
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,25 +55,6 @@ class MainActivity : AppCompatActivity() {
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         clearFocusOnOutsideClick(ev)
         return super.dispatchTouchEvent(ev)
-    }
-
-    // 測試看看是否能成功收起鍵盤
-    private fun closeKeyboard(isShow: Boolean) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (isShow) {
-                window?.insetsController?.show(WindowInsets.Type.ime())
-            } else {
-                window?.insetsController?.hide(WindowInsets.Type.ime())
-            }
-        } else {
-            ViewCompat.getWindowInsetsController(binding.navBottom).let { controller ->
-                if (isShow) {
-                    controller?.show(WindowInsetsCompat.Type.ime())
-                } else {
-                    controller?.hide(WindowInsetsCompat.Type.ime())
-                }
-            }
-        }
     }
     private fun clearFocusOnOutsideClick(event: MotionEvent?) {
         currentFocus?.apply {

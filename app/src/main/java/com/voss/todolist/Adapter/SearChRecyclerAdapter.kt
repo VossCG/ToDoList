@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.R
-import com.voss.todolist.Util.ListAdapterDiffUtil
-import com.voss.todolist.ViewModel.EventViewModel
+import com.voss.todolist.Util.EventTypeDiffUtil
 import com.voss.todolist.databinding.ItemviewSearchEventCardviewBinding
 
 class SearChRecyclerAdapter() :
-    ListAdapter<EventTypes, SearChRecyclerAdapter.SearChViewHolder>(ListAdapterDiffUtil()) {
+    ListAdapter<EventTypes, SearChRecyclerAdapter.SearChViewHolder>(EventTypeDiffUtil()) {
 
     var itemClick : (Int)->Unit={}
 
@@ -28,8 +27,8 @@ class SearChRecyclerAdapter() :
     }
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
         holder.title.text = getItem(position).title
-        holder.month.text = (getItem(position).month + 1).toString() + "月"
-        holder.day.text = getItem(position).day.toString()
+        holder.month.text = (getItem(position).getMonth()).toString() + "月"
+        holder.day.text = getItem(position).getDay().toString()
         holder.content.text = getItem(position).content
 
     }

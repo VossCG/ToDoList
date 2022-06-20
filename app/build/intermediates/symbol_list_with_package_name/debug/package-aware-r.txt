@@ -73,6 +73,7 @@ animator nav_default_enter_anim
 animator nav_default_exit_anim
 animator nav_default_pop_enter_anim
 animator nav_default_pop_exit_anim
+array days
 array months
 array searchRecord
 array year
@@ -1936,6 +1937,7 @@ drawable notify_panel_notification_icon_bg
 drawable ripple_white_radius10_darkgrey
 drawable ripple_white_radius10_solid_orange
 drawable selector_arrow_rigjt_down
+drawable shape_calendar_icon_default
 drawable shape_calendar_icon_multitude
 drawable shape_calendar_icon_single_event
 drawable shape_calendar_icon_some_event
@@ -2011,15 +2013,12 @@ id action_bar_root
 id action_bar_spinner
 id action_bar_subtitle
 id action_bar_title
-id action_browseMonthFragment_to_contentFragment
-id action_browseYearFragment_to_browseMonthFragment
 id action_container
 id action_contentFragment_to_editEventFragment
 id action_contentFragment_to_updateEventFragment
 id action_context_bar
 id action_divider
 id action_editEventFragment_to_homeFragment
-id action_homeFragment_to_browseEventFragment
 id action_homeFragment_to_contentFragment
 id action_image
 id action_menu_divider
@@ -2064,9 +2063,7 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id browseEventFragment
-id browseMonthFragment
 id browseTitle_textView
-id browseYearFragment
 id browse_event_currentIcon
 id browse_event_month
 id browse_event_toolbar

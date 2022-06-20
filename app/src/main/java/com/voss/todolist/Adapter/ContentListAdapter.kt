@@ -8,11 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
-import com.voss.todolist.Util.ListAdapterDiffUtil
+import com.voss.todolist.Util.EventTypeDiffUtil
 import com.voss.todolist.databinding.ItemviewDateEventContentBinding
 import kotlinx.parcelize.Parcelize
 
-class ContentListAdapter() : ListAdapter<EventTypes, ContentListAdapter.ContentViewHolder>(ListAdapterDiffUtil()) {
+class ContentListAdapter : ListAdapter<EventTypes, ContentListAdapter.ContentViewHolder>(EventTypeDiffUtil()) {
 
     var itemClickUpdate: (data: EventTypes) -> Unit = {}
     var itemClickDelete: (data: EventTypes) -> Unit = {}

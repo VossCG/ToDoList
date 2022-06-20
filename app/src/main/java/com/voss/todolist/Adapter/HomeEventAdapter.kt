@@ -6,10 +6,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
-import com.voss.todolist.Util.ListAdapterDiffUtil
+import com.voss.todolist.Util.EventTypeDiffUtil
 import com.voss.todolist.databinding.ItemviewDateEventTitleBinding
 
-class HomeEventAdapter() :ListAdapter<EventTypes,HomeEventAdapter.EventTodayViewHolder>(ListAdapterDiffUtil()) {
+class HomeEventAdapter() :ListAdapter<EventTypes,HomeEventAdapter.EventTodayViewHolder>(EventTypeDiffUtil()) {
 
     var itemOnClick: (Int) -> Unit = {}
 

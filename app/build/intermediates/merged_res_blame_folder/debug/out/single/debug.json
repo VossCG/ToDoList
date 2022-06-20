@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
-    },
-    {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\anim_slide_out_left_exit.xml.flat",
@@ -78,6 +78,10 @@
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\layout_itemview_calendar_gridview_icon.xml.flat",
         "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\layout\\itemview_calendar_gridview_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\drawable_shape_calendar_icon_default.xml.flat",
+        "source": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\src\\main\\res\\drawable\\shape_calendar_icon_default.xml"
     },
     {
         "merged": "C:\\Users\\USER\\AndroidStudioProjects\\ToDoList\\app\\build\\intermediates\\merged_res\\debug\\drawable_shape_radius15_stroke1_white_solid_lightblue.xml.flat",

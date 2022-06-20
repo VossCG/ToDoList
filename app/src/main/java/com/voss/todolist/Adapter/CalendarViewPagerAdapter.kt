@@ -6,7 +6,10 @@ import com.voss.todolist.Fragment.CalendarFragment
 
 
 class CalendarViewPagerAdapter(fragment: Fragment) :FragmentStateAdapter(fragment){
-    override fun getItemCount(): Int = 12
+    // index = 0 、13 ，is Fake page to buffer next page
+    // 因為要實現 無限滑動的ViewPager，必須在前後加上一個fake page
+    // 當到達fake pager的時候，馬上跳回到 first or last 頁面
+    override fun getItemCount(): Int = 14
 
     override fun createFragment(position: Int): Fragment {
         return CalendarFragment(position)

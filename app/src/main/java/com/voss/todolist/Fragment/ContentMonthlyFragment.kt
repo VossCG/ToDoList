@@ -56,7 +56,7 @@ class ContentMonthlyFragment : BaseFragment<FragmentContentmonthlyBinding>(Fragm
 
     private fun setViewModelObserve() {
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            val monthsList = it.filter { (it.year == args.contentArgs.year && it.month == args.contentArgs.months) }
+            val monthsList = it.filter { (it.getYear() == args.contentArgs.year && it.getMonth() == args.contentArgs.months) }
             mAdapter.submitList(monthsList)
         }
     }
