@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         R.id.contentMonthlyFragment,
         R.id.editEventFragment,
         R.id.updateEventFragment,
+        R.id.browseEventFragment
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

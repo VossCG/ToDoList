@@ -49,7 +49,7 @@ class EditEventFragment :
         val content = binding.contentEditText.text.toString()
 
         // get Date from calendar / DatePicker view
-        val dateInteger = viewModel.getDateInteger(mYear, mMonth, mDays)
+        val dateInteger = viewModel.getDateInteger(mYear, mMonth + 1, mDays)
         val date = viewModel.getDateFormat(mYear, mMonth, mDays)
 
         // check EditText Data not empty

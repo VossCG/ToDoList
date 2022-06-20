@@ -42,7 +42,8 @@ class CalendarFragment() : Fragment() {
         setCalendarView()
         viewLifecycleOwner.lifecycleScope.launch {
             val start = viewModel.getMonthInteger(position)
-            val end = viewModel.getMonthInteger(position + 1)
+            val end = viewModel.getMonthInteger(position+1)
+            Log.d("CalendarFragment","start:$start , end:$end")
 
             val data = viewModel.getCurrentMonthData(start, end)
             Log.d("CalendarData", "$data")
@@ -73,6 +74,7 @@ class CalendarFragment() : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.d("CalendarFragment","onDestroy")
         _binding = null
     }
 }

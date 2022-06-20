@@ -24,18 +24,13 @@ class EventViewModel @Inject constructor(
     application: Application,
     var repository: EventRepository
 ) : AndroidViewModel(application) {
-    val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
 
+    private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
     val readAllEvent: LiveData<List<EventTypes>>
-
-    private val _date = MutableLiveData<String>()
-    val date :LiveData<String> = _date
-
     private val filterFactor = MutableLiveData<String>()
 
 
     init {
-        _date.value = "YY/MM/DD"
         filterFactor.value = "title"
         readAllEvent = repository.eventDataList
     }
@@ -68,17 +63,12 @@ class EventViewModel @Inject constructor(
         return format.format(date)
     }
 
-    fun setDate(year: Int, month: Int, day: Int) {
-        this._date.postValue(getDateFormat(year, month, day))
-    }
-
     fun setFilterFactor(factor: String) {
         this.filterFactor.postValue(factor)
     }
 
-
     fun getDateInteger(year: Int, month: Int, day: Int): Int {
-        return year * 10000 + (month + 1) * 100 + day
+        return year * 10000 + month * 100 + day
     }
 
     fun filterDataWithFactor(inputData: String): List<EventTypes> {

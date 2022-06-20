@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -24,15 +25,15 @@ class UpdateEventFragment :
     private val argsEventTypes get() = args.eventTypes
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    private var newDate: String = "yyyy/mm/dd"
+    private var newDate = MutableLiveData<String>("yyyy/mm/dd")
     private var newDateInteger = 0
-    private var newYear = 0
-    private var newMonth = 0
-    private var newDay = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        newDate.observe(viewLifecycleOwner) {
+            binding.updateDateTextView.text = it
+        }
         initView()
 
     }
@@ -42,7 +43,7 @@ class UpdateEventFragment :
         val newContent = binding.updateContentEditText.text.toString()
 
         if (inputCheck(newTitle, newContent)) {
-            val newEvent = EventTypes(newTitle, newContent, newDate, newDateInteger)
+            val newEvent = EventTypes(newTitle, newContent, newDate.value!!, newDateInteger)
             newEvent.id = argsEventTypes.id
             viewModel.updateEvent(newEvent)
             Toast.makeText(this.context, "Change Successful!!", Toast.LENGTH_SHORT).show()
@@ -54,16 +55,8 @@ class UpdateEventFragment :
         binding.updateContentEditText.setText(argsEventTypes.content)
         binding.updateTitleEdittext.setText(argsEventTypes.title)
 
-        // init ViewModel  to  update TextView
-        viewModel.date.observe(viewLifecycleOwner) {
-            binding.updateDateTextView.text = it
-            newDate = it
-        }
-        viewModel.setDate(
-            argsEventTypes.getYear(),
-            argsEventTypes.getMonth(),
-            argsEventTypes.getDay()
-        )
+        // set date to  update TextView
+        newDate.value = argsEventTypes.date
 
         // init but
         binding.updateUploadBut.setOnClickListener {
@@ -82,12 +75,14 @@ class UpdateEventFragment :
                 .show()
         }
 
-        binding.dateUpdateBut.setOnClickListener {
+        binding.changeDateBut.setOnClickListener {
+            // init DatePicker
             DatePickerDialog(
-                this.requireContext(),
+                requireContext(),
                 datePickerListener,
                 argsEventTypes.getYear(),
-                argsEventTypes.getMonth(),
+                // 丟給datePicker，因為month是從0開始，所以要 -1
+                argsEventTypes.getMonth() - 1,
                 argsEventTypes.getDay()
             ).show()
         }
@@ -95,12 +90,9 @@ class UpdateEventFragment :
 
     private val datePickerListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            newYear = year
-            newMonth = month
-            newDay = dayOfMonth
-            newDateInteger = viewModel.getDateInteger(year, month, dayOfMonth)
-
-            viewModel.setDate(year, month, dayOfMonth)
+            newDateInteger = viewModel.getDateInteger(year, month+1, dayOfMonth)
+            newDate.value = viewModel.getDateFormat(year, month, dayOfMonth)
+            binding.updateDateTextView.text = viewModel.getDateFormat(year, month, dayOfMonth)
         }
 
     private fun inputCheck(title: String, content: String): Boolean {

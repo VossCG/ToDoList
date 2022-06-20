@@ -13,7 +13,6 @@ import com.voss.todolist.databinding.ItemviewCalendarGridviewIconBinding
 class CalendarViewAdapter(private val size: Int) :
     RecyclerView.Adapter<CalendarViewAdapter.CalendarViewHolder>() {
     private var event: List<EventTypes> = emptyList()
-
     var getDrawableCallBack: ((String) -> Drawable)? = null
     private lateinit var oldSelectItemView: View
     private var isFirstSelected = true
@@ -33,7 +32,7 @@ class CalendarViewAdapter(private val size: Int) :
         holder.dateTextView.text = currentDay.toString()
         // get current event size
         val currentDayEvent: List<EventTypes> = event.filter {
-            it.id == currentDay
+            it.getDay() == currentDay
         }
         // 當事件數量 到某一個數值時候，顯示不同的顏色
         when (currentDayEvent.size) {

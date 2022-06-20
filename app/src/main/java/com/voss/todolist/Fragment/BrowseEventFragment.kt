@@ -13,7 +13,7 @@ import java.util.*
 
 class BrowseEventFragment :
     BaseFragment<FragmentBrowseEventBinding>(FragmentBrowseEventBinding::inflate) {
-    private lateinit var mAdapter: CalendarViewPagerAdapter
+    private val mAdapter: CalendarViewPagerAdapter by lazy { CalendarViewPagerAdapter(this) }
     private val viewModel: BrowseEventViewModel by activityViewModels()
     private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,7 +22,6 @@ class BrowseEventFragment :
         setCurrentDate()
         setCalendarViewPager()
     }
-
     private fun setCurrentDate() {
         // 注入當前的日期到ViewModel
         viewModel.apply {
@@ -50,7 +49,6 @@ class BrowseEventFragment :
     // 開始設定CalendarView
     private fun setCalendarViewPager() {
         val viewpager = binding.calendarContainerViewpager
-        mAdapter = CalendarViewPagerAdapter(this)
         viewpager.apply {
             setPageTransformer(MarginPageTransformer(10))
             adapter = mAdapter
@@ -58,7 +56,7 @@ class BrowseEventFragment :
             // 設定開始的頁面，由於要實現無線連播的ViewPager，會在前後多設定一個空頁面
             // 也就必須讓當前的月份多加上1，才能讓Page的position，與月份是對齊的
             // 0 與 13 會是保留空白的，一月就會從position 1 開始，以此類推
-            setCurrentItem(viewModel.currentMonth.value!!, false)
+            setCurrentItem(calendar.get(Calendar.MONTH)+1, false)
 
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageScrollStateChanged(state: Int) {

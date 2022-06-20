@@ -1,6 +1,7 @@
 package com.voss.todolist.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -22,18 +23,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     private val mAdapter by lazy { HomeEventAdapter() }
+    private val calendar:Calendar by lazy { Calendar.getInstance() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val calendar = viewModel.calendar
         val currentYear = calendar.get(Calendar.YEAR)
         val currentMonth = calendar.get(Calendar.MONTH) + 1
 
         setViewModelObserve(currentYear, currentMonth)
         setRecyclerView(currentYear, currentMonth)
 
-        binding.homeTitleTv.setOnClickListener {
-        }
     }
 
     private fun setViewModelObserve(year: Int, month: Int) {
@@ -41,6 +40,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             val monthsList = allEvent.filter { event ->
                 event.getYear() == year && event.getMonth() == month
             }
+            Log.d("Home","$monthsList")
             mAdapter.submitList(monthsList)
         }
     }

@@ -19,7 +19,6 @@ class BrowseEventViewModel @Inject constructor(
     var repository: EventRepository
 ) : AndroidViewModel(application) {
 
-    private lateinit var list: LiveData<List<EventTypes>>
     private val _currentYear = MutableLiveData<Int>(2022)
     val currentYear: LiveData<Int> = _currentYear
 
@@ -55,6 +54,6 @@ class BrowseEventViewModel @Inject constructor(
     }
 
     fun getMonthInteger(month: Int): Int {
-        return currentYear.value!! * 10000 + month * 100
+        return _currentYear.value!! * 10000 + month * 100
     }
 }
