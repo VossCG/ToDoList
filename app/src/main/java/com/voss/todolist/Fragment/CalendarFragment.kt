@@ -2,19 +2,16 @@ package com.voss.todolist.Fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.voss.todolist.Adapter.CalendarViewAdapter
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.BrowseEventViewModel
 import com.voss.todolist.databinding.FragmentCalendarBinding
-import kotlinx.coroutines.*
 
 class CalendarFragment() : Fragment() {
     private var _binding: FragmentCalendarBinding? = null
@@ -40,22 +37,13 @@ class CalendarFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setCalendarView()
-        viewLifecycleOwner.lifecycleScope.launch {
-            val start = viewModel.getMonthInteger(position)
-            val end = viewModel.getMonthInteger(position+1)
-            Log.d("CalendarFragment","start:$start , end:$end")
-
-            val data = viewModel.getCurrentMonthData(start, end)
-            Log.d("CalendarData", "$data")
-            mAdapter.setData(data)
-        }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setCalendarView() {
         mAdapter.getDrawableCallBack = {
             when (it) {
-                "stroke" -> resources.getDrawable(R.drawable.stroke_1dp_white, null)
+                "stroke" -> resources.getDrawable(R.drawable.stroke_1dp_yellow, null)
                 "single" -> resources.getDrawable(R.drawable.shape_calendar_icon_single_event, null)
                 "some" -> resources.getDrawable(R.drawable.shape_calendar_icon_some_event, null)
                 "multitude" -> resources.getDrawable(R.drawable.shape_calendar_icon_multitude, null)
@@ -63,18 +51,21 @@ class CalendarFragment() : Fragment() {
                 else -> resources.getDrawable(R.drawable.shape_calendar_icon_default, null)
             }
         }
+        mAdapter.getItemDay = {
+            viewModel.selectItemDay.value = it
+        }
+
         binding.calendarGridRecycler.apply {
             setHasFixedSize(true)
-            layoutManager =
-                GridLayoutManager(requireContext(), 7, GridLayoutManager.VERTICAL, false)
+            layoutManager = GridLayoutManager(requireContext(), 7, GridLayoutManager.VERTICAL, false)
             adapter = mAdapter
             stopScroll()
         }
+        mAdapter.setData(viewModel.getMonthEvent(position))
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("CalendarFragment","onDestroy")
         _binding = null
     }
 }

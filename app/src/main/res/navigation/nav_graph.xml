@@ -79,5 +79,9 @@
         android:id="@+id/browseEventFragment"
         tools:layout="@layout/fragment_browse_event"
         android:name="com.voss.todolist.Fragment.BrowseEventFragment"
-        android:label="BrowseEventFragment" />
+        android:label="BrowseEventFragment" >
+        <action
+            android:id="@+id/action_browseEventFragment_to_updateEventFragment"
+            app:destination="@id/updateEventFragment" />
+    </fragment>
 </navigation>

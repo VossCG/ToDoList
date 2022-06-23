@@ -13,9 +13,10 @@ import com.voss.todolist.databinding.ItemviewCalendarGridviewIconBinding
 class CalendarViewAdapter(private val size: Int) :
     RecyclerView.Adapter<CalendarViewAdapter.CalendarViewHolder>() {
     private var event: List<EventTypes> = emptyList()
-    var getDrawableCallBack: ((String) -> Drawable)? = null
     private lateinit var oldSelectItemView: View
     private var isFirstSelected = true
+    var getDrawableCallBack: ((String) -> Drawable)? = null
+    var getItemDay: (Int) -> Unit = { }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         return CalendarViewHolder(
             ItemviewCalendarGridviewIconBinding.inflate(
@@ -28,7 +29,8 @@ class CalendarViewAdapter(private val size: Int) :
 
     // bind every date item and jude whether exist any event
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
-        val currentDay = position+1
+        // because position start from 0
+        val currentDay = position + 1
         holder.dateTextView.text = currentDay.toString()
         // get current event size
         val currentDayEvent: List<EventTypes> = event.filter {
@@ -42,7 +44,6 @@ class CalendarViewAdapter(private val size: Int) :
             else -> holder.dateTextView.background = getDrawableCallBack?.invoke("multitude")
         }
     }
-
 
     override fun getItemCount(): Int {
         return size
@@ -62,6 +63,8 @@ class CalendarViewAdapter(private val size: Int) :
         init {
             // calendarItem selected effect
             container.setOnClickListener {
+                // send back the item click position to notify what the day is
+                getItemDay.invoke(absoluteAdapterPosition + 1)
                 if (isFirstSelected) {
                     oldSelectItemView = it
                     it.background = getDrawableCallBack?.invoke("stroke")

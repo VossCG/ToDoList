@@ -9,7 +9,7 @@ import com.voss.todolist.Data.EventTypes
 import com.voss.todolist.Util.EventTypeDiffUtil
 import com.voss.todolist.databinding.ItemviewDateEventTitleBinding
 
-class HomeEventAdapter() :ListAdapter<EventTypes,HomeEventAdapter.EventTodayViewHolder>(EventTypeDiffUtil()) {
+class HomeEventAdapter() : ListAdapter<EventTypes, HomeEventAdapter.EventTodayViewHolder>(EventTypeDiffUtil()) {
 
     var itemOnClick: (Int) -> Unit = {}
 
@@ -28,14 +28,14 @@ class HomeEventAdapter() :ListAdapter<EventTypes,HomeEventAdapter.EventTodayView
         holder.title.text = getItem(position).title
     }
 
-    inner class EventTodayViewHolder(private val binding: ItemviewDateEventTitleBinding) :
+    inner class EventTodayViewHolder(binding: ItemviewDateEventTitleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.rowTitleTextView
         val date: TextView = binding.rowDateTextView
 
         init {
             title.setOnClickListener {
-                itemOnClick.invoke(adapterPosition)
+                itemOnClick.invoke(absoluteAdapterPosition)
             }
         }
     }
