@@ -38,7 +38,7 @@ class CalendarViewAdapter(private val size: Int) :
         }
         // 當事件數量 到某一個數值時候，顯示不同的顏色
         when (currentDayEvent.size) {
-            0 -> holder.dateTextView.background = getDrawableCallBack?.invoke("default")
+            0 -> { holder.dateTextView.background = getDrawableCallBack?.invoke("default") }
             1 -> holder.dateTextView.background = getDrawableCallBack?.invoke("single")
             2 -> holder.dateTextView.background = getDrawableCallBack?.invoke("some")
             else -> holder.dateTextView.background = getDrawableCallBack?.invoke("multitude")

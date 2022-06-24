@@ -1,27 +1,45 @@
 package com.voss.todolist.Adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
+import com.voss.todolist.R
 import com.voss.todolist.Util.EventTypeDiffUtil
 import com.voss.todolist.databinding.ItemviewEventListBinding
 
 class CalendarEventListAdapter :
     ListAdapter<EventTypes, CalendarEventListAdapter.CalendarEventViewHolder>(EventTypeDiffUtil()) {
 
-    var finishCallback: (data:EventTypes) -> Unit = {}
-    var editCallback: (data:EventTypes) -> Unit = {}
+    var navigateToContent: (position: Int) -> Unit = {}
 
     inner class CalendarEventViewHolder(val binding: ItemviewEventListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val title: TextView = binding.itemEventTitle
+        private var isExpanded = false
+        val title = binding.itemEventTitle
+        val content = binding.eventListItemContentTv
 
         init {
-            binding.itemEventTitle.setOnClickListener { editCallback.invoke(getItem(absoluteAdapterPosition)) }
-            binding.itemEventFinishBut.setOnClickListener { finishCallback.invoke(getItem(absoluteAdapterPosition)) }
+            binding.itemEventTitle.setOnClickListener {
+                navigateToContent.invoke(
+                    absoluteAdapterPosition
+                )
+            }
+
+            binding.eventListItemExpandArrowBut.setOnClickListener {
+                if(isExpanded){
+                    binding.eventListItemExpandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+                    binding.eventListItemExpandLayout.visibility = View.GONE
+                    isExpanded = !isExpanded
+                }else{
+                    binding.eventListItemExpandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24)
+                    binding.eventListItemExpandLayout.visibility = View.VISIBLE
+                    isExpanded = !isExpanded
+                }
+            }
         }
     }
 
@@ -37,5 +55,7 @@ class CalendarEventListAdapter :
 
     override fun onBindViewHolder(holder: CalendarEventViewHolder, position: Int) {
         holder.title.text = getItem(position).title
+        holder.content.text = getItem(position).content
+
     }
 }

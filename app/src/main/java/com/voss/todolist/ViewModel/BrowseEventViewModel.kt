@@ -1,6 +1,7 @@
 package com.voss.todolist.ViewModel
 
 import android.app.Application
+import android.icu.text.SimpleDateFormat
 import android.widget.Toast
 import androidx.lifecycle.*
 import com.voss.todolist.Data.EventRepository
@@ -9,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,13 +30,9 @@ class BrowseEventViewModel @Inject constructor(
 
     private val _currentMonth = MutableLiveData<Int>(3)
     val currentMonth: LiveData<Int> = _currentMonth
-
-    private val _currentDay = MutableLiveData<Int>(8)
-    val currentDay: LiveData<Int> = _currentDay
-
     // -------------------------------------------------------------
 
-    fun setItemDay(position: Int) {
+    fun setSelectItemDay(position: Int) {
         selectItemDay.value = position
     }
 
@@ -45,29 +43,8 @@ class BrowseEventViewModel @Inject constructor(
     fun setMonth(month: Int) {
         _currentMonth.value = month
     }
-
-    fun setDay(day: Int) {
-        _currentDay.value = day
-    }
-
     fun plusYear(plus: Int) {
         _currentYear.value = _currentYear.value?.plus(plus)
-    }
-
-    fun plusMonth(plus: Int) {
-        _currentMonth.value = _currentMonth.value?.plus(plus)
-    }
-
-    fun addEvent(eventType: EventTypes) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.insertEvent(eventType)
-        }
-    }
-
-    fun updateEvent(eventType: EventTypes) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateEvent(eventType)
-        }
     }
 
     fun deleteEvent(eventType: EventTypes) {
@@ -78,10 +55,15 @@ class BrowseEventViewModel @Inject constructor(
             }
         }
     }
-
     fun getMonthEvent(month: Int): List<EventTypes> {
         return readAllEvent.value!!.filter {
-            it.getMonth() == month
+            it.getMonth() == month && it.getYear() == currentYear.value
         }
+    }
+    fun getDateFormat(year: Int, month: Int, day: Int,calendar: Calendar): String {
+        calendar.set(year, month-1, day)
+        val date = calendar.time
+        val format = SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN)
+        return format.format(date)
     }
 }

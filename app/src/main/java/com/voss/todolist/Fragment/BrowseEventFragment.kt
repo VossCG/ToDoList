@@ -22,11 +22,12 @@ class BrowseEventFragment :
     private val eventListAdapter: CalendarEventListAdapter by lazy { CalendarEventListAdapter() }
     private val viewModel: BrowseEventViewModel by activityViewModels()
     private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
-    private val navController by lazy { findNavController() }
-    private var positionOffsetArray = ArrayList<Float>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.browseEventCurrentIcon.calendarTodayTv.text =
+            calendar.get(Calendar.DAY_OF_MONTH).toString()
 
         observeCurrentDate()
         setEventRecyclerList()
@@ -40,8 +41,7 @@ class BrowseEventFragment :
         viewModel.apply {
             setYear(calendar.get(Calendar.YEAR))
             setMonth(calendar.get(Calendar.MONTH) + 1)
-            setDay(calendar.get(Calendar.DAY_OF_MONTH))
-            setItemDay(calendar.get(Calendar.DAY_OF_MONTH))
+            setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
         }
     }
 
@@ -52,21 +52,34 @@ class BrowseEventFragment :
         viewModel.currentMonth.observe(viewLifecycleOwner) {
             binding.browseEventMonth.text = it.toString() + "月"
         }
-        viewModel.currentDay.observe(viewLifecycleOwner) {
-            binding.browseEventCurrentIcon.calendarTodayTv.text = it.toString()
-        }
+        // 使用者點選當前的日期，將資料注入EventList 呈現
         viewModel.selectItemDay.observe(viewLifecycleOwner) { selectDay ->
             val dayEvent = viewModel.getMonthEvent(viewModel.currentMonth.value!!).filter {
                 it.getDay() == selectDay
             }
+            // set list event title
+            binding.browseEventSelectDayTv.text =
+                viewModel.getDateFormat(
+                    viewModel.currentYear.value!!,
+                    viewModel.currentMonth.value!!,
+                    selectDay,
+                    calendar
+                )
+            // remind user have any event
+            if (dayEvent.isEmpty()) {
+                binding.browseEventHintTv.visibility = View.VISIBLE
+            } else
+                binding.browseEventHintTv.visibility = View.GONE
+            // refresh eventList View
             eventListAdapter.submitList(dayEvent)
         }
-    }
-
-    private fun checkSlideIsLeft(positionOffset: ArrayList<Float>): Boolean {
-        // 數值越來越大，代表右滑
-        if (positionOffset[1] < positionOffset[positionOffset.lastIndex - 1]) return false
-        return true
+        // 當資料庫有變動的時候，EventList的itemView
+        viewModel.readAllEvent.observe(viewLifecycleOwner) { allEvent ->
+            val dayEvent = allEvent.filter {
+                it.getMonth() == viewModel.currentMonth.value && it.getDay() == viewModel.selectItemDay.value
+            }
+            eventListAdapter.submitList(dayEvent)
+        }
     }
 
     private fun setCalendarViewPager() {
@@ -74,54 +87,29 @@ class BrowseEventFragment :
         viewpager.apply {
             setPageTransformer(MarginPageTransformer(10))
             adapter = calendarAdapter
-            // 設定開始的頁面，由於要實現無線連播的ViewPager，會在前後多設定一個空頁面
-            // 也就必須讓當前的月份多加上1，才能讓Page的position，與月份是對齊的
-            // 0 與 13 會是保留空白的，一月就會從position 1 開始，以此類推
             setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
-                ) {
-                    positionOffsetArray.add(positionOffset)
-                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                }
 
-                override fun onPageScrollStateChanged(state: Int) {
-                    super.onPageScrollStateChanged(state)
-                    // 當滑動靜止的時候，開始設定事件
-                    if (state == ViewPager2.SCROLL_STATE_IDLE) {
-                        // 刷新當前的月份filter 元素
-                        when (viewpager.currentItem) {
-                            // 當到達最後一頁時，跳轉到item = 1 (第二頁)
-                            13 -> {
-                                viewpager.setCurrentItem(1, false)
-                                viewModel.apply {
-                                    // 刷新當前年月的資料
-                                    setMonth(1)
-                                    plusYear(1)
-                                }
-                            }
-                            // 當到達第一頁時，跳轉到item = 12 (倒數第二頁)
-                            0 -> {
-                                viewpager.setCurrentItem(12, false)
-                                viewModel.apply {
-                                    // 刷新當前年月的資料
-                                    setMonth(12)
-                                    plusYear(-1)
-                                }
-                            }
-                            else -> {
-                                // judge swipe is left or right
-                                if (checkSlideIsLeft(positionOffsetArray)) {
-                                    viewModel.plusMonth(-1)
-                                } else {
-                                    viewModel.plusMonth(1)
-                                }
-                                positionOffsetArray = ArrayList<Float>()
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    when (position) {
+                        13 -> {
+                            viewpager.setCurrentItem(1, false)
+                            viewModel.apply {
+                                // 刷新當前年月的資料
+                                setMonth(1)
+                                plusYear(1)
                             }
                         }
+                        0 -> {
+                            viewpager.setCurrentItem(12, false)
+                            viewModel.apply {
+                                // 刷新當前年月的資料
+                                setMonth(12)
+                                plusYear(-1)
+                            }
+                        }
+                        else -> viewModel.setMonth(position)
                     }
                 }
             })
@@ -130,16 +118,17 @@ class BrowseEventFragment :
 
     private fun setEventRecyclerList() {
         // set callback
-        eventListAdapter.finishCallback = { viewModel.deleteEvent(it) }
-        eventListAdapter.editCallback = {
-            val direction = BrowseEventFragmentDirections.actionBrowseEventFragmentToUpdateEventFragment(it)
-            navController.navigate(direction)
-        }
+        eventListAdapter.navigateToContent = {}
         // init recyclerView
         binding.calendarDayEventListRecycler.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
             adapter = eventListAdapter
             eventListAdapter.submitList(
                 viewModel.getMonthEvent(calendar.get(Calendar.MONTH))
