@@ -15,6 +15,7 @@ class CalendarEventListAdapter :
 
     var getClickPosition: (position: Int) -> Unit = {}
     var itemDelete: (EventTypes) -> Unit = {}
+    var navigateToUpdate: (EventTypes) -> Unit = {}
 
     inner class CalendarEventViewHolder(val binding: ItemviewEventListBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -38,6 +39,9 @@ class CalendarEventListAdapter :
                     binding.eventListItemExpandLayout.visibility = View.VISIBLE
                     isExpanded = !isExpanded
                 }
+            }
+            title.setOnClickListener {
+                navigateToUpdate.invoke(getItem(absoluteAdapterPosition))
             }
         }
     }

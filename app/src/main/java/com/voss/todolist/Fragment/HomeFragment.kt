@@ -40,7 +40,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             val monthsList = allEvent.filter { event ->
                 event.getYear() == year && event.getMonth() == month
             }
-            Log.d("Home","$monthsList")
+            if(monthsList.isEmpty()) binding.homeHint.visibility =View.VISIBLE
+            else  binding.homeHint.visibility =View.GONE
             mAdapter.submitList(monthsList)
         }
     }

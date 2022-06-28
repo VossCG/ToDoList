@@ -57,12 +57,13 @@
                 android:gravity="start|center_vertical"
                 />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/expandArrow_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="5dp"
                 android:layout_weight="9"
+                android:backgroundTint="@color/darkBlue"
                 android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
                 />
 

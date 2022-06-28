@@ -28,12 +28,8 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
         )
     }
 
-    // bind every date item and jude whether exist any event
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
-        // because position start from 0
-        Log.d("CalendarViewAdapter","offset:$weekDayOffset")
         if (position >= weekDayOffset) {
-            Log.d("CalendarViewAdapter","onBind positions:$position")
             val currentDay = position - weekDayOffset + 1
             holder.dateTextView.text = currentDay.toString()
             val currentDayEvent: List<EventTypes> = event.filter {
@@ -46,7 +42,8 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
                 2 -> holder.dateTextView.background = getDrawableCallBack?.invoke("some")
                 else -> holder.dateTextView.background = getDrawableCallBack?.invoke("multitude")
             }
-        }
+            // if item in offset that Gone , so viewHolder can't bind
+        } else holder.container.visibility = View.GONE
     }
 
     override fun getItemCount(): Int {
@@ -55,7 +52,7 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
 
     // set current event data
     fun setData(newList: List<EventTypes>) {
-        event = newList
+        this.event = newList
         notifyDataSetChanged()
     }
 

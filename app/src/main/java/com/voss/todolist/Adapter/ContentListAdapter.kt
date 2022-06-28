@@ -43,9 +43,8 @@ class ContentListAdapter : ListAdapter<EventTypes, ContentListAdapter.ContentVie
             deleteButton.setOnClickListener {
                 itemClickDelete.invoke(getItem(absoluteAdapterPosition))
             }
-            // check the diff between binding absolute adapterPosition
             editButton.setOnClickListener {
-                itemClickUpdate.invoke(getItem(bindingAdapterPosition))
+                itemClickUpdate.invoke(getItem(absoluteAdapterPosition))
             }
         }
 

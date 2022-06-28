@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class UpdateEventFragment :
+class UpdateEventFragment() :
     BaseFragment<FragmentUpdateEventBinding>(FragmentUpdateEventBinding::inflate) {
 
     private val args: UpdateEventFragmentArgs by navArgs()
@@ -26,7 +26,7 @@ class UpdateEventFragment :
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     private var newDate = MutableLiveData<String>("yyyy/mm/dd")
-    private var newDateInteger = argsEventTypes.dateInteger
+    private var newDateInteger = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,18 +56,19 @@ class UpdateEventFragment :
 
         // init date with args
         newDate.value = argsEventTypes.date
-
+        newDateInteger = argsEventTypes.dateInteger
         // init but
         binding.updateUploadBut.setOnClickListener {
             updateItemData()
             navController.navigateUp()
         }
+
         binding.cancelUpdateBut.backArrowBut.setOnClickListener {
             AlertDialog.Builder(this.context)
                 .setTitle("Message")
                 .setMessage("是否要取消編輯?")
                 .setPositiveButton("Yes") { _, _ ->
-                    navController.popBackStack()
+                    navController.navigateUp()
                 }
                 .setNegativeButton("No", null)
                 .show()

@@ -21,7 +21,7 @@ class ContentMonthlyFragment : BaseFragment<FragmentContentmonthlyBinding>(Fragm
     private val mAdapter: ContentListAdapter by lazy { ContentListAdapter() }
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    val args: ContentMonthlyFragmentArgs by navArgs()
+    private val args: ContentMonthlyFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

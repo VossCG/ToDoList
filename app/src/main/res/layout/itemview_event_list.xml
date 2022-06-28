@@ -21,6 +21,7 @@
             android:paddingVertical="20dp"
             android:text="Event Title"
             android:textSize="20sp"
+            android:background="@drawable/ripple_white_radius10_darkgrey"
             app:drawableStartCompat="@drawable/ic_baseline_brightness_1_24"
             app:layout_constraintEnd_toStartOf="@+id/event_list_item_expand_arrowBut"
             app:layout_constraintStart_toStartOf="parent"

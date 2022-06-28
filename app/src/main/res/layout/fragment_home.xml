@@ -23,9 +23,25 @@
         android:layout_marginTop="5dp"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_recyclerview"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <TextView
+            android:id="@+id/home_hint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="本月沒有活動 ^_^"
+            android:visibility="gone"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            android:textColor="@color/darkYellow"
+            android:gravity="center"
+            />
+    </FrameLayout>
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>
