@@ -6,11 +6,8 @@ import android.view.animation.Animation
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.Adapter.SearChRecyclerAdapter
-import com.voss.todolist.R
 import com.voss.todolist.Util.AnimUtil
 import com.voss.todolist.Util.setPreventQuickerClick
 import com.voss.todolist.ViewModel.EventViewModel
@@ -22,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
     private val viewModel: EventViewModel by activityViewModels()
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
-    private val navController by lazy { findNavController() }
     private var inputData: String = "null"
     private val rotateOpen: Animation by lazy { AnimUtil.getRotateOpen(requireContext()) }
     private val rotateClose: Animation by lazy { AnimUtil.getRotateClose(requireContext()) }
@@ -37,31 +33,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
             mAdapter.submitList(viewModel.filterDataWithFactor(inputData))
         }
-        binding.filterFab.setPreventQuickerClick {
-            onAddButtonClicked()
-            isExpanded = !isExpanded
-        }
+        setFloatingActionBut()
+        setRecyclerView()
+        setSearchEditText(view)
+    }
 
-        binding.changeContentFab.setPreventQuickerClick {
-            viewModel.setFilterFactor("content")
-            Toast.makeText(this.context, "Content", Toast.LENGTH_SHORT).show()
-            onAddButtonClicked()
-            isExpanded = !isExpanded
-        }
-
-        binding.changeTitleFab.setPreventQuickerClick {
-            viewModel.setFilterFactor("title")
-            Toast.makeText(this.context, "title", Toast.LENGTH_SHORT).show()
-            onAddButtonClicked()
-            isExpanded = !isExpanded
-        }
-
-        binding.searchRecycler.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@SearchFragment.context)
-            adapter = mAdapter
-        }
-
+    private fun setSearchEditText(view: View) {
         binding.searChEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 inputData = binding.searChEditText.text.toString()
@@ -82,6 +59,48 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
+        }
+    }
+
+    private fun setFloatingActionBut() {
+        binding.filterFab.setPreventQuickerClick {
+            onAddButtonClicked()
+            isExpanded = !isExpanded
+        }
+
+        binding.changeContentFab.setPreventQuickerClick {
+            viewModel.setFilterFactor("content")
+            Toast.makeText(this.context, "Content", Toast.LENGTH_SHORT).show()
+            onAddButtonClicked()
+            isExpanded = !isExpanded
+        }
+
+        binding.changeTitleFab.setPreventQuickerClick {
+            viewModel.setFilterFactor("title")
+            Toast.makeText(this.context, "title", Toast.LENGTH_SHORT).show()
+            onAddButtonClicked()
+            isExpanded = !isExpanded
+        }
+    }
+
+    private fun setRecyclerView() {
+        binding.searchRecycler.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@SearchFragment.context)
+            adapter = mAdapter
+        }
+        mAdapter.apply {
+            itemClick = { clickPosition ->
+                val layoutManager = binding.searchRecycler.layoutManager as LinearLayoutManager
+                val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
+
+                if (clickPosition == lastPositionVisible) {
+                    layoutManager.scrollToPositionWithOffset(clickPosition, 0)
+                }
+            }
+            itemDelete = { event ->
+                viewModel.deleteEvent(event)
+            }
         }
     }
 

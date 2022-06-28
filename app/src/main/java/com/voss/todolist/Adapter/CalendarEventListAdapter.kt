@@ -3,7 +3,6 @@ package com.voss.todolist.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.Data.EventTypes
@@ -14,7 +13,8 @@ import com.voss.todolist.databinding.ItemviewEventListBinding
 class CalendarEventListAdapter :
     ListAdapter<EventTypes, CalendarEventListAdapter.CalendarEventViewHolder>(EventTypeDiffUtil()) {
 
-    var navigateToContent: (position: Int) -> Unit = {}
+    var getClickPosition: (position: Int) -> Unit = {}
+    var itemDelete: (EventTypes) -> Unit = {}
 
     inner class CalendarEventViewHolder(val binding: ItemviewEventListBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -23,18 +23,17 @@ class CalendarEventListAdapter :
         val content = binding.eventListItemContentTv
 
         init {
-            binding.itemEventTitle.setOnClickListener {
-                navigateToContent.invoke(
-                    absoluteAdapterPosition
-                )
+            binding.eventListItemDeleteBut.setOnClickListener {
+                itemDelete.invoke(getItem(absoluteAdapterPosition))
             }
 
             binding.eventListItemExpandArrowBut.setOnClickListener {
-                if(isExpanded){
+                getClickPosition.invoke(absoluteAdapterPosition)
+                if (isExpanded) {
                     binding.eventListItemExpandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
                     binding.eventListItemExpandLayout.visibility = View.GONE
                     isExpanded = !isExpanded
-                }else{
+                } else {
                     binding.eventListItemExpandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24)
                     binding.eventListItemExpandLayout.visibility = View.VISIBLE
                     isExpanded = !isExpanded

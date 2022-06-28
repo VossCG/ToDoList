@@ -20,7 +20,6 @@ class BrowseEventViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     val readAllEvent: LiveData<List<EventTypes>> = repository.eventDataList
-
     val selectItemDay = MutableLiveData<Int>(1)
 
     // think about and check again that must need the LiveData?
@@ -66,4 +65,19 @@ class BrowseEventViewModel @Inject constructor(
         val format = SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN)
         return format.format(date)
     }
+
+    fun convertWeekToChinese(week: Int): String {
+        val currentWeek = when (week) {
+            1 -> "星期一"
+            2 -> "星期一"
+            3 -> "星期一"
+            4 -> "星期一"
+            5 -> "星期一"
+            6 -> "星期一"
+            7 -> "星期一"
+            else -> "error"
+        }
+        return currentWeek
+    }
+
 }

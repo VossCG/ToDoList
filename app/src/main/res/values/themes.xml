@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.ToDoList" parent="Theme.MaterialComponents.NoActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryDarkColor</item>
-        <item name="colorPrimaryVariant">@color/primaryLightColor</item>
+        <item name="colorPrimary">@color/primaryLightColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColor</item>
         <item name="colorOnPrimary">@color/primaryTextColor</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryDarkColor</item>
@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:textViewStyle">@style/DefaultTextViewStyle</item>
         <item name="android:windowBackground">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
     </style>
 
     <style name="CustomOutlineButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
@@ -40,7 +41,7 @@
         <item name="cornerSize">10dp</item>
     </style>
 
-    <style name="DefaultDarkTextViewStyle" parent="Widget.MaterialComponents.TextView">
+87     <style name="DefaultDarkTextViewStyle" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/lightGrey</item>
         <item name="android:textStyle">normal</item>

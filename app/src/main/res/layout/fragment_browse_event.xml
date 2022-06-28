@@ -11,12 +11,15 @@
         style="@style/Widget.MaterialComponents.Toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:background="@color/lightGrey"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/toolbar_menu">
+        app:menu="@menu/toolbar_menu"
+        >
 
         <include
             android:id="@+id/browse_event_currentIcon"
@@ -32,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="某月" />
+
 
         <TextView
             android:id="@+id/browse_event_year"

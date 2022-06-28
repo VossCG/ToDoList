@@ -6,15 +6,15 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="CalendarFragment" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="CalendarViewAdapter" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="## 修改與優化&#10;BrowseEventFragment :&#10;1. 新增下方顯示當前選擇日期的event，透過設置在ViewModel的selectDay的屬性，讓在calendarView 點選日期的當下去改變，並在BrowseEvent去監聽，並刷新當年當月當日的event，讓eventList不斷的去更新畫面&#10;2. 新增一個checkSlide方法，透過positionOffset判斷當前ViewPager的滑動方向，並不再透過currentItem去改變viewModel的month value&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 修改拿取當前月份資料的方式，原本是透過eventDao，使用SQL語法篩選出當月的資料，但其實只要在ViewModel注入repo資料，再透過自定義的 getMonthEvent 過濾出想要月份的資料就可，這樣在頁面創建的時候，透過當前的position，載入資料，如果是使用之前設計的viewModel month，來篩選，會因為ViewPager 預先載入的特性，讓前後的頁面會先創建，並吃到當前頁面的month value，所以拿不到對應的月份資料給當下的頁面&#10;2. 透過adapter的itemCallback，拿取使用者點選的日期，傳遞到ViewModel的selectItemDay的屬性值，讓外部的頁面，能知道當前所選取的itemDay&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" afterDir="false" />
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="## 修改與優化&#10;BrowseEventFragment :&#10;1. item expand content 會自動撐開&#10; &#10;CalendarFragment :&#10;1. 透過calendar拿到每個月分的第一天的week，算出offset，並在adapter的建構子新增WeekOffset注入，使得onBindView item的時候，必須大於偏移值的position item，才會有動應的日期，size也會因為偏移加大&#10;&#10;SearChFragment:&#10;1. item expand content 會自動撐開&#10;&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 修改CalendarView 刪除event 刷新畫面icon 異常(將CalendarViewAdapter 改成ListAdatper)">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ripple_white_shape_oval_solid_lightgrey.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -26,23 +26,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarEventListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarEventListAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarViewAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/SearChRecyclerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/SearChRecyclerAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/BrowseEventFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/CalendarFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/CalendarFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/ContentMonthlyFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/ContentMonthlyFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/SearchFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/UpdateEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/UpdateEventFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/ViewModel/BrowseEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/ViewModel/BrowseEventViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/shape_oval_solid_lightgrey.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_month.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_year.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_calendar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_calendar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_browse_month_group_item.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_browse_year_title_item.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editevent.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editevent.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_calendar_gridview_icon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_calendar_gridview_icon.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_event_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_event_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_event_cardview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_event_cardview.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +141,7 @@
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewC:/Users/USER/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
+    <property name="android-custom-viewC:/Users/USER/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.0/3e159bfab49c7e6495fe374e6e5e1e989ee21dcf/recyclerview-1.2.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_RecyclerView_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewC:/Users/USER/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.2.0/3e159bfab49c7e6495fe374e6e5e1e989ee21dcf/recyclerview-1.2.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
     <property name="android-custom-viewC:/Users/USER/.gradle/caches/modules-2/files-2.1/androidx.viewpager2/viewpager2/1.0.0/3c3569044e6969f1ee5c3aa03b08e6717a2d782f/viewpager2-1.0.0-sources.jar!/androidx/viewpager2/widget/ViewPager2.java_SELECTED" value="ViewPager2" />
     <property name="android-custom-viewC:/Users/USER/.gradle/caches/modules-2/files-2.1/androidx.viewpager2/viewpager2/1.0.0/3c3569044e6969f1ee5c3aa03b08e6717a2d782f/viewpager2-1.0.0-sources.jar!/androidx/viewpager2/widget/ViewPager2.java_ViewPager2_DIMENSIONS" value="1080&#10;1920" />
@@ -534,7 +537,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655998433941</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="## 修改與優化&#10;BrowseEventFragment :&#10;1. ViewPager 滑動事件的判斷，更改當前的月分與年份都透過覆寫 onPageSelected 的position改變的時候，去注入相對應的資料&#10;2. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;3. 設立下方List item 事件若沒有的話，顯示一個TextView 告知使用者現在沒有活動事件&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView">
+      <created>1656062586621</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1656062586621</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -550,8 +560,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="SearchFragment 相關更動&#10;&#10;1.將原本的bottomSheet,更改成BottomSheetDialog&#10;2.toolbar更換為imageButton作為切換filter，並生出bottomSheetDialog&#10;3.把filter list的過濾搜尋資料的功能，放到viewModel當中，包成名為filterDataWithFactor的方法" />
-    <MESSAGE value="刪除多餘的元件與class" />
     <MESSAGE value="SearchFragment 相關優化&#10;1.expand 內容 完成按鈕可使用 刪除已完成的活動與任務&#10;2.fragment 當中新增viewModel去監聽資料庫的變化刷新畫面，原本是沒有去追蹤，因應完成按鈕的新增而對應&#10;3.statusBar 顏色更換為黑色&#10;4.editText輸入關鍵字搜尋，若查詢不到對應資料，使用Toast顯示提醒&#10;5.rowItem原本是要點選，title文字才能expand，現在改為點選cardView，不局限於文字上而是整體" />
     <MESSAGE value="SearchFragment 相關優化&#10;1.rowItem新增arrow提醒使用者，點即箭頭即可expand&#10;2.cardView點擊expand更改為arrow icon" />
     <MESSAGE value="1.部分畫面元件優化調整&#10;2.修改theme colorPrimary &#10;3.新增一個TextView Style" />
@@ -575,6 +583,22 @@
     <MESSAGE value="## 修改與優化&#10;1. 把Room 資料庫的格式去除掉 年、月、日的屬性欄位，若有需要的地方，直接透過class 裡面的轉化方法拿到&#10;2. 正式把BrowseFragment 改變為 CalendarView的呈現方式，原本的Year Month 跳轉呈現已刪除&#10;3. Room dao 新增一個 Query的方法，能透過 dateInteger range 拿到想要的範圍資料，是為了讓CalendarView 需要的資料而設計&#10;4. 部分Fragment layout優化&#10;5. 資料庫寫入的月份數字，不再從0開始，因為原本是為了配合DatePicker出來的數字，但現在為了一致性，所有關於日期資料的數字邏輯都必須相同&#10;&#10;## 待修正&#10;1. CalendarView 的 icon 與資料綁定判斷的邏輯有錯誤&#10;2. BrowseFragment and CalendarView 頁面當中的資料邏輯必須在確認與檢查，以免有異常&#10;&#10;3. UpdateEvent 寫入與載入資料出現異常&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. 完成BrowseEventFragment 下方的ListView 用來呈現使用者點選當前的日期事件" />
     <MESSAGE value="## 修改與優化&#10;1. 修改ViewModel一些東西，考慮要刪掉一些LiveData&#10;2.  CalendarView 的 icon 與資料綁定判斷&quot;已修正&quot;&#10;3. BrowseFragment and CalendarView 頁面連結邏輯與異常 &quot;已修正&quot;&#10;4. UpdateEvent 寫入與載入資料異常 &quot;已修正&quot;&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. CalendarFragment 綁定icon圖示的邏輯是透過當前的position來判斷目前滑到哪個月分，並從資料庫取得相關資料，在想看看有沒有哪些可以替代或優化的地方&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. 完成BrowseEventFragment 下方的ListView 用來呈現使用者點選當前的日期事件" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 新增下方顯示當前選擇日期的event，透過設置在ViewModel的selectDay的屬性，讓在calendarView 點選日期的當下去改變，並在BrowseEvent去監聽，並刷新當年當月當日的event，讓eventList不斷的去更新畫面&#10;2. 新增一個checkSlide方法，透過positionOffset判斷當前ViewPager的滑動方向，並不再透過currentItem去改變viewModel的month value&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 修改拿取當前月份資料的方式，原本是透過eventDao，使用SQL語法篩選出當月的資料，但其實只要在ViewModel注入repo資料，再透過自定義的 getMonthEvent 過濾出想要月份的資料就可，這樣在頁面創建的時候，透過當前的position，載入資料，如果是使用之前設計的viewModel month，來篩選，會因為ViewPager 預先載入的特性，讓前後的頁面會先創建，並吃到當前頁面的month value，所以拿不到對應的月份資料給當下的頁面&#10;2. 透過adapter的itemCallback，拿取使用者點選的日期，傳遞到ViewModel的selectItemDay的屬性值，讓外部的頁面，能知道當前所選取的itemDay&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView" />
-    <option name="LAST_COMMIT_MESSAGE" value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 新增下方顯示當前選擇日期的event，透過設置在ViewModel的selectDay的屬性，讓在calendarView 點選日期的當下去改變，並在BrowseEvent去監聽，並刷新當年當月當日的event，讓eventList不斷的去更新畫面&#10;2. 新增一個checkSlide方法，透過positionOffset判斷當前ViewPager的滑動方向，並不再透過currentItem去改變viewModel的month value&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 修改拿取當前月份資料的方式，原本是透過eventDao，使用SQL語法篩選出當月的資料，但其實只要在ViewModel注入repo資料，再透過自定義的 getMonthEvent 過濾出想要月份的資料就可，這樣在頁面創建的時候，透過當前的position，載入資料，如果是使用之前設計的viewModel month，來篩選，會因為ViewPager 預先載入的特性，讓前後的頁面會先創建，並吃到當前頁面的month value，所以拿不到對應的月份資料給當下的頁面&#10;2. 透過adapter的itemCallback，拿取使用者點選的日期，傳遞到ViewModel的selectItemDay的屬性值，讓外部的頁面，能知道當前所選取的itemDay&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView" />
+    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. ViewPager 滑動事件的判斷，更改當前的月分與年份都透過覆寫 onPageSelected 的position改變的時候，去注入相對應的資料&#10;2. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;3. 設立下方List item 事件若沒有的話，顯示一個TextView 告知使用者現在沒有活動事件&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView" />
+    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. item expand content 會自動撐開&#10; &#10;CalendarFragment :&#10;1. 透過calendar拿到每個月分的第一天的week，算出offset，並在adapter的建構子新增WeekOffset注入，使得onBindView item的時候，必須大於偏移值的position item，才會有動應的日期，size也會因為偏移加大&#10;&#10;SearChFragment:&#10;1. item expand content 會自動撐開&#10;&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 修改CalendarView 刪除event 刷新畫面icon 異常(將CalendarViewAdapter 改成ListAdatper)" />
+    <option name="LAST_COMMIT_MESSAGE" value="## 修改與優化&#10;BrowseEventFragment :&#10;1. item expand content 會自動撐開&#10; &#10;CalendarFragment :&#10;1. 透過calendar拿到每個月分的第一天的week，算出offset，並在adapter的建構子新增WeekOffset注入，使得onBindView item的時候，必須大於偏移值的position item，才會有動應的日期，size也會因為偏移加大&#10;&#10;SearChFragment:&#10;1. item expand content 會自動撐開&#10;&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 修改CalendarView 刪除event 刷新畫面icon 異常(將CalendarViewAdapter 改成ListAdatper)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-function">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/CalendarFragment.kt</url>
+          <line>27</line>
+          <properties class="com.voss.todolist.Fragment.CalendarFragment" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

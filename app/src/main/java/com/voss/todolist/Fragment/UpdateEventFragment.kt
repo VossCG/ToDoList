@@ -26,7 +26,7 @@ class UpdateEventFragment :
     private val viewModel: EventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     private var newDate = MutableLiveData<String>("yyyy/mm/dd")
-    private var newDateInteger = 0
+    private var newDateInteger = argsEventTypes.dateInteger
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +41,6 @@ class UpdateEventFragment :
     private fun updateItemData() {
         val newTitle = binding.updateTitleEdittext.text.toString()
         val newContent = binding.updateContentEditText.text.toString()
-
         if (inputCheck(newTitle, newContent)) {
             val newEvent = EventTypes(newTitle, newContent, newDate.value!!, newDateInteger)
             newEvent.id = argsEventTypes.id
@@ -55,7 +54,7 @@ class UpdateEventFragment :
         binding.updateContentEditText.setText(argsEventTypes.content)
         binding.updateTitleEdittext.setText(argsEventTypes.title)
 
-        // set date to  update TextView
+        // init date with args
         newDate.value = argsEventTypes.date
 
         // init but
@@ -63,7 +62,6 @@ class UpdateEventFragment :
             updateItemData()
             navController.navigateUp()
         }
-
         binding.cancelUpdateBut.backArrowBut.setOnClickListener {
             AlertDialog.Builder(this.context)
                 .setTitle("Message")

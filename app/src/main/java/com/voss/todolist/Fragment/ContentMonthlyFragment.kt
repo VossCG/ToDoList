@@ -37,11 +37,9 @@ class ContentMonthlyFragment : BaseFragment<FragmentContentmonthlyBinding>(Fragm
         mAdapter.itemClickDelete = {
             viewModel.deleteEvent(it)
         }
-
         binding.contentAddFab.setOnClickListener {
             navController.navigate(R.id.action_contentFragment_to_editEventFragment)
         }
-
     }
 
     private fun setRecyclerView(position: Int) {

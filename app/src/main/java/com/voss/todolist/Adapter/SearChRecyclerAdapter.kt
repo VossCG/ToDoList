@@ -14,7 +14,8 @@ import com.voss.todolist.databinding.ItemviewSearchEventCardviewBinding
 class SearChRecyclerAdapter() :
     ListAdapter<EventTypes, SearChRecyclerAdapter.SearChViewHolder>(EventTypeDiffUtil()) {
 
-    var itemClick : (Int)->Unit={}
+    var itemClick: (Int) -> Unit = {}
+    var itemDelete: (EventTypes) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearChViewHolder {
         return SearChViewHolder(
@@ -25,6 +26,7 @@ class SearChRecyclerAdapter() :
             )
         )
     }
+
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
         holder.title.text = getItem(position).title
         holder.month.text = (getItem(position).getMonth()).toString() + "月"
@@ -38,27 +40,23 @@ class SearChRecyclerAdapter() :
         val title: TextView = binding.rowSearchTitleTextView
         val month: TextView = binding.rowSearchMonthTextView
         val day: TextView = binding.rowSearchDayTextView
-        val expand = binding.rowSearchExpandLayout
         val content = binding.rowSearchContentTextView
-        val complete = binding.rowSearchContentCompletebut
-        val arrow = binding.expandArrowImg
-        val cardView = binding.rowSearchCardView
 
         init {
 
-            cardView.setOnClickListener {
-                if (expand.visibility == View.GONE) {
-                    expand.visibility = View.VISIBLE
-                    arrow.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+            binding.rowSearchCardView.setOnClickListener {
+                if (binding.rowSearchExpandLayout.visibility == View.GONE) {
+                    binding.rowSearchExpandLayout.visibility = View.VISIBLE
+                    binding.expandArrowImg.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+                    itemClick.invoke(absoluteAdapterPosition)
                 } else {
-                    expand.visibility = View.GONE
-                    arrow.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
+                    binding.rowSearchExpandLayout.visibility = View.GONE
+                    binding.expandArrowImg.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
                 }
             }
-            complete.setOnClickListener {
-               itemClick.invoke(absoluteAdapterPosition)
+            binding.rowSearchContentCompletebut.setOnClickListener {
+                itemDelete.invoke(getItem(absoluteAdapterPosition))
             }
-
         }
 
     }

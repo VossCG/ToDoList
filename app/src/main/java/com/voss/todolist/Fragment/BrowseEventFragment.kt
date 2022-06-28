@@ -1,9 +1,10 @@
 package com.voss.todolist.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -13,7 +14,6 @@ import com.voss.todolist.Adapter.CalendarViewPagerAdapter
 import com.voss.todolist.ViewModel.BrowseEventViewModel
 import com.voss.todolist.databinding.FragmentBrowseEventBinding
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class BrowseEventFragment :
@@ -117,8 +117,6 @@ class BrowseEventFragment :
     }
 
     private fun setEventRecyclerList() {
-        // set callback
-        eventListAdapter.navigateToContent = {}
         // init recyclerView
         binding.calendarDayEventListRecycler.apply {
             setHasFixedSize(true)
@@ -134,5 +132,20 @@ class BrowseEventFragment :
                 viewModel.getMonthEvent(calendar.get(Calendar.MONTH))
                     .filter { it.getDay() == calendar.get(Calendar.DAY_OF_MONTH) })
         }
+        // set callback
+        eventListAdapter.apply {
+            getClickPosition = { clickPosition ->
+                val layoutManager =
+                    binding.calendarDayEventListRecycler.layoutManager as LinearLayoutManager
+                val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
+                if (clickPosition == lastPositionVisible) {
+                    layoutManager.scrollToPositionWithOffset(clickPosition, 0)
+                }
+            }
+            itemDelete = { event ->
+                viewModel.deleteEvent(event)
+            }
+        }
     }
+
 }
