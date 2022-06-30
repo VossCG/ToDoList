@@ -7,24 +7,26 @@
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:padding="10dp"
+        android:layout_width="46dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingVertical="10dp"
+        >
 
         <TextView
             android:id="@+id/rowSearchMonth_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3月"
-            android:textSize="20sp"
-            />
+            android:text="13月"
+            android:gravity="center"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/rowSearchDay_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="31"
             android:textSize="30sp"
             app:layout_constraintEnd_toStartOf="@+id/rowSearch_guideline"
@@ -33,39 +35,38 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/rowSearchCardView"
-            android:padding="5dp"
-            android:background="@drawable/shape_radius10_solid_darkblue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_radius10_solid_darkblue"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="10dp"
+            >
 
             <TextView
                 android:id="@+id/rowSearchTitle_textView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Title"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="15dp"
-                android:textSize="25sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="start|center_vertical"
-                />
+                android:paddingHorizontal="5dp"
+                android:text="Title"
+                android:textSize="25sp" />
 
             <ImageButton
-                android:id="@+id/expandArrow_img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp"
-                android:layout_weight="9"
+                android:id="@+id/expandArrow_but"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:backgroundTint="@color/darkBlue"
-                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                />
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -82,19 +83,18 @@
                 android:id="@+id/rowSearchContent_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:text="Content will filled out this area"
-                />
+                android:textSize="20sp" />
 
             <ImageButton
                 android:id="@+id/rowSearchContent_Completebut"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="start|bottom"
-                android:src="@drawable/ic_baseline_done_24"
-                android:background="@drawable/ripple_white_shape_oval_solid_lightgrey"
                 android:layout_marginTop="15dp"
+                android:background="@drawable/ripple_white_shape_oval_solid_lightgrey"
                 android:padding="5dp"
+                android:src="@drawable/ic_baseline_done_24"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 

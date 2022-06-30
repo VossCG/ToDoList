@@ -16,14 +16,15 @@ import com.voss.todolist.databinding.FragmentBrowseEventBinding
 import java.util.*
 
 
-class BrowseEventFragment :
-    BaseFragment<FragmentBrowseEventBinding>(FragmentBrowseEventBinding::inflate) {
+class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBrowseEventBinding::inflate) {
     private lateinit var calendarAdapter: CalendarViewPagerAdapter
-    private lateinit var calendar: Calendar
+    private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
     private val eventListAdapter: CalendarEventListAdapter by lazy { CalendarEventListAdapter() }
     private val viewModel: BrowseEventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-
+    private val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+    private val currentMonth = calendar.get(Calendar.MONTH)
+    private val currentYear = calendar.get(Calendar.YEAR)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,13 +34,19 @@ class BrowseEventFragment :
         setCurrentDate()
         setCalendarViewPager()
         setEventRecyclerList()
-
     }
 
     private fun initView() {
-        calendar = Calendar.getInstance(Locale.TAIWAN)
         // init  current Day Icon View
-        binding.browseEventCurrentIcon.calendarTodayTv.text = calendar.get(Calendar.DAY_OF_MONTH).toString()
+        binding.browseEventCurrentIcon.calendarTodayTv.text = currentDay.toString()
+
+        // when click currentDay Item , jump to the current date
+        binding.browseEventCurrentIcon.root.setOnClickListener {
+            binding.calendarContainerViewpager.setCurrentItem(currentMonth + 1, false)
+            viewModel.setSelectItemDay(currentDay)
+            viewModel.setMonth(currentMonth + 1)
+            viewModel.setYear(currentYear)
+        }
     }
 
     private fun observeCurrentDate() {
@@ -51,7 +58,6 @@ class BrowseEventFragment :
         viewModel.currentMonth.observe(viewLifecycleOwner) {
             binding.browseEventMonth.text = it.toString() + "月"
         }
-
         // observe user select day item
         viewModel.selectItemDay.observe(viewLifecycleOwner) { selectDay ->
             // filter current selected day event
@@ -65,7 +71,6 @@ class BrowseEventFragment :
                 selectDay,
                 calendar
             )
-
             // if selectedDay event is empty ,show a view to remind user have any event
             if (selectedDayEvent.isEmpty()) {
                 binding.browseEventHintTv.visibility = View.VISIBLE
@@ -92,15 +97,13 @@ class BrowseEventFragment :
             setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
         }
     }
-
     private fun setCalendarViewPager() {
-        // don't init FragmentStateAdapter
         calendarAdapter = CalendarViewPagerAdapter(this)
         val viewpager = binding.calendarContainerViewpager
         viewpager.apply {
             adapter = calendarAdapter
             setPageTransformer(MarginPageTransformer(10))
-            setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
+            setCurrentItem(currentMonth + 1, false)
 
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -128,7 +131,6 @@ class BrowseEventFragment :
             })
         }
     }
-
     private fun setEventRecyclerList() {
         // init recyclerView
         binding.calendarDayEventListRecycler.apply {
@@ -155,17 +157,14 @@ class BrowseEventFragment :
                     layoutManager.scrollToPositionWithOffset(clickPosition, 0)
                 }
             }
-            itemDelete = { event ->
-                viewModel.deleteEvent(event)
-            }
+            itemDelete = { event -> viewModel.deleteEvent(event) }
             navigateToUpdate = { event ->
-                val direction =
-                    BrowseEventFragmentDirections.actionBrowseEventFragmentToUpdateEventFragment(
-                        event
-                    )
+                val direction = BrowseEventFragmentDirections.actionBrowseEventFragmentToUpdateEventFragment(event)
                 navController.navigate(direction)
             }
         }
     }
+
+
 
 }

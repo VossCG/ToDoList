@@ -20,8 +20,9 @@ class BrowseEventViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     val readAllEvent: LiveData<List<EventTypes>> = repository.eventDataList
-    val selectItemDay = MutableLiveData<Int>(1)
 
+    private val _selectItemDay = MutableLiveData<Int>(1)
+    val selectItemDay :LiveData<Int> = _selectItemDay
     // think about and check again that must need the LiveData?
 
     private val _currentYear = MutableLiveData<Int>(2022)
@@ -31,8 +32,8 @@ class BrowseEventViewModel @Inject constructor(
     val currentMonth: LiveData<Int> = _currentMonth
     // -------------------------------------------------------------
 
-    fun setSelectItemDay(position: Int) {
-        selectItemDay.value = position
+    fun setSelectItemDay(day: Int) {
+        _selectItemDay.value = day
     }
 
     fun setYear(year: Int) {

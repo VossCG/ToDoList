@@ -2,14 +2,12 @@ package com.voss.todolist.Fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.voss.todolist.Adapter.CalendarEventListAdapter
 import com.voss.todolist.Adapter.CalendarViewAdapter
 import com.voss.todolist.R
 import com.voss.todolist.ViewModel.BrowseEventViewModel
@@ -44,7 +42,6 @@ class CalendarFragment() : Fragment() {
         // -1 是因為week 是從1開始，所以要丟給adapter，如果是星期日為1，但在GridView呈現是，是不需要位移的
         // 所以在 size offset 上面是要為 0
         val dayWeekOffset = getFirstDayWeekOfMonth() - 1
-        Log.d("CalendarFragment", "firstWeek:$dayWeekOffset")
 
         mAdapter = CalendarViewAdapter(
             getCurrentMonthOfDays(position, viewModel.currentYear.value!!) + dayWeekOffset,
@@ -90,7 +87,7 @@ class CalendarFragment() : Fragment() {
                 else -> resources.getDrawable(R.drawable.shape_calendar_icon_default, null)
             }
         }
-        mAdapter.getItemDay = { viewModel.selectItemDay.value = it }
+        mAdapter.getItemDay = { viewModel.setSelectItemDay(it) }
 
         binding.calendarGridRecycler.apply {
             setHasFixedSize(true)

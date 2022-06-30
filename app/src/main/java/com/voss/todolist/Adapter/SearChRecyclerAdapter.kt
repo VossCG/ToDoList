@@ -43,17 +43,20 @@ class SearChRecyclerAdapter() :
         val content = binding.rowSearchContentTextView
 
         init {
-
-            binding.rowSearchCardView.setOnClickListener {
+            val expandListener = View.OnClickListener {
                 if (binding.rowSearchExpandLayout.visibility == View.GONE) {
                     binding.rowSearchExpandLayout.visibility = View.VISIBLE
-                    binding.expandArrowImg.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+                    binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
                     itemClick.invoke(absoluteAdapterPosition)
                 } else {
                     binding.rowSearchExpandLayout.visibility = View.GONE
-                    binding.expandArrowImg.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
+                    binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
                 }
             }
+
+            binding.expandArrowBut.setOnClickListener(expandListener)
+            binding.root.setOnClickListener(expandListener)
+
             binding.rowSearchContentCompletebut.setOnClickListener {
                 itemDelete.invoke(getItem(absoluteAdapterPosition))
             }

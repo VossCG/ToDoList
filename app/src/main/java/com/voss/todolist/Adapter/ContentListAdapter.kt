@@ -31,20 +31,20 @@ class ContentListAdapter : ListAdapter<EventTypes, ContentListAdapter.ContentVie
         holder.onBind(getItem(position))
     }
 
-    inner class ContentViewHolder(binding:ItemviewDateEventContentBinding) :
+    inner class ContentViewHolder(binding: ItemviewDateEventContentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.rowContentTitleTextView
         val content: TextView = binding.rowContentTextView
         val date: TextView = binding.rowContentDateTextView
-        private val editButton: ImageButton = binding.rowContentEditBut
         private val deleteButton: ImageButton = binding.rowContentDeleteBut
 
         init {
             deleteButton.setOnClickListener {
                 itemClickDelete.invoke(getItem(absoluteAdapterPosition))
             }
-            editButton.setOnClickListener {
+            binding.root.setOnLongClickListener {
                 itemClickUpdate.invoke(getItem(absoluteAdapterPosition))
+                return@setOnLongClickListener false
             }
         }
 

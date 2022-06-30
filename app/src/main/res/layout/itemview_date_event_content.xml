@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:padding="10dp"
+    android:orientation="vertical"
     android:background="@drawable/shape_radius10_solid_darkblue"
     android:layout_height="wrap_content">
-
 
     <TextView
         android:id="@+id/rowContentDate_textView"
@@ -15,59 +13,24 @@
         android:text="03/04"
         android:textColor="@color/ligjtblue"
         style="@style/TextAppearance.MaterialComponents.Headline4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 
     <TextView
         android:id="@+id/rowContentTitle_textView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:gravity="start"
         android:text="Title"
         style="@style/TextAppearance.MaterialComponents.Headline5"
-        app:layout_constraintTop_toBottomOf="@+id/rowContentDate_textView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         />
-
-    <ImageButton
-        android:id="@+id/rowContentEdit_but"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_baseline_edit_24"
-        app:layout_constraintBottom_toBottomOf="@+id/rowContentDate_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-
-    <ImageButton
-        android:id="@+id/rowContentDelete_but"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_baseline_delete_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-
     <View
         android:id="@+id/itemContent_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@color/lightGrey"
-        app:layout_constraintTop_toBottomOf="@+id/rowContentTitle_textView" />
-
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/event_content_barrier"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="rowShowMoreContent_TextView,rowContentDelete_but"
         />
+
     <TextView
         android:id="@+id/rowContent_textView"
         style="@style/TextAppearance.AppCompat.Medium"
@@ -75,22 +38,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:gravity="start"
         android:text="Content Body"
-        app:layout_constraintBottom_toTopOf="@+id/event_content_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/itemContent_divider"
         />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/rowShowMoreContent_TextView"
+    <ImageButton
+        android:id="@+id/rowContentDelete_but"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="read more..."
-        android:textStyle="italic"
-        style="@style/CustomOutlineButtonStyle"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:visibility="visible" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@drawable/ic_baseline_delete_24"
+        android:layout_gravity="end"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>
 

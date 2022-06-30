@@ -6,14 +6,16 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="CalendarViewAdapter" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ViewPager" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ripple_white_radius10_solid_lightgrey.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/fragment_home_scene.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -25,96 +27,27 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_2_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_2_4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_ktx_1_2_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_ktx_1_2_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_4_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_4_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_4_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_4_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_1_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_7_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_7_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_databinding_viewbinding_7_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_databinding_viewbinding_7_0_4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_dynamicanimation_dynamicanimation_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_dynamicanimation_dynamicanimation_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_4_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_4_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_4_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_4_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_3_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_3_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_3_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_3_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_3_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_3_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_3_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_3_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_3_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_3_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_3_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_3_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_3_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_3_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_common_2_4_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_common_ktx_2_4_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_2_4_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_ktx_2_4_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_2_4_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_ktx_2_4_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_ui_2_4_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_ui_ktx_2_4_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_ktx_2_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_ktx_2_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_runtime_2_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_runtime_2_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_testing_2_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_testing_2_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_ktx_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_ktx_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_2_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_2_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_framework_2_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_framework_2_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_services_storage_1_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_services_storage_1_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_4_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_4_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarEventListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarEventListAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarViewAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/ContentListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/ContentListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/SearChRecyclerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/SearChRecyclerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/StartSearchAdapter.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/BrowseEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/ContentMonthlyFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/ContentMonthlyFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/UpdateEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/UpdateEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editevent.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editevent.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/CalendarFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/CalendarFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/ViewModel/BrowseEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/ViewModel/BrowseEventViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ripple_white_oval.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ripple_white_oval.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ripple_white_radius10_darkgrey.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ripple_white_radius10_solid_darkgrey.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/shape_radius10_solid_darkblue.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/shape_radius10_solid_darkblue.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_icon_calendar_today.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_icon_calendar_today.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_date_event_content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_date_event_content.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_event_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_event_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_event_cardview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_event_cardview.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/style.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/style.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +60,7 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[4d756a6a]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -179,9 +112,9 @@
         <option value="Kotlin Interface" />
         <option value="valueResourceFile" />
         <option value="Kotlin File" />
-        <option value="Kotlin Class" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -621,7 +554,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656385743200</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體，導致每次update回來後，view從calendar取得的 day 匯市剛剛update的日期。所以應該在畫面回來的時候，初始化calendar，依樣也用lateinit 來設定，並在onViewCreated之後，重新拿取實體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面">
+      <created>1656408905396</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1656408905396</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -654,8 +594,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="SearchFragment 相關優化&#10;1.rowItem新增arrow提醒使用者，點即箭頭即可expand&#10;2.cardView點擊expand更改為arrow icon" />
-    <MESSAGE value="1.部分畫面元件優化調整&#10;2.修改theme colorPrimary &#10;3.新增一個TextView Style" />
     <MESSAGE value="1.部分畫面元件優化調整&#10;2.修改SearchFragment filter 按鈕，更改為fab  &#10;3.contentFragment 新稱 fab 點選跳轉editFragment 新增事件" />
     <MESSAGE value="部分畫面元件優化調整" />
     <MESSAGE value="部分畫面 action 跳轉動畫優化" />
@@ -679,25 +617,8 @@
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. ViewPager 滑動事件的判斷，更改當前的月分與年份都透過覆寫 onPageSelected 的position改變的時候，去注入相對應的資料&#10;2. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;3. 設立下方List item 事件若沒有的話，顯示一個TextView 告知使用者現在沒有活動事件&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. item expand content 會自動撐開&#10; &#10;CalendarFragment :&#10;1. 透過calendar拿到每個月分的第一天的week，算出offset，並在adapter的建構子新增WeekOffset注入，使得onBindView item的時候，必須大於偏移值的position item，才會有動應的日期，size也會因為偏移加大&#10;&#10;SearChFragment:&#10;1. item expand content 會自動撐開&#10;&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 修改CalendarView 刪除event 刷新畫面icon 異常(將CalendarViewAdapter 改成ListAdatper)" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面" />
-    <option name="LAST_COMMIT_MESSAGE" value="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-function">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/CalendarFragment.kt</url>
-          <line>27</line>
-          <properties class="com.voss.todolist.Fragment.CalendarFragment" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/BrowseEventFragment.kt</url>
-          <line>19</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體，導致每次update回來後，view從calendar取得的 day 匯市剛剛update的日期。所以應該在畫面回來的時候，初始化calendar，依樣也用lateinit 來設定，並在onViewCreated之後，重新拿取實體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面" />
+    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but" />
+    <option name="LAST_COMMIT_MESSAGE" value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but" />
   </component>
 </project>

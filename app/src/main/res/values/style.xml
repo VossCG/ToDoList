@@ -2,10 +2,10 @@
 <resources>
 
     <style name="TitleTextView" parent="TextAppearance.AppCompat" >
-        <item name="android:textColor">#BA7E23</item>
+        <item name="android:textColor">@color/lightYellow</item>
         <item name="android:fontFamily">sans-serif-smallcaps</item>
     </style>
-
+-
     <style name="CustomOutlineButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="strokeColor">@color/secondaryLightColor</item>
         <item name="strokeWidth">1dp</item>
