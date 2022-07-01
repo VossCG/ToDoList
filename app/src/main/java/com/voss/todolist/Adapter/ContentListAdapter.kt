@@ -40,10 +40,10 @@ class ContentListAdapter : ListAdapter<EventTypes, ContentListAdapter.ContentVie
 
         init {
             deleteButton.setOnClickListener {
-                itemClickDelete.invoke(getItem(absoluteAdapterPosition))
+                itemClickDelete.invoke(getItem(adapterPosition))
             }
             binding.root.setOnLongClickListener {
-                itemClickUpdate.invoke(getItem(absoluteAdapterPosition))
+                itemClickUpdate.invoke(getItem(adapterPosition))
                 return@setOnLongClickListener false
             }
         }

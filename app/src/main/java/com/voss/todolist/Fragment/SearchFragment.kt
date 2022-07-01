@@ -1,5 +1,6 @@
 package com.voss.todolist.Fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -7,7 +8,12 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialFade
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.MaterialSharedAxis
 import com.voss.todolist.Adapter.SearChRecyclerAdapter
+import com.voss.todolist.R
 import com.voss.todolist.Util.AnimUtil
 import com.voss.todolist.Util.setPreventQuickerClick
 import com.voss.todolist.ViewModel.EventViewModel
@@ -26,6 +32,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private val toBottom: Animation by lazy { AnimUtil.getToBottom(requireContext()) }
 
     private var isExpanded: Boolean = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z,true)
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z,false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

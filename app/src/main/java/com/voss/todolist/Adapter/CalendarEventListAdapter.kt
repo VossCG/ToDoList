@@ -10,12 +10,11 @@ import com.voss.todolist.R
 import com.voss.todolist.Util.EventTypeDiffUtil
 import com.voss.todolist.databinding.ItemviewEventListBinding
 
-class CalendarEventListAdapter :
-    ListAdapter<EventTypes, CalendarEventListAdapter.CalendarEventViewHolder>(EventTypeDiffUtil()) {
+class CalendarEventListAdapter : ListAdapter<EventTypes, CalendarEventListAdapter.CalendarEventViewHolder>(EventTypeDiffUtil()) {
 
-    var getClickPosition: (position: Int) -> Unit = {}
-    var itemDelete: (EventTypes) -> Unit = {}
-    var navigateToUpdate: (EventTypes) -> Unit = {}
+    var clickItemDelete: (EventTypes) -> Unit = {}
+    var clickITemUpdate: (EventTypes) -> Unit = {}
+    var getExpandPosition: (position: Int) -> Unit = {}
 
     inner class CalendarEventViewHolder(val binding: ItemviewEventListBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -25,23 +24,26 @@ class CalendarEventListAdapter :
 
         init {
             binding.eventListItemDeleteBut.setOnClickListener {
-                itemDelete.invoke(getItem(absoluteAdapterPosition))
+                clickItemDelete.invoke(getItem(adapterPosition))
             }
-
             binding.eventListItemExpandArrowBut.setOnClickListener {
-                getClickPosition.invoke(absoluteAdapterPosition)
-                if (isExpanded) {
-                    binding.eventListItemExpandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
-                    binding.eventListItemExpandLayout.visibility = View.GONE
-                    isExpanded = !isExpanded
-                } else {
-                    binding.eventListItemExpandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24)
-                    binding.eventListItemExpandLayout.visibility = View.VISIBLE
-                    isExpanded = !isExpanded
-                }
+                getExpandPosition.invoke(adapterPosition)
+                expandContent()
             }
             title.setOnClickListener {
-                navigateToUpdate.invoke(getItem(absoluteAdapterPosition))
+                clickITemUpdate.invoke(getItem(adapterPosition))
+            }
+        }
+
+        private fun expandContent() {
+            if (isExpanded) {
+                binding.eventListItemExpandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+                binding.eventListItemExpandLayout.visibility = View.GONE
+                isExpanded = !isExpanded
+            } else {
+                binding.eventListItemExpandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24)
+                binding.eventListItemExpandLayout.visibility = View.VISIBLE
+                isExpanded = !isExpanded
             }
         }
     }
@@ -59,6 +61,5 @@ class CalendarEventListAdapter :
     override fun onBindViewHolder(holder: CalendarEventViewHolder, position: Int) {
         holder.title.text = getItem(position).title
         holder.content.text = getItem(position).content
-
     }
 }

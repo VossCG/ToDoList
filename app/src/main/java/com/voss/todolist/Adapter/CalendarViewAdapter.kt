@@ -29,19 +29,8 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
 
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         if (position >= weekDayOffset) {
-            val currentDay = position - weekDayOffset + 1
-            holder.dateTextView.text = currentDay.toString()
-            val currentDayEvent: List<EventTypes> = event.filter {
-                it.getDay() == currentDay
-            }
-            // 當事件數量 到某一個數值時候，顯示不同的顏色
-            when (currentDayEvent.size) {
-                0 -> holder.dateTextView.background = getDrawableCallBack?.invoke("default")
-                1 -> holder.dateTextView.background = getDrawableCallBack?.invoke("single")
-                2 -> holder.dateTextView.background = getDrawableCallBack?.invoke("some")
-                else -> holder.dateTextView.background = getDrawableCallBack?.invoke("multitude")
-            }
-            // if item in offset that Gone , so viewHolder can't bind
+            holder.bind(position)
+            // if item in offset that it Gone , so can't selected
         } else holder.container.visibility = View.GONE
     }
 
@@ -57,24 +46,42 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
 
     inner class CalendarViewHolder(binding: ItemviewCalendarGridviewIconBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val dateTextView: TextView = binding.calendarGridviewItemTv
+        private val dateTextView: TextView = binding.calendarGridviewItemTv
         val container: FrameLayout = binding.calendarGridviewItemRoot
 
         init {
             // calendarItem selected effect
             container.setOnClickListener {
-                // send back the item click position to notify what the day is
-                if (absoluteAdapterPosition >= weekDayOffset){
-                    getItemDay.invoke(absoluteAdapterPosition + 1 - weekDayOffset)
-                    if (isFirstSelected) {
-                        oldSelectItemView = it
-                        it.background = getDrawableCallBack?.invoke("stroke")
-                        isFirstSelected = false
-                    } else {
-                        oldSelectItemView.background = getDrawableCallBack?.invoke("default")
-                        it.background = getDrawableCallBack?.invoke("stroke")
-                        oldSelectItemView = it
-                    }
+                setSelectedCursor(it)
+            }
+        }
+
+        fun bind(position: Int){
+            val currentDay = position - weekDayOffset + 1
+            dateTextView.text = currentDay.toString()
+            val currentDayEvent: List<EventTypes> = event.filter {
+                it.getDay() == currentDay
+            }
+            // 當事件數量 到某一個數值時候，顯示不同的顏色
+            when (currentDayEvent.size) {
+                0 -> dateTextView.background = getDrawableCallBack?.invoke("default")
+                1 -> dateTextView.background = getDrawableCallBack?.invoke("single")
+                2 -> dateTextView.background = getDrawableCallBack?.invoke("some")
+                else -> dateTextView.background = getDrawableCallBack?.invoke("multitude")
+            }
+        }
+
+        private fun setSelectedCursor(view: View) {
+            if (adapterPosition >= weekDayOffset) {
+                getItemDay.invoke(adapterPosition + 1 - weekDayOffset)
+                if (isFirstSelected) {
+                    oldSelectItemView = view
+                    view.background = getDrawableCallBack?.invoke("stroke")
+                    isFirstSelected = false
+                } else {
+                    oldSelectItemView.background = getDrawableCallBack?.invoke("default")
+                    view.background = getDrawableCallBack?.invoke("stroke")
+                    oldSelectItemView = view
                 }
             }
         }

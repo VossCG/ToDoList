@@ -35,7 +35,7 @@ class HomeEventAdapter() : ListAdapter<EventTypes, HomeEventAdapter.EventTodayVi
 
         init {
             title.setOnClickListener {
-                itemOnClick.invoke(absoluteAdapterPosition)
+                itemOnClick.invoke(adapterPosition)
             }
         }
     }

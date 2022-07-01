@@ -44,21 +44,25 @@ class SearChRecyclerAdapter() :
 
         init {
             val expandListener = View.OnClickListener {
-                if (binding.rowSearchExpandLayout.visibility == View.GONE) {
-                    binding.rowSearchExpandLayout.visibility = View.VISIBLE
-                    binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
-                    itemClick.invoke(absoluteAdapterPosition)
-                } else {
-                    binding.rowSearchExpandLayout.visibility = View.GONE
-                    binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
-                }
+                expandEvent(binding)
             }
 
             binding.expandArrowBut.setOnClickListener(expandListener)
             binding.root.setOnClickListener(expandListener)
 
             binding.rowSearchContentCompletebut.setOnClickListener {
-                itemDelete.invoke(getItem(absoluteAdapterPosition))
+                itemDelete.invoke(getItem(adapterPosition))
+            }
+        }
+
+        private fun expandEvent(binding: ItemviewSearchEventCardviewBinding) {
+            if (binding.rowSearchExpandLayout.visibility == View.GONE) {
+                binding.rowSearchExpandLayout.visibility = View.VISIBLE
+                binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+                itemClick.invoke(adapterPosition)
+            } else {
+                binding.rowSearchExpandLayout.visibility = View.GONE
+                binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
             }
         }
 

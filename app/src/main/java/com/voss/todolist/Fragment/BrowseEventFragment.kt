@@ -9,14 +9,17 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.transition.MaterialSharedAxis
 import com.voss.todolist.Adapter.CalendarEventListAdapter
 import com.voss.todolist.Adapter.CalendarViewPagerAdapter
+import com.voss.todolist.R
 import com.voss.todolist.ViewModel.BrowseEventViewModel
 import com.voss.todolist.databinding.FragmentBrowseEventBinding
 import java.util.*
 
 
-class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBrowseEventBinding::inflate) {
+class BrowseEventFragment :
+    BaseFragment<FragmentBrowseEventBinding>(FragmentBrowseEventBinding::inflate) {
     private lateinit var calendarAdapter: CalendarViewPagerAdapter
     private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
     private val eventListAdapter: CalendarEventListAdapter by lazy { CalendarEventListAdapter() }
@@ -25,6 +28,7 @@ class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBro
     private val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
     private val currentMonth = calendar.get(Calendar.MONTH)
     private val currentYear = calendar.get(Calendar.YEAR)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,17 +40,41 @@ class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBro
         setEventRecyclerList()
     }
 
-    private fun initView() {
-        // init  current Day Icon View
-        binding.browseEventCurrentIcon.calendarTodayTv.text = currentDay.toString()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // set Transition Animation
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z,false)
+    }
 
-        // when click currentDay Item , jump to the current date
-        binding.browseEventCurrentIcon.root.setOnClickListener {
-            binding.calendarContainerViewpager.setCurrentItem(currentMonth + 1, false)
-            viewModel.setSelectItemDay(currentDay)
-            viewModel.setMonth(currentMonth + 1)
-            viewModel.setYear(currentYear)
+    private fun initView() {
+
+        // menu item click event
+        binding.browseEventToolbar.setOnMenuItemClickListener {
+            when (it.title) {
+                "today" -> {
+                    backCurrentDate()
+                    return@setOnMenuItemClickListener true
+                }
+                "add" -> {
+                    navController.navigate(R.id.action_browseEventFragment_to_editEventFragment)
+                    return@setOnMenuItemClickListener true
+                }
+                "search" -> {
+                    navController.navigate(R.id.action_browseEventFragment_to_searchFragment)
+                    return@setOnMenuItemClickListener true
+                }
+                else -> return@setOnMenuItemClickListener false
+            }
         }
+    }
+
+    // jump to the current date
+    private fun backCurrentDate() {
+        binding.calendarContainerViewpager.setCurrentItem(currentMonth + 1, false)
+        viewModel.setSelectItemDay(currentDay)
+        viewModel.setMonth(currentMonth + 1)
+        viewModel.setYear(currentYear)
     }
 
     private fun observeCurrentDate() {
@@ -97,6 +125,7 @@ class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBro
             setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
         }
     }
+
     private fun setCalendarViewPager() {
         calendarAdapter = CalendarViewPagerAdapter(this)
         val viewpager = binding.calendarContainerViewpager
@@ -131,6 +160,7 @@ class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBro
             })
         }
     }
+
     private fun setEventRecyclerList() {
         // init recyclerView
         binding.calendarDayEventListRecycler.apply {
@@ -149,22 +179,22 @@ class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBro
         }
         // set callback
         eventListAdapter.apply {
-            getClickPosition = { clickPosition ->
-                val layoutManager =
-                    binding.calendarDayEventListRecycler.layoutManager as LinearLayoutManager
-                val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
-                if (clickPosition == lastPositionVisible) {
-                    layoutManager.scrollToPositionWithOffset(clickPosition, 0)
-                }
+            getExpandPosition = { clickPosition ->
+                scrollToExpandPosition(clickPosition)
             }
-            itemDelete = { event -> viewModel.deleteEvent(event) }
-            navigateToUpdate = { event ->
+            clickItemDelete = { event -> viewModel.deleteEvent(event) }
+            clickITemUpdate = { event ->
                 val direction = BrowseEventFragmentDirections.actionBrowseEventFragmentToUpdateEventFragment(event)
                 navController.navigate(direction)
             }
         }
     }
 
-
-
+    private fun scrollToExpandPosition(clickPosition: Int) {
+        val layoutManager = binding.calendarDayEventListRecycler.layoutManager as LinearLayoutManager
+        val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
+        if (clickPosition == lastPositionVisible) {
+            layoutManager.scrollToPositionWithOffset(clickPosition, 0)
+        }
+    }
 }

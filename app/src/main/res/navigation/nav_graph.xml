@@ -83,5 +83,11 @@
         <action
             android:id="@+id/action_browseEventFragment_to_updateEventFragment"
             app:destination="@id/updateEventFragment" />
+        <action
+            android:id="@+id/action_browseEventFragment_to_editEventFragment"
+            app:destination="@id/editEventFragment" />
+        <action
+            android:id="@+id/action_browseEventFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
 </navigation>

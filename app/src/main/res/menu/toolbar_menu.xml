@@ -2,7 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="年" android:id="@+id/menu_item_year" android:icon="@drawable/ic_baseline_calendar_month_24" app:showAsAction="withText"/>
-    <item android:title="月" android:id="@+id/menu_item_month" android:icon="@drawable/ic_baseline_calendar_view_month_24" app:showAsAction="withText"/>
-    <item android:title="日" android:id="@+id/menu_item_day" android:icon="@drawable/ic_baseline_calendar_today_24" app:showAsAction="withText"/>
+    <item
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="search"
+        app:showAsAction="always"
+        android:iconTint="@color/lightYellow"
+        />
+
+    <item
+        android:id="@+id/menu_item_currentDay"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="today"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_item_day"
+        android:icon="@drawable/ic_baseline_edit_calendar_24"
+        android:title="add"
+        app:showAsAction="always" />
+
 </menu>
