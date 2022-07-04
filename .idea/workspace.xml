@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but&#10;2. 考慮是否要拿掉BottomNavigation 因為目前BrowseEvent，就能夠呈現足夠的畫面給使用者，已經不太需要原本的Home，感覺可以做替換在優化">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -25,24 +25,38 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarEventListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarEventListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarViewAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/ContentListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/ContentListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/HomeEventAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/HomeEventAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/SearChRecyclerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/SearChRecyclerAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/BrowseEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/SearchFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/toolbar_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/toolbar_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarEventListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarEventListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarViewAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/CalendarViewPagerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarViewPagerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/ContentListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/ContentListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/HomeEventAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/HomeEventAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Adapter/SearChRecyclerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/DI/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/DI/MyApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/MyApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Data/EventRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepositoryImp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/BaseFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BaseFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/CalendarFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/CalendarFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/ContentMonthlyFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/ContentMonthlyFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/EditEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Fragment/UpdateEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Room/EventDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/EventDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Room/EventDataBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/EventDataBase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Room/EventTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/EventTypes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/SplashActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/SplashActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Util/AnimUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/AnimUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Util/EventTypeDiffUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/EventTypeDiffUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Util/LinearItemDecoration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/LinearItemDecoration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Util/OnClickUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/OnClickUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/Util/StringDiffUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/StringDiffUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/ViewModel/BrowseEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/BrowseEventViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/ViewModel/EventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +70,7 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[4d756a6a]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -109,8 +123,8 @@
         <option value="valueResourceFile" />
         <option value="Kotlin File" />
         <option value="resourceFile" />
-        <option value="Kotlin Class" />
         <option value="layoutResourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -153,7 +167,7 @@
     <property name="com.android.tools.idea.sqlite.queryhistory" value="select * from EventTypes order by id&#10;select * from EventTypes where year= '2022' and month= '4'&#10;select * from EventTypes where year= '2022' and month= '3'&#10;select * from EventTypes where year like 2022 AND month like  3&#10;select * from EventTypes where id= '0'" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -167,7 +181,13 @@
       <recent name="C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\java\com\voss\todolist\Data" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.voss.todolist.presentation.ui" />
       <recent name="com.voss.todolist.Fragment" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.voss.todolist.presentation" />
+      <recent name="com.voss.todolist.Data" />
+      <recent name="com.voss.todolist.ui" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -229,7 +249,7 @@
       </method>
     </configuration>
     <configuration name="EventTypesKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.Data.EventTypesKt" />
+      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.data.EventTypesKt" />
       <module name="ToDoList.app.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -565,7 +585,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656600727092</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but&#10;2. 考慮是否要拿掉BottomNavigation 因為目前BrowseEvent，就能夠呈現足夠的畫面給使用者，已經不太需要原本的Home，感覺可以做替換在優化">
+      <created>1656673468579</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1656673468579</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -598,7 +625,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.部分畫面元件優化調整&#10;2.修改SearchFragment filter 按鈕，更改為fab  &#10;3.contentFragment 新稱 fab 點選跳轉editFragment 新增事件" />
     <MESSAGE value="部分畫面元件優化調整" />
     <MESSAGE value="部分畫面 action 跳轉動畫優化" />
     <MESSAGE value="新增 Timber 功能" />
@@ -623,6 +649,7 @@
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體，導致每次update回來後，view從calendar取得的 day 匯市剛剛update的日期。所以應該在畫面回來的時候，初始化calendar，依樣也用lateinit 來設定，並在onViewCreated之後，重新拿取實體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but" />
-    <option name="LAST_COMMIT_MESSAGE" value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but" />
+    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but&#10;2. 考慮是否要拿掉BottomNavigation 因為目前BrowseEvent，就能夠呈現足夠的畫面給使用者，已經不太需要原本的Home，感覺可以做替換在優化" />
+    <option name="LAST_COMMIT_MESSAGE" value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but&#10;2. 考慮是否要拿掉BottomNavigation 因為目前BrowseEvent，就能夠呈現足夠的畫面給使用者，已經不太需要原本的Home，感覺可以做替換在優化" />
   </component>
 </project>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.voss.todolist.Fragment.HomeFragment"
+        android:name="com.voss.todolist.presentation.ui.fragment.HomeFragment"
         tools:layout="@layout/fragment_home"
         android:label="HomeFragment" >
 
@@ -22,30 +22,25 @@
     <fragment
         android:id="@+id/editEventFragment"
         tools:layout="@layout/fragment_editevent"
-        android:name="com.voss.todolist.Fragment.EditEventFragment"
+        android:name="com.voss.todolist.presentation.ui.fragment.EditEventFragment"
         android:label="EditEventFragment" >
-        <action
-            android:id="@+id/action_editEventFragment_to_homeFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/editEventFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
         tools:layout="@layout/fragment_search"
-        android:name="com.voss.todolist.Fragment.SearchFragment"
+        android:name="com.voss.todolist.presentation.ui.fragment.SearchFragment"
         android:label="SearchFragment" >
 
     </fragment>
     <fragment
         android:id="@+id/updateEventFragment"
         tools:layout="@layout/fragment_update_event"
-        android:name="com.voss.todolist.Fragment.UpdateEventFragment"
+        android:name="com.voss.todolist.presentation.ui.fragment.UpdateEventFragment"
         android:label="UpdateEventFragment" >
         <argument
             android:name="EventTypes"
-            app:argType="com.voss.todolist.Data.EventTypes" />
+            app:argType="com.voss.todolist.data.EventTypes" />
         <action
             android:id="@+id/action_updateEventFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -60,12 +55,12 @@
     <fragment
         android:id="@+id/contentMonthlyFragment"
         tools:layout="@layout/fragment_contentmonthly"
-        android:name="com.voss.todolist.Fragment.ContentMonthlyFragment"
+        android:name="com.voss.todolist.presentation.ui.fragment.ContentMonthlyFragment"
         android:label="ContentFragment" >
 
         <argument
             android:name="ContentArgs"
-            app:argType="com.voss.todolist.Adapter.ArgsToContent" />
+            app:argType="com.voss.todolist.presentation.ui.adapter.ArgsToContent" />
         <action
             android:id="@+id/action_contentFragment_to_updateEventFragment"
             app:destination="@id/updateEventFragment" />
@@ -78,7 +73,7 @@
     <fragment
         android:id="@+id/browseEventFragment"
         tools:layout="@layout/fragment_browse_event"
-        android:name="com.voss.todolist.Fragment.BrowseEventFragment"
+        android:name="com.voss.todolist.presentation.ui.fragment.BrowseEventFragment"
         android:label="BrowseEventFragment" >
         <action
             android:id="@+id/action_browseEventFragment_to_updateEventFragment"
