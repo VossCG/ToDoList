@@ -16,6 +16,7 @@ class SearChRecyclerAdapter() :
 
     var itemClick: (Int) -> Unit = {}
     var itemDelete: (EventTypes) -> Unit = {}
+    var itemUpdate: (EventTypes) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearChViewHolder {
         return SearChViewHolder(
@@ -49,6 +50,11 @@ class SearChRecyclerAdapter() :
 
             binding.expandArrowBut.setOnClickListener(expandListener)
             binding.root.setOnClickListener(expandListener)
+
+            binding.root.setOnLongClickListener {
+                itemUpdate.invoke(getItem(adapterPosition))
+                return@setOnLongClickListener true
+            }
 
             binding.rowSearchContentCompletebut.setOnClickListener {
                 itemDelete.invoke(getItem(adapterPosition))

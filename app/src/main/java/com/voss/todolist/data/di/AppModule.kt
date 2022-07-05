@@ -5,9 +5,7 @@ import androidx.room.Room
 import com.voss.todolist.data.EventRepositoryImp
 import com.voss.todolist.data.room.EventDao
 import com.voss.todolist.data.room.EventDataBase
-import com.voss.todolist.domain.DaoDataUseCase
-import com.voss.todolist.domain.FilterDataUseCase
-import com.voss.todolist.domain.FormatDateUseCase
+import com.voss.todolist.domain.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,13 +44,29 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesFilterDateUseCase(repository: EventRepositoryImp): FilterDataUseCase {
-        return FilterDataUseCase(repository)
+    fun providesSearchFactorChangeUseCase(repository: EventRepositoryImp): SearchFactorChangeUseCase {
+        return SearchFactorChangeUseCase(repository)
     }
 
     @Provides
     @Singleton
-    fun providesFormatDateUseCase(repository: EventRepositoryImp):FormatDateUseCase {
-        return FormatDateUseCase(repository)
+    fun providesFormatDateUseCase():FormatDateUseCase {
+        return FormatDateUseCase()
+    }
+    @Provides
+    @Singleton
+    fun providesMonthlyEventUseCase(repository: EventRepositoryImp):GetMonthlyEventUseCase {
+        return GetMonthlyEventUseCase(repository)
+    }
+    @Provides
+    @Singleton
+    fun provideSingleDayEventUseCase(repository: EventRepositoryImp):GetSingleDayEventUseCase{
+        return GetSingleDayEventUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDateIntegerUseCase():GetDateIntegerUseCase{
+        return GetDateIntegerUseCase()
     }
 }

@@ -11,6 +11,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/button_shape1.xml" value="0.1824074074074074" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/buttondefault_ripple.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/custom_icon_calendar_today.xml" value="0.1185" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_content_paste_24.xml" value="0.1875" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.1953125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.1953125" />
@@ -78,8 +79,9 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_editevent.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_home.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_item_selection.xml" value="0.17916666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_login.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_month.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_search.xml" value="0.22" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_search.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_start_search.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fragment_update_event.xml" value="0.22" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/ToDoList/app/src/main/res/layout/homefragment.xml" value="0.22" />

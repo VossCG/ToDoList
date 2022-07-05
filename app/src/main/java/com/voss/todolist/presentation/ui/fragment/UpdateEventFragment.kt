@@ -12,8 +12,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.voss.todolist.data.EventTypes
-import com.voss.todolist.presentation.viewModel.EventViewModel
 import com.voss.todolist.databinding.FragmentUpdateEventBinding
+import com.voss.todolist.presentation.viewModel.UpdateEventViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -23,10 +23,12 @@ class UpdateEventFragment() :
 
     private val args: UpdateEventFragmentArgs by navArgs()
     private val argsEventTypes get() = args.eventTypes
-    private val viewModel: EventViewModel by activityViewModels()
+    private val viewModel: UpdateEventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    private var newDate = MutableLiveData<String>("yyyy/mm/dd")
-    private var newDateInteger = 0
+
+    private var newDateInteger: Int = 0
+    private var newDate = MutableLiveData<String>()
+    private var newEvent :EventTypes? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,10 +43,11 @@ class UpdateEventFragment() :
     private fun updateItemData() {
         val newTitle = binding.updateTitleEdittext.text.toString()
         val newContent = binding.updateContentEditText.text.toString()
+
         if (inputCheck(newTitle, newContent)) {
-            val newEvent = EventTypes(newTitle, newContent, newDate.value!!, newDateInteger)
-            newEvent.id = argsEventTypes.id
-            viewModel.updateEvent(newEvent)
+            newEvent = EventTypes(newTitle, newContent, newDate.value!!, newDateInteger)
+            newEvent?.id = argsEventTypes.id
+            viewModel.updateEvent(newEvent!!)
             Toast.makeText(this.context, "Change Successful!!", Toast.LENGTH_SHORT).show()
         }
     }
@@ -55,8 +58,10 @@ class UpdateEventFragment() :
         binding.updateTitleEdittext.setText(argsEventTypes.title)
 
         // init date with args
-        newDate.value = argsEventTypes.date
+        newDate.postValue(argsEventTypes.date)
+        newEvent = argsEventTypes
         newDateInteger = argsEventTypes.dateInteger
+
         // init but
         binding.updateUploadBut.setOnClickListener {
             updateItemData()
@@ -64,7 +69,7 @@ class UpdateEventFragment() :
         }
 
         binding.cancelUpdateBut.backArrowBut.setOnClickListener {
-            AlertDialog.Builder(this.context)
+            AlertDialog.Builder(requireContext())
                 .setTitle("Message")
                 .setMessage("是否要取消編輯?")
                 .setPositiveButton("Yes") { _, _ ->
@@ -89,9 +94,8 @@ class UpdateEventFragment() :
 
     private val datePickerListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            newDateInteger = viewModel.getDateInteger(year, month+1, dayOfMonth)
-            newDate.value = viewModel.getDateFormat(year, month, dayOfMonth)
-            binding.updateDateTextView.text = viewModel.getDateFormat(year, month, dayOfMonth)
+            newDateInteger = viewModel.getDateInteger(year, month + 1, dayOfMonth)
+            newDate.postValue(viewModel.getDateFormat(year, month, dayOfMonth))
         }
 
     private fun inputCheck(title: String, content: String): Boolean {

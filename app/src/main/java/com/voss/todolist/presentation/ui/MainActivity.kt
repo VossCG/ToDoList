@@ -4,14 +4,9 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import androidx.viewbinding.BuildConfig
-import com.voss.todolist.R
 import com.voss.todolist.TimberTree
 import com.voss.todolist.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,13 +16,6 @@ import timber.log.Timber
 class MainActivity : AppCompatActivity() {
     private val imm: InputMethodManager by lazy { getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager }
     private lateinit var binding: ActivityMainBinding
-    private lateinit var mNavController: NavController
-    private val bottomViewGoneIdList = arrayListOf<Int>(
-        R.id.contentMonthlyFragment,
-        R.id.editEventFragment,
-        R.id.updateEventFragment,
-        R.id.browseEventFragment
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,30 +23,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        setBottomNavigation()
-    }
-
-    private fun setBottomNavigation() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        val navBottom = binding.navBottom
-
-        mNavController = navHostFragment.navController
-        navBottom.setupWithNavController(mNavController)
-
-        mNavController.addOnDestinationChangedListener { _, destination, _ ->
-            if (bottomViewGoneIdList.contains(destination.id)) {
-                navBottom.visibility = View.GONE
-            } else {
-                navBottom.visibility = View.VISIBLE
-            }
-        }
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         clearFocusOnOutsideClick(ev)
         return super.dispatchTouchEvent(ev)
     }
+
     private fun clearFocusOnOutsideClick(event: MotionEvent?) {
         currentFocus?.apply {
             if (event == null) return@apply

@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.voss.todolist.presentation.ui.adapter.CalendarViewAdapter
 import com.voss.todolist.R
-import com.voss.todolist.presentation.viewModel.BrowseEventViewModel
+import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentCalendarBinding
 import java.util.*
 
@@ -20,7 +20,7 @@ class CalendarFragment() : Fragment() {
 
     private var position: Int = 0
     private lateinit var mAdapter: CalendarViewAdapter
-    private val viewModel: BrowseEventViewModel by activityViewModels()
+    private val viewModel: CalendarViewModel by activityViewModels()
     private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
 
     constructor(position: Int) : this() {

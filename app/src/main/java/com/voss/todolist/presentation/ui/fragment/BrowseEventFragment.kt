@@ -9,41 +9,35 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.transition.MaterialSharedAxis
-import com.voss.todolist.presentation.ui.adapter.CalendarEventListAdapter
+import com.voss.todolist.presentation.ui.adapter.CalendarDayEventListAdapter
 import com.voss.todolist.presentation.ui.adapter.CalendarViewPagerAdapter
 import com.voss.todolist.R
-import com.voss.todolist.presentation.viewModel.BrowseEventViewModel
+import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentBrowseEventBinding
 import java.util.*
 
 
-class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBrowseEventBinding::inflate) {
+class BrowseEventFragment :
+    BaseFragment<FragmentBrowseEventBinding>(FragmentBrowseEventBinding::inflate) {
     private lateinit var calendarAdapter: CalendarViewPagerAdapter
-    private val calendar: Calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
-    private val eventListAdapter: CalendarEventListAdapter by lazy { CalendarEventListAdapter() }
-    private val viewModel: BrowseEventViewModel by activityViewModels()
+    private val dayEventAdapter: CalendarDayEventListAdapter by lazy { CalendarDayEventListAdapter() }
+    private val viewModel: CalendarViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    private val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
-    private val currentMonth = calendar.get(Calendar.MONTH)
-    private val currentYear = calendar.get(Calendar.YEAR)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
 
-        observeCurrentDate()
-        setCurrentDate()
+        setViewModelObserver()
         setCalendarViewPager()
-        setEventRecyclerList()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // set Transition Animation
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z,false)
+        setDayEventRecyclerView()
     }
 
     private fun initView() {
@@ -68,59 +62,39 @@ class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBro
         }
     }
 
-    // jump to the current date
     private fun backCurrentDate() {
-        binding.calendarContainerViewpager.setCurrentItem(currentMonth + 1, false)
-        viewModel.setSelectItemDay(currentDay)
-        viewModel.setMonth(currentMonth + 1)
-        viewModel.setYear(currentYear)
+        val calendar = Calendar.getInstance(Locale.TAIWAN)
+        binding.calendarContainerViewpager.setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
+        viewModel.setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
+        viewModel.setMonth(calendar.get(Calendar.MONTH) + 1)
+        viewModel.setYear(calendar.get(Calendar.YEAR))
     }
 
-    private fun observeCurrentDate() {
-        // observe year item View
+    private fun setViewModelObserver() {
+
         viewModel.currentYear.observe(viewLifecycleOwner) {
-            binding.browseEventYear.text = it.toString() + "年"
+            binding.browseEventYearTv.text = "$it 年"
         }
-        // observe month item View
+
         viewModel.currentMonth.observe(viewLifecycleOwner) {
-            binding.browseEventMonth.text = it.toString() + "月"
+            binding.browseEventMonthTv.text = it.toString() + "月"
         }
-        // observe user select day item
-        viewModel.selectItemDay.observe(viewLifecycleOwner) { selectDay ->
-            // filter current selected day event
-            val selectedDayEvent = viewModel.getMonthEvent(viewModel.currentMonth.value!!).filter {
-                it.getDay() == selectDay
-            }
-            // show the selected day
-            binding.browseEventSelectDayTv.text = viewModel.getDateFormat(
-                viewModel.currentYear.value!!,
-                viewModel.currentMonth.value!!-1,
-                selectDay,
-                calendar
-            )
+
+        viewModel.selectItemDay.observe(viewLifecycleOwner) {
+            val selectedDayEvent = viewModel.getSingleDayEvent()
+            // show the selected day  ### Use new fun to get SelectDate ###
+            binding.browseEventSelectDayTv.text = viewModel.getCurrentDate()
             // if selectedDay event is empty ,show a view to remind user have any event
             if (selectedDayEvent.isEmpty()) {
                 binding.browseEventHintTv.visibility = View.VISIBLE
             } else
                 binding.browseEventHintTv.visibility = View.GONE
             // refresh current selected item eventList View
-            eventListAdapter.submitList(selectedDayEvent)
+            dayEventAdapter.submitList(selectedDayEvent)
         }
-        // observe repo room date，when data change ,get new dayEvent to refresh eventList
-        viewModel.readAllEvent.observe(viewLifecycleOwner) { allEvent ->
-            val dayEvent = allEvent.filter {
-                it.getMonth() == viewModel.currentMonth.value && it.getDay() == viewModel.selectItemDay.value
-            }
-            eventListAdapter.submitList(dayEvent)
-        }
-    }
 
-    private fun setCurrentDate() {
-        // 注入當前的日期到ViewModel
-        viewModel.apply {
-            setYear(calendar.get(Calendar.YEAR))
-            setMonth(calendar.get(Calendar.MONTH) + 1)
-            setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
+        viewModel.readAllEvent.observe(viewLifecycleOwner) {
+            dayEventAdapter.submitList(viewModel.getSingleDayEvent())
         }
     }
 
@@ -130,7 +104,7 @@ class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBro
         viewpager.apply {
             adapter = calendarAdapter
             setPageTransformer(MarginPageTransformer(10))
-            setCurrentItem(currentMonth + 1, false)
+            setCurrentItem(viewModel.currentMonth.value!!, false)
 
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -159,7 +133,7 @@ class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBro
         }
     }
 
-    private fun setEventRecyclerList() {
+    private fun setDayEventRecyclerView() {
         // init recyclerView
         binding.calendarDayEventListRecycler.apply {
             setHasFixedSize(true)
@@ -170,19 +144,20 @@ class BrowseEventFragment : BaseFragment<FragmentBrowseEventBinding>(FragmentBro
                     DividerItemDecoration.VERTICAL
                 )
             )
-            adapter = eventListAdapter
-            eventListAdapter.submitList(
-                viewModel.getMonthEvent(calendar.get(Calendar.MONTH))
-                    .filter { it.getDay() == calendar.get(Calendar.DAY_OF_MONTH) })
+            adapter = dayEventAdapter
+            dayEventAdapter.submitList(viewModel.getSingleDayEvent())
         }
         // set callback
-        eventListAdapter.apply {
+        dayEventAdapter.apply {
             getExpandPosition = { clickPosition ->
                 scrollToExpandPosition(clickPosition)
             }
             clickItemDelete = { event -> viewModel.deleteEvent(event) }
             clickITemUpdate = { event ->
-                val direction = BrowseEventFragmentDirections.actionBrowseEventFragmentToUpdateEventFragment(event)
+                val direction =
+                    BrowseEventFragmentDirections.actionBrowseEventFragmentToUpdateEventFragment(
+                        event
+                    )
                 navController.navigate(direction)
             }
         }
