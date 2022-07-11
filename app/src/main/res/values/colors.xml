@@ -2,7 +2,7 @@
 <resources>
     <!-- Primary brand color. -->
     <color name="primaryColor">#424242</color>
-    <color name="primaryLightColor">#FF018786</color>
+    <color name="primaryLightColor">@color/atrovirens</color>
     <color name="primaryDarkColor">#1b1b1b</color>
     <color name="primaryTextColor">#EDEDED</color>
     <!-- Secondary brand color. -->
@@ -27,8 +27,9 @@
     <color name="darkBlue">#1B294F</color>
     <color name="darkYellow">#CFB13C</color>
     <color name="orange">#C47525</color>
-    <color name="ligjtblue">#E48BA1DA</color>
     <color name="lightGreen">#76CC71</color>
-    <color name="darkGreen">#589653</color>
     <color name="lightYellow">#BA7E23</color>
+    <color name="ic_todolist_launcher_background">@color/darkGreen</color>
+    <color name="darkGreen">#285E40</color>
+    <color name="atrovirens">#649A8C</color>
 </resources>

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
         android:id="@+id/editevent_title_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,22 +22,40 @@
             style="@style/TextAppearance.MaterialComponents.Headline4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:gravity="center"
-            android:text="建立與紀錄活動" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            android:text="建立與紀錄活動"
+            android:textStyle="bold" />
+    </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
-        app:layout_constraintTop_toBottomOf="@id/editevent_title_linearLayout"
-        app:layout_constraintBottom_toTopOf="@+id/setUpEvent_but"
         android:id="@+id/evenContent_scroll"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/setUpEvent_but"
+        app:layout_constraintTop_toBottomOf="@id/editevent_title_linearLayout">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textStyle="italic"
+                android:text="活動類型" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include
+                    android:id="@+id/editChipGroup"
+                    layout="@layout/custom_chipgroup_choice_event"
+                    />
+            </HorizontalScrollView>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/title_InputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -82,10 +100,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:padding="10dp"
                 android:text="設定活動時間"
-                android:textSize="20sp"
-                android:textStyle="italic" />
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textStyle="italic"
+                />
 
 
             <DatePicker
@@ -104,11 +123,11 @@
         style="@style/DefaultMaterialButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/darkGrey"
         android:padding="10dp"
-        android:backgroundTint="@color/lightBlue"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:text="建立活動"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:textSize="30sp" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

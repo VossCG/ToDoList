@@ -3,14 +3,15 @@ package com.voss.todolist.presentation.ui.fragment
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.forEach
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.chip.Chip
 import com.voss.todolist.data.EventTypes
 import com.voss.todolist.databinding.FragmentUpdateEventBinding
 import com.voss.todolist.presentation.viewModel.UpdateEventViewModel
@@ -18,8 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class UpdateEventFragment() :
-    BaseFragment<FragmentUpdateEventBinding>(FragmentUpdateEventBinding::inflate) {
+class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentUpdateEventBinding::inflate) {
 
     private val args: UpdateEventFragmentArgs by navArgs()
     private val argsEventTypes get() = args.eventTypes
@@ -28,7 +28,8 @@ class UpdateEventFragment() :
 
     private var newDateInteger: Int = 0
     private var newDate = MutableLiveData<String>()
-    private var newEvent :EventTypes? = null
+    private var newEvent: EventTypes? = null
+    private var newType: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,7 +46,7 @@ class UpdateEventFragment() :
         val newContent = binding.updateContentEditText.text.toString()
 
         if (inputCheck(newTitle, newContent)) {
-            newEvent = EventTypes(newTitle, newContent, newDate.value!!, newDateInteger)
+            newEvent = EventTypes(newTitle, newContent, newDate.value!!, newDateInteger, newType)
             newEvent?.id = argsEventTypes.id
             viewModel.updateEvent(newEvent!!)
             Toast.makeText(this.context, "Change Successful!!", Toast.LENGTH_SHORT).show()
@@ -61,9 +62,19 @@ class UpdateEventFragment() :
         newDate.postValue(argsEventTypes.date)
         newEvent = argsEventTypes
         newDateInteger = argsEventTypes.dateInteger
+        newType = argsEventTypes.type
+
+        // init chipGroup
+        binding.updateChipGroup.selectedTypeChipGroup.forEach{ view->
+            view as Chip
+            view.isChecked = (view).text == argsEventTypes.type
+        }
+        binding.updateChipGroup.selectedTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
+            newType = group.findViewById<Chip>(checkedId).text.toString()
+        }
 
         // init but
-        binding.updateUploadBut.setOnClickListener {
+        binding.updateBut.setOnClickListener {
             updateItemData()
             navController.navigateUp()
         }
@@ -92,14 +103,13 @@ class UpdateEventFragment() :
         }
     }
 
-    private val datePickerListener =
-        DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+    private val datePickerListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             newDateInteger = viewModel.getDateInteger(year, month + 1, dayOfMonth)
             newDate.postValue(viewModel.getDateFormat(year, month, dayOfMonth))
         }
 
     private fun inputCheck(title: String, content: String): Boolean {
-        return !(TextUtils.isEmpty(title) && TextUtils.isEmpty(content))
+        return (title.isNotEmpty() && content.isNotEmpty())
     }
 }
 

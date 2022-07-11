@@ -21,6 +21,7 @@ class CalendarDayEventListAdapter : ListAdapter<EventTypes, CalendarDayEventList
         private var isExpanded = false
         val title = binding.itemEventTitle
         val content = binding.eventListItemContentTv
+        val icon = binding.itemEventIcon
 
         init {
             binding.eventListItemDeleteBut.setOnClickListener {
@@ -61,5 +62,12 @@ class CalendarDayEventListAdapter : ListAdapter<EventTypes, CalendarDayEventList
     override fun onBindViewHolder(holder: CalendarEventViewHolder, position: Int) {
         holder.title.text = getItem(position).title
         holder.content.text = getItem(position).content
+        when(getItem(position).type){
+            "工作" -> holder.icon.setImageResource(R.drawable.ic_baseline_work_24)
+            "出遊" -> holder.icon.setImageResource(R.drawable.ic_baseline_directions_car_24)
+            "運動" -> holder.icon.setImageResource(R.drawable.ic_baseline_sports_tennis_24)
+            "休閒" -> holder.icon.setImageResource(R.drawable.ic_baseline_weekend_24)
+            "聚餐" -> holder.icon.setImageResource(R.drawable.ic_baseline_dining_24)
+        }
     }
 }

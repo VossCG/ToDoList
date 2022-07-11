@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:padding="8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
         android:id="@+id/updateEvent_title_linearLayout"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
@@ -29,7 +28,7 @@
             style="@style/TextAppearance.MaterialComponents.Headline4"
             />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </FrameLayout>
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -40,6 +39,14 @@
         app:layout_constraintBottom_toTopOf="@+id/updateInner_ConstrainLayout"
         app:layout_constraintTop_toBottomOf="@+id/updateEvent_title_linearLayout">
 
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                android:id="@+id/updateChipGroup"
+                layout="@layout/custom_chipgroup_choice_event"
+                />
+        </HorizontalScrollView>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/updateTitle_InputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -91,7 +98,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/updateUpload_but"
+        app:layout_constraintBottom_toTopOf="@+id/update_but"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -116,7 +123,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/updateUpload_but"
+        android:id="@+id/update_but"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="編輯完成"

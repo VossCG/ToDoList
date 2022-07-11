@@ -13,6 +13,7 @@ data class EventTypes(
     val content: String,
     val date: String,
     val dateInteger: Int,
+    val type:String
 ) : Parcelable {
     @IgnoredOnParcel
     @PrimaryKey(autoGenerate = true)

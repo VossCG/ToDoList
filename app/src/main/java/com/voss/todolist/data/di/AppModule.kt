@@ -21,7 +21,7 @@ object AppModule {
     @Provides
     @Singleton
     fun providesRoomDatabase(@ApplicationContext context: Context): EventDataBase {
-        return Room.databaseBuilder(context, EventDataBase::class.java, "EventDataBase.db")
+        return Room.databaseBuilder(context, EventDataBase::class.java, "EventData.db")
             .build()
     }
 

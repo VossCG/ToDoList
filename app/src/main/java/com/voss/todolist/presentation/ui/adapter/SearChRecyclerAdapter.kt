@@ -30,7 +30,7 @@ class SearChRecyclerAdapter() :
 
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
         holder.title.text = getItem(position).title
-        holder.month.text = (getItem(position).getMonth()).toString() + "月"
+        holder.month.text = (getItem(position).getMonth() ).toString() + "月"
         holder.day.text = getItem(position).getDay().toString()
         holder.content.text = getItem(position).content
 

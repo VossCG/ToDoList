@@ -1,8 +1,13 @@
 package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import android.text.style.StrikethroughSpan
+import android.text.style.UnderlineSpan
 import android.view.View
-import android.view.animation.Animation
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -10,16 +15,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.R
 import com.voss.todolist.presentation.ui.adapter.SearChRecyclerAdapter
-import com.voss.todolist.util.AnimUtil
 import com.voss.todolist.util.setPreventQuickerClick
-import com.voss.todolist.presentation.viewModel.EventViewModel
 import com.voss.todolist.databinding.FragmentSearchBinding
+import com.voss.todolist.presentation.viewModel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
-    private val viewModel: EventViewModel by activityViewModels()
+    private val viewModel: SearchViewModel by activityViewModels()
     private val navController by lazy { findNavController() }
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
     private var inputData: String = "null"
@@ -29,11 +33,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            mAdapter.submitList(viewModel.filterDataWithFactor(inputData))
+            mAdapter.submitList(viewModel.filterEventsWithFactor(inputData))
         }
         setFloatingActionBut()
         setRecyclerView()
         setSearchEditText(view)
+
     }
 
     private fun setSearchEditText(view: View) {
@@ -44,8 +49,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                     // 關閉鍵盤
                     closeKeyboard(view, requireActivity())
                     // 獲得關鍵字過濾資料，放入adapter
-                    val filterData = viewModel.filterDataWithFactor(inputData)
-                    if (filterData.isNullOrEmpty())
+                    val filterData = viewModel.filterEventsWithFactor(inputData)
+                    if (filterData.isEmpty())
                         Toast.makeText(this.context, "搜尋條件 找不到相關資料 請重新查詢", Toast.LENGTH_SHORT)
                             .show()
                     else mAdapter.submitList(filterData)
@@ -64,7 +69,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.filterFab.setPreventQuickerClick {
             switchSearchFactor()
         }
-
     }
 
     private fun switchSearchFactor() {
@@ -72,11 +76,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         if (isTitle) {
             viewModel.setSearchFactor("title")
             binding.filterFab.setImageResource(R.drawable.ic_baseline_title_24)
-            Toast.makeText(requireContext(),"Search Title",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Search Title", Toast.LENGTH_SHORT).show()
         } else {
             viewModel.setSearchFactor("content")
             binding.filterFab.setImageResource(R.drawable.ic_baseline_content_paste_24)
-            Toast.makeText(requireContext(),"Search Content",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Search Content", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -95,9 +99,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                     layoutManager.scrollToPositionWithOffset(clickPosition, 0)
                 }
             }
-            itemDelete = { event ->
-                viewModel.deleteEvent(event)
-            }
+            itemDelete = { event -> viewModel.deleteEvent(event) }
             itemUpdate = { event ->
                 val direction =
                     SearchFragmentDirections.actionSearchFragmentToUpdateEventFragment(event)

@@ -36,7 +36,6 @@ class CalendarViewModel @Inject constructor(
 
     private val _currentMonth = MutableLiveData<Int>()
     val currentMonth: LiveData<Int> = _currentMonth
-
     // -------------------------------------------------------------
 
     init {
@@ -60,7 +59,6 @@ class CalendarViewModel @Inject constructor(
     fun plusYear(plus: Int) {
         _currentYear.value = _currentYear.value?.plus(plus)
     }
-
     // useCase test
     fun deleteEvent(eventType: EventTypes) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -70,11 +68,9 @@ class CalendarViewModel @Inject constructor(
             }
         }
     }
-
     fun getMonthEvent(month: Int): List<EventTypes> {
         return getMonthlyEventUseCase(_currentYear.value!!, month)
     }
-
     fun getSingleDayEvent(): List<EventTypes> {
         return getSingleDayEventUseCase.invoke(
             _currentYear.value!!,
@@ -90,5 +86,4 @@ class CalendarViewModel @Inject constructor(
             _selectItemDay.value!!
         )
     }
-
 }
