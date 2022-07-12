@@ -29,8 +29,8 @@
         android:name="com.voss.todolist.presentation.ui.fragment.UpdateEventFragment"
         android:label="UpdateEventFragment" >
         <argument
-            android:name="EventTypes"
-            app:argType="com.voss.todolist.data.EventTypes" />
+            android:name="Event"
+            app:argType="com.voss.todolist.data.Event" />
         <action
             android:id="@+id/action_updateEventFragment_to_homeFragment"
             app:destination="@id/homeFragment"

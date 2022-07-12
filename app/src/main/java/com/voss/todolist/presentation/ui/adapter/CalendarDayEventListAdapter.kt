@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.R
 import com.voss.todolist.util.EventTypeDiffUtil
 import com.voss.todolist.databinding.ItemviewEventListBinding
 
-class CalendarDayEventListAdapter : ListAdapter<EventTypes, CalendarDayEventListAdapter.CalendarEventViewHolder>(EventTypeDiffUtil()) {
+class CalendarDayEventListAdapter : ListAdapter<Event, CalendarDayEventListAdapter.CalendarEventViewHolder>(EventTypeDiffUtil()) {
 
-    var clickItemDelete: (EventTypes) -> Unit = {}
-    var clickITemUpdate: (EventTypes) -> Unit = {}
+    var clickItemDelete: (Event) -> Unit = {}
+    var clickITemUpdate: (Event) -> Unit = {}
     var getExpandPosition: (position: Int) -> Unit = {}
 
     inner class CalendarEventViewHolder(val binding: ItemviewEventListBinding) :

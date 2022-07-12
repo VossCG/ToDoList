@@ -1,14 +1,14 @@
 package com.voss.todolist.util
 
 import androidx.recyclerview.widget.DiffUtil
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 
-class EventTypeDiffUtil : DiffUtil.ItemCallback<EventTypes>() {
-    override fun areItemsTheSame(oldItem: EventTypes, newItem: EventTypes): Boolean {
+class EventTypeDiffUtil : DiffUtil.ItemCallback<Event>() {
+    override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: EventTypes, newItem: EventTypes): Boolean {
+    override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
         return oldItem == newItem
     }
 }

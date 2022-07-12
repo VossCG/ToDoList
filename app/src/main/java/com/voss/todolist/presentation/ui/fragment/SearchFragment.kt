@@ -1,23 +1,21 @@
 package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.ForegroundColorSpan
-import android.text.style.StrikethroughSpan
-import android.text.style.UnderlineSpan
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.voss.todolist.R
+import com.voss.todolist.data.Event
 import com.voss.todolist.presentation.ui.adapter.SearChRecyclerAdapter
 import com.voss.todolist.util.setPreventQuickerClick
 import com.voss.todolist.databinding.FragmentSearchBinding
 import com.voss.todolist.presentation.viewModel.SearchViewModel
+import com.voss.todolist.util.closeKeyboard
+import com.voss.todolist.util.setToast
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -99,12 +97,25 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                     layoutManager.scrollToPositionWithOffset(clickPosition, 0)
                 }
             }
-            itemDelete = { event -> viewModel.deleteEvent(event) }
+            itemDelete = { event ->
+                deleteEvent(event)
+            }
             itemUpdate = { event ->
                 val direction =
                     SearchFragmentDirections.actionSearchFragmentToUpdateEventFragment(event)
                 navController.navigate(direction)
             }
         }
+    }
+
+    private fun deleteEvent(event: Event) {
+        viewModel.deleteEvent(event)
+        Snackbar.make(binding.root, "已完成刪除", Snackbar.LENGTH_SHORT)
+            .setAnchorView(binding.filterFab)
+            .setAction("undo") {
+                viewModel.addEvent(event)
+                setToast(requireContext(), "回復刪除")
+            }
+            .show()
     }
 }

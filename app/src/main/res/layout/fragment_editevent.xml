@@ -125,6 +125,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/darkGrey"
         android:padding="10dp"
+        android:clickable="false"
         android:text="建立活動"
         android:textSize="30sp"
         android:textStyle="bold"

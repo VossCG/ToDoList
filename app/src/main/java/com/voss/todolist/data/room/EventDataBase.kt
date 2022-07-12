@@ -2,10 +2,10 @@ package com.voss.todolist.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 
 
-@Database(entities = [EventTypes::class],version = 1,exportSchema = false)
+@Database(entities = [Event::class],version = 1,exportSchema = false)
 abstract class EventDataBase : RoomDatabase() {
     abstract fun eventRoomDao(): EventDao
 }

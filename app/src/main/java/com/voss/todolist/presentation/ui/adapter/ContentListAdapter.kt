@@ -7,15 +7,15 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.util.EventTypeDiffUtil
 import com.voss.todolist.databinding.ItemviewDateEventContentBinding
 import kotlinx.parcelize.Parcelize
 
-class ContentListAdapter : ListAdapter<EventTypes, ContentListAdapter.ContentViewHolder>(EventTypeDiffUtil()) {
+class ContentListAdapter : ListAdapter<Event, ContentListAdapter.ContentViewHolder>(EventTypeDiffUtil()) {
 
-    var itemClickUpdate: (data: EventTypes) -> Unit = {}
-    var itemClickDelete: (data: EventTypes) -> Unit = {}
+    var itemClickUpdate: (data: Event) -> Unit = {}
+    var itemClickDelete: (data: Event) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
         return ContentViewHolder(
@@ -47,7 +47,7 @@ class ContentListAdapter : ListAdapter<EventTypes, ContentListAdapter.ContentVie
             }
         }
 
-        fun onBind(data: EventTypes) {
+        fun onBind(data: Event) {
             title.text = data.title
             date.text = data.date.substring(5, 10)
             content.text = data.content

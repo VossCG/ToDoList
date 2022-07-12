@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.ItemviewCalendarGridviewIconBinding
 
 class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int) :
     RecyclerView.Adapter<CalendarViewAdapter.CalendarViewHolder>() {
-    private var event: List<EventTypes> = emptyList()
+    private var event: List<Event> = emptyList()
     private lateinit var oldSelectItemView: View
     private var isFirstSelected = true
     var getDrawableCallBack: ((String) -> Drawable)? = null
@@ -39,7 +39,7 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
     }
 
     // set current event data
-    fun setData(newList: List<EventTypes>) {
+    fun setData(newList: List<Event>) {
         this.event = newList
         notifyDataSetChanged()
     }
@@ -59,7 +59,7 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
         fun bind(position: Int){
             val currentDay = position - weekDayOffset + 1
             dateTextView.text = currentDay.toString()
-            val currentDayEvent: List<EventTypes> = event.filter {
+            val currentDayEvent: List<Event> = event.filter {
                 it.getDay() == currentDay
             }
             // 當事件數量 到某一個數值時候，顯示不同的顏色

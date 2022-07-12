@@ -10,7 +10,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         runBlocking {
-            delay(2000)
+            delay(1000)
         }
         startActivity(Intent(this, MainActivity::class.java))
         finish()

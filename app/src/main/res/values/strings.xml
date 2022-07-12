@@ -33,6 +33,14 @@
         <item>進度</item>
     </string-array>
 
+    <string-array name="eventType">
+        <item>工作</item>
+        <item>出遊</item>
+        <item>運動</item>
+        <item>休閒</item>
+        <item>聚餐</item>
+    </string-array>
+
     <integer-array name="year">
         <item>2020</item>
         <item>2021</item>

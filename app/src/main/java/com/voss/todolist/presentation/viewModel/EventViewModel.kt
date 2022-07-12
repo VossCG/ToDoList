@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 import androidx.lifecycle.viewModelScope
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
 import com.voss.todolist.domain.SearchFactorChangeUseCase
 import com.voss.todolist.domain.FormatDateUseCase
@@ -25,7 +25,7 @@ class EventViewModel @Inject constructor(
     private val formatDateUseCase: FormatDateUseCase,
 ) : AndroidViewModel(application) {
 
-    val readAllEvent: LiveData<List<EventTypes>> = daoDataUseCase.getAll()
+    val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()
     private val filterFactor = MutableLiveData<String>()
 
 
@@ -33,19 +33,19 @@ class EventViewModel @Inject constructor(
         filterFactor.value = "title"
     }
 
-    fun addEvent(eventType: EventTypes) {
+    fun addEvent(eventType: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.addEvent(eventType)
         }
     }
 
-    fun updateEvent(eventType: EventTypes) {
+    fun updateEvent(eventType: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.updateEvent(eventType)
         }
     }
 
-    fun deleteEvent(eventType: EventTypes) {
+    fun deleteEvent(eventType: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.deleteEvent(eventType)
             withContext(Dispatchers.Main) {
@@ -66,7 +66,7 @@ class EventViewModel @Inject constructor(
         return year * 10000 + month * 100 + day
     }
 
-    fun filterDataWithFactor(inputData: String): List<EventTypes> {
+    fun filterDataWithFactor(inputData: String): List<Event> {
         return SearchFactorChangeUseCase(inputData, filterFactor.value ?: "null")
     }
 }

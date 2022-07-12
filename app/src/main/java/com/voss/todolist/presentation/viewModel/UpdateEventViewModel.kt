@@ -3,7 +3,7 @@ package com.voss.todolist.presentation.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
 import com.voss.todolist.domain.FormatDateUseCase
 import com.voss.todolist.domain.GetDateIntegerUseCase
@@ -23,7 +23,7 @@ class UpdateEventViewModel @Inject constructor(
     fun getDateFormat(year: Int, month: Int, day: Int): String {
         return formatDateUseCase.invoke(year, month, day)
     }
-    fun updateEvent(eventTypes: EventTypes) {
+    fun updateEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.updateEvent(eventTypes)
         }

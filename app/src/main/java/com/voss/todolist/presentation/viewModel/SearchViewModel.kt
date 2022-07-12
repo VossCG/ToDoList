@@ -5,10 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
-import com.voss.todolist.domain.FormatDateUseCase
-import com.voss.todolist.domain.GetDateIntegerUseCase
 import com.voss.todolist.domain.SearchFactorChangeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +21,7 @@ class SearchViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     private val _filterFactor = MutableLiveData<String>()
-    val readAllEvent: LiveData<List<EventTypes>> = daoDataUseCase.getAll()
+    val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()
 
     init {
         _filterFactor.value = "title"
@@ -33,13 +31,18 @@ class SearchViewModel @Inject constructor(
         _filterFactor.postValue(factor)
     }
 
-    fun deleteEvent(eventTypes: EventTypes) {
+    fun deleteEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.deleteEvent(eventTypes)
         }
     }
+    fun addEvent(eventTypes: Event){
+        viewModelScope.launch(Dispatchers.IO) {
+            daoDataUseCase.addEvent(eventTypes)
+        }
+    }
 
-    fun filterEventsWithFactor(inputData: String): List<EventTypes> {
+    fun filterEventsWithFactor(inputData: String): List<Event> {
         return searchFactorChangeUseCase(inputData, _filterFactor.value ?: "null")
     }
 }

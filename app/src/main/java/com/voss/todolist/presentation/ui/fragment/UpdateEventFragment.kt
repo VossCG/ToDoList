@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.FragmentUpdateEventBinding
 import com.voss.todolist.presentation.viewModel.UpdateEventViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,13 +22,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentUpdateEventBinding::inflate) {
 
     private val args: UpdateEventFragmentArgs by navArgs()
-    private val argsEventTypes get() = args.eventTypes
+    private val argsEventTypes get() = args.event
     private val viewModel: UpdateEventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
 
     private var newDateInteger: Int = 0
     private var newDate = MutableLiveData<String>()
-    private var newEvent: EventTypes? = null
+    private var newEvent: Event? = null
     private var newType: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +46,7 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
         val newContent = binding.updateContentEditText.text.toString()
 
         if (inputCheck(newTitle, newContent)) {
-            newEvent = EventTypes(newTitle, newContent, newDate.value!!, newDateInteger, newType)
+            newEvent = Event(newTitle, newContent, newDate.value!!, newDateInteger, newType)
             newEvent?.id = argsEventTypes.id
             viewModel.updateEvent(newEvent!!)
             Toast.makeText(this.context, "Change Successful!!", Toast.LENGTH_SHORT).show()

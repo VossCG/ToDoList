@@ -2,7 +2,7 @@ package com.voss.todolist.presentation.viewModel
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
 import com.voss.todolist.domain.FormatDateUseCase
 import com.voss.todolist.domain.GetDateIntegerUseCase
@@ -48,7 +48,7 @@ class EditEventViewModel @Inject constructor(
         _day.postValue(day)
     }
 
-    fun addEvent(eventTypes: EventTypes) {
+    fun addEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.addEvent(eventTypes)
         }

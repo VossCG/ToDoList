@@ -30,10 +30,6 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflat
     }
 }
 
-fun closeKeyboard(view: View, activity: FragmentActivity) {
-    val keyboardManager =
-        activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    keyboardManager.hideSoftInputFromWindow(view.windowToken, 0)
-}
+
 
 

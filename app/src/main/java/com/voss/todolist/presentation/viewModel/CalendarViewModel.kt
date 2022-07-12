@@ -1,9 +1,8 @@
 package com.voss.todolist.presentation.viewModel
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.*
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
 import com.voss.todolist.domain.FormatDateUseCase
 import com.voss.todolist.domain.GetMonthlyEventUseCase
@@ -11,7 +10,6 @@ import com.voss.todolist.domain.GetSingleDayEventUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
@@ -24,7 +22,7 @@ class CalendarViewModel @Inject constructor(
     private val getSingleDayEventUseCase: GetSingleDayEventUseCase
 ) : AndroidViewModel(application) {
 
-    val readAllEvent: LiveData<List<EventTypes>> = daoDataUseCase.getAll()
+    val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()
 
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
 
@@ -60,18 +58,20 @@ class CalendarViewModel @Inject constructor(
         _currentYear.value = _currentYear.value?.plus(plus)
     }
     // useCase test
-    fun deleteEvent(eventType: EventTypes) {
+    fun deleteEvent(eventType: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.deleteEvent(eventType)
-            withContext(Dispatchers.Main) {
-                Toast.makeText(getApplication(), "刪除完成", Toast.LENGTH_SHORT).show()
-            }
         }
     }
-    fun getMonthEvent(month: Int): List<EventTypes> {
+    fun addEvent(eventType: Event){
+        viewModelScope.launch(Dispatchers.IO){
+            daoDataUseCase.addEvent(eventType)
+        }
+    }
+    fun getMonthEvent(month: Int): List<Event> {
         return getMonthlyEventUseCase(_currentYear.value!!, month)
     }
-    fun getSingleDayEvent(): List<EventTypes> {
+    fun getSingleDayEvent(): List<Event> {
         return getSingleDayEventUseCase.invoke(
             _currentYear.value!!,
             _currentMonth.value!!,

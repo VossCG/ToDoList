@@ -22,12 +22,3 @@ class LinearItemDecoration(private val marginPx: Int) : RecyclerView.ItemDecorat
     }
 }
 
-fun pxToDp(context: Context, px: Float): Int {
-    val scale = context.resources.displayMetrics.density
-    return (px / scale + 0.5f).toInt()
-}
-
-fun dpToPx(context: Context, dp: Float): Int {
-    val scale = context.resources.displayMetrics.density
-    return (dp * scale + 0.5f).toInt()
-}

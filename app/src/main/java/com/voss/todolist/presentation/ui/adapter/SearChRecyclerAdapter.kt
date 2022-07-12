@@ -6,17 +6,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.R
 import com.voss.todolist.util.EventTypeDiffUtil
 import com.voss.todolist.databinding.ItemviewSearchEventCardviewBinding
 
 class SearChRecyclerAdapter() :
-    ListAdapter<EventTypes, SearChRecyclerAdapter.SearChViewHolder>(EventTypeDiffUtil()) {
+    ListAdapter<Event, SearChRecyclerAdapter.SearChViewHolder>(EventTypeDiffUtil()) {
 
     var itemClick: (Int) -> Unit = {}
-    var itemDelete: (EventTypes) -> Unit = {}
-    var itemUpdate: (EventTypes) -> Unit = {}
+    var itemDelete: (Event) -> Unit = {}
+    var itemUpdate: (Event) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearChViewHolder {
         return SearChViewHolder(

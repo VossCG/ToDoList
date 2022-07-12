@@ -1,5 +1,7 @@
 package com.voss.todolist.presentation.ui.fragment
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -9,11 +11,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.snackbar.Snackbar
 import com.voss.todolist.presentation.ui.adapter.CalendarDayEventListAdapter
 import com.voss.todolist.presentation.ui.adapter.CalendarViewPagerAdapter
 import com.voss.todolist.R
+import com.voss.todolist.data.Event
 import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentBrowseEventBinding
+import com.voss.todolist.util.setToast
 import java.util.*
 
 
@@ -23,12 +28,6 @@ class BrowseEventFragment :
     private val dayEventAdapter: CalendarDayEventListAdapter by lazy { CalendarDayEventListAdapter() }
     private val viewModel: CalendarViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -152,22 +151,29 @@ class BrowseEventFragment :
             getExpandPosition = { clickPosition ->
                 scrollToExpandPosition(clickPosition)
             }
-            clickItemDelete = { event -> viewModel.deleteEvent(event) }
+            clickItemDelete = { event -> deleteEvent(event) }
             clickITemUpdate = { event ->
-                val direction =
-                    BrowseEventFragmentDirections.actionBrowseEventFragmentToUpdateEventFragment(
-                        event
-                    )
+                val direction = BrowseEventFragmentDirections.actionBrowseEventFragmentToUpdateEventFragment(event)
                 navController.navigate(direction)
             }
         }
     }
 
     private fun scrollToExpandPosition(clickPosition: Int) {
-        val layoutManager = binding.calendarDayEventListRecycler.layoutManager as LinearLayoutManager
+        val layoutManager =
+            binding.calendarDayEventListRecycler.layoutManager as LinearLayoutManager
         val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
         if (clickPosition == lastPositionVisible) {
             layoutManager.scrollToPositionWithOffset(clickPosition, 0)
         }
+    }
+
+    private fun deleteEvent(event: Event) {
+        viewModel.deleteEvent(event)
+        Snackbar.make(binding.root, "已完成刪除", Snackbar.LENGTH_SHORT)
+            .setAction("undo") {
+                viewModel.addEvent(event)
+                setToast(requireContext(), "回復刪除")
+            }.show()
     }
 }

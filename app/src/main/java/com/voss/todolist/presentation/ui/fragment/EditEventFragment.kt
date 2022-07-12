@@ -9,14 +9,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.voss.todolist.R
-import com.voss.todolist.data.EventTypes
+import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.FragmentEditeventBinding
 import com.voss.todolist.presentation.viewModel.EditEventViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeventBinding::inflate) {
+class EditEventFragment :
+    BaseFragment<FragmentEditeventBinding>(FragmentEditeventBinding::inflate) {
 
     private val viewModel: EditEventViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
@@ -51,9 +52,12 @@ class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeve
         if (!binding.contentEditText.text.isNullOrEmpty() && !binding.titleEdittext.text.isNullOrEmpty()) {
             binding.setUpEventBut.backgroundTintList =
                 resources.getColorStateList(R.color.lightYellow, null)
-        } else
+            binding.setUpEventBut.isClickable = true
+        } else {
             binding.setUpEventBut.backgroundTintList =
                 resources.getColorStateList(R.color.darkGrey, null)
+            binding.setUpEventBut.isClickable = false
+        }
     }
 
     private fun insertDataToDataBase() {
@@ -65,7 +69,7 @@ class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeve
         val date = viewModel.getCurrentDate()
 
         if (checkData(title, date, content)) {
-            val event = EventTypes(title, content, date, dateInteger, type)
+            val event = Event(title, content, date, dateInteger, type)
             viewModel.addEvent(event)
             Toast.makeText(this.context, "新增成功", Toast.LENGTH_SHORT).show()
             navController.navigateUp()
