@@ -50,8 +50,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesFormatDateUseCase():FormatDateUseCase {
-        return FormatDateUseCase()
+    fun providesFormatDateUseCase():GetFormatDateUseCase {
+        return GetFormatDateUseCase()
     }
     @Provides
     @Singleton

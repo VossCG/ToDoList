@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -15,13 +15,13 @@ import com.voss.todolist.util.setPreventQuickerClick
 import com.voss.todolist.databinding.FragmentSearchBinding
 import com.voss.todolist.presentation.viewModel.SearchViewModel
 import com.voss.todolist.util.closeKeyboard
-import com.voss.todolist.util.setToast
+import com.voss.todolist.util.setToastShort
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
-    private val viewModel: SearchViewModel by activityViewModels()
+    private val viewModel: SearchViewModel by viewModels()
     private val navController by lazy { findNavController() }
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
     private var inputData: String = "null"
@@ -33,7 +33,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
             mAdapter.submitList(viewModel.filterEventsWithFactor(inputData))
         }
-        setFloatingActionBut()
+        setClickListener()
         setRecyclerView()
         setSearchEditText(view)
 
@@ -63,9 +63,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
-    private fun setFloatingActionBut() {
+    private fun setClickListener() {
         binding.filterFab.setPreventQuickerClick {
             switchSearchFactor()
+        }
+        binding.cancelSearchBut.backArrowBut.setOnClickListener {
+            navController.navigateUp()
         }
     }
 
@@ -114,7 +117,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             .setAnchorView(binding.filterFab)
             .setAction("undo") {
                 viewModel.addEvent(event)
-                setToast(requireContext(), "回復刪除")
+                setToastShort(requireContext(), "回復刪除")
             }
             .show()
     }

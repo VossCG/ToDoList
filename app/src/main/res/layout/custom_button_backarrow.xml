@@ -2,7 +2,8 @@
 <ImageButton xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/backArrow_but"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
-    android:layout_height="48dp"
-    android:layout_width="48dp"
+    android:backgroundTint="@android:color/transparent"
+    android:src="@drawable/ic_baseline_arrow_back_ios_24"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
     tools:ignore="SpeakableTextPresentCheck" />

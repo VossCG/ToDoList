@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
-import com.voss.todolist.domain.FormatDateUseCase
 import com.voss.todolist.domain.GetDateIntegerUseCase
+import com.voss.todolist.domain.GetFormatDateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class UpdateEventViewModel @Inject constructor(
     application: Application,
     private val daoDataUseCase: DaoDataUseCase,
-    private val formatDateUseCase: FormatDateUseCase,
+    private val formatDateUseCase: GetFormatDateUseCase,
     private val getDateIntegerUseCase: GetDateIntegerUseCase
 ) : AndroidViewModel(application) {
 

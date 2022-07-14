@@ -1,7 +1,5 @@
 package com.voss.todolist.presentation.ui.fragment
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -18,7 +16,7 @@ import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentBrowseEventBinding
-import com.voss.todolist.util.setToast
+import com.voss.todolist.util.setToastShort
 import java.util.*
 
 
@@ -34,7 +32,7 @@ class BrowseEventFragment :
 
         initView()
 
-        setViewModelObserver()
+        setObserver()
         setCalendarViewPager()
         setDayEventRecyclerView()
     }
@@ -45,7 +43,7 @@ class BrowseEventFragment :
         binding.browseEventToolbar.setOnMenuItemClickListener {
             when (it.title) {
                 "today" -> {
-                    backCurrentDate()
+                    setCurrentDate()
                     return@setOnMenuItemClickListener true
                 }
                 "add" -> {
@@ -61,7 +59,7 @@ class BrowseEventFragment :
         }
     }
 
-    private fun backCurrentDate() {
+    private fun setCurrentDate() {
         val calendar = Calendar.getInstance(Locale.TAIWAN)
         binding.calendarContainerViewpager.setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
         viewModel.setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
@@ -69,7 +67,7 @@ class BrowseEventFragment :
         viewModel.setYear(calendar.get(Calendar.YEAR))
     }
 
-    private fun setViewModelObserver() {
+    private fun setObserver() {
 
         viewModel.currentYear.observe(viewLifecycleOwner) {
             binding.browseEventYearTv.text = "$it 年"
@@ -80,23 +78,23 @@ class BrowseEventFragment :
         }
 
         viewModel.selectItemDay.observe(viewLifecycleOwner) {
-            val selectedDayEvent = viewModel.getSingleDayEvent()
-            // show the selected day  ### Use new fun to get SelectDate ###
             binding.browseEventSelectDayTv.text = viewModel.getCurrentDate()
-            // if selectedDay event is empty ,show a view to remind user have any event
-            if (selectedDayEvent.isEmpty()) {
-                binding.browseEventHintTv.visibility = View.VISIBLE
-            } else
-                binding.browseEventHintTv.visibility = View.GONE
-            // refresh current selected item eventList View
-            dayEventAdapter.submitList(selectedDayEvent)
+            refreshDayEventList(viewModel.getSingleDayEvent())
         }
 
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            dayEventAdapter.submitList(viewModel.getSingleDayEvent())
+            refreshDayEventList(viewModel.getSingleDayEvent())
         }
     }
-
+    private fun refreshDayEventList(eventList: List<Event>){
+        // if selectedDay event is empty ,show a view to remind user have any event
+        if (eventList.isEmpty()) {
+            binding.browseEventHintTv.visibility = View.VISIBLE
+        } else
+            binding.browseEventHintTv.visibility = View.GONE
+        // refresh current selected item eventList View
+        dayEventAdapter.submitList(eventList)
+    }
     private fun setCalendarViewPager() {
         calendarAdapter = CalendarViewPagerAdapter(this)
         val viewpager = binding.calendarContainerViewpager
@@ -173,7 +171,7 @@ class BrowseEventFragment :
         Snackbar.make(binding.root, "已完成刪除", Snackbar.LENGTH_SHORT)
             .setAction("undo") {
                 viewModel.addEvent(event)
-                setToast(requireContext(), "回復刪除")
+                setToastShort(requireContext(), "回復刪除")
             }.show()
     }
 }

@@ -3,7 +3,7 @@ package com.voss.todolist.domain
 import android.icu.text.SimpleDateFormat
 import java.util.*
 
-class FormatDateUseCase {
+class GetFormatDateUseCase {
     private val formatDate = SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN)
     private val calendar =  Calendar.getInstance(Locale.TAIWAN)
 

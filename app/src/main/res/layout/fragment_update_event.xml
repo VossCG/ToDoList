@@ -42,10 +42,44 @@
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <include
-                android:id="@+id/updateChipGroup"
-                layout="@layout/custom_chipgroup_choice_event"
-                />
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/update_selectedType_chipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleLine="true"
+                android:padding="5dp"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="工作" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="出遊" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="運動" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="休閒" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="聚餐" />
+            </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/updateTitle_InputLayout"
@@ -106,7 +140,7 @@
             android:id="@+id/changeDate_but"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/lightBlue"
             android:text="點選更換日期"
             app:rippleColor="@color/white" />
 
@@ -131,7 +165,7 @@
         android:padding="10dp"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:backgroundTint="@color/lightBlue"
+        android:backgroundTint="@color/lightYellow"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 

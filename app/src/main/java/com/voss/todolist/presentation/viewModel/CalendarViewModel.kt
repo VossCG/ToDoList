@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
-import com.voss.todolist.domain.FormatDateUseCase
+import com.voss.todolist.domain.GetFormatDateUseCase
 import com.voss.todolist.domain.GetMonthlyEventUseCase
 import com.voss.todolist.domain.GetSingleDayEventUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class CalendarViewModel @Inject constructor(
     application: Application,
     private val daoDataUseCase: DaoDataUseCase,
-    private val formatDateUseCase: FormatDateUseCase,
+    private val getFormatDateUseCase: GetFormatDateUseCase,
     private val getMonthlyEventUseCase: GetMonthlyEventUseCase,
     private val getSingleDayEventUseCase: GetSingleDayEventUseCase
 ) : AndroidViewModel(application) {
@@ -80,7 +80,7 @@ class CalendarViewModel @Inject constructor(
     }
 
     fun getCurrentDate(): String {
-        return formatDateUseCase(
+        return getFormatDateUseCase(
             _currentYear.value!!,
             _currentMonth.value!! - 1,
             _selectItemDay.value!!

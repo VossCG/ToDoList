@@ -34,6 +34,7 @@ class CalendarDayEventListAdapter : ListAdapter<Event, CalendarDayEventListAdapt
             title.setOnClickListener {
                 clickITemUpdate.invoke(getItem(adapterPosition))
             }
+
         }
 
         private fun expandContent() {
@@ -62,6 +63,7 @@ class CalendarDayEventListAdapter : ListAdapter<Event, CalendarDayEventListAdapt
     override fun onBindViewHolder(holder: CalendarEventViewHolder, position: Int) {
         holder.title.text = getItem(position).title
         holder.content.text = getItem(position).content
+
         when(getItem(position).type){
             "工作" -> holder.icon.setImageResource(R.drawable.ic_baseline_work_24)
             "出遊" -> holder.icon.setImageResource(R.drawable.ic_baseline_directions_car_24)

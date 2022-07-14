@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
-import com.voss.todolist.domain.FormatDateUseCase
+import com.voss.todolist.domain.GetFormatDateUseCase
 import com.voss.todolist.domain.GetDateIntegerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class EditEventViewModel @Inject constructor(
     application: Application,
     private val daoDataUseCase: DaoDataUseCase,
-    private val formatDateUseCase: FormatDateUseCase,
+    private val getFormatDateUseCase: GetFormatDateUseCase,
     private val getDateIntegerUseCase: GetDateIntegerUseCase
 ) : AndroidViewModel(application) {
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
@@ -29,6 +29,15 @@ class EditEventViewModel @Inject constructor(
 
     private val _day = MutableLiveData<Int>()
     val day: LiveData<Int> get() = _day
+
+    private val _type = MutableLiveData<String>("工作")
+    val type:LiveData<String> get() = _type
+
+    private val _title = MutableLiveData<String>("")
+    val title:LiveData<String> get() = _title
+
+    private val _content = MutableLiveData<String>("")
+    val content:LiveData<String> get() = _content
 
     init {
         _year.value = calendar.get(Calendar.YEAR)
@@ -47,6 +56,15 @@ class EditEventViewModel @Inject constructor(
     fun setDay(day: Int) {
         _day.postValue(day)
     }
+    fun setType(type:String){
+        _type.postValue(type)
+    }
+    fun setTitle(title:String){
+        _title.postValue(title)
+    }
+    fun setContent(content:String){
+        _content.postValue(content)
+    }
 
     fun addEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -63,7 +81,7 @@ class EditEventViewModel @Inject constructor(
     }
 
     fun getCurrentDate(): String {
-        return formatDateUseCase.invoke(
+        return getFormatDateUseCase.invoke(
             _year.value!!,
             _month.value!!,
             _day.value!!

@@ -2,9 +2,8 @@ package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
@@ -12,6 +11,7 @@ import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.FragmentEditeventBinding
 import com.voss.todolist.presentation.viewModel.EditEventViewModel
+import com.voss.todolist.util.setToastShort
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -19,61 +19,80 @@ import dagger.hilt.android.AndroidEntryPoint
 class EditEventFragment :
     BaseFragment<FragmentEditeventBinding>(FragmentEditeventBinding::inflate) {
 
-    private val viewModel: EditEventViewModel by activityViewModels()
+    private val viewModel: EditEventViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
-    private var type: String = "工作"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemViewOnClickEvent()
+        setObserver()
+        setOnClickEvent()
         setDatePickerListener()
-        setEditTextListener()
+        setInputChangeListener()
     }
 
-    private fun itemViewOnClickEvent() {
+    private fun judgeEditButtonState() {
+        val addButton = binding.addEventBut
+        viewModel.apply {
+            if (!title.value.isNullOrEmpty() && !content.value.isNullOrEmpty() && !type.value.isNullOrEmpty()) {
+                addButton.backgroundTintList =
+                    resources.getColorStateList(R.color.lightYellow, null)
+                addButton.isClickable = true
+            } else {
+                addButton.backgroundTintList =
+                    resources.getColorStateList(R.color.darkGrey, null)
+                addButton.isClickable = false
+            }
+        }
+    }
+
+    private fun setObserver() {
+        viewModel.title.observe(viewLifecycleOwner) { judgeEditButtonState() }
+        viewModel.content.observe(viewLifecycleOwner) { judgeEditButtonState() }
+        viewModel.type.observe(viewLifecycleOwner) {judgeEditButtonState() }
+    }
+
+    private fun setOnClickEvent() {
         binding.backHomeArrowBut.backArrowBut.setOnClickListener {
             navController.popBackStack()
         }
-        binding.setUpEventBut.setOnClickListener {
+        binding.addEventBut.setOnClickListener {
             insertDataToDataBase()
         }
-        binding.editChipGroup.selectedTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
-            type = group.findViewById<Chip>(checkedId).text.toString()
+    }
+
+    private fun setInputChangeListener() {
+        binding.editSelectedTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId != -1) {
+                viewModel.setType(group.findViewById<Chip>(checkedId).text.toString())
+            } else
+                viewModel.setType("")
         }
-    }
 
-    private fun setEditTextListener() {
-        binding.contentEditText.addTextChangedListener { hintUpdateButtonColor() }
-        binding.titleEdittext.addTextChangedListener { hintUpdateButtonColor() }
-    }
-
-    private fun hintUpdateButtonColor() {
-        if (!binding.contentEditText.text.isNullOrEmpty() && !binding.titleEdittext.text.isNullOrEmpty()) {
-            binding.setUpEventBut.backgroundTintList =
-                resources.getColorStateList(R.color.lightYellow, null)
-            binding.setUpEventBut.isClickable = true
-        } else {
-            binding.setUpEventBut.backgroundTintList =
-                resources.getColorStateList(R.color.darkGrey, null)
-            binding.setUpEventBut.isClickable = false
+        binding.titleEdittext.addTextChangedListener {
+            viewModel.setTitle(binding.titleEdittext.text.toString())
+        }
+        binding.contentEditText.addTextChangedListener {
+            viewModel.setContent(binding.contentEditText.text.toString())
         }
     }
 
     private fun insertDataToDataBase() {
-        // get text From EditText
-        val title = binding.titleEdittext.text.toString()
-        val content = binding.contentEditText.text.toString()
-
+        // get all Edit Value
+        val title = viewModel.title.value ?: ""
+        val content = viewModel.content.value ?: ""
+        val type = viewModel.type.value ?: ""
         val dateInteger = viewModel.getDateInteger()
         val date = viewModel.getCurrentDate()
 
-        if (checkData(title, date, content)) {
-            val event = Event(title, content, date, dateInteger, type)
-            viewModel.addEvent(event)
-            Toast.makeText(this.context, "新增成功", Toast.LENGTH_SHORT).show()
+        if (checkData(title, date, content, type)) {
+            viewModel.addEvent(Event(title, content, date, dateInteger, type))
+            setToastShort(requireContext(), "新增成功")
             navController.navigateUp()
-        } else Toast.makeText(this.context, "Please fill out all fields", Toast.LENGTH_SHORT).show()
+        } else if (type.isEmpty()) {
+            setToastShort(requireContext(), "type not selected")
+        } else
+            setToastShort(requireContext(), "Please fill out all fields")
     }
 
     private fun setDatePickerListener() {
@@ -90,8 +109,8 @@ class EditEventFragment :
         }
     }
 
-    private fun checkData(title: String, date: String, content: String): Boolean {
-        return (title.isNotEmpty() && date.isNotEmpty() && content.isNotEmpty())
+    private fun checkData(title: String, date: String, content: String, type: String): Boolean {
+        return (title.isNotEmpty() && date.isNotEmpty() && content.isNotEmpty() && type.isNotEmpty())
     }
 }
 

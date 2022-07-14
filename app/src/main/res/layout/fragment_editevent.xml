@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,12 +10,15 @@
     <FrameLayout
         android:id="@+id/editevent_title_linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
         <include
             android:id="@+id/backHomeArrow_but"
-            layout="@layout/custom_button_backarrow" />
+            android:layout_gravity="center_vertical"
+            layout="@layout/custom_button_backarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
         <TextView
             android:id="@+id/editFragmentTitle_textView"
@@ -30,9 +33,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/evenContent_scroll"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/setUpEvent_but"
-        app:layout_constraintTop_toBottomOf="@id/editevent_title_linearLayout">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -44,16 +45,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:textStyle="italic"
-                android:text="活動類型" />
+                android:text="活動類型"
+                android:textStyle="italic" />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <include
-                    android:id="@+id/editChipGroup"
-                    layout="@layout/custom_chipgroup_choice_event"
-                    />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/edit_selectedType_chipGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleLine="true"
+                    android:padding="5dp"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:checked="true"
+                        android:text="工作" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:text="出遊" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:text="運動" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:text="休閒" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:text="聚餐" />
+                </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -98,14 +135,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="設定活動時間"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textStyle="italic"
-                />
-
+                android:textStyle="italic" />
 
             <DatePicker
                 android:id="@+id/datePicker"
@@ -115,20 +150,17 @@
                 android:layout_marginTop="10dp"
                 android:nestedScrollingEnabled="true" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addEvent_but"
+                style="@style/DefaultMaterialButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/darkGrey"
+                android:clickable="false"
+                android:padding="10dp"
+                android:text="建立活動"
+                android:textSize="30sp"
+                android:textStyle="bold" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/setUpEvent_but"
-        style="@style/DefaultMaterialButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/darkGrey"
-        android:padding="10dp"
-        android:clickable="false"
-        android:text="建立活動"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

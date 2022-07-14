@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
 import com.voss.todolist.domain.SearchFactorChangeUseCase
-import com.voss.todolist.domain.FormatDateUseCase
+import com.voss.todolist.domain.GetFormatDateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ class EventViewModel @Inject constructor(
     application: Application,
     private val daoDataUseCase: DaoDataUseCase,
     private val SearchFactorChangeUseCase: SearchFactorChangeUseCase,
-    private val formatDateUseCase: FormatDateUseCase,
+    private val getFormatDateUseCase: GetFormatDateUseCase,
 ) : AndroidViewModel(application) {
 
     val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()
@@ -55,7 +55,7 @@ class EventViewModel @Inject constructor(
     }
 
     fun getDateFormat(year: Int, month: Int, day: Int): String {
-        return formatDateUseCase.invoke(year, month, day)
+        return getFormatDateUseCase.invoke(year, month, day)
     }
 
     fun setSearchFactor(factor: String) {

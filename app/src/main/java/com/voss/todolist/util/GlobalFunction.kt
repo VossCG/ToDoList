@@ -7,8 +7,12 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 
 
-fun setToast(context: Context, message:String){
+fun setToastShort(context: Context, message:String){
     Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
+}
+
+fun setToastLong(context: Context, message:String){
+    Toast.makeText(context,message, Toast.LENGTH_LONG).show()
 }
 
 fun View.setPreventQuickerClick(action: () -> Unit) {
