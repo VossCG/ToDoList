@@ -57,17 +57,6 @@ class CalendarViewModel @Inject constructor(
     fun plusYear(plus: Int) {
         _currentYear.value = _currentYear.value?.plus(plus)
     }
-    // useCase test
-    fun deleteEvent(eventType: Event) {
-        viewModelScope.launch(Dispatchers.IO) {
-            daoDataUseCase.deleteEvent(eventType)
-        }
-    }
-    fun addEvent(eventType: Event){
-        viewModelScope.launch(Dispatchers.IO){
-            daoDataUseCase.addEvent(eventType)
-        }
-    }
     fun getMonthEvent(month: Int): List<Event> {
         return getMonthlyEventUseCase(_currentYear.value!!, month)
     }

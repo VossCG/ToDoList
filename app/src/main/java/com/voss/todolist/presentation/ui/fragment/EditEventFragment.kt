@@ -1,11 +1,13 @@
 package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.voss.todolist.R
 import com.voss.todolist.data.Event
@@ -21,14 +23,23 @@ class EditEventFragment :
 
     private val viewModel: EditEventViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
-
+    private val editArgs: EditEventFragmentArgs by navArgs()
+    private val dateTime get() = editArgs.dateTime
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViewModelData()
         setObserver()
         setOnClickEvent()
         setDatePickerListener()
         setInputChangeListener()
+    }
+
+    private fun initViewModelData() {
+        Log.d("Edit","dateTime:$dateTime")
+        viewModel.setYear(dateTime.year)
+        viewModel.setMonth(dateTime.month)
+        viewModel.setDay(dateTime.day)
     }
 
     private fun judgeEditButtonState() {
@@ -49,7 +60,7 @@ class EditEventFragment :
     private fun setObserver() {
         viewModel.title.observe(viewLifecycleOwner) { judgeEditButtonState() }
         viewModel.content.observe(viewLifecycleOwner) { judgeEditButtonState() }
-        viewModel.type.observe(viewLifecycleOwner) {judgeEditButtonState() }
+        viewModel.type.observe(viewLifecycleOwner) { judgeEditButtonState() }
     }
 
     private fun setOnClickEvent() {
@@ -97,13 +108,14 @@ class EditEventFragment :
 
     private fun setDatePickerListener() {
         binding.datePicker.init(
-            viewModel.year.value!!,
-            viewModel.month.value!!,
-            viewModel.day.value!!
+            dateTime.year,
+            dateTime.month-1,
+            dateTime.day
         ) { _, year, monthOfYear, dayOfMonth ->
             viewModel.apply {
                 setYear(year)
-                setMonth(monthOfYear)
+                // dataPicker month start from 0 , so need to plus 1
+                setMonth(monthOfYear + 1)
                 setDay(dayOfMonth)
             }
         }

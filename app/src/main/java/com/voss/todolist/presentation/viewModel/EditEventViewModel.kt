@@ -39,12 +39,6 @@ class EditEventViewModel @Inject constructor(
     private val _content = MutableLiveData<String>("")
     val content:LiveData<String> get() = _content
 
-    init {
-        _year.value = calendar.get(Calendar.YEAR)
-        _month.value = calendar.get(Calendar.MONTH)
-        _day.value = calendar.get(Calendar.DAY_OF_MONTH)
-    }
-
     fun setYear(year: Int) {
         _year.postValue(year)
     }
@@ -83,7 +77,7 @@ class EditEventViewModel @Inject constructor(
     fun getCurrentDate(): String {
         return getFormatDateUseCase.invoke(
             _year.value!!,
-            _month.value!!,
+            _month.value!!-1,
             _day.value!!
         )
     }

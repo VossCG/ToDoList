@@ -69,4 +69,10 @@ object AppModule {
     fun provideDateIntegerUseCase():GetDateIntegerUseCase{
         return GetDateIntegerUseCase()
     }
+
+    @Provides
+    @Singleton
+    fun provideTransformDateToTimeUseCase():TransformDateToTimeUseCase{
+        return TransformDateToTimeUseCase()
+    }
 }

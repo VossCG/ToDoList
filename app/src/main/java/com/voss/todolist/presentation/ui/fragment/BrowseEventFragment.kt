@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.snackbar.Snackbar
 import com.voss.todolist.presentation.ui.adapter.CalendarDayEventListAdapter
 import com.voss.todolist.presentation.ui.adapter.CalendarViewPagerAdapter
 import com.voss.todolist.R
 import com.voss.todolist.data.Event
+import com.voss.todolist.data.args.EditArgs
+import com.voss.todolist.data.args.EventCardArgs
 import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentBrowseEventBinding
-import com.voss.todolist.util.setToastShort
 import java.util.*
 
 
@@ -30,24 +30,32 @@ class BrowseEventFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initView()
+        setClickListener()
 
         setObserver()
         setCalendarViewPager()
         setDayEventRecyclerView()
     }
 
-    private fun initView() {
+    private fun setClickListener() {
 
         // menu item click event
         binding.browseEventToolbar.setOnMenuItemClickListener {
             when (it.title) {
                 "today" -> {
-                    setCurrentDate()
+                    jumpToCurrentDay()
                     return@setOnMenuItemClickListener true
                 }
                 "add" -> {
-                    navController.navigate(R.id.action_browseEventFragment_to_editEventFragment)
+                    val direction =
+                        BrowseEventFragmentDirections.actionBrowseEventFragmentToEditEventFragment(
+                            EditArgs(
+                                viewModel.currentYear.value!!,
+                                viewModel.currentMonth.value!!,
+                                viewModel.selectItemDay.value!!
+                            )
+                        )
+                    navController.navigate(direction)
                     return@setOnMenuItemClickListener true
                 }
                 "search" -> {
@@ -59,7 +67,7 @@ class BrowseEventFragment :
         }
     }
 
-    private fun setCurrentDate() {
+    private fun jumpToCurrentDay() {
         val calendar = Calendar.getInstance(Locale.TAIWAN)
         binding.calendarContainerViewpager.setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
         viewModel.setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
@@ -86,7 +94,8 @@ class BrowseEventFragment :
             refreshDayEventList(viewModel.getSingleDayEvent())
         }
     }
-    private fun refreshDayEventList(eventList: List<Event>){
+
+    private fun refreshDayEventList(eventList: List<Event>) {
         // if selectedDay event is empty ,show a view to remind user have any event
         if (eventList.isEmpty()) {
             binding.browseEventHintTv.visibility = View.VISIBLE
@@ -95,6 +104,7 @@ class BrowseEventFragment :
         // refresh current selected item eventList View
         dayEventAdapter.submitList(eventList)
     }
+
     private fun setCalendarViewPager() {
         calendarAdapter = CalendarViewPagerAdapter(this)
         val viewpager = binding.calendarContainerViewpager
@@ -146,32 +156,18 @@ class BrowseEventFragment :
         }
         // set callback
         dayEventAdapter.apply {
-            getExpandPosition = { clickPosition ->
-                scrollToExpandPosition(clickPosition)
-            }
-            clickItemDelete = { event -> deleteEvent(event) }
-            clickITemUpdate = { event ->
-                val direction = BrowseEventFragmentDirections.actionBrowseEventFragmentToUpdateEventFragment(event)
+            navigateToContentCard = { itemPosition ->
+                val direction =
+                    BrowseEventFragmentDirections.actionBrowseEventFragmentToEventCardFragment(
+                        EventCardArgs(
+                            itemPosition,
+                            viewModel.currentYear.value!!,
+                            viewModel.currentMonth.value!!,
+                            viewModel.selectItemDay.value!!
+                        )
+                    )
                 navController.navigate(direction)
             }
         }
-    }
-
-    private fun scrollToExpandPosition(clickPosition: Int) {
-        val layoutManager =
-            binding.calendarDayEventListRecycler.layoutManager as LinearLayoutManager
-        val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
-        if (clickPosition == lastPositionVisible) {
-            layoutManager.scrollToPositionWithOffset(clickPosition, 0)
-        }
-    }
-
-    private fun deleteEvent(event: Event) {
-        viewModel.deleteEvent(event)
-        Snackbar.make(binding.root, "已完成刪除", Snackbar.LENGTH_SHORT)
-            .setAction("undo") {
-                viewModel.addEvent(event)
-                setToastShort(requireContext(), "回復刪除")
-            }.show()
     }
 }

@@ -6,15 +6,9 @@
     android:layout_height="wrap_content"
     android:backgroundTint="@color/darkGrey"
     app:cardCornerRadius="8dp">
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/itemView_event_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:paddingVertical="10dp"
+            android:paddingHorizontal="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -33,56 +27,18 @@
                 android:layout_height="wrap_content"
                 android:gravity="start|center_vertical"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/ripple_white_radius10_solid_darkgrey"
                 android:paddingHorizontal="20dp"
                 android:text="Event Title"
                 android:textSize="20sp"
                 />
-
             <ImageButton
                 android:id="@+id/event_list_item_expand_arrowBut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/darkGrey"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/event_list_item_expandLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone"
-            >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/lightGrey" />
-
-            <TextView
-                android:id="@+id/event_list_item_content_tv"
-                style="@style/TextAppearance.MaterialComponents.Body2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:padding="10dp"
-                android:text="content body" />
-
-            <ImageButton
-                android:id="@+id/event_list_item_deleteBut"
-                style="@style/Widget.AppCompat.ImageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:backgroundTint="@color/darkGrey"
-                android:src="@drawable/ic_baseline_delete_24" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>
