@@ -6,21 +6,21 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.data.Event
 import com.voss.todolist.R
+import com.voss.todolist.databinding.ItemviewDayEventCardBinding
 import com.voss.todolist.util.EventTypeDiffUtil
-import com.voss.todolist.databinding.ItemviewEventListBinding
 
 class CalendarDayEventListAdapter : ListAdapter<Event, CalendarDayEventListAdapter.CalendarEventViewHolder>(EventTypeDiffUtil()) {
 
     var clickITemUpdate: (Event) -> Unit = {}
     var navigateToContentCard : (Int)-> Unit = {}
 
-    inner class CalendarEventViewHolder(val binding: ItemviewEventListBinding) :
+    inner class CalendarEventViewHolder(val binding: ItemviewDayEventCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val title = binding.itemEventTitle
-        val icon = binding.itemEventIcon
+        val title = binding.dayEventItemTitleTv
+        val icon = binding.dayEventItemIconIv
 
         init {
-            binding.eventListItemExpandArrowBut.setOnClickListener {
+            binding.dayEventItemExpandBtn.setOnClickListener {
                 navigateToContentCard.invoke(adapterPosition)
             }
             title.setOnClickListener {
@@ -32,7 +32,7 @@ class CalendarDayEventListAdapter : ListAdapter<Event, CalendarDayEventListAdapt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarEventViewHolder {
         return CalendarEventViewHolder(
-            ItemviewEventListBinding.inflate(
+           ItemviewDayEventCardBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

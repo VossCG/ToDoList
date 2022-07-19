@@ -49,10 +49,10 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
     }
 
     private fun initView() {
-        binding.updateContentEditText.setText(argsEventTypes.content)
-        binding.updateTitleEdittext.setText(argsEventTypes.title)
+        binding.updateEventContentEdt.setText(argsEventTypes.content)
+        binding.updateEventTitleEdt.setText(argsEventTypes.title)
 
-        binding.updateSelectedTypeChipGroup.forEach { view ->
+        binding.updateEventTypeChipGroup.forEach { view ->
             view as Chip
             view.isChecked = (view).text == argsEventTypes.type
         }
@@ -67,19 +67,19 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
 
     private fun setObserver() {
         newDate.observe(viewLifecycleOwner) {
-            binding.updateDateTextView.text = it
+            binding.updateEventDateTv.text = it
         }
     }
 
     private fun setInputChangeListener() {
 
-        binding.updateContentEditText.addTextChangedListener {
+        binding.updateEventContentEdt.addTextChangedListener {
             switchUpdateBtnState(getInputTitle(), getInputContent(), newType)
         }
-        binding.updateTitleEdittext.addTextChangedListener {
+        binding.updateEventTitleEdt.addTextChangedListener {
             switchUpdateBtnState(getInputTitle(), getInputContent(), newType)
         }
-        binding.updateSelectedTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
+        binding.updateEventTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
             newType = if (checkedId != -1) {
                 group.findViewById<Chip>(checkedId).text.toString()
             } else ""
@@ -89,11 +89,11 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
     }
 
     private fun setClickListener() {
-        binding.updateBut.setOnClickListener {
+        binding.updateEventInsertBtn.setOnClickListener {
             updateEvent()
             navController.navigateUp()
         }
-        binding.cancelUpdateBut.backArrowBut.setOnClickListener {
+        binding.updateEventCancelBtn.backArrowBtn.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("Message")
                 .setMessage("是否要取消編輯?")
@@ -103,7 +103,7 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
                 .setNegativeButton("No", null)
                 .show()
         }
-        binding.changeDateBut.setOnClickListener {
+        binding.updateEventChangeDateBtn.setOnClickListener {
             showDatePickerDialog()
         }
     }
@@ -131,19 +131,19 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
     }
 
     private fun switchUpdateBtnState(title: String, content: String, type: String) {
-        val editButton = binding.updateBut
+        val finishBtn = binding.updateEventInsertBtn
         if (checkInputData(title, content, type)) {
-            editButton.backgroundTintList = resources.getColorStateList(R.color.lightYellow, null)
-            editButton.isClickable = true
+            finishBtn.backgroundTintList = resources.getColorStateList(R.color.lightYellow, null)
+            finishBtn.isClickable = true
         } else {
-            editButton.backgroundTintList = resources.getColorStateList(R.color.darkGrey, null)
-            editButton.isClickable = false
+            finishBtn.backgroundTintList = resources.getColorStateList(R.color.darkGrey, null)
+            finishBtn.isClickable = false
         }
     }
 
-    private fun getInputContent(): String = binding.updateContentEditText.text.toString()
+    private fun getInputContent(): String = binding.updateEventContentEdt.text.toString()
 
-    private fun getInputTitle(): String = binding.updateTitleEdittext.text.toString()
+    private fun getInputTitle(): String = binding.updateEventTitleEdt.text.toString()
 
 }
 

@@ -3,13 +3,12 @@ package com.voss.todolist.presentation.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.data.Event
 import com.voss.todolist.R
+import com.voss.todolist.databinding.ItemviewSearchEventCardBinding
 import com.voss.todolist.util.EventTypeDiffUtil
-import com.voss.todolist.databinding.ItemviewSearchEventCardviewBinding
 
 class SearChRecyclerAdapter() :
     ListAdapter<Event, SearChRecyclerAdapter.SearChViewHolder>(EventTypeDiffUtil()) {
@@ -20,7 +19,7 @@ class SearChRecyclerAdapter() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearChViewHolder {
         return SearChViewHolder(
-            ItemviewSearchEventCardviewBinding.inflate(
+            ItemviewSearchEventCardBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -32,13 +31,13 @@ class SearChRecyclerAdapter() :
         holder.bind(position)
     }
 
-    inner class SearChViewHolder(private val binding: ItemviewSearchEventCardviewBinding) :
+    inner class SearChViewHolder(private val binding: ItemviewSearchEventCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
             val expandListener = View.OnClickListener { expandEvent(binding) }
 
-            binding.expandArrowBut.setOnClickListener(expandListener)
+            binding.searchItemExpandBtn.setOnClickListener(expandListener)
 
             binding.root.setOnClickListener(expandListener)
 
@@ -47,26 +46,26 @@ class SearChRecyclerAdapter() :
                 return@setOnLongClickListener true
             }
 
-            binding.rowSearchContentCompletebut.setOnClickListener {
+            binding.searchItemFinishImgBtn.setOnClickListener {
                 itemDelete.invoke(getItem(adapterPosition))
             }
         }
 
         fun bind(position: Int) {
-            binding.rowSearchTitleTextView.text = getItem(position).title
-            binding.rowSearchMonthTextView.text = (getItem(position).getMonth()).toString() + "月"
-            binding.rowSearchDayTextView.text = getItem(position).getDay().toString()
-            binding.rowSearchContentTextView.text = getItem(position).content
+            binding.searchItemTitleTv.text = getItem(position).title
+            binding.searchItemMonthTv.text = "${getItem(position).getMonth()}月"
+            binding.searchItemDayTv.text = getItem(position).getDay().toString()
+            binding.searchItemContentTv.text = getItem(position).content
         }
 
-        private fun expandEvent(binding: ItemviewSearchEventCardviewBinding) {
-            if (binding.rowSearchExpandLayout.visibility == View.GONE) {
-                binding.rowSearchExpandLayout.visibility = View.VISIBLE
-                binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+        private fun expandEvent(binding: ItemviewSearchEventCardBinding) {
+            if (binding.searchItemExpandedContentLl.visibility == View.GONE) {
+                binding.searchItemExpandedContentLl.visibility = View.VISIBLE
+                binding.searchItemExpandBtn.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
                 itemExpand.invoke(adapterPosition)
             } else {
-                binding.rowSearchExpandLayout.visibility = View.GONE
-                binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
+                binding.searchItemExpandedContentLl.visibility = View.GONE
+                binding.searchItemExpandBtn.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)
             }
         }
 

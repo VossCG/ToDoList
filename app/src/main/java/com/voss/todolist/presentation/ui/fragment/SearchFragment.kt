@@ -56,7 +56,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun setEditorActionListener() {
-        binding.searChEditText.setOnEditorActionListener { _, actionId, _ ->
+        binding.searchEdt.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
                 EditorInfo.IME_ACTION_DONE -> {
                     showSearchOutputEvent()
@@ -70,14 +70,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.filterFab.setPreventQuickerClick {
             changeSearchFactor()
         }
-        binding.cancelSearchBut.backArrowBut.setOnClickListener {
+        binding.searchCancelBtn.backArrowBtn.setOnClickListener {
             navController.navigateUp()
         }
     }
 
     private fun setRecyclerView() {
         setAdapter(mAdapter)
-        binding.searchRecycler.apply {
+        binding.searchRcv.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@SearchFragment.context)
             adapter = mAdapter
@@ -87,7 +87,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun setAdapter(adapter: SearChRecyclerAdapter) {
         adapter.apply {
             itemExpand = { clickPosition ->
-                val layoutManager = binding.searchRecycler.layoutManager as LinearLayoutManager
+                val layoutManager = binding.searchRcv.layoutManager as LinearLayoutManager
                 val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
 
                 if (clickPosition == lastPositionVisible) {
@@ -116,9 +116,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun showSearchOutputEvent() {
-        keyWord = binding.searChEditText.text.toString()
+        keyWord = binding.searchEdt.text.toString()
         if (keyWord.isNotEmpty()) {
-            closeKeyboard(binding.searChEditText, requireActivity())
+            closeKeyboard(binding.searchEdt, requireActivity())
             val filterData = viewModel.getFilterEvent(keyWord)
             if (filterData.isEmpty()) disPlayToastShort(requireContext(), "搜尋條件 找不到相關資料 請重新查詢")
             mAdapter.submitList(filterData)

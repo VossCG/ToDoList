@@ -8,7 +8,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.data.Event
-import com.voss.todolist.databinding.ItemviewCalendarGridviewIconBinding
+import com.voss.todolist.databinding.ItemviewCalendarIconBinding
 
 class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset: Int) :
     RecyclerView.Adapter<CalendarViewAdapter.CalendarViewHolder>() {
@@ -21,7 +21,7 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         return CalendarViewHolder(
-            ItemviewCalendarGridviewIconBinding.inflate(
+            ItemviewCalendarIconBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
@@ -46,10 +46,10 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
         notifyDataSetChanged()
     }
 
-    inner class CalendarViewHolder(binding: ItemviewCalendarGridviewIconBinding) :
+    inner class CalendarViewHolder(binding: ItemviewCalendarIconBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private val dateTextView: TextView = binding.calendarGridviewItemTv
-        val container: FrameLayout = binding.calendarGridviewItemRoot
+        private val day: TextView = binding.calendarItemDayTv
+        val container: FrameLayout = binding.calendarItemContainerFl
 
         init {
             // calendarItem selected effect
@@ -60,7 +60,7 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
 
         fun bind(position: Int) {
             val currentDay = position - weekDayOffset + 1
-            dateTextView.text = currentDay.toString()
+            day.text = currentDay.toString()
             // 當事件數量 到某一個數值時候，顯示不同的顏色
             showItemEventSizeDiff(currentDay)
 
@@ -70,10 +70,10 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
                 it.getDay() == currentDay
             }
             when (currentDayEvent.size) {
-                0 -> dateTextView.background = setDrawableCallBack?.invoke("default")
-                1 -> dateTextView.background = setDrawableCallBack?.invoke("single")
-                2 -> dateTextView.background = setDrawableCallBack?.invoke("some")
-                else -> dateTextView.background = setDrawableCallBack?.invoke("multitude")
+                0 -> day.background = setDrawableCallBack?.invoke("default")
+                1 -> day.background = setDrawableCallBack?.invoke("single")
+                2 -> day.background = setDrawableCallBack?.invoke("some")
+                else -> day.background = setDrawableCallBack?.invoke("multitude")
             }
         }
 

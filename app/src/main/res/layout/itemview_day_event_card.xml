@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/item_event_icon"
+                android:id="@+id/dayEvent_item_icon_iv"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:src="@color/black"
@@ -21,7 +21,7 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/item_event_title"
+                android:id="@+id/dayEvent_item_title_tv"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
                 android:textSize="20sp"
                 />
             <ImageButton
-                android:id="@+id/event_list_item_expand_arrowBut"
+                android:id="@+id/dayEvent_item_expand_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/darkGrey"

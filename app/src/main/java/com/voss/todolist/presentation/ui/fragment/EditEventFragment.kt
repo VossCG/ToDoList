@@ -43,7 +43,7 @@ class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeve
     }
 
     private fun initDatePicker() {
-        binding.datePicker.init(
+        binding.editEventDatePicker.init(
             dateTime.year,
             dateTime.month - 1,
             dateTime.day
@@ -58,16 +58,16 @@ class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeve
     }
 
     private fun switchAddBtnState() {
-        val addBtn = binding.addEventBtn
+        val insert = binding.editEventInsertBtn
         viewModel.apply {
             if (!title.value.isNullOrEmpty() && !content.value.isNullOrEmpty() && !type.value.isNullOrEmpty()) {
-                addBtn.backgroundTintList =
+                insert.backgroundTintList =
                     resources.getColorStateList(R.color.lightYellow, null)
-                addBtn.isClickable = true
+                insert.isClickable = true
             } else {
-                addBtn.backgroundTintList =
+                insert.backgroundTintList =
                     resources.getColorStateList(R.color.darkGrey, null)
-                addBtn.isClickable = false
+                insert.isClickable = false
             }
         }
     }
@@ -79,16 +79,16 @@ class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeve
     }
 
     private fun setOnClickListener() {
-        binding.backHomeArrowBut.backArrowBut.setOnClickListener {
+        binding.editEventCancelBtn.backArrowBtn.setOnClickListener {
             navController.popBackStack()
         }
-        binding.addEventBtn.setOnClickListener {
+        binding.editEventInsertBtn.setOnClickListener {
             insertEvent()
         }
     }
 
     private fun setInputChangeListener() {
-        binding.editSelectedTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
+        binding.editEventTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
             // chip 沒有選取狀態下 id 為 -1
             if (checkedId != -1) {
                 viewModel.setType(group.findViewById<Chip>(checkedId).text.toString())
@@ -96,11 +96,11 @@ class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeve
                 viewModel.setType("")
         }
 
-        binding.titleEdittext.addTextChangedListener {
-            viewModel.setTitle(binding.titleEdittext.text.toString())
+        binding.editEventTitleEdt.addTextChangedListener {
+            viewModel.setTitle(binding.editEventTitleEdt.text.toString())
         }
-        binding.contentEditText.addTextChangedListener {
-            viewModel.setContent(binding.contentEditText.text.toString())
+        binding.editEventContentEdt.addTextChangedListener {
+            viewModel.setContent(binding.editEventContentEdt.text.toString())
         }
     }
 

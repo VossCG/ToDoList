@@ -8,20 +8,20 @@
     android:padding="8dp">
 
     <FrameLayout
-        android:id="@+id/editevent_title_linearLayout"
+        android:id="@+id/editEvent_header_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/backHomeArrow_but"
+            android:id="@+id/editEvent_cancel_btn"
             android:layout_gravity="center_vertical"
-            layout="@layout/custom_button_backarrow"
+            layout="@layout/custom_back_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <TextView
-            android:id="@+id/editFragmentTitle_textView"
+            android:id="@+id/editEvent_title_tv"
             style="@style/TextAppearance.MaterialComponents.Headline4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
     </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/evenContent_scroll"
+        android:id="@+id/editEvent_nsv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/edit_selectedType_chipGroup"
+                    android:id="@+id/editEvent_type_chipGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:singleLine="true"
@@ -99,7 +99,7 @@
             </HorizontalScrollView>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/title_InputLayout"
+                android:id="@+id/editEvent_input_lv"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/title_Edittext"
+                    android:id="@+id/editEvent_title_edt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
@@ -122,7 +122,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/content_InputLayout"
+                android:id="@+id/editEvent_content_input_lv"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/content_editText"
+                    android:id="@+id/editEvent_content_edt"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:gravity="top|start"
@@ -148,7 +148,7 @@
                 android:textStyle="italic" />
 
             <DatePicker
-                android:id="@+id/datePicker"
+                android:id="@+id/editEvent_datePicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -156,7 +156,7 @@
                 android:nestedScrollingEnabled="true" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/addEvent_btn"
+                android:id="@+id/editEvent_insert_btn"
                 style="@style/DefaultMaterialButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

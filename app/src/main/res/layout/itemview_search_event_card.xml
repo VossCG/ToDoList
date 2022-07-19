@@ -14,7 +14,7 @@
         >
 
         <TextView
-            android:id="@+id/rowSearchMonth_textView"
+            android:id="@+id/search_item_month_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="13月"
@@ -22,7 +22,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/rowSearchDay_textView"
+            android:id="@+id/search_item_day_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -31,7 +31,7 @@
             android:textSize="30sp"
             app:layout_constraintEnd_toStartOf="@+id/rowSearch_guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rowSearchMonth_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/search_item_month_tv" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -41,7 +41,7 @@
         android:padding="5dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/rowSearchCardView"
+            android:id="@+id/search_item_header_lv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_radius10_solid_darkblue"
@@ -50,7 +50,7 @@
             >
 
             <TextView
-                android:id="@+id/rowSearchTitle_textView"
+                android:id="@+id/search_item_title_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -61,7 +61,7 @@
                 android:textSize="25sp" />
 
             <ImageButton
-                android:id="@+id/expandArrow_but"
+                android:id="@+id/search_item_expand_btn"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:backgroundTint="@color/darkBlue"
@@ -71,7 +71,7 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/rowSearch_expandLayout"
+            android:id="@+id/search_item_expanded_content_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -80,14 +80,14 @@
             tools:visibility="visible">
 
             <TextView
-                android:id="@+id/rowSearchContent_textView"
+                android:id="@+id/search_item_content_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Content will filled out this area"
                 android:textSize="20sp" />
 
             <ImageButton
-                android:id="@+id/rowSearchContent_Completebut"
+                android:id="@+id/search_item_finish_imgBtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="start|bottom"

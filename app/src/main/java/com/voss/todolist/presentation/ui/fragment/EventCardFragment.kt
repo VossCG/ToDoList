@@ -41,12 +41,12 @@ class EventCardFragment :
     }
 
     private fun initView() {
-        binding.eventDateTextView.text = date
+        binding.eventCardDateTv.text = date
         setRecyclerView(args.contentArgs.position)
     }
 
     private fun setClickListener() {
-        binding.contentAddFab.setOnClickListener {
+        binding.eventCardAddEventFab.setOnClickListener {
             val direction = EventCardFragmentDirections.actionEventCardFragmentToEditEventFragment(
                 EditArgs(contentArgs.year, contentArgs.month, contentArgs.day)
             )
@@ -55,7 +55,7 @@ class EventCardFragment :
     }
 
     private fun setRecyclerView(position: Int) {
-        binding.contentRecyclerview.apply {
+        binding.eventCardRcv.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this.context)
             adapter = mAdapter

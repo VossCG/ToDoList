@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/eventTypeTitle_tv"
+        android:id="@+id/eventCard_item_type_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="工作"
@@ -16,7 +16,7 @@
         />
 
     <TextView
-        android:id="@+id/eventTitle_tv"
+        android:id="@+id/eventCard_item_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -26,9 +26,8 @@
         style="@style/TextAppearance.MaterialComponents.Subtitle1"
         />
 
-
     <View
-        android:id="@+id/itemContent_divider"
+        android:id="@+id/eventCard_item_di"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
@@ -36,7 +35,7 @@
         />
 
     <TextView
-        android:id="@+id/eventContent_textView"
+        android:id="@+id/eventCard_item_content_tv"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:alpha="0.5"
         android:layout_width="match_parent"
@@ -53,14 +52,14 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/eventCard_edit_but"
+            android:id="@+id/eventCard_item_edit_btn"
             android:layout_width="80dp"
             android:layout_height="50dp"
             style="@style/CustomTextButtonStyle"
             android:text="編輯"
             />
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/eventCard_delete_but"
+            android:id="@+id/eventCard_item_delete_btn"
             android:layout_width="80dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/darkGrey"

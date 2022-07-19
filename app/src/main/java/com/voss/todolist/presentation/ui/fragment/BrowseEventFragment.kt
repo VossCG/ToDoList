@@ -43,7 +43,7 @@ class BrowseEventFragment :
 
     private fun setClickListener() {
         // menu item click event
-        binding.browseEventToolbar.setOnMenuItemClickListener {
+        binding.browseEventTb.setOnMenuItemClickListener {
             when (it.title) {
                 "today" -> {
                     moveToCurrentDay()
@@ -78,7 +78,7 @@ class BrowseEventFragment :
             binding.browseEventMonthTv.text = it.toString() + "月"
         }
         viewModel.selectItemDay.observe(viewLifecycleOwner) {
-            binding.browseEventSelectDayTv.text = viewModel.getCurrentDate()
+            binding.browseEventSelectedDayTv.text = viewModel.getCurrentDate()
             showEventHint(viewModel.getSingleDayEvent())
             dayEventAdapter.submitList(viewModel.getSingleDayEvent())
         }
@@ -90,7 +90,7 @@ class BrowseEventFragment :
 
     private fun moveToCurrentDay() {
         val calendar = Calendar.getInstance(Locale.TAIWAN)
-        binding.calendarContainerViewpager.setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
+        binding.browseEventCalendarVp.setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
         viewModel.setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
         viewModel.setMonth(calendar.get(Calendar.MONTH) + 1)
         viewModel.setYear(calendar.get(Calendar.YEAR))
@@ -105,7 +105,7 @@ class BrowseEventFragment :
 
     private fun setCalendarViewPager() {
         calendarAdapter = CalendarViewPagerAdapter(this)
-        val viewpager = binding.calendarContainerViewpager
+        val viewpager = binding.browseEventCalendarVp
         viewpager.apply {
             adapter = calendarAdapter
             setPageTransformer(MarginPageTransformer(10))
@@ -140,8 +140,7 @@ class BrowseEventFragment :
 
     private fun setDayEventRecyclerView() {
         setDayEventAdapter(dayEventAdapter)
-
-        binding.calendarDayEventListRecycler.apply {
+        binding.browseEventDayEventRcv.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(

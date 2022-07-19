@@ -6,20 +6,20 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/updateEvent_title_linearLayout"
+        android:id="@+id/updateEvent_title_fl"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/cancelUpdate_but"
-            layout="@layout/custom_button_backarrow"
+            android:id="@+id/updateEvent_cancel_btn"
+            layout="@layout/custom_back_arrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
 
         <TextView
-            android:id="@+id/updateFragmentTitle_textView"
+            android:id="@+id/updateEvent_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -36,14 +36,14 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/updateInner_ConstrainLayout"
-        app:layout_constraintTop_toBottomOf="@+id/updateEvent_title_linearLayout">
+        app:layout_constraintBottom_toTopOf="@+id/updateEvent_date_container_ll"
+        app:layout_constraintTop_toBottomOf="@+id/updateEvent_title_fl">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/update_selectedType_chipGroup"
+                android:id="@+id/updateEvent_type_chipGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:singleLine="true"
@@ -87,7 +87,7 @@
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/updateTitle_InputLayout"
+            android:id="@+id/updateEvent_title_input_lv"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
             app:startIconDrawable="@drawable/ic_baseline_edit_24">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/updateTitle_Edittext"
+                android:id="@+id/updateEvent_title_edt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
@@ -110,16 +110,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/updateContent_InputLayout"
+            android:id="@+id/updateEvent_content_input_lv"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="活動內容"
             app:endIconMode="clear_text"
             >
-
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/updateContent_editText"
+                android:id="@+id/updateEvent_content_edt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="top|start"
@@ -132,17 +131,17 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/updateInner_ConstrainLayout"
+        android:id="@+id/updateEvent_date_container_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/update_but"
+        app:layout_constraintBottom_toTopOf="@+id/updateEvent_insert_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         8<com.google.android.material.button.MaterialButton
-            android:id="@+id/changeDate_but"
+            android:id="@+id/updateEvent_changeDate_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:backgroundTint="@color/lightBlue"
@@ -150,7 +149,7 @@
             app:rippleColor="@color/white" />
 
         <TextView
-            android:id="@+id/update_Date_TextView"
+            android:id="@+id/updateEvent_date_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -162,7 +161,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/update_but"
+        android:id="@+id/updateEvent_insert_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="編輯完成"
