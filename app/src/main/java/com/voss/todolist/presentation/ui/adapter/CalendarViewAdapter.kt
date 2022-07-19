@@ -13,10 +13,12 @@ import com.voss.todolist.databinding.ItemviewCalendarGridviewIconBinding
 class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset: Int) :
     RecyclerView.Adapter<CalendarViewAdapter.CalendarViewHolder>() {
     private var event: List<Event> = emptyList()
-    private lateinit var oldSelectItemView: View
     private var isFirstSelected = true
+    private lateinit var oldSelectItemView: View
+
     var setDrawableCallBack : ((String) -> Drawable)? = null
     var getItemDayCallback : (Int) -> Unit = { }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         return CalendarViewHolder(
             ItemviewCalendarGridviewIconBinding.inflate(
@@ -52,17 +54,21 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
         init {
             // calendarItem selected effect
             container.setOnClickListener {
-                setSelectedCursor(it)
+                showSelectedCursor(it)
             }
         }
 
         fun bind(position: Int) {
             val currentDay = position - weekDayOffset + 1
             dateTextView.text = currentDay.toString()
+            // 當事件數量 到某一個數值時候，顯示不同的顏色
+            showItemEventSizeDiff(currentDay)
+
+        }
+        private fun showItemEventSizeDiff(currentDay:Int){
             val currentDayEvent: List<Event> = event.filter {
                 it.getDay() == currentDay
             }
-            // 當事件數量 到某一個數值時候，顯示不同的顏色
             when (currentDayEvent.size) {
                 0 -> dateTextView.background = setDrawableCallBack?.invoke("default")
                 1 -> dateTextView.background = setDrawableCallBack?.invoke("single")
@@ -71,7 +77,7 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
             }
         }
 
-        private fun setSelectedCursor(view: View) {
+        private fun showSelectedCursor(view: View) {
             if (adapterPosition >= weekDayOffset) {
                 getItemDayCallback.invoke(adapterPosition + 1 - weekDayOffset)
                 if (isFirstSelected) {

@@ -13,38 +13,20 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="## 新增&#10;1. Edit/Event Fragment Args 的 dataClass&#10;&#10;## 修改與優化&#10;BrowseEventFragment&#10;1. 把dayEventList 的expand功能移除，改用導航至EventCardFragment 呈現當前event的body content&#10;&#10;EditEventFragment&#10;1. 新增 navigation Args，在編輯的時候，直接透過args 設定 datePicker 的 年月日&#10;&#10;EventCardFragment&#10;1. UI 大改，原本的是呈現每月的event，改為每日&#10;2. title textView 顯示當前的日期&#10;&#10;EventCardViewModel&#10;1. 取得資料邏輯優化&#10;2. getDateFormat fun 因為當前ViewModel的月份都是從1開始，所以要轉換的時候-1，再給calendar&#10;&#10;## 待修正&#10;1. CalendarView 選取框的效果，再點選回到當天日期的menuItem，如何讓選取框跟著回來，還待解決&#10;&#10;## 下次工程&#10;1. adapter 檢查與優化&#10;2. Fragment 設置UI data 與邏輯 優化">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[style] : 修改 Fragment 所有fun 的風格 &#10;畫面邏輯的fun 命名，透過 lowerCamelCase 風格編寫，通常是動詞或動詞短語&#10;&#10;Author: @VossCG">
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/SearchFactorChangeUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetEventByKeyWordUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarDayEventListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarDayEventListAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarViewAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/EventCardListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/EventCardListAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/CalendarFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/CalendarFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/CalendarViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/CalendarViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/GlobalFunction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/GlobalFunction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/LinearItemDecoration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/LinearItemDecoration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/util/StringDiffUtil.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editevent.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editevent.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,13 +252,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00002" summary="second commit&#10;&#10;新增content item 點擊跳轉updateFragment">
-      <created>1649487988970</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1649487988970</updated>
     </task>
     <task id="LOCAL-00003" summary="1.新增content row中的 點擊icon編輯功能&#10;2.在跳轉到MonthFragment 讓navbottom消失">
       <created>1649663247406</created>
@@ -614,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657872839089</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="[style] : 修改 Fragment 所有fun 的風格 &#10;畫面邏輯的fun 命名，透過 lowerCamelCase 風格編寫，通常是動詞或動詞短語&#10;&#10;Author: @VossCG">
+      <created>1658196706812</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1658196706813</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -647,7 +629,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="EditFragment 優化&#10;&#10;將calendarView 改為 DatePicker" />
     <MESSAGE value="優化Home Browse MonthFragment頁面&#10;&#10;1.將homeAdapter 改為ListAdapter&#10;2.建立一個ListAdapterDiffUtil&#10;3.在MonthFragment 點選月份如果沒資料 將會顯示一個Toast提醒使用者 透過自訂setOnGroupListener 在沒資料的時候回傳 true 則不會展開清單" />
     <MESSAGE value="優化SearCh、Update Fragment&#10;&#10;1.在Search 點選filter 顯示textView 提醒使用者切換搜尋條件&#10;2.將filter fab按鈕動畫 額外創建一個物件 用fun來生成動畫物件給頁面&#10;3.優化Update部分與多餘的code" />
     <MESSAGE value="1. 整體檔案名稱:fragment layout itemView drawable 改為一致命格式&#10;2. adapter 都更改為ListAdapter" />
@@ -672,17 +653,7 @@
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment&#10;1.資料庫更動時，沒有刷新browse_event_hint_tv的狀態。現在透過一個refresh fun，讓資料庫變動時，連動刷新當前的View還有注入adapter資料&#10;&#10;UpdateEventFragment&#10;1. chipGroup 取消使用 include導入，以解決預設chip clicked 問題&#10;2. 新增 judgeButtonState方法，讓updateButton會隨著使用者輸入的狀況，更換顏色與是否能點擊&#10;&#10;EditEventFragment&#10;1. chipGroup 取消使用 include導入，以解決預設chip clicked 問題&#10;2. 新增 judgeButtonState方法，讓EditButton會隨著使用者輸入的狀況，更換顏色與是否能點擊&#10;&#10;SearchFragment&#10;1.新增一個imageButton 來返回當前頁面&#10;&#10;## 待修正&#10;1. dayEventList的expand效果，會因為ViewHolder複用的關係，讓其他的item隨著連動，影響使用者體驗&#10;&#10;## 下次工程&#10;1. 將dayEventList的expand呈現資料的方式改掉，直接跳轉到ContentFragment 來呈現完整的title與Content" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment&#10;1.資料庫更動時，沒有刷新browse_event_hint_tv的狀態。現在透過一個refresh fun，讓資料庫變動時，連動刷新當前的View還有注入adapter資料&#10;&#10;UpdateEventFragment&#10;1. chipGroup 取消使用 include導入，以解決預設chip clicked 問題&#10;2. 新增 judgeButtonState方法，讓updateButton會隨著使用者輸入的狀況，更換顏色與是否能點擊&#10;&#10;EditEventFragment&#10;1. chipGroup 取消使用 include導入，以解決預設chip clicked 問題&#10;2. 新增 judgeButtonState方法，讓EditButton會隨著使用者輸入的狀況，更換顏色與是否能點擊&#10;&#10;SearchFragment&#10;1.新增一個imageButton 來返回當前頁面&#10;&#10;## 待修正&#10;1. dayEventList的expand效果，會因為ViewHolder複用的關係，讓其他的item隨著連動，影響使用者體驗&#10;&#10;## 下次工程&#10;1. 將dayEventList的expand呈現資料的方式改掉，直接跳轉到ContentFragment 來呈現完整的title與Content&#10;2. UserCase部分，再看看還有哪些資料邏輯可以抽離出來分類" />
     <MESSAGE value="## 新增&#10;1. Edit/Event Fragment Args 的 dataClass&#10;&#10;## 修改與優化&#10;BrowseEventFragment&#10;1. 把dayEventList 的expand功能移除，改用導航至EventCardFragment 呈現當前event的body content&#10;&#10;EditEventFragment&#10;1. 新增 navigation Args，在編輯的時候，直接透過args 設定 datePicker 的 年月日&#10;&#10;EventCardFragment&#10;1. UI 大改，原本的是呈現每月的event，改為每日&#10;2. title textView 顯示當前的日期&#10;&#10;EventCardViewModel&#10;1. 取得資料邏輯優化&#10;2. getDateFormat fun 因為當前ViewModel的月份都是從1開始，所以要轉換的時候-1，再給calendar&#10;&#10;## 待修正&#10;1. CalendarView 選取框的效果，再點選回到當天日期的menuItem，如何讓選取框跟著回來，還待解決&#10;&#10;## 下次工程&#10;1. adapter 檢查與優化&#10;2. Fragment 設置UI data 與邏輯 優化" />
-    <option name="LAST_COMMIT_MESSAGE" value="## 新增&#10;1. Edit/Event Fragment Args 的 dataClass&#10;&#10;## 修改與優化&#10;BrowseEventFragment&#10;1. 把dayEventList 的expand功能移除，改用導航至EventCardFragment 呈現當前event的body content&#10;&#10;EditEventFragment&#10;1. 新增 navigation Args，在編輯的時候，直接透過args 設定 datePicker 的 年月日&#10;&#10;EventCardFragment&#10;1. UI 大改，原本的是呈現每月的event，改為每日&#10;2. title textView 顯示當前的日期&#10;&#10;EventCardViewModel&#10;1. 取得資料邏輯優化&#10;2. getDateFormat fun 因為當前ViewModel的月份都是從1開始，所以要轉換的時候-1，再給calendar&#10;&#10;## 待修正&#10;1. CalendarView 選取框的效果，再點選回到當天日期的menuItem，如何讓選取框跟著回來，還待解決&#10;&#10;## 下次工程&#10;1. adapter 檢查與優化&#10;2. Fragment 設置UI data 與邏輯 優化" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt</url>
-          <line>57</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="[style] : 修改 Fragment 所有fun 的風格 &#10;畫面邏輯的fun 命名，透過 lowerCamelCase 風格編寫，通常是動詞或動詞短語&#10;&#10;Author: @VossCG" />
+    <option name="LAST_COMMIT_MESSAGE" value="[style] : 修改 Fragment 所有fun 的風格 &#10;畫面邏輯的fun 命名，透過 lowerCamelCase 風格編寫，通常是動詞或動詞短語&#10;&#10;Author: @VossCG" />
   </component>
 </project>

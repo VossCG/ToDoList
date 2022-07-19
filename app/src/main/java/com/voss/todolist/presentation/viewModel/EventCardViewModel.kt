@@ -24,13 +24,6 @@ class EventCardViewModel @Inject constructor(
 
     val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()
 
-    private val _date = MutableLiveData<String>()
-    val date: LiveData<String> = _date
-
-    fun setDate(date: String) {
-        _date.postValue(date)
-    }
-
     fun deleteEvent(eventType: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.deleteEvent(eventType)

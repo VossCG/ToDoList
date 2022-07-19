@@ -29,19 +29,11 @@ class SearChRecyclerAdapter() :
     }
 
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
-        holder.title.text = getItem(position).title
-        holder.month.text = (getItem(position).getMonth() ).toString() + "月"
-        holder.day.text = getItem(position).getDay().toString()
-        holder.content.text = getItem(position).content
-
+        holder.bind(position)
     }
 
-    inner class SearChViewHolder(binding: ItemviewSearchEventCardviewBinding) :
+    inner class SearChViewHolder(private val binding: ItemviewSearchEventCardviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val title: TextView = binding.rowSearchTitleTextView
-        val month: TextView = binding.rowSearchMonthTextView
-        val day: TextView = binding.rowSearchDayTextView
-        val content = binding.rowSearchContentTextView
 
         init {
             val expandListener = View.OnClickListener { expandEvent(binding) }
@@ -58,6 +50,13 @@ class SearChRecyclerAdapter() :
             binding.rowSearchContentCompletebut.setOnClickListener {
                 itemDelete.invoke(getItem(adapterPosition))
             }
+        }
+
+        fun bind(position: Int) {
+            binding.rowSearchTitleTextView.text = getItem(position).title
+            binding.rowSearchMonthTextView.text = (getItem(position).getMonth()).toString() + "月"
+            binding.rowSearchDayTextView.text = getItem(position).getDay().toString()
+            binding.rowSearchContentTextView.text = getItem(position).content
         }
 
         private fun expandEvent(binding: ItemviewSearchEventCardviewBinding) {

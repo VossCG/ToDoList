@@ -48,6 +48,7 @@ class CalendarDayEventListAdapter : ListAdapter<Event, CalendarDayEventListAdapt
             "出遊" -> holder.icon.setImageResource(R.drawable.ic_baseline_directions_car_24)
             "運動" -> holder.icon.setImageResource(R.drawable.ic_baseline_sports_tennis_24)
             "休閒" -> holder.icon.setImageResource(R.drawable.ic_baseline_weekend_24)
+            "學習" -> holder.icon.setImageResource(R.drawable.ic_baseline_menu_book_24)
             "聚餐" -> holder.icon.setImageResource(R.drawable.ic_baseline_dining_24)
         }
     }

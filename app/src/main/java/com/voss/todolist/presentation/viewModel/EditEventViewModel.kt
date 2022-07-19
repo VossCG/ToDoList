@@ -9,7 +9,6 @@ import com.voss.todolist.domain.GetDateIntegerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,7 +18,6 @@ class EditEventViewModel @Inject constructor(
     private val getFormatDateUseCase: GetFormatDateUseCase,
     private val getDateIntegerUseCase: GetDateIntegerUseCase
 ) : AndroidViewModel(application) {
-    private val calendar = Calendar.getInstance(Locale.TAIWAN)
 
     private val _year = MutableLiveData<Int>()
     val year: LiveData<Int> get() = _year

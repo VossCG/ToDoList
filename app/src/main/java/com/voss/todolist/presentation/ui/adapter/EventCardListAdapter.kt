@@ -2,7 +2,6 @@ package com.voss.todolist.presentation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.data.Event
@@ -26,7 +25,7 @@ class EventCardListAdapter :
     }
 
     override fun onBindViewHolder(holder: ContentViewHolder, position: Int) {
-        holder.onBind(getItem(position))
+        holder.bind(getItem(position))
     }
 
     inner class ContentViewHolder(private val binding: ItemviewEventCardContentBinding) :
@@ -41,7 +40,7 @@ class EventCardListAdapter :
             }
         }
 
-        fun onBind(data: Event) {
+        fun bind(data: Event) {
             binding.eventTitleTv.text = data.title
             binding.eventTypeTitleTv.text = data.type
             binding.eventContentTextView.text = data.content
