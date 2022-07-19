@@ -31,19 +31,22 @@ class BrowseEventFragment :
         super.onViewCreated(view, savedInstanceState)
 
         setClickListener()
-
         setObserver()
+
+        initView()
+    }
+
+    private fun initView(){
         setCalendarViewPager()
         setDayEventRecyclerView()
     }
 
     private fun setClickListener() {
-
         // menu item click event
         binding.browseEventToolbar.setOnMenuItemClickListener {
             when (it.title) {
                 "today" -> {
-                    jumpToCurrentDay()
+                    moveToCurrentDay()
                     return@setOnMenuItemClickListener true
                 }
                 "add" -> {
@@ -67,7 +70,25 @@ class BrowseEventFragment :
         }
     }
 
-    private fun jumpToCurrentDay() {
+    private fun setObserver() {
+        viewModel.currentYear.observe(viewLifecycleOwner) {
+            binding.browseEventYearTv.text = "$it 年"
+        }
+        viewModel.currentMonth.observe(viewLifecycleOwner) {
+            binding.browseEventMonthTv.text = it.toString() + "月"
+        }
+        viewModel.selectItemDay.observe(viewLifecycleOwner) {
+            binding.browseEventSelectDayTv.text = viewModel.getCurrentDate()
+            showEventHint(viewModel.getSingleDayEvent())
+            dayEventAdapter.submitList(viewModel.getSingleDayEvent())
+        }
+        viewModel.readAllEvent.observe(viewLifecycleOwner) {
+            showEventHint(viewModel.getSingleDayEvent())
+            dayEventAdapter.submitList(viewModel.getSingleDayEvent())
+        }
+    }
+
+    private fun moveToCurrentDay() {
         val calendar = Calendar.getInstance(Locale.TAIWAN)
         binding.calendarContainerViewpager.setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
         viewModel.setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
@@ -75,34 +96,11 @@ class BrowseEventFragment :
         viewModel.setYear(calendar.get(Calendar.YEAR))
     }
 
-    private fun setObserver() {
-
-        viewModel.currentYear.observe(viewLifecycleOwner) {
-            binding.browseEventYearTv.text = "$it 年"
-        }
-
-        viewModel.currentMonth.observe(viewLifecycleOwner) {
-            binding.browseEventMonthTv.text = it.toString() + "月"
-        }
-
-        viewModel.selectItemDay.observe(viewLifecycleOwner) {
-            binding.browseEventSelectDayTv.text = viewModel.getCurrentDate()
-            refreshDayEventList(viewModel.getSingleDayEvent())
-        }
-
-        viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            refreshDayEventList(viewModel.getSingleDayEvent())
-        }
-    }
-
-    private fun refreshDayEventList(eventList: List<Event>) {
-        // if selectedDay event is empty ,show a view to remind user have any event
+    private fun showEventHint(eventList: List<Event>) {
         if (eventList.isEmpty()) {
             binding.browseEventHintTv.visibility = View.VISIBLE
         } else
             binding.browseEventHintTv.visibility = View.GONE
-        // refresh current selected item eventList View
-        dayEventAdapter.submitList(eventList)
     }
 
     private fun setCalendarViewPager() {
@@ -141,7 +139,8 @@ class BrowseEventFragment :
     }
 
     private fun setDayEventRecyclerView() {
-        // init recyclerView
+        setDayEventAdapter(dayEventAdapter)
+
         binding.calendarDayEventListRecycler.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
@@ -154,8 +153,10 @@ class BrowseEventFragment :
             adapter = dayEventAdapter
             dayEventAdapter.submitList(viewModel.getSingleDayEvent())
         }
-        // set callback
-        dayEventAdapter.apply {
+    }
+
+    private fun setDayEventAdapter(adapter:CalendarDayEventListAdapter) {
+        adapter.apply {
             navigateToContentCard = { itemPosition ->
                 val direction =
                     BrowseEventFragmentDirections.actionBrowseEventFragmentToEventCardFragment(

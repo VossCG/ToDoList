@@ -44,8 +44,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesSearchFactorChangeUseCase(repository: EventRepositoryImp): SearchFactorChangeUseCase {
-        return SearchFactorChangeUseCase(repository)
+    fun providesSearchFactorChangeUseCase(repository: EventRepositoryImp): GetEventByKeyWordUseCase {
+        return GetEventByKeyWordUseCase(repository)
     }
 
     @Provides

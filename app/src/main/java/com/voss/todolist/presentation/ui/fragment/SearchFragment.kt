@@ -15,7 +15,7 @@ import com.voss.todolist.util.setPreventQuickerClick
 import com.voss.todolist.databinding.FragmentSearchBinding
 import com.voss.todolist.presentation.viewModel.SearchViewModel
 import com.voss.todolist.util.closeKeyboard
-import com.voss.todolist.util.setToastShort
+import com.voss.todolist.util.disPlayToastShort
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,55 +24,19 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private val viewModel: SearchViewModel by viewModels()
     private val navController by lazy { findNavController() }
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
-    private var inputData: String = "null"
+    private var keyWord: String = "null"
     private var isTitle: Boolean = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            mAdapter.submitList(viewModel.filterEventsWithFactor(inputData))
-        }
+        setObserver()
         setClickListener()
+        setEditorActionListener()
         setRecyclerView()
-        setSearchEditText(view)
-
     }
 
-    private fun setSearchEditText(view: View) {
-        binding.searChEditText.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                inputData = binding.searChEditText.text.toString()
-                if (inputData.isNotEmpty()) {
-                    // 關閉鍵盤
-                    closeKeyboard(view, requireActivity())
-                    // 獲得關鍵字過濾資料，放入adapter
-                    val filterData = viewModel.filterEventsWithFactor(inputData)
-                    if (filterData.isEmpty())
-                        Toast.makeText(this.context, "搜尋條件 找不到相關資料 請重新查詢", Toast.LENGTH_SHORT)
-                            .show()
-                    else mAdapter.submitList(filterData)
-                } else Toast.makeText(
-                    this.context,
-                    "Please enter title to SearCh",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return@setOnEditorActionListener true
-            }
-            return@setOnEditorActionListener false
-        }
-    }
-
-    private fun setClickListener() {
-        binding.filterFab.setPreventQuickerClick {
-            switchSearchFactor()
-        }
-        binding.cancelSearchBut.backArrowBut.setOnClickListener {
-            navController.navigateUp()
-        }
-    }
-
-    private fun switchSearchFactor() {
+    private fun changeSearchFactor() {
         isTitle = !isTitle
         if (isTitle) {
             viewModel.setSearchFactor("title")
@@ -85,14 +49,44 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
+    private fun setObserver() {
+        viewModel.readAllEvent.observe(viewLifecycleOwner) {
+            mAdapter.submitList(viewModel.getFilterEvent(keyWord))
+        }
+    }
+
+    private fun setEditorActionListener() {
+        binding.searChEditText.setOnEditorActionListener { _, actionId, _ ->
+            when (actionId) {
+                EditorInfo.IME_ACTION_DONE -> {
+                    showSearchOutputEvent()
+                }
+            }
+            return@setOnEditorActionListener false
+        }
+    }
+
+    private fun setClickListener() {
+        binding.filterFab.setPreventQuickerClick {
+            changeSearchFactor()
+        }
+        binding.cancelSearchBut.backArrowBut.setOnClickListener {
+            navController.navigateUp()
+        }
+    }
+
     private fun setRecyclerView() {
+        setAdapter(mAdapter)
         binding.searchRecycler.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@SearchFragment.context)
             adapter = mAdapter
         }
-        mAdapter.apply {
-            itemClick = { clickPosition ->
+    }
+
+    private fun setAdapter(adapter: SearChRecyclerAdapter) {
+        adapter.apply {
+            itemExpand = { clickPosition ->
                 val layoutManager = binding.searchRecycler.layoutManager as LinearLayoutManager
                 val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
 
@@ -101,7 +95,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 }
             }
             itemDelete = { event ->
-                deleteEvent(event)
+                viewModel.deleteEvent(event)
+                showUndoSnackBar(event)
             }
             itemUpdate = { event ->
                 val direction =
@@ -111,14 +106,23 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
-    private fun deleteEvent(event: Event) {
-        viewModel.deleteEvent(event)
+    private fun showUndoSnackBar(event: Event) {
         Snackbar.make(binding.root, "已完成刪除", Snackbar.LENGTH_SHORT)
             .setAnchorView(binding.filterFab)
             .setAction("undo") {
                 viewModel.addEvent(event)
-                setToastShort(requireContext(), "回復刪除")
-            }
-            .show()
+                disPlayToastShort(requireContext(), "回復刪除")
+            }.show()
+    }
+
+    private fun showSearchOutputEvent() {
+        keyWord = binding.searChEditText.text.toString()
+        if (keyWord.isNotEmpty()) {
+            closeKeyboard(binding.searChEditText, requireActivity())
+            val filterData = viewModel.getFilterEvent(keyWord)
+            if (filterData.isEmpty()) disPlayToastShort(requireContext(), "搜尋條件 找不到相關資料 請重新查詢")
+            mAdapter.submitList(filterData)
+        } else
+            disPlayToastShort(requireContext(), "請輸入關鍵字")
     }
 }

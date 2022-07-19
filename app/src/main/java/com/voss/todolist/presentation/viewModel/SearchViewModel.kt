@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
-import com.voss.todolist.domain.SearchFactorChangeUseCase
+import com.voss.todolist.domain.GetEventByKeyWordUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     application: Application,
     private val daoDataUseCase: DaoDataUseCase,
-    private val searchFactorChangeUseCase: SearchFactorChangeUseCase,
+    private val getEventByKeyWordUseCase: GetEventByKeyWordUseCase,
 ) : AndroidViewModel(application) {
 
     private val _filterFactor = MutableLiveData<String>()
@@ -42,7 +42,7 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun filterEventsWithFactor(inputData: String): List<Event> {
-        return searchFactorChangeUseCase(inputData, _filterFactor.value ?: "null")
+    fun getFilterEvent(keyWord: String): List<Event> {
+        return getEventByKeyWordUseCase(keyWord, _filterFactor.value ?: "null")
     }
 }

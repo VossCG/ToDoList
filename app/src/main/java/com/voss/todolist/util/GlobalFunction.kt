@@ -7,11 +7,11 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 
 
-fun setToastShort(context: Context, message:String){
+fun disPlayToastShort(context: Context, message:String){
     Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
 }
 
-fun setToastLong(context: Context, message:String){
+fun disPlayToastLong(context: Context, message:String){
     Toast.makeText(context,message, Toast.LENGTH_LONG).show()
 }
 
@@ -35,7 +35,6 @@ fun dpToPx(context: Context, dp: Float): Int {
 }
 
 fun closeKeyboard(view: View, activity: FragmentActivity) {
-    val keyboardManager =
-        activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    val keyboardManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     keyboardManager.hideSoftInputFromWindow(view.windowToken, 0)
 }

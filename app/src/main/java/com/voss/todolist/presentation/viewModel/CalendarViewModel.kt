@@ -39,7 +39,7 @@ class CalendarViewModel @Inject constructor(
     init {
         _selectItemDay.value = calendar.get(Calendar.DAY_OF_MONTH)
         _currentYear.value = calendar.get(Calendar.YEAR)
-        _currentMonth.value = calendar.get(Calendar.MONTH)+1
+        _currentMonth.value = calendar.get(Calendar.MONTH) + 1
     }
 
     fun setSelectItemDay(day: Int) {
@@ -57,9 +57,11 @@ class CalendarViewModel @Inject constructor(
     fun plusYear(plus: Int) {
         _currentYear.value = _currentYear.value?.plus(plus)
     }
+
     fun getMonthEvent(month: Int): List<Event> {
         return getMonthlyEventUseCase(_currentYear.value!!, month)
     }
+
     fun getSingleDayEvent(): List<Event> {
         return getSingleDayEventUseCase.invoke(
             _currentYear.value!!,
@@ -74,5 +76,25 @@ class CalendarViewModel @Inject constructor(
             _currentMonth.value!! - 1,
             _selectItemDay.value!!
         )
+    }
+
+    fun getCurrentMonthOfDays(month: Int, year: Int): Int {
+        // 如果為閏年的二月，回傳天數為29
+        if (year % 4 == 0 && month == 2) {
+            return 29
+        }
+        return when (month) {
+            1, 3, 5, 7, 8, 10, 12 -> 31
+            4, 6, 9, 11 -> 30
+            2 -> 28
+            else -> 0
+        }
+    }
+
+    fun getFirstWeekOfMonth(pagePosition: Int, mCalendar: Calendar): Int {
+        mCalendar.set(Calendar.YEAR, currentYear.value!!)
+        mCalendar.set(Calendar.MONTH, pagePosition - 1)
+        mCalendar.set(Calendar.DAY_OF_MONTH, 1)
+        return mCalendar.get(Calendar.DAY_OF_WEEK)
     }
 }

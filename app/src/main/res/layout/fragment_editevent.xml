@@ -151,7 +151,7 @@
                 android:nestedScrollingEnabled="true" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/addEvent_but"
+                android:id="@+id/addEvent_btn"
                 style="@style/DefaultMaterialButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

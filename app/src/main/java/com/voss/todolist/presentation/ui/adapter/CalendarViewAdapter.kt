@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.ItemviewCalendarGridviewIconBinding
 
-class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int) :
+class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset: Int) :
     RecyclerView.Adapter<CalendarViewAdapter.CalendarViewHolder>() {
     private var event: List<Event> = emptyList()
     private lateinit var oldSelectItemView: View
     private var isFirstSelected = true
-    var getDrawableCallBack: ((String) -> Drawable)? = null
-    var getItemDay: (Int) -> Unit = { }
+    var setDrawableCallBack : ((String) -> Drawable)? = null
+    var getItemDayCallback : (Int) -> Unit = { }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         return CalendarViewHolder(
             ItemviewCalendarGridviewIconBinding.inflate(
@@ -35,7 +35,7 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
     }
 
     override fun getItemCount(): Int {
-        return size
+        return dayOfMonth + weekDayOffset
     }
 
     // set current event data
@@ -56,7 +56,7 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
             }
         }
 
-        fun bind(position: Int){
+        fun bind(position: Int) {
             val currentDay = position - weekDayOffset + 1
             dateTextView.text = currentDay.toString()
             val currentDayEvent: List<Event> = event.filter {
@@ -64,23 +64,23 @@ class CalendarViewAdapter(private val size: Int, private val weekDayOffset: Int)
             }
             // 當事件數量 到某一個數值時候，顯示不同的顏色
             when (currentDayEvent.size) {
-                0 -> dateTextView.background = getDrawableCallBack?.invoke("default")
-                1 -> dateTextView.background = getDrawableCallBack?.invoke("single")
-                2 -> dateTextView.background = getDrawableCallBack?.invoke("some")
-                else -> dateTextView.background = getDrawableCallBack?.invoke("multitude")
+                0 -> dateTextView.background = setDrawableCallBack?.invoke("default")
+                1 -> dateTextView.background = setDrawableCallBack?.invoke("single")
+                2 -> dateTextView.background = setDrawableCallBack?.invoke("some")
+                else -> dateTextView.background = setDrawableCallBack?.invoke("multitude")
             }
         }
 
         private fun setSelectedCursor(view: View) {
             if (adapterPosition >= weekDayOffset) {
-                getItemDay.invoke(adapterPosition + 1 - weekDayOffset)
+                getItemDayCallback.invoke(adapterPosition + 1 - weekDayOffset)
                 if (isFirstSelected) {
                     oldSelectItemView = view
-                    view.background = getDrawableCallBack?.invoke("stroke")
+                    view.background = setDrawableCallBack?.invoke("stroke")
                     isFirstSelected = false
                 } else {
-                    oldSelectItemView.background = getDrawableCallBack?.invoke("default")
-                    view.background = getDrawableCallBack?.invoke("stroke")
+                    oldSelectItemView.background = setDrawableCallBack?.invoke("default")
+                    view.background = setDrawableCallBack?.invoke("stroke")
                     oldSelectItemView = view
                 }
             }

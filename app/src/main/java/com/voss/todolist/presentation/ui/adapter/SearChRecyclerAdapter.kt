@@ -14,7 +14,7 @@ import com.voss.todolist.databinding.ItemviewSearchEventCardviewBinding
 class SearChRecyclerAdapter() :
     ListAdapter<Event, SearChRecyclerAdapter.SearChViewHolder>(EventTypeDiffUtil()) {
 
-    var itemClick: (Int) -> Unit = {}
+    var itemExpand: (Int) -> Unit = {}
     var itemDelete: (Event) -> Unit = {}
     var itemUpdate: (Event) -> Unit = {}
 
@@ -44,11 +44,10 @@ class SearChRecyclerAdapter() :
         val content = binding.rowSearchContentTextView
 
         init {
-            val expandListener = View.OnClickListener {
-                expandEvent(binding)
-            }
+            val expandListener = View.OnClickListener { expandEvent(binding) }
 
             binding.expandArrowBut.setOnClickListener(expandListener)
+
             binding.root.setOnClickListener(expandListener)
 
             binding.root.setOnLongClickListener {
@@ -65,7 +64,7 @@ class SearChRecyclerAdapter() :
             if (binding.rowSearchExpandLayout.visibility == View.GONE) {
                 binding.rowSearchExpandLayout.visibility = View.VISIBLE
                 binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
-                itemClick.invoke(adapterPosition)
+                itemExpand.invoke(adapterPosition)
             } else {
                 binding.rowSearchExpandLayout.visibility = View.GONE
                 binding.expandArrowBut.setImageResource(R.drawable.ic_baseline_keyboard_arrow_right_24)

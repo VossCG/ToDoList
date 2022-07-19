@@ -29,24 +29,29 @@ class EventCardFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initData()
-        initView()
         setObserver()
+        setClickListener()
+
+        initAttributes()
+        initView()
     }
 
-    private fun initData() {
+    private fun initAttributes() {
         date = viewModel.getDateFormat(contentArgs.year, contentArgs.month, contentArgs.day)
     }
 
     private fun initView() {
         binding.eventDateTextView.text = date
+        setRecyclerView(args.contentArgs.position)
+    }
+
+    private fun setClickListener() {
         binding.contentAddFab.setOnClickListener {
             val direction = EventCardFragmentDirections.actionEventCardFragmentToEditEventFragment(
                 EditArgs(contentArgs.year, contentArgs.month, contentArgs.day)
             )
             navController.navigate(direction)
         }
-        setRecyclerView(args.contentArgs.position)
     }
 
     private fun setRecyclerView(position: Int) {

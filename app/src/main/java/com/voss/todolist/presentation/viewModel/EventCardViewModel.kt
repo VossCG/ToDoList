@@ -4,6 +4,7 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.voss.todolist.data.Event
 import com.voss.todolist.domain.*
@@ -23,6 +24,13 @@ class EventCardViewModel @Inject constructor(
 
     val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()
 
+    private val _date = MutableLiveData<String>()
+    val date: LiveData<String> = _date
+
+    fun setDate(date: String) {
+        _date.postValue(date)
+    }
+
     fun deleteEvent(eventType: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.deleteEvent(eventType)
@@ -31,11 +39,13 @@ class EventCardViewModel @Inject constructor(
             }
         }
     }
-    fun getSingleDayEvent(date:String): List<Event> {
+
+    fun getSingleDayEvent(date: String): List<Event> {
         return getSingleDayEventUseCase.invoke(date = date)
     }
-    fun getDateFormat(year:Int,month:Int,day:Int):String{
-        return getFormatDateUseCase.invoke(year, month-1, day)
+
+    fun getDateFormat(year: Int, month: Int, day: Int): String {
+        return getFormatDateUseCase.invoke(year, month - 1, day)
     }
 
 }
