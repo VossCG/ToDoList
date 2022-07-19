@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.forEach
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -25,7 +25,7 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
 
     private val args: UpdateEventFragmentArgs by navArgs()
     private val argsEventTypes get() = args.event
-    private val viewModel: UpdateEventViewModel by activityViewModels()
+    private val viewModel: UpdateEventViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
 
     private var newDateInteger: Int = 0

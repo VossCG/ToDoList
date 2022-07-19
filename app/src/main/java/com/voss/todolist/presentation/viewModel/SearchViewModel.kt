@@ -20,15 +20,17 @@ class SearchViewModel @Inject constructor(
     private val getEventByKeyWordUseCase: GetEventByKeyWordUseCase,
 ) : AndroidViewModel(application) {
 
-    private val _filterFactor = MutableLiveData<String>()
+    private val _filterFactor = MutableLiveData<String>("title")
+    private val _keyWord = MutableLiveData<String>("")
+    val keyWord: LiveData<String> = _keyWord
     val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()
-
-    init {
-        _filterFactor.value = "title"
-    }
 
     fun setSearchFactor(factor: String) {
         _filterFactor.postValue(factor)
+    }
+
+    fun setKeyWord(keyWord: String) {
+        _keyWord.postValue(keyWord)
     }
 
     fun deleteEvent(eventTypes: Event) {
@@ -36,13 +38,17 @@ class SearchViewModel @Inject constructor(
             daoDataUseCase.deleteEvent(eventTypes)
         }
     }
-    fun addEvent(eventTypes: Event){
+
+    fun addEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.addEvent(eventTypes)
         }
     }
 
-    fun getFilterEvent(keyWord: String): List<Event> {
-        return getEventByKeyWordUseCase(keyWord, _filterFactor.value ?: "null")
+    fun getSearchEvent(keyWord: String): List<Event> {
+        return if (keyWord.isEmpty())
+            emptyList()
+        else
+            getEventByKeyWordUseCase(keyWord, _filterFactor.value ?: "null")
     }
 }

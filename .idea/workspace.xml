@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[features] : ChipGroup 新增 學習 item&#10;&#10;Author: @VossCG">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ refactor ] : 重構SearchFragment 的ˊ搜尋功能&#10;之前為按下ime按鈕後搜尋，現在改成動態搜尋，在使用者輸入字元後，observer會監聽並submit adapter&#10;&#10;Author: @VossCG">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -27,27 +27,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarDayEventListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarDayEventListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarViewAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/EventCardListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/EventCardListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_button_backarrow.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_back_arrow.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_chipgroup_choice_event.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editevent.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_editevent.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_eventcard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_eventcard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_toolbar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_calendar_gridview_icon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_calendar_icon.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_event_card_content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_event_card.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_event_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_day_event_card.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_event_cardview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_event_card.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +47,7 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[4d756a6a]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -273,13 +260,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00004" summary="1.在contentItem 新增刪除功能&#10;2.在ViewHolder 當中去綁定刪除功能，若是在OnBindViewHolder 去實作 position會出現異常，因為刪除後會再重新呼叫，跑出outindexpointer exception">
-      <created>1649667250510</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1649667250510</updated>
     </task>
     <task id="LOCAL-00005" summary="SearchFragment 相關更動&#10;1.新增recyclerview&#10;2.新增對應adapter&#10;3.新增recycler item 點擊擴展layout&#10;&#10;待處理&#10;1.搜尋EditText資料拿取&#10;2.資料過濾後導入Adapter">
       <created>1649752832155</created>
@@ -617,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658205127408</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="[ style ] : 修改所有 xml檔名和id 改為一致的風格&#10;## xml檔名 命名格式  &#10;[類型]_[頁面邏輯名稱]&#10;## 元件id  命名格式&#10;[xml檔名]_[代表某種資料/功能]_[元件類型縮寫]&#10;&#10;Author: @VossCG">
+      <created>1658219953341</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1658219953342</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -650,8 +637,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="優化SearCh、Update Fragment&#10;&#10;1.在Search 點選filter 顯示textView 提醒使用者切換搜尋條件&#10;2.將filter fab按鈕動畫 額外創建一個物件 用fun來生成動畫物件給頁面&#10;3.優化Update部分與多餘的code" />
-    <MESSAGE value="1. 整體檔案名稱:fragment layout itemView drawable 改為一致命格式&#10;2. adapter 都更改為ListAdapter" />
     <MESSAGE value="優化所有xml style" />
     <MESSAGE value="部分Layout drawable 優化&#10;1. 全部shape radius 都設為10dp&#10;2. 刪去多餘的layout 布局&#10;3. recyclerView 間距 都透過LinearItemDecoration 設定&#10;4. 新增一個 ripple，用來設定expandListView 的group item 點擊特效" />
     <MESSAGE value="1. 部分adapter 優化&#10;2. 部分Fragment 優化&#10;3. 部分layout 優化&#10;4. 將一些假資料的字串放入字串資源當中&#10;5. 新增一個StartSearchFragment，讓使用者點選SearchFragment Toolbar的時候，跳轉到有搜尋紀錄的畫面，使用Transition達到類似dropDownMenu的跳轉效果。而原本SearchFragment頁面的搜尋功能，必須移植到StartSearch，本身也必須修改為只負責呈現搜尋結果的畫面。&#10;6. 呈上，如果搜尋改為如此，好像就沒必要放在BottomNav去做導航，應該可以放在HomeFragment讓使用者點選Toolbar跳轉，參考畫面(旋轉拍賣的主頁)。將會改為Home(點選toolbar)-&gt;StartSearch(展開搜尋頁面與紀錄)-&gt;Search(呈現搜尋結果)的流程" />
@@ -675,6 +660,8 @@
     <MESSAGE value="## 新增&#10;1. Edit/Event Fragment Args 的 dataClass&#10;&#10;## 修改與優化&#10;BrowseEventFragment&#10;1. 把dayEventList 的expand功能移除，改用導航至EventCardFragment 呈現當前event的body content&#10;&#10;EditEventFragment&#10;1. 新增 navigation Args，在編輯的時候，直接透過args 設定 datePicker 的 年月日&#10;&#10;EventCardFragment&#10;1. UI 大改，原本的是呈現每月的event，改為每日&#10;2. title textView 顯示當前的日期&#10;&#10;EventCardViewModel&#10;1. 取得資料邏輯優化&#10;2. getDateFormat fun 因為當前ViewModel的月份都是從1開始，所以要轉換的時候-1，再給calendar&#10;&#10;## 待修正&#10;1. CalendarView 選取框的效果，再點選回到當天日期的menuItem，如何讓選取框跟著回來，還待解決&#10;&#10;## 下次工程&#10;1. adapter 檢查與優化&#10;2. Fragment 設置UI data 與邏輯 優化" />
     <MESSAGE value="[style] : 修改 Fragment 所有fun 的風格 &#10;畫面邏輯的fun 命名，透過 lowerCamelCase 風格編寫，通常是動詞或動詞短語&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[features] : ChipGroup 新增 學習 item&#10;&#10;Author: @VossCG" />
-    <option name="LAST_COMMIT_MESSAGE" value="[features] : ChipGroup 新增 學習 item&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ style ] : 修改所有 xml檔名和id 改為一致的風格&#10;## xml檔名 命名格式  &#10;[類型]_[頁面邏輯名稱]&#10;## 元件id  命名格式&#10;[xml檔名]_[代表某種資料/功能]_[元件類型縮寫]&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ refactor ] : 重構SearchFragment 的ˊ搜尋功能&#10;之前為按下ime按鈕後搜尋，現在改成動態搜尋，在使用者輸入字元後，observer會監聽並submit adapter&#10;&#10;Author: @VossCG" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ refactor ] : 重構SearchFragment 的ˊ搜尋功能&#10;之前為按下ime按鈕後搜尋，現在改成動態搜尋，在使用者輸入字元後，observer會監聽並submit adapter&#10;&#10;Author: @VossCG" />
   </component>
 </project>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,15 +25,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private val viewModel: SearchViewModel by viewModels()
     private val navController by lazy { findNavController() }
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
-    private var keyWord: String = "null"
     private var isTitle: Boolean = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setObserver()
-        setClickListener()
-        setEditorActionListener()
+        setListener()
         setRecyclerView()
     }
 
@@ -49,29 +48,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
-    private fun setObserver() {
-        viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            mAdapter.submitList(viewModel.getFilterEvent(keyWord))
-        }
-    }
-
-    private fun setEditorActionListener() {
-        binding.searchEdt.setOnEditorActionListener { _, actionId, _ ->
-            when (actionId) {
-                EditorInfo.IME_ACTION_DONE -> {
-                    showSearchOutputEvent()
-                }
-            }
-            return@setOnEditorActionListener false
-        }
-    }
-
-    private fun setClickListener() {
+    private fun setListener() {
         binding.filterFab.setPreventQuickerClick {
             changeSearchFactor()
         }
         binding.searchCancelBtn.backArrowBtn.setOnClickListener {
             navController.navigateUp()
+        }
+        binding.searchEdt.addTextChangedListener {
+            viewModel.setKeyWord(binding.searchEdt.text.toString())
+        }
+    }
+
+    private fun setObserver() {
+        viewModel.readAllEvent.observe(viewLifecycleOwner) {
+            mAdapter.submitList(viewModel.getSearchEvent(viewModel.keyWord.value!!))
+        }
+        viewModel.keyWord.observe(viewLifecycleOwner) { keyWord ->
+            mAdapter.submitList(viewModel.getSearchEvent(keyWord))
         }
     }
 
@@ -113,16 +107,5 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 viewModel.addEvent(event)
                 disPlayToastShort(requireContext(), "回復刪除")
             }.show()
-    }
-
-    private fun showSearchOutputEvent() {
-        keyWord = binding.searchEdt.text.toString()
-        if (keyWord.isNotEmpty()) {
-            closeKeyboard(binding.searchEdt, requireActivity())
-            val filterData = viewModel.getFilterEvent(keyWord)
-            if (filterData.isEmpty()) disPlayToastShort(requireContext(), "搜尋條件 找不到相關資料 請重新查詢")
-            mAdapter.submitList(filterData)
-        } else
-            disPlayToastShort(requireContext(), "請輸入關鍵字")
     }
 }

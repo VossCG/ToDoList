@@ -3,6 +3,7 @@ package com.voss.todolist.presentation.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -20,7 +21,7 @@ class EventCardFragment :
     BaseFragment<FragmentEventcardBinding>(FragmentEventcardBinding::inflate) {
 
     private val mAdapter: EventCardListAdapter by lazy { EventCardListAdapter() }
-    private val viewModel: EventCardViewModel by activityViewModels()
+    private val viewModel: EventCardViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
     private val args: EventCardFragmentArgs by navArgs()
     private val contentArgs get() = args.contentArgs

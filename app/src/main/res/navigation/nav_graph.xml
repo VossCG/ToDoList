@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/editEventFragment"
-        tools:layout="@layout/fragment_edit"
+        tools:layout="@layout/fragment_edit_event"
         android:name="com.voss.todolist.presentation.ui.fragment.EditEventFragment"
         android:label="EditEventFragment" >
         <argument
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateEventFragment"
-        tools:layout="@layout/fragment_update"
+        tools:layout="@layout/fragment_update_event"
         android:name="com.voss.todolist.presentation.ui.fragment.UpdateEventFragment"
         android:label="UpdateEventFragment" >
         <argument

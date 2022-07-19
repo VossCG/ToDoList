@@ -10,14 +10,14 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.voss.todolist.R
 import com.voss.todolist.data.Event
-import com.voss.todolist.databinding.FragmentEditeventBinding
+import com.voss.todolist.databinding.FragmentEditEventBinding
 import com.voss.todolist.presentation.viewModel.EditEventViewModel
 import com.voss.todolist.util.disPlayToastShort
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class EditEventFragment : BaseFragment<FragmentEditeventBinding>(FragmentEditeventBinding::inflate) {
+class EditEventFragment : BaseFragment<FragmentEditEventBinding>(FragmentEditEventBinding::inflate) {
 
     private val viewModel: EditEventViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
