@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ refactor ] : 重構SearchFragment 的ˊ搜尋功能&#10;之前為按下ime按鈕後搜尋，現在改成動態搜尋，在使用者輸入字元後，observer會監聽並submit adapter&#10;&#10;Author: @VossCG">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ fix ] : 修改SearchFragment item Expanded re OnBindView&#10;原本在item expand的時候因為復用，所以導致使用者還未點擊就已經expanded。現在改為重新onBind的時候&#10;&#10;Author: @VossCG&#10;issue #1">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -24,17 +24,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/TimberTree.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/TimberTree.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +41,7 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[4d756a6a]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -260,13 +254,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00005" summary="SearchFragment 相關更動&#10;1.新增recyclerview&#10;2.新增對應adapter&#10;3.新增recycler item 點擊擴展layout&#10;&#10;待處理&#10;1.搜尋EditText資料拿取&#10;2.資料過濾後導入Adapter">
-      <created>1649752832155</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1649752832156</updated>
     </task>
     <task id="LOCAL-00006" summary="SearchFragment 相關更動&#10;&#10;1.新稱搜尋按鈕&#10;2.editText 外觀優化&#10;3.rowItem 布局優化&#10;&#10;待處理&#10;搜尋功能需改為關鍵字title搜尋">
       <created>1649757263312</created>
@@ -604,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658219953342</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="[ refactor ] : 重構SearchFragment 的ˊ搜尋功能&#10;之前為按下ime按鈕後搜尋，現在改成動態搜尋，在使用者輸入字元後，observer會監聽並submit adapter&#10;&#10;Author: @VossCG">
+      <created>1658223235830</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1658223235830</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -637,8 +631,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="優化所有xml style" />
-    <MESSAGE value="部分Layout drawable 優化&#10;1. 全部shape radius 都設為10dp&#10;2. 刪去多餘的layout 布局&#10;3. recyclerView 間距 都透過LinearItemDecoration 設定&#10;4. 新增一個 ripple，用來設定expandListView 的group item 點擊特效" />
     <MESSAGE value="1. 部分adapter 優化&#10;2. 部分Fragment 優化&#10;3. 部分layout 優化&#10;4. 將一些假資料的字串放入字串資源當中&#10;5. 新增一個StartSearchFragment，讓使用者點選SearchFragment Toolbar的時候，跳轉到有搜尋紀錄的畫面，使用Transition達到類似dropDownMenu的跳轉效果。而原本SearchFragment頁面的搜尋功能，必須移植到StartSearch，本身也必須修改為只負責呈現搜尋結果的畫面。&#10;6. 呈上，如果搜尋改為如此，好像就沒必要放在BottomNav去做導航，應該可以放在HomeFragment讓使用者點選Toolbar跳轉，參考畫面(旋轉拍賣的主頁)。將會改為Home(點選toolbar)-&gt;StartSearch(展開搜尋頁面與紀錄)-&gt;Search(呈現搜尋結果)的流程" />
     <MESSAGE value="1. 搜尋頁面更改優化取消&#10;2. 優化BrowseFragment&#10;預計整個大改，將會改為使用一個calendarView，來呈現目前所有的日期與事件，並透過顏色不同來代表，目前日期那些是有特殊事件，或是哪天的事件很多&#10;3. 創建一個customCalendarView&#10;透過一個ViewPager2 包裹 gridView 來呈現&#10;4. 新的BrowseFragment 下方的ListView 將會呈現當前的日期的所有事件title" />
     <MESSAGE value="##　修改與優化&#10;1. 將於CalendarView 的GridView改為recycler&#10;2. 設計一個ViewModel 給BrowseEvent 與 CalendarView 共用相同的日曆數值(年、月、日)&#10;但是否要作為androidViewModel 還在考慮，可能一般的ViewModel就已經夠用&#10;3. 設計三個shape drawable 給 calendar 的icon使用，用來辨識當前的日期 事件有多少&#10;&#10;## 下一步要完成功能&#10;1. 將calendarView 與 room 當中的資料綁定&#10;2. 將calendarView 滑動 會更動現況頁面的&quot;年月日&quot;&#10;3. 日期與星期的綁定排版還需要思考一下該如何處理" />
@@ -662,6 +654,8 @@
     <MESSAGE value="[features] : ChipGroup 新增 學習 item&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ style ] : 修改所有 xml檔名和id 改為一致的風格&#10;## xml檔名 命名格式  &#10;[類型]_[頁面邏輯名稱]&#10;## 元件id  命名格式&#10;[xml檔名]_[代表某種資料/功能]_[元件類型縮寫]&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ refactor ] : 重構SearchFragment 的ˊ搜尋功能&#10;之前為按下ime按鈕後搜尋，現在改成動態搜尋，在使用者輸入字元後，observer會監聽並submit adapter&#10;&#10;Author: @VossCG" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ refactor ] : 重構SearchFragment 的ˊ搜尋功能&#10;之前為按下ime按鈕後搜尋，現在改成動態搜尋，在使用者輸入字元後，observer會監聽並submit adapter&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ fix ] : 修改SearchFragment item Expanded re OnBindView&#10;原本在item expand的時候因為復用，所以導致使用者還未點擊就已經expanded。現在改為重新onBind的時候都close expanded&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ fix ] : 修改SearchFragment item Expanded re OnBindView&#10;原本在item expand的時候因為復用，所以導致使用者還未點擊就已經expanded。現在改為重新onBind的時候&#10;&#10;Author: @VossCG&#10;issue #1" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ fix ] : 修改SearchFragment item Expanded re OnBindView&#10;原本在item expand的時候因為復用，所以導致使用者還未點擊就已經expanded。現在改為重新onBind的時候&#10;&#10;Author: @VossCG&#10;issue #1" />
   </component>
 </project>

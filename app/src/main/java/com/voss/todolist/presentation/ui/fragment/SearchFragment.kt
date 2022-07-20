@@ -81,12 +81,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun setAdapter(adapter: SearChRecyclerAdapter) {
         adapter.apply {
             itemExpand = { clickPosition ->
-                val layoutManager = binding.searchRcv.layoutManager as LinearLayoutManager
-                val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
-
-                if (clickPosition == lastPositionVisible) {
-                    layoutManager.scrollToPositionWithOffset(clickPosition, 0)
-                }
+                scrollToExpanded(clickPosition)
             }
             itemDelete = { event ->
                 viewModel.deleteEvent(event)
@@ -97,6 +92,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                     SearchFragmentDirections.actionSearchFragmentToUpdateEventFragment(event)
                 navController.navigate(direction)
             }
+        }
+    }
+
+    private fun scrollToExpanded(clickPosition: Int) {
+        val layoutManager = binding.searchRcv.layoutManager as LinearLayoutManager
+        val lastPositionVisible = layoutManager.findLastVisibleItemPosition()
+
+        if (clickPosition == lastPositionVisible) {
+            layoutManager.scrollToPositionWithOffset(clickPosition, 0)
         }
     }
 
