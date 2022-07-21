@@ -49,25 +49,24 @@ class CalendarFragment() : Fragment() {
     }
 
     private fun setCalendarRecyclerView() {
-        // -1 是因為week 是從 1 開始，要丟給adapter，如果是星期日為1，但在GridView呈現是，是不需要位移的
-        // 所以在 size offset 上面是要為 0
-        val dayWeekOffset = viewModel.getFirstWeekOfMonth(pagePosition,calendar) - 1
-        val dayOfMonth = viewModel.getCurrentMonthOfDays(pagePosition, viewModel.currentYear.value!!)
-
-        mAdapter = CalendarViewAdapter(dayOfMonth, dayWeekOffset)
-
-        setCalendarCallBack(mAdapter)
-
+        setCalendarAdapter()
         binding.calendarGridRecycler.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(), 7, GridLayoutManager.VERTICAL, false)
+            layoutManager =
+                GridLayoutManager(requireContext(), 7, GridLayoutManager.VERTICAL, false)
             adapter = mAdapter
         }
         mAdapter.setData(viewModel.getMonthEvent(pagePosition))
     }
 
-    private fun setCalendarCallBack(adapter: CalendarViewAdapter) {
-        adapter.setDrawableCallBack = {
+    private fun setCalendarAdapter() {
+        // -1 是因為week 是從 1 開始，要丟給adapter，如果是星期日為1，但在GridView呈現是，是不需要位移的
+        // 所以在 size offset 上面是要為 0
+        val dayWeekOffset = viewModel.getFirstWeekOfMonth(pagePosition, calendar) - 1
+        val dayOfMonth = viewModel.getCurrentMonthOfDays(pagePosition, viewModel.currentYear.value!!)
+        mAdapter = CalendarViewAdapter(dayOfMonth, dayWeekOffset)
+
+        mAdapter.setDrawableCallBack = {
             when (it) {
                 "stroke" -> resources.getDrawable(R.drawable.stroke_1dp_yellow, null)
                 "single" -> resources.getDrawable(R.drawable.shape_calendar_icon_single_event, null)
@@ -77,7 +76,7 @@ class CalendarFragment() : Fragment() {
                 else -> resources.getDrawable(R.drawable.shape_calendar_icon_default, null)
             }
         }
-        adapter.getItemDayCallback = { viewModel.setSelectItemDay(it) }
+        mAdapter.getItemDayCallback = { viewModel.setSelectItemDay(it) }
     }
 
     override fun onDestroy() {

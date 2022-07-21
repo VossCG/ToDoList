@@ -7,11 +7,11 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 
 
-fun disPlayToastShort(context: Context, message:String){
+fun displayToastShort(context: Context, message:String){
     Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
 }
 
-fun disPlayToastLong(context: Context, message:String){
+fun displayToastLong(context: Context, message:String){
     Toast.makeText(context,message, Toast.LENGTH_LONG).show()
 }
 

@@ -2,14 +2,13 @@ package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.data.args.EditArgs
-import com.voss.todolist.presentation.ui.adapter.EventCardListAdapter
+import com.voss.todolist.presentation.ui.adapter.EventCardAdapter
 import com.voss.todolist.util.LinearItemDecoration
 import com.voss.todolist.util.dpToPx
 import com.voss.todolist.presentation.viewModel.EventCardViewModel
@@ -20,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class EventCardFragment :
     BaseFragment<FragmentEventcardBinding>(FragmentEventcardBinding::inflate) {
 
-    private val mAdapter: EventCardListAdapter by lazy { EventCardListAdapter() }
+    private val mAdapter: EventCardAdapter by lazy { EventCardAdapter() }
     private val viewModel: EventCardViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
     private val args: EventCardFragmentArgs by navArgs()
@@ -56,6 +55,7 @@ class EventCardFragment :
     }
 
     private fun setRecyclerView(position: Int) {
+        setEventCardAdapter()
         binding.eventCardRcv.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this.context)
@@ -63,7 +63,8 @@ class EventCardFragment :
             scrollToPosition(position)
             addItemDecoration(LinearItemDecoration(dpToPx(requireContext(), 10f)))
         }
-        // Item OnClick callBack
+    }
+    private fun setEventCardAdapter() {
         mAdapter.itemClickUpdate = { event ->
             val direction =
                 EventCardFragmentDirections.actionEventCardFragmentToUpdateEventFragment(event)

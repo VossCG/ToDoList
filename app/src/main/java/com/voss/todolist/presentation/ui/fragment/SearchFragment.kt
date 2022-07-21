@@ -2,7 +2,6 @@ package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -15,8 +14,7 @@ import com.voss.todolist.presentation.ui.adapter.SearChRecyclerAdapter
 import com.voss.todolist.util.setPreventQuickerClick
 import com.voss.todolist.databinding.FragmentSearchBinding
 import com.voss.todolist.presentation.viewModel.SearchViewModel
-import com.voss.todolist.util.closeKeyboard
-import com.voss.todolist.util.disPlayToastShort
+import com.voss.todolist.util.displayToastShort
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -34,20 +32,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         setListener()
         setRecyclerView()
     }
-
-    private fun changeSearchFactor() {
-        isTitle = !isTitle
-        if (isTitle) {
-            viewModel.setSearchFactor("title")
-            binding.filterFab.setImageResource(R.drawable.ic_baseline_title_24)
-            Toast.makeText(requireContext(), "Search Title", Toast.LENGTH_SHORT).show()
-        } else {
-            viewModel.setSearchFactor("content")
-            binding.filterFab.setImageResource(R.drawable.ic_baseline_content_paste_24)
-            Toast.makeText(requireContext(), "Search Content", Toast.LENGTH_SHORT).show()
-        }
-    }
-
     private fun setListener() {
         binding.filterFab.setPreventQuickerClick {
             changeSearchFactor()
@@ -66,6 +50,18 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
         viewModel.keyWord.observe(viewLifecycleOwner) { keyWord ->
             mAdapter.submitList(viewModel.getSearchEvent(keyWord))
+        }
+        viewModel.filterFactor.observe(viewLifecycleOwner){ factor ->
+            when(factor){
+                "title" ->{
+                    binding.filterFab.setImageResource(R.drawable.ic_baseline_title_24)
+                    Toast.makeText(requireContext(), "Search Title", Toast.LENGTH_SHORT).show()
+                }
+                "content"->{
+                    binding.filterFab.setImageResource(R.drawable.ic_baseline_content_paste_24)
+                    Toast.makeText(requireContext(), "Search Content", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -109,7 +105,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             .setAnchorView(binding.filterFab)
             .setAction("undo") {
                 viewModel.addEvent(event)
-                disPlayToastShort(requireContext(), "回復刪除")
+                displayToastShort(requireContext(), "回復刪除")
             }.show()
+    }
+
+    private fun changeSearchFactor() {
+        isTitle = !isTitle
+        if (isTitle) {
+            viewModel.setSearchFactor("title")
+        } else {
+            viewModel.setSearchFactor("content")
+        }
     }
 }

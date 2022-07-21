@@ -21,6 +21,7 @@ class SearchViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     private val _filterFactor = MutableLiveData<String>("title")
+    val filterFactor: LiveData<String> = _filterFactor
     private val _keyWord = MutableLiveData<String>("")
     val keyWord: LiveData<String> = _keyWord
     val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()

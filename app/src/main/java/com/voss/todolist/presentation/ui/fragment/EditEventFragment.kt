@@ -12,12 +12,13 @@ import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.FragmentEditEventBinding
 import com.voss.todolist.presentation.viewModel.EditEventViewModel
-import com.voss.todolist.util.disPlayToastShort
+import com.voss.todolist.util.displayToastShort
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class EditEventFragment : BaseFragment<FragmentEditEventBinding>(FragmentEditEventBinding::inflate) {
+class EditEventFragment :
+    BaseFragment<FragmentEditEventBinding>(FragmentEditEventBinding::inflate) {
 
     private val viewModel: EditEventViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
@@ -26,7 +27,6 @@ class EditEventFragment : BaseFragment<FragmentEditEventBinding>(FragmentEditEve
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         setObserver()
         setOnClickListener()
@@ -57,25 +57,10 @@ class EditEventFragment : BaseFragment<FragmentEditEventBinding>(FragmentEditEve
         }
     }
 
-    private fun switchAddBtnState() {
-        val insert = binding.editEventInsertBtn
-        viewModel.apply {
-            if (!title.value.isNullOrEmpty() && !content.value.isNullOrEmpty() && !type.value.isNullOrEmpty()) {
-                insert.backgroundTintList =
-                    resources.getColorStateList(R.color.lightYellow, null)
-                insert.isClickable = true
-            } else {
-                insert.backgroundTintList =
-                    resources.getColorStateList(R.color.darkGrey, null)
-                insert.isClickable = false
-            }
-        }
-    }
-
     private fun setObserver() {
-        viewModel.title.observe(viewLifecycleOwner) { switchAddBtnState() }
-        viewModel.content.observe(viewLifecycleOwner) { switchAddBtnState() }
-        viewModel.type.observe(viewLifecycleOwner) { switchAddBtnState() }
+        viewModel.title.observe(viewLifecycleOwner) { switchInsertBtnState() }
+        viewModel.content.observe(viewLifecycleOwner) { switchInsertBtnState() }
+        viewModel.type.observe(viewLifecycleOwner) { switchInsertBtnState() }
     }
 
     private fun setOnClickListener() {
@@ -104,6 +89,20 @@ class EditEventFragment : BaseFragment<FragmentEditEventBinding>(FragmentEditEve
         }
     }
 
+    private fun switchInsertBtnState() {
+        val insertBtn = binding.editEventInsertBtn
+        // can click
+        if (!viewModel.title.value.isNullOrEmpty() && !viewModel.content.value.isNullOrEmpty() && !viewModel.type.value.isNullOrEmpty()) {
+            insertBtn.backgroundTintList = resources.getColorStateList(R.color.lightYellow, null)
+            insertBtn.isClickable = true
+        }
+        // can't click
+        else {
+            insertBtn.backgroundTintList = resources.getColorStateList(R.color.darkGrey, null)
+            insertBtn.isClickable = false
+        }
+    }
+
     private fun insertEvent() {
         // get all Edit Value
         val title = viewModel.title.value ?: ""
@@ -114,15 +113,20 @@ class EditEventFragment : BaseFragment<FragmentEditEventBinding>(FragmentEditEve
 
         if (checkInputEvent(title, date, content, type)) {
             viewModel.addEvent(Event(title, content, date, dateInteger, type))
-            disPlayToastShort(requireContext(), "新增成功")
+            displayToastShort(requireContext(), "新增成功")
             navController.navigateUp()
         } else if (type.isEmpty()) {
-            disPlayToastShort(requireContext(), "活動類型尚未選擇")
+            displayToastShort(requireContext(), "活動類型尚未選擇")
         } else
-            disPlayToastShort(requireContext(), "Please fill out all fields")
+            displayToastShort(requireContext(), "Please fill out all fields")
     }
 
-    private fun checkInputEvent(title: String, date: String, content: String, type: String): Boolean {
+    private fun checkInputEvent(
+        title: String,
+        date: String,
+        content: String,
+        type: String
+    ): Boolean {
         return (title.isNotEmpty() && date.isNotEmpty() && content.isNotEmpty() && type.isNotEmpty())
     }
 }

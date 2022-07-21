@@ -11,7 +11,6 @@ import com.voss.todolist.data.Event
 import com.voss.todolist.R
 import com.voss.todolist.databinding.ItemviewSearchEventCardBinding
 import com.voss.todolist.util.EventTypeDiffUtil
-import kotlin.math.exp
 
 class SearChRecyclerAdapter() :
     ListAdapter<Event, SearChRecyclerAdapter.SearChViewHolder>(EventTypeDiffUtil()) {
@@ -33,6 +32,12 @@ class SearChRecyclerAdapter() :
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
         holder.bind(position)
         closeExpanded(holder)
+        holder.expandBtn.setOnClickListener {
+            if (holder.expandContent.visibility == View.GONE) {
+                expandedContent(holder, position)
+            } else
+                closeExpanded(holder)
+        }
         holder.header.setOnClickListener {
             if (holder.expandContent.visibility == View.GONE) {
                 expandedContent(holder, position)
@@ -61,6 +66,10 @@ class SearChRecyclerAdapter() :
         init {
             binding.searchItemFinishImgBtn.setOnClickListener {
                 itemDelete.invoke(getItem(adapterPosition))
+            }
+            header.setOnLongClickListener {
+                itemUpdate.invoke(getItem(adapterPosition))
+                return@setOnLongClickListener true
             }
         }
 

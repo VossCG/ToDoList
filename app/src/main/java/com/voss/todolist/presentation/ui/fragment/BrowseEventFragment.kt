@@ -46,7 +46,7 @@ class BrowseEventFragment :
         binding.browseEventTb.setOnMenuItemClickListener {
             when (it.title) {
                 "today" -> {
-                    moveToCurrentDay()
+                    moveToCurrentDate()
                     return@setOnMenuItemClickListener true
                 }
                 "add" -> {
@@ -79,28 +79,13 @@ class BrowseEventFragment :
         }
         viewModel.selectItemDay.observe(viewLifecycleOwner) {
             binding.browseEventSelectedDayTv.text = viewModel.getCurrentDate()
-            showEventHint(viewModel.getSingleDayEvent())
+            checkEventIsEmpty(viewModel.getSingleDayEvent())
             dayEventAdapter.submitList(viewModel.getSingleDayEvent())
         }
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            showEventHint(viewModel.getSingleDayEvent())
+            checkEventIsEmpty(viewModel.getSingleDayEvent())
             dayEventAdapter.submitList(viewModel.getSingleDayEvent())
         }
-    }
-
-    private fun moveToCurrentDay() {
-        val calendar = Calendar.getInstance(Locale.TAIWAN)
-        binding.browseEventCalendarVp.setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
-        viewModel.setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
-        viewModel.setMonth(calendar.get(Calendar.MONTH) + 1)
-        viewModel.setYear(calendar.get(Calendar.YEAR))
-    }
-
-    private fun showEventHint(eventList: List<Event>) {
-        if (eventList.isEmpty()) {
-            binding.browseEventHintTv.visibility = View.VISIBLE
-        } else
-            binding.browseEventHintTv.visibility = View.GONE
     }
 
     private fun setCalendarViewPager() {
@@ -169,5 +154,24 @@ class BrowseEventFragment :
                 navController.navigate(direction)
             }
         }
+    }
+
+    private fun moveToCurrentDate() {
+        val calendar = Calendar.getInstance(Locale.TAIWAN)
+        binding.browseEventCalendarVp.setCurrentItem(calendar.get(Calendar.MONTH) + 1, false)
+        resetCurrentDate(calendar)
+    }
+
+    private fun resetCurrentDate(calendar: Calendar) {
+        viewModel.setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
+        viewModel.setMonth(calendar.get(Calendar.MONTH) + 1)
+        viewModel.setYear(calendar.get(Calendar.YEAR))
+    }
+
+    private fun checkEventIsEmpty(eventList: List<Event>) {
+        if (eventList.isEmpty()) {
+            binding.browseEventHintTv.visibility = View.VISIBLE
+        } else
+            binding.browseEventHintTv.visibility = View.GONE
     }
 }

@@ -4,10 +4,10 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.core.view.forEach
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,25 +16,23 @@ import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.FragmentUpdateEventBinding
 import com.voss.todolist.presentation.viewModel.UpdateEventViewModel
-import com.voss.todolist.util.disPlayToastShort
+import com.voss.todolist.util.displayToastShort
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentUpdateEventBinding::inflate) {
+class UpdateEventFragment() :
+    BaseFragment<FragmentUpdateEventBinding>(FragmentUpdateEventBinding::inflate) {
 
     private val args: UpdateEventFragmentArgs by navArgs()
     private val argsEventTypes get() = args.event
     private val viewModel: UpdateEventViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
 
-    private var newDateInteger: Int = 0
-    private var newDate = MutableLiveData<String>()
-    private var newType: String = ""
-
-    private val datePickerListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            newDateInteger = viewModel.getDateInteger(year, month + 1, dayOfMonth)
-            newDate.postValue(viewModel.getDateFormat(year, month, dayOfMonth))
+    private val datePickerListener =
+        DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            viewModel.setDateInteger(viewModel.getDateInteger(year, month + 1, dayOfMonth))
+            viewModel.setDate((viewModel.getDateFormat(year, month, dayOfMonth)))
         }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,47 +43,40 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
         setInputChangeListener()
 
         initView()
-        initAttributes()
+        initViewModel()
     }
 
     private fun initView() {
         binding.updateEventContentEdt.setText(argsEventTypes.content)
         binding.updateEventTitleEdt.setText(argsEventTypes.title)
-
         binding.updateEventTypeChipGroup.forEach { view ->
             view as Chip
             view.isChecked = (view).text == argsEventTypes.type
         }
     }
 
-    private fun initAttributes() {
-        // init date with args
-        newDate.postValue(argsEventTypes.date)
-        newDateInteger = argsEventTypes.dateInteger
-        newType = argsEventTypes.type
-    }
-
-    private fun setObserver() {
-        newDate.observe(viewLifecycleOwner) {
-            binding.updateEventDateTv.text = it
-        }
+    private fun initViewModel() {
+        viewModel.setDate(argsEventTypes.date)
+        viewModel.setTitle(argsEventTypes.title)
+        viewModel.setContent(argsEventTypes.content)
+        viewModel.setType(argsEventTypes.type)
+        viewModel.setDateInteger(argsEventTypes.dateInteger)
     }
 
     private fun setInputChangeListener() {
 
         binding.updateEventContentEdt.addTextChangedListener {
-            switchUpdateBtnState(getInputTitle(), getInputContent(), newType)
+            viewModel.setContent(binding.updateEventContentEdt.text.toString())
         }
         binding.updateEventTitleEdt.addTextChangedListener {
-            switchUpdateBtnState(getInputTitle(), getInputContent(), newType)
+            viewModel.setTitle(binding.updateEventTitleEdt.text.toString())
         }
         binding.updateEventTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
-            newType = if (checkedId != -1) {
-                group.findViewById<Chip>(checkedId).text.toString()
-            } else ""
-            switchUpdateBtnState(getInputTitle(), getInputContent(), newType)
+            if (checkedId != -1) {
+                viewModel.setType(group.findViewById<Chip>(checkedId).text.toString())
+            } else
+                viewModel.setType("")
         }
-
     }
 
     private fun setClickListener() {
@@ -108,6 +99,54 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
         }
     }
 
+    private fun setObserver() {
+        viewModel.date.observe(viewLifecycleOwner) {
+            binding.updateEventDateTv.text = it
+        }
+        viewModel.title.observe(viewLifecycleOwner) { title ->
+            checkInputIsEmpty()
+        }
+        viewModel.content.observe(viewLifecycleOwner) { content ->
+            checkInputIsEmpty()
+        }
+        viewModel.type.observe(viewLifecycleOwner) { type ->
+            checkInputIsEmpty()
+        }
+    }
+
+    private fun updateEvent() {
+        val newEvent =
+            Event(
+                viewModel.title.value!!,
+                viewModel.content.value!!,
+                viewModel.date.value!!,
+                viewModel.dateInteger.value!!,
+                viewModel.type.value!!
+            )
+        newEvent.id = argsEventTypes.id
+        viewModel.updateEvent(newEvent)
+        displayToastShort(requireContext(), "Change Successful!!")
+    }
+
+    private fun checkInputIsEmpty() {
+        with(viewModel) {
+            if (title.value!!.isNotEmpty() && content.value!!.isNotEmpty() && type.value!!.isNotEmpty()) {
+                openInsertBtn(binding.updateEventInsertBtn)
+            } else
+                closeInsertBtn(binding.updateEventInsertBtn)
+        }
+    }
+
+    private fun closeInsertBtn(insertBtn: Button) {
+        insertBtn.backgroundTintList = resources.getColorStateList(R.color.darkGrey, null)
+        insertBtn.isClickable = false
+    }
+
+    private fun openInsertBtn(insertBtn: Button) {
+        insertBtn.backgroundTintList = resources.getColorStateList(R.color.lightYellow, null)
+        insertBtn.isClickable = true
+    }
+
     private fun showDatePickerDialog() {
         DatePickerDialog(
             requireContext(),
@@ -118,32 +157,6 @@ class UpdateEventFragment() : BaseFragment<FragmentUpdateEventBinding>(FragmentU
             argsEventTypes.getDay()
         ).show()
     }
-
-    private fun updateEvent() {
-        val newEvent = Event(getInputTitle(), getInputContent(), newDate.value!!, newDateInteger, newType)
-        newEvent.id = argsEventTypes.id
-        viewModel.updateEvent(newEvent)
-        disPlayToastShort(requireContext(), "Change Successful!!")
-    }
-
-    private fun checkInputData(title: String, content: String, type: String): Boolean {
-        return (title.isNotEmpty() && content.isNotEmpty() && type.isNotEmpty())
-    }
-
-    private fun switchUpdateBtnState(title: String, content: String, type: String) {
-        val finishBtn = binding.updateEventInsertBtn
-        if (checkInputData(title, content, type)) {
-            finishBtn.backgroundTintList = resources.getColorStateList(R.color.lightYellow, null)
-            finishBtn.isClickable = true
-        } else {
-            finishBtn.backgroundTintList = resources.getColorStateList(R.color.darkGrey, null)
-            finishBtn.isClickable = false
-        }
-    }
-
-    private fun getInputContent(): String = binding.updateEventContentEdt.text.toString()
-
-    private fun getInputTitle(): String = binding.updateEventTitleEdt.text.toString()
 
 }
 

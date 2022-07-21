@@ -8,8 +8,8 @@ import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.ItemviewEventCardBinding
 import com.voss.todolist.util.EventTypeDiffUtil
 
-class EventCardListAdapter :
-    ListAdapter<Event, EventCardListAdapter.ContentViewHolder>(EventTypeDiffUtil()) {
+class EventCardAdapter :
+    ListAdapter<Event, EventCardAdapter.ContentViewHolder>(EventTypeDiffUtil()) {
 
     var itemClickUpdate: (data: Event) -> Unit = {}
     var itemClickDelete: (data: Event) -> Unit = {}
