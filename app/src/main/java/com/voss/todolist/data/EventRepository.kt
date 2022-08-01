@@ -1,6 +1,9 @@
 package com.voss.todolist.data
 
+import androidx.lifecycle.LiveData
+
 interface EventRepository {
+    val eventDataList: LiveData<List<Event>>
 
     suspend fun insertEvent(event: Event)
 

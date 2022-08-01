@@ -1,10 +1,10 @@
 package com.voss.todolist.domain
 
-import com.voss.todolist.data.EventRepositoryImp
 import com.voss.todolist.data.Event
+import com.voss.todolist.data.EventRepository
 import javax.inject.Inject
 
-class GetSingleDayEventUseCase @Inject constructor(private val repository: EventRepositoryImp) {
+class GetSingleDayEventUseCase @Inject constructor(private val repository: EventRepository) {
 
     operator fun invoke(year: Int, month: Int, day: Int): List<Event> {
         return repository.eventDataList.value?.filter {

@@ -5,7 +5,7 @@ import com.voss.todolist.data.room.EventDao
 
 class EventRepositoryImp(private val eventDao: EventDao) : EventRepository {
 
-    val eventDataList: LiveData<List<Event>> = eventDao.getAll()
+    override val eventDataList: LiveData<List<Event>> = eventDao.getAll()
 
     override suspend fun insertEvent(event: Event) {
         eventDao.insert(event)

@@ -2,6 +2,7 @@ package com.voss.todolist.data.di
 
 import android.content.Context
 import androidx.room.Room
+import com.voss.todolist.data.EventRepository
 import com.voss.todolist.data.EventRepositoryImp
 import com.voss.todolist.data.room.EventDao
 import com.voss.todolist.data.room.EventDataBase
@@ -32,19 +33,19 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesRepo(eventDao: EventDao): EventRepositoryImp {
+    fun providesRepo(eventDao: EventDao): EventRepository {
         return EventRepositoryImp(eventDao)
     }
 
     @Provides
     @Singleton
-    fun providesChangeDateUseCase(repository: EventRepositoryImp): DaoDataUseCase {
+    fun providesChangeDateUseCase(repository: EventRepository): DaoDataUseCase {
         return DaoDataUseCase(repository)
     }
 
     @Provides
     @Singleton
-    fun providesSearchFactorChangeUseCase(repository: EventRepositoryImp): GetEventByKeyWordUseCase {
+    fun providesSearchFactorChangeUseCase(repository: EventRepository): GetEventByKeyWordUseCase {
         return GetEventByKeyWordUseCase(repository)
     }
 
@@ -55,12 +56,12 @@ object AppModule {
     }
     @Provides
     @Singleton
-    fun providesMonthlyEventUseCase(repository: EventRepositoryImp):GetMonthlyEventUseCase {
+    fun providesMonthlyEventUseCase(repository: EventRepository):GetMonthlyEventUseCase {
         return GetMonthlyEventUseCase(repository)
     }
     @Provides
     @Singleton
-    fun provideSingleDayEventUseCase(repository: EventRepositoryImp):GetSingleDayEventUseCase{
+    fun provideSingleDayEventUseCase(repository: EventRepository):GetSingleDayEventUseCase{
         return GetSingleDayEventUseCase(repository)
     }
 

@@ -1,11 +1,11 @@
 package com.voss.todolist.domain
 
 import androidx.lifecycle.LiveData
-import com.voss.todolist.data.EventRepositoryImp
 import com.voss.todolist.data.Event
+import com.voss.todolist.data.EventRepository
 import javax.inject.Inject
 
-class DaoDataUseCase @Inject constructor(private val repository: EventRepositoryImp) {
+class DaoDataUseCase @Inject constructor(private val repository: EventRepository) {
 
     suspend fun deleteEvent(eventType: Event) {
         repository.deleteEvent(eventType)
