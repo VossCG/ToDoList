@@ -55,4 +55,9 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
+    <style name="FullDialogTheme" parent="Theme.ToDoList">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
+    </style>
+
 </resources>

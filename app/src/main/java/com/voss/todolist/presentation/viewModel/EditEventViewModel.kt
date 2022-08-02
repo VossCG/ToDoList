@@ -29,13 +29,13 @@ class EditEventViewModel @Inject constructor(
     val day: LiveData<Int> get() = _day
 
     private val _type = MutableLiveData<String>("工作")
-    val type:LiveData<String> get() = _type
+    val type: LiveData<String> get() = _type
 
     private val _title = MutableLiveData<String>("")
-    val title:LiveData<String> get() = _title
+    val title: LiveData<String> get() = _title
 
     private val _content = MutableLiveData<String>("")
-    val content:LiveData<String> get() = _content
+    val content: LiveData<String> get() = _content
 
     fun setYear(year: Int) {
         _year.postValue(year)
@@ -48,13 +48,16 @@ class EditEventViewModel @Inject constructor(
     fun setDay(day: Int) {
         _day.postValue(day)
     }
-    fun setType(type:String){
+
+    fun setType(type: String) {
         _type.postValue(type)
     }
-    fun setTitle(title:String){
+
+    fun setTitle(title: String) {
         _title.postValue(title)
     }
-    fun setContent(content:String){
+
+    fun setContent(content: String) {
         _content.postValue(content)
     }
 
@@ -75,8 +78,12 @@ class EditEventViewModel @Inject constructor(
     fun getCurrentDate(): String {
         return getFormatDateUseCase.invoke(
             _year.value!!,
-            _month.value!!-1,
+            _month.value!! - 1,
             _day.value!!
         )
+    }
+
+    fun getFormatData(year: Int, month: Int, day: Int): String {
+        return getFormatDateUseCase.invoke(year, month, day)
     }
 }

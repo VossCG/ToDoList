@@ -30,7 +30,7 @@ class SearChRecyclerAdapter() :
     }
 
     override fun onBindViewHolder(holder: SearChViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(getItem(position))
         closeExpanded(holder)
         holder.expandBtn.setOnClickListener {
             if (holder.expandContent.visibility == View.GONE) {
@@ -73,11 +73,11 @@ class SearChRecyclerAdapter() :
             }
         }
 
-        fun bind(position: Int) {
-            binding.searchItemTitleTv.text = getItem(position).title
-            binding.searchItemMonthTv.text = "${getItem(position).getMonth()}月"
-            binding.searchItemDayTv.text = getItem(position).getDay().toString()
-            binding.searchItemContentTv.text = getItem(position).content
+        fun bind(event: Event) {
+            binding.searchItemTitleTv.text = event.title
+            binding.searchItemMonthTv.text = "${event.getMonth()}月"
+            binding.searchItemDayTv.text = event.getDay().toString()
+            binding.searchItemContentTv.text = event.content
         }
     }
 }

@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/toolbar_menu">
+        app:menu="@menu/browse_event_toolbar">
 
         <TextView
             android:id="@+id/browse_event_month_tv"

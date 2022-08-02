@@ -13,7 +13,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ pref ] : SearchFragment 搜尋條件功能優化 , UpdateFragment Insert 按鈕判定優化&#10;&#10;## UpdateEventFragment&#10;1. 將頁面所需要的變數都放到ViewModel當中&#10;2. Insert 按鈕 隨著 LiveData 判定input data 是否存在，切換按鈕狀態&#10;&#10;Author: @VossCG">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ refactor ] : &#10;1. 把原本editFragment 改為dialogFragment 呼叫&#10;2. layout部分，選取日期的方式改為呼叫 DatePicker Dialog &#10;3. editDialogFragment 功能上面還沒完成，還須從原本的移植過去&#10;Author: @VossCG">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BaseDialogFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditDialogFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_close_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_edit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/edit_toolbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -24,17 +29,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepositoryImp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepositoryImp.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/DaoDataUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/DaoDataUseCase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetEventByKeyWordUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetEventByKeyWordUseCase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetMonthlyEventUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetMonthlyEventUseCase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetSingleDayEventUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetSingleDayEventUseCase.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BaseFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BaseFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/toolbar_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/browse_event_toolbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/style.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/style.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,10 +104,10 @@
         <option value="navigationResourceFile" />
         <option value="Kotlin Interface" />
         <option value="Kotlin File" />
-        <option value="resourceFile" />
         <option value="valueResourceFile" />
-        <option value="layoutResourceFile" />
+        <option value="resourceFile" />
         <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -260,13 +266,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00006" summary="SearchFragment 相關更動&#10;&#10;1.新稱搜尋按鈕&#10;2.editText 外觀優化&#10;3.rowItem 布局優化&#10;&#10;待處理&#10;搜尋功能需改為關鍵字title搜尋">
-      <created>1649757263312</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1649757263313</updated>
     </task>
     <task id="LOCAL-00007" summary="SearchFragment 相關更動&#10;&#10;1.editText關鍵字搜尋功能完成&#10;2.監聽keyboard 的actionDone 去執行搜尋">
       <created>1649833452837</created>
@@ -604,7 +603,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658223235830</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="[ refactor ] : 將DI注入的Repo，從原本依賴於實體，改為依賴於Repo的interface，降低其藕合度&#10;&#10;Author: @VossCG">
+      <created>1659321621332</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1659321621335</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -637,8 +643,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1. 部分adapter 優化&#10;2. 部分Fragment 優化&#10;3. 部分layout 優化&#10;4. 將一些假資料的字串放入字串資源當中&#10;5. 新增一個StartSearchFragment，讓使用者點選SearchFragment Toolbar的時候，跳轉到有搜尋紀錄的畫面，使用Transition達到類似dropDownMenu的跳轉效果。而原本SearchFragment頁面的搜尋功能，必須移植到StartSearch，本身也必須修改為只負責呈現搜尋結果的畫面。&#10;6. 呈上，如果搜尋改為如此，好像就沒必要放在BottomNav去做導航，應該可以放在HomeFragment讓使用者點選Toolbar跳轉，參考畫面(旋轉拍賣的主頁)。將會改為Home(點選toolbar)-&gt;StartSearch(展開搜尋頁面與紀錄)-&gt;Search(呈現搜尋結果)的流程" />
-    <MESSAGE value="1. 搜尋頁面更改優化取消&#10;2. 優化BrowseFragment&#10;預計整個大改，將會改為使用一個calendarView，來呈現目前所有的日期與事件，並透過顏色不同來代表，目前日期那些是有特殊事件，或是哪天的事件很多&#10;3. 創建一個customCalendarView&#10;透過一個ViewPager2 包裹 gridView 來呈現&#10;4. 新的BrowseFragment 下方的ListView 將會呈現當前的日期的所有事件title" />
     <MESSAGE value="##　修改與優化&#10;1. 將於CalendarView 的GridView改為recycler&#10;2. 設計一個ViewModel 給BrowseEvent 與 CalendarView 共用相同的日曆數值(年、月、日)&#10;但是否要作為androidViewModel 還在考慮，可能一般的ViewModel就已經夠用&#10;3. 設計三個shape drawable 給 calendar 的icon使用，用來辨識當前的日期 事件有多少&#10;&#10;## 下一步要完成功能&#10;1. 將calendarView 與 room 當中的資料綁定&#10;2. 將calendarView 滑動 會更動現況頁面的&quot;年月日&quot;&#10;3. 日期與星期的綁定排版還需要思考一下該如何處理" />
     <MESSAGE value="## 修改與優化&#10;1. 把Room 資料庫的格式去除掉 年、月、日的屬性欄位，若有需要的地方，直接透過class 裡面的轉化方法拿到&#10;2. 正式把BrowseFragment 改變為 CalendarView的呈現方式，原本的Year Month 跳轉呈現已刪除&#10;3. Room dao 新增一個 Query的方法，能透過 dateInteger range 拿到想要的範圍資料，是為了讓CalendarView 需要的資料而設計&#10;4. 部分Fragment layout優化&#10;5. 資料庫寫入的月份數字，不再從0開始，因為原本是為了配合DatePicker出來的數字，但現在為了一致性，所有關於日期資料的數字邏輯都必須相同&#10;&#10;## 待修正&#10;1. CalendarView 的 icon 與資料綁定判斷的邏輯有錯誤&#10;2. BrowseFragment and CalendarView 頁面當中的資料邏輯必須在確認與檢查，以免有異常&#10;&#10;3. UpdateEvent 寫入與載入資料出現異常&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. 完成BrowseEventFragment 下方的ListView 用來呈現使用者點選當前的日期事件" />
     <MESSAGE value="## 修改與優化&#10;1. 修改ViewModel一些東西，考慮要刪掉一些LiveData&#10;2.  CalendarView 的 icon 與資料綁定判斷&quot;已修正&quot;&#10;3. BrowseFragment and CalendarView 頁面連結邏輯與異常 &quot;已修正&quot;&#10;4. UpdateEvent 寫入與載入資料異常 &quot;已修正&quot;&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. CalendarFragment 綁定icon圖示的邏輯是透過當前的position來判斷目前滑到哪個月分，並從資料庫取得相關資料，在想看看有沒有哪些可以替代或優化的地方&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. 完成BrowseEventFragment 下方的ListView 用來呈現使用者點選當前的日期事件" />
@@ -662,6 +666,8 @@
     <MESSAGE value="[ refactor ] : 重構SearchFragment 的ˊ搜尋功能&#10;之前為按下ime按鈕後搜尋，現在改成動態搜尋，在使用者輸入字元後，observer會監聽並submit adapter&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ fix ] : 修改SearchFragment item Expanded re OnBindView&#10;原本在item expand的時候因為復用，所以導致使用者還未點擊就已經expanded。現在改為重新onBind的時候都close expanded&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ fix ] : 修改SearchFragment item Expanded re OnBindView&#10;原本在item expand的時候因為復用，所以導致使用者還未點擊就已經expanded。現在改為重新onBind的時候&#10;&#10;Author: @VossCG&#10;issue #1" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ fix ] : 修改SearchFragment item Expanded re OnBindView&#10;原本在item expand的時候因為復用，所以導致使用者還未點擊就已經expanded。現在改為重新onBind的時候&#10;&#10;Author: @VossCG&#10;issue #1" />
+    <MESSAGE value="[ refactor ] : 將DI注入的Repo，從原本依賴於實體，改為依賴於Repo的interface，降低其藕合度&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ refactor ] : &#10;1. 把原本editFragment 改為dialogFragment 呼叫&#10;2. layout部分，選取日期的方式改為呼叫 DatePicker Dialog &#10;3. editDialogFragment 功能上面還沒完成，還須從原本的移植過去&#10;Author: @VossCG" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ refactor ] : &#10;1. 把原本editFragment 改為dialogFragment 呼叫&#10;2. layout部分，選取日期的方式改為呼叫 DatePicker Dialog &#10;3. editDialogFragment 功能上面還沒完成，還須從原本的移植過去&#10;Author: @VossCG" />
   </component>
 </project>

@@ -13,7 +13,6 @@ import com.voss.todolist.presentation.ui.adapter.CalendarDayEventListAdapter
 import com.voss.todolist.presentation.ui.adapter.CalendarViewPagerAdapter
 import com.voss.todolist.R
 import com.voss.todolist.data.Event
-import com.voss.todolist.data.args.EditArgs
 import com.voss.todolist.data.args.EventCardArgs
 import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentBrowseEventBinding
@@ -26,6 +25,8 @@ class BrowseEventFragment :
     private val dayEventAdapter: CalendarDayEventListAdapter by lazy { CalendarDayEventListAdapter() }
     private val viewModel: CalendarViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
+    private val editDialogFragment:EditDialogFragment by lazy { EditDialogFragment() }
+    private val customDialogFragment:CustomDialogFragment by lazy { CustomDialogFragment() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,15 +51,8 @@ class BrowseEventFragment :
                     return@setOnMenuItemClickListener true
                 }
                 "add" -> {
-                    val direction =
-                        BrowseEventFragmentDirections.actionBrowseEventFragmentToEditEventFragment(
-                            EditArgs(
-                                viewModel.currentYear.value!!,
-                                viewModel.currentMonth.value!!,
-                                viewModel.selectItemDay.value!!
-                            )
-                        )
-                    navController.navigate(direction)
+                    editDialogFragment.show(childFragmentManager,"Edit")
+//                    customDialogFragment.show(childFragmentManager,"custom")
                     return@setOnMenuItemClickListener true
                 }
                 "search" -> {
