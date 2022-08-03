@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/browse_event_tb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/lightGrey"
+        android:background="@color/darkGrey"
         android:paddingVertical="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/browse_event_toolbar">
-
-        <TextView
-            android:id="@+id/browse_event_month_tv"
-            style="@style/TextAppearance.MaterialComponents.Headline4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="某月" />
+        app:menu="@menu/browse_event_toolbar"
+        app:title="某月"
+        app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline4">
 
         <TextView
             android:id="@+id/browse_event_year_tv"
@@ -32,7 +25,7 @@
             android:layout_marginStart="30dp"
             android:alpha="0.5"
             android:text="2022年" />
-    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <LinearLayout
         android:id="@+id/browse_event_week_ll"
@@ -115,11 +108,11 @@
 
     <TextView
         android:id="@+id/browse_event_selectedDay_tv"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
         android:text="日期 :"
-        style="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintTop_toBottomOf="@+id/browse_event_di" />
 
     <FrameLayout

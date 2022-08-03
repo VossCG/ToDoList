@@ -5,32 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/search_tb"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/lightGrey"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:padding="8dp"
+        android:layout_height="wrap_content"
+        android:background="@color/darkBlue"
+        android:paddingVertical="5dp"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include
-            android:id="@+id/search_cancel_btn"
-            layout="@layout/custom_back_arrow"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="10dp" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_input_lv"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:padding="5dp"
             app:endIconMode="clear_text"
             app:hintEnabled="false">
@@ -48,7 +37,7 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_rcv"

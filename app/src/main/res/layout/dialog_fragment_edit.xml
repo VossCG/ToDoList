@@ -16,8 +16,6 @@
         app:menu="@menu/edit_toolbar"
         app:navigationIcon="@drawable/ic_baseline_close_24"
         app:title="New Event">
-
-
     </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -100,7 +98,7 @@
                 android:id="@+id/editEvent_title_edt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:inputType="text"
                 android:maxLength="40"
                 android:singleLine="true"

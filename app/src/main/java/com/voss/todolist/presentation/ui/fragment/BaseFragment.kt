@@ -21,8 +21,8 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: (LayoutInflat
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

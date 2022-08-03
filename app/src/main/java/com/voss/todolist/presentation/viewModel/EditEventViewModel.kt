@@ -61,9 +61,9 @@ class EditEventViewModel @Inject constructor(
         _content.postValue(content)
     }
 
-    fun addEvent(eventTypes: Event) {
+    fun insertEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
-            daoDataUseCase.addEvent(eventTypes)
+            daoDataUseCase.insertEvent(eventTypes)
         }
     }
 

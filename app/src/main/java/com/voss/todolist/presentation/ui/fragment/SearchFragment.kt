@@ -36,7 +36,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.filterFab.setPreventQuickerClick {
             changeSearchFactor()
         }
-        binding.searchCancelBtn.backArrowBtn.setOnClickListener {
+        binding.searchTb.setNavigationOnClickListener {
             navController.navigateUp()
         }
         binding.searchEdt.addTextChangedListener {

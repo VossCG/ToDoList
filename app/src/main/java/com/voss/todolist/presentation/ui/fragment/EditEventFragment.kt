@@ -1,16 +1,13 @@
 package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.FragmentEditEventBinding
@@ -115,7 +112,7 @@ class EditEventFragment :
         val date = viewModel.getCurrentDate()
 
         if (checkInputEvent(title, date, content, type)) {
-            viewModel.addEvent(Event(title, content, date, dateInteger, type))
+            viewModel.insertEvent(Event(title, content, date, dateInteger, type))
             displayToastShort(requireContext(), "新增成功")
             navController.navigateUp()
         } else if (type.isEmpty()) {

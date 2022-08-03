@@ -11,7 +11,7 @@ class DaoDataUseCase @Inject constructor(private val repository: EventRepository
         repository.deleteEvent(eventType)
     }
 
-    suspend fun addEvent(eventType: Event) {
+    suspend fun insertEvent(eventType: Event) {
         repository.insertEvent(eventType)
     }
 

@@ -42,7 +42,7 @@ class SearchViewModel @Inject constructor(
 
     fun addEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
-            daoDataUseCase.addEvent(eventTypes)
+            daoDataUseCase.insertEvent(eventTypes)
         }
     }
 

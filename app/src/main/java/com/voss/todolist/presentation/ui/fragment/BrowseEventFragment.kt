@@ -26,7 +26,6 @@ class BrowseEventFragment :
     private val viewModel: CalendarViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
     private val editDialogFragment:EditDialogFragment by lazy { EditDialogFragment() }
-    private val customDialogFragment:CustomDialogFragment by lazy { CustomDialogFragment() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +51,7 @@ class BrowseEventFragment :
                 }
                 "add" -> {
                     editDialogFragment.show(childFragmentManager,"Edit")
-//                    customDialogFragment.show(childFragmentManager,"custom")
+
                     return@setOnMenuItemClickListener true
                 }
                 "search" -> {
@@ -69,7 +68,7 @@ class BrowseEventFragment :
             binding.browseEventYearTv.text = "$it 年"
         }
         viewModel.currentMonth.observe(viewLifecycleOwner) {
-            binding.browseEventMonthTv.text = it.toString() + "月"
+            binding.browseEventTb.title = it.toString() + "月"
         }
         viewModel.selectItemDay.observe(viewLifecycleOwner) {
             binding.browseEventSelectedDayTv.text = viewModel.getCurrentDate()
