@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ refactor ] : &#10;editDialogFragment 編輯 event 功能完成&#10;[ prev ] :&#10;SearchFragment toolbar &#10;&#10;Author: @VossCG">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ] :&#10;1. UpdateEventFragment toolbar、datePicker &#10;2. EditDialogFragment datePicker will hide softInputKeyboard  &#10;&#10;Author: @VossCG">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -24,15 +24,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/CalendarFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/CalendarFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditDialogFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditDialogFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_edit.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,13 +255,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00009" summary="SearchFragment 相關更動&#10;&#10;1.將收起鍵盤功能放到BaseFragment global當中 讓所有Fragment都能使用">
-      <created>1649842091767</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1649842091767</updated>
     </task>
     <task id="LOCAL-00010" summary="SearchFragment 相關更動&#10;&#10;1.新增切換搜尋功能，能透過filter icon 來切換 title or content 搜尋條件 點選會跳出一個bottomsheet&#10;2.新增bottomsheet 讓使用者透過點選裡面的button，切換想要搜尋的條件&#10;3.新增一個textView 用來顯示現在搜尋的條件為何 是title or content">
       <created>1649928261240</created>
@@ -602,7 +592,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659520234126</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="[ prev ] :&#10;1. UpdateEventFragment toolbar、datePicker &#10;2. EditDialogFragment datePicker will hide softInputKeyboard  &#10;&#10;Author: @VossCG">
+      <created>1660018629013</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1660018629015</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -635,7 +632,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="## 修改與優化&#10;1. 把Room 資料庫的格式去除掉 年、月、日的屬性欄位，若有需要的地方，直接透過class 裡面的轉化方法拿到&#10;2. 正式把BrowseFragment 改變為 CalendarView的呈現方式，原本的Year Month 跳轉呈現已刪除&#10;3. Room dao 新增一個 Query的方法，能透過 dateInteger range 拿到想要的範圍資料，是為了讓CalendarView 需要的資料而設計&#10;4. 部分Fragment layout優化&#10;5. 資料庫寫入的月份數字，不再從0開始，因為原本是為了配合DatePicker出來的數字，但現在為了一致性，所有關於日期資料的數字邏輯都必須相同&#10;&#10;## 待修正&#10;1. CalendarView 的 icon 與資料綁定判斷的邏輯有錯誤&#10;2. BrowseFragment and CalendarView 頁面當中的資料邏輯必須在確認與檢查，以免有異常&#10;&#10;3. UpdateEvent 寫入與載入資料出現異常&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. 完成BrowseEventFragment 下方的ListView 用來呈現使用者點選當前的日期事件" />
     <MESSAGE value="## 修改與優化&#10;1. 修改ViewModel一些東西，考慮要刪掉一些LiveData&#10;2.  CalendarView 的 icon 與資料綁定判斷&quot;已修正&quot;&#10;3. BrowseFragment and CalendarView 頁面連結邏輯與異常 &quot;已修正&quot;&#10;4. UpdateEvent 寫入與載入資料異常 &quot;已修正&quot;&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. CalendarFragment 綁定icon圖示的邏輯是透過當前的position來判斷目前滑到哪個月分，並從資料庫取得相關資料，在想看看有沒有哪些可以替代或優化的地方&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. 完成BrowseEventFragment 下方的ListView 用來呈現使用者點選當前的日期事件" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 新增下方顯示當前選擇日期的event，透過設置在ViewModel的selectDay的屬性，讓在calendarView 點選日期的當下去改變，並在BrowseEvent去監聽，並刷新當年當月當日的event，讓eventList不斷的去更新畫面&#10;2. 新增一個checkSlide方法，透過positionOffset判斷當前ViewPager的滑動方向，並不再透過currentItem去改變viewModel的month value&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 修改拿取當前月份資料的方式，原本是透過eventDao，使用SQL語法篩選出當月的資料，但其實只要在ViewModel注入repo資料，再透過自定義的 getMonthEvent 過濾出想要月份的資料就可，這樣在頁面創建的時候，透過當前的position，載入資料，如果是使用之前設計的viewModel month，來篩選，會因為ViewPager 預先載入的特性，讓前後的頁面會先創建，並吃到當前頁面的month value，所以拿不到對應的月份資料給當下的頁面&#10;2. 透過adapter的itemCallback，拿取使用者點選的日期，傳遞到ViewModel的selectItemDay的屬性值，讓外部的頁面，能知道當前所選取的itemDay&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. ViewPager 滑動事件的判斷，更改當前的月分與年份都透過覆寫 onPageSelected 的position改變的時候，去注入相對應的資料&#10;2. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;3. 設立下方List item 事件若沒有的話，顯示一個TextView 告知使用者現在沒有活動事件&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView" />
@@ -660,6 +656,7 @@
     <MESSAGE value="[ refactor ] : 將DI注入的Repo，從原本依賴於實體，改為依賴於Repo的interface，降低其藕合度&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ refactor ] : &#10;1. 把原本editFragment 改為dialogFragment 呼叫&#10;2. layout部分，選取日期的方式改為呼叫 DatePicker Dialog &#10;3. editDialogFragment 功能上面還沒完成，還須從原本的移植過去&#10;Author: @VossCG" />
     <MESSAGE value="[ refactor ] : &#10;editDialogFragment 編輯 event 功能完成&#10;[ prev ] :&#10;SearchFragment toolbar &#10;&#10;Author: @VossCG" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ refactor ] : &#10;editDialogFragment 編輯 event 功能完成&#10;[ prev ] :&#10;SearchFragment toolbar &#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ prev ] :&#10;1. UpdateEventFragment toolbar、datePicker &#10;2. EditDialogFragment datePicker will hide softInputKeyboard  &#10;&#10;Author: @VossCG" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ prev ] :&#10;1. UpdateEventFragment toolbar、datePicker &#10;2. EditDialogFragment datePicker will hide softInputKeyboard  &#10;&#10;Author: @VossCG" />
   </component>
 </project>

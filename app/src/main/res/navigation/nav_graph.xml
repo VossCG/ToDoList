@@ -44,6 +44,10 @@
             app:argType="com.voss.todolist.data.args.EventCardArgs" />
         <action
             android:id="@+id/action_eventCardFragment_to_updateEventFragment"
+            app:enterAnim="@anim/slide_in_right_enter"
+            app:exitAnim="@anim/slide_out_left_exit"
+            app:popEnterAnim="@anim/slide_in_left_pop_enter"
+            app:popExitAnim="@anim/slide_out_right_pop_exit"
             app:destination="@id/updateEventFragment" />
         <action
             android:id="@+id/action_eventCardFragment_to_editEventFragment"
