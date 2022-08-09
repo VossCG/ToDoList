@@ -6,18 +6,21 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.google.android.material.chip.Chip
 import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.DialogFragmentEditBinding
 import com.voss.todolist.presentation.viewModel.EditEventViewModel
+import com.voss.todolist.util.closeKeyboard
 import com.voss.todolist.util.displayToastShort
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class EditDialogFragment :
     BaseDialogFragment<DialogFragmentEditBinding>(DialogFragmentEditBinding::inflate) {
-    private val viewModel: EditEventViewModel by activityViewModels()
+    private val viewModel: EditEventViewModel by viewModels()
     private val calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
     private val dateDefaultVale: String = "設定活動時間"
 
@@ -27,7 +30,6 @@ class EditDialogFragment :
         setOnClickListener()
         setInputChangeListener()
     }
-
     private fun setOnClickListener() {
         binding.editTb.setNavigationOnClickListener {
             showCancelAlertDialog()
@@ -35,6 +37,7 @@ class EditDialogFragment :
         // let editText can't edit
         binding.editEventCalendarTv.inputType = InputType.TYPE_NULL
         binding.editEventCalendarTv.setOnClickListener {
+            closeKeyboard(it,requireActivity())
             showDatePickerDialog()
         }
         binding.editTb.setOnMenuItemClickListener {
@@ -65,14 +68,6 @@ class EditDialogFragment :
         } else
             displayToastShort(requireContext(), "Please filled all data")
     }
-
-    private fun resetDialog() {
-        binding.editEventCalendarTv.setText(dateDefaultVale)
-        binding.editEventTitleEdt.setText("")
-        binding.editEventContentEdt.setText("")
-        binding.editEventTypeChipGroup.clearCheck()
-    }
-
     private fun setInputChangeListener() {
         binding.editEventTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
             // chip 沒有選取狀態下 id 為 -1
@@ -120,10 +115,5 @@ class EditDialogFragment :
                 dismiss()
             }.setNegativeButton("no", null)
             .show()
-    }
-
-    override fun dismiss() {
-        resetDialog()
-        super.dismiss()
     }
 }

@@ -28,9 +28,9 @@
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="8dp"
+            android:textStyle="italic"
             android:text="活動類型"
-            android:textStyle="italic" />
+            />
 
         <HorizontalScrollView
             android:layout_width="match_parent"

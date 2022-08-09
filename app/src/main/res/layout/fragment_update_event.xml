@@ -1,91 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="8dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <FrameLayout
-        android:id="@+id/updateEvent_title_fl"
-        app:layout_constraintTop_toTopOf="parent"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/updateEvent_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/darkBrown"
+        app:title="編輯活動 / 事件"
+        android:paddingVertical="5dp"
+        app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24">
 
-        <include
-            android:id="@+id/updateEvent_cancel_btn"
-            layout="@layout/custom_back_arrow"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/updateEvent_title_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="編輯活動 / 事件"
-            style="@style/TextAppearance.MaterialComponents.Headline4"
-            />
-
-    </FrameLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/updateEvent_date_container_ll"
-        app:layout_constraintTop_toBottomOf="@+id/updateEvent_title_fl">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateEvent_toolbar">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/updateEvent_type_chipGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:singleLine="true"
                 android:padding="5dp"
+                app:singleLine="true"
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="工作" />
 
                 <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="出遊" />
 
                 <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="運動" />
 
                 <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="休閒" />
+
                 <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:text="學習"
-                    />
+                    android:text="學習" />
+
                 <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:text="聚餐" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/updateEvent_title_input_lv"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -112,11 +103,12 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/updateEvent_content_input_lv"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="活動內容"
-            app:endIconMode="clear_text"
-            >
+            app:endIconMode="clear_text">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/updateEvent_content_edt"
                 android:layout_width="match_parent"
@@ -127,50 +119,34 @@
                 android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/updateEvent_date_container_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/updateEvent_insert_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        8<com.google.android.material.button.MaterialButton
-            android:id="@+id/updateEvent_changeDate_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/lightBlue"
-            android:text="點選更換日期"
-            app:rippleColor="@color/white" />
-
-        <TextView
-            android:id="@+id/updateEvent_date_tv"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/updateEvent_calendar_input_lv"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginVertical="5dp"
-            android:background="@drawable/shape_outline_stroke2_white_radius4"
-            android:gravity="center"
-            android:text="yyyy/mm/dd"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            app:hintEnabled="false"
+            app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
+
+            <AutoCompleteTextView
+                android:id="@+id/updateEvent_calendar_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text="設定活動時間"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/updateEvent_insert_btn"
+            style="@style/DefaultMaterialButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lightYellow"
+            android:padding="10dp"
+            android:text="編輯完成"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/updateEvent_insert_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="編輯完成"
-        style="@style/DefaultMaterialButtonStyle"
-        android:padding="10dp"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:backgroundTint="@color/lightYellow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

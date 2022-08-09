@@ -1,6 +1,5 @@
 package com.voss.todolist.presentation.viewModel
 
-import android.app.Application
 import androidx.lifecycle.*
 import com.voss.todolist.data.Event
 import com.voss.todolist.domain.DaoDataUseCase
@@ -13,11 +12,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditEventViewModel @Inject constructor(
-    application: Application,
     private val daoDataUseCase: DaoDataUseCase,
     private val getFormatDateUseCase: GetFormatDateUseCase,
     private val getDateIntegerUseCase: GetDateIntegerUseCase
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
     private val _year = MutableLiveData<Int>()
     val year: LiveData<Int> get() = _year

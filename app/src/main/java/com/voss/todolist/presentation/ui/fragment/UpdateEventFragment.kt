@@ -3,6 +3,7 @@ package com.voss.todolist.presentation.ui.fragment
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
 import android.widget.Button
 import androidx.core.view.forEach
@@ -84,24 +85,29 @@ class UpdateEventFragment() :
             updateEvent()
             navController.navigateUp()
         }
-        binding.updateEventCancelBtn.backArrowBtn.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle("Message")
-                .setMessage("是否要取消編輯?")
-                .setPositiveButton("Yes") { _, _ ->
-                    navController.navigateUp()
-                }
-                .setNegativeButton("No", null)
-                .show()
+        binding.updateEventToolbar.setNavigationOnClickListener{
+            showCancelDialog()
         }
-        binding.updateEventChangeDateBtn.setOnClickListener {
+        binding.updateEventCalendarTv.inputType = InputType.TYPE_NULL
+        binding.updateEventCalendarTv.setOnClickListener {
             showDatePickerDialog()
         }
     }
 
+    private fun showCancelDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Message")
+            .setMessage("是否要取消編輯?")
+            .setPositiveButton("Yes") { _, _ ->
+                navController.navigateUp()
+            }
+            .setNegativeButton("No", null)
+            .show()
+    }
+
     private fun setObserver() {
-        viewModel.date.observe(viewLifecycleOwner) {
-            binding.updateEventDateTv.text = it
+        viewModel.date.observe(viewLifecycleOwner) { date ->
+            binding.updateEventCalendarTv.setText(date)
         }
         viewModel.title.observe(viewLifecycleOwner) { title ->
             checkInputIsEmpty()

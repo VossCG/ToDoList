@@ -11,8 +11,10 @@ import com.voss.todolist.presentation.ui.adapter.CalendarViewAdapter
 import com.voss.todolist.R
 import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentCalendarBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class CalendarFragment() : Fragment() {
     private var _binding: FragmentCalendarBinding? = null
     val binding get() = _binding!!

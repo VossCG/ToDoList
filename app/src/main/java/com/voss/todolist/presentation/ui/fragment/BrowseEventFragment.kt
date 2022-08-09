@@ -1,5 +1,6 @@
 package com.voss.todolist.presentation.ui.fragment
 
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -16,16 +17,17 @@ import com.voss.todolist.data.Event
 import com.voss.todolist.data.args.EventCardArgs
 import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentBrowseEventBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
+@AndroidEntryPoint
 class BrowseEventFragment :
     BaseFragment<FragmentBrowseEventBinding>(FragmentBrowseEventBinding::inflate) {
     private lateinit var calendarAdapter: CalendarViewPagerAdapter
     private val dayEventAdapter: CalendarDayEventListAdapter by lazy { CalendarDayEventListAdapter() }
     private val viewModel: CalendarViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-    private val editDialogFragment:EditDialogFragment by lazy { EditDialogFragment() }
+//    private val editDialogFragment:EditDialogFragment by lazy { EditDialogFragment() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,8 +52,7 @@ class BrowseEventFragment :
                     return@setOnMenuItemClickListener true
                 }
                 "add" -> {
-                    editDialogFragment.show(childFragmentManager,"Edit")
-
+                    EditDialogFragment().show(childFragmentManager,"Edit")
                     return@setOnMenuItemClickListener true
                 }
                 "search" -> {
