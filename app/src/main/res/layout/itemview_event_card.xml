@@ -1,72 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/shape_radius10_solid_darkblue"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/eventCard_item_type_tv"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/eventCard_item_tb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="工作"
+        app:title="工作"
+        app:titleTextColor="@color/lightYellow"
+        app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        app:menu="@menu/event_card_toolbar_menu"
         android:textColor="@color/lightBrown"
         style="@style/TextAppearance.MaterialComponents.Headline4"
         />
 
-    <TextView
-        android:id="@+id/eventCard_item_title_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="6dp"
-        android:text="Title"
-        android:textSize="20sp"
-        style="@style/TextAppearance.MaterialComponents.Subtitle1"
-        />
-
-    <View
-        android:id="@+id/eventCard_item_di"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/lightGrey"
-        />
-
-    <TextView
-        android:id="@+id/eventCard_item_content_tv"
-        style="@style/TextAppearance.MaterialComponents.Body1"
-        android:alpha="0.5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="Content Body"
-        />
-
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_marginTop="10dp"
-        android:gravity="end"
         android:layout_width="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
         android:layout_height="wrap_content">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/eventCard_item_edit_btn"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            style="@style/CustomTextButtonStyle"
-            android:text="編輯"
+        <TextView
+            android:id="@+id/eventCard_item_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
+            android:text="Title"
+            android:textSize="20sp"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/eventCard_item_delete_btn"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/darkGrey"
-            android:text="刪除"
-            android:layout_marginStart="10dp"
+
+        <View
+            android:id="@+id/eventCard_item_di"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/lightGrey"
+            />
+
+        <TextView
+            android:id="@+id/eventCard_item_content_tv"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:alpha="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Content Body"
             />
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 </androidx.appcompat.widget.LinearLayoutCompat>
 

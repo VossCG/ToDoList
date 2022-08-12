@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.ItemviewEventCardBinding
 import com.voss.todolist.util.EventTypeDiffUtil
@@ -32,17 +33,24 @@ class EventCardAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.eventCardItemDeleteBtn.setOnClickListener {
-                itemClickDelete.invoke(getItem(adapterPosition))
-            }
-            binding.eventCardItemEditBtn.setOnClickListener {
-                itemClickUpdate.invoke(getItem(adapterPosition))
+            binding.eventCardItemTb.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.eventCard_delete_menuItem -> {
+                        itemClickDelete.invoke(getItem(adapterPosition))
+                        return@setOnMenuItemClickListener true
+                    }
+                    R.id.eventCard_edit_menuItem -> {
+                        itemClickUpdate.invoke(getItem(adapterPosition))
+                        return@setOnMenuItemClickListener true
+                    }
+                    else -> return@setOnMenuItemClickListener false
+                }
             }
         }
 
         fun bind(data: Event) {
             binding.eventCardItemTitleTv.text = data.title
-            binding.eventCardItemTypeTv.text = data.type
+            binding.eventCardItemTb.title = data.type
             binding.eventCardItemContentTv.text = data.content
         }
     }

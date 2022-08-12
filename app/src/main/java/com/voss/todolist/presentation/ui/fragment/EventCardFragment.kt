@@ -7,12 +7,14 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.voss.todolist.data.args.EditArgs
+import com.google.android.material.snackbar.Snackbar
+import com.voss.todolist.data.Event
 import com.voss.todolist.presentation.ui.adapter.EventCardAdapter
 import com.voss.todolist.util.LinearItemDecoration
 import com.voss.todolist.util.dpToPx
 import com.voss.todolist.presentation.viewModel.EventCardViewModel
 import com.voss.todolist.databinding.FragmentEventcardBinding
+import com.voss.todolist.util.displayToastShort
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,16 +43,13 @@ class EventCardFragment :
     }
 
     private fun initView() {
-        binding.eventCardDateTv.text = date
+        binding.eventCardDateTb.title = date
         setRecyclerView(args.contentArgs.position)
     }
 
     private fun setClickListener() {
-        binding.eventCardAddEventFab.setOnClickListener {
-            val direction = EventCardFragmentDirections.actionEventCardFragmentToEditEventFragment(
-                EditArgs(contentArgs.year, contentArgs.month, contentArgs.day)
-            )
-            navController.navigate(direction)
+        binding.eventCardDateTb.setOnClickListener {
+            navController.navigateUp()
         }
     }
 
@@ -72,10 +71,17 @@ class EventCardFragment :
         }
         mAdapter.itemClickDelete = { event ->
             viewModel.deleteEvent(event)
+            showUndoSnackBar(event)
         }
         mAdapter.submitList(viewModel.getSingleDayEvent(date))
     }
-
+    private fun showUndoSnackBar(event: Event) {
+        Snackbar.make(binding.root, "已完成刪除", Snackbar.LENGTH_SHORT)
+            .setAction("undo") {
+                viewModel.addEvent(event)
+                displayToastShort(requireContext(), "回復刪除")
+            }.show()
+    }
     private fun setObserver() {
         viewModel.readAllEvent.observe(viewLifecycleOwner) {
             mAdapter.submitList(viewModel.getSingleDayEvent(date))

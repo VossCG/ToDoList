@@ -15,7 +15,8 @@
         android:paddingVertical="5dp"
         app:menu="@menu/edit_toolbar"
         app:navigationIcon="@drawable/ic_baseline_close_24"
-        app:title="New Event"></com.google.android.material.appbar.MaterialToolbar>
+        app:title="New Event">
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -38,7 +39,7 @@
                 android:id="@+id/editEvent_type_chipGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:paddingVertical="6dp"
                 app:singleLine="true"
                 app:singleSelection="true">
 
@@ -116,7 +117,7 @@
                 android:id="@+id/editEvent_title_edt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLength="40"
                 android:singleLine="true"

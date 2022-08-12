@@ -27,9 +27,11 @@ class EventCardViewModel @Inject constructor(
     fun deleteEvent(eventType: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDataUseCase.deleteEvent(eventType)
-            withContext(Dispatchers.Main) {
-                Toast.makeText(getApplication(), "刪除完成", Toast.LENGTH_SHORT).show()
-            }
+        }
+    }
+    fun addEvent(eventType: Event){
+        viewModelScope.launch(Dispatchers.IO) {
+            daoDataUseCase.insertEvent(eventType)
         }
     }
 

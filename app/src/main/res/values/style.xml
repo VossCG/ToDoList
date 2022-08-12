@@ -13,6 +13,7 @@
 
     <style name="CustomTextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -59,5 +60,4 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@style/Animation.Design.BottomSheetDialog</item>
     </style>
-
 </resources>
