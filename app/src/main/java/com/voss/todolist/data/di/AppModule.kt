@@ -39,12 +39,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesChangeDateUseCase(repository: EventRepository): DaoDataUseCase {
-        return DaoDataUseCase(repository)
-    }
-
-    @Provides
-    @Singleton
     fun providesSearchFactorChangeUseCase(repository: EventRepository): GetEventByKeyWordUseCase {
         return GetEventByKeyWordUseCase(repository)
     }

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.voss.todolist.data.Event
+import com.voss.todolist.data.EventRepository
 import com.voss.todolist.domain.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,21 +18,21 @@ import javax.inject.Inject
 @HiltViewModel
 class EventCardViewModel @Inject constructor(
     application: Application,
-    private val daoDataUseCase: DaoDataUseCase,
+    private val repository: EventRepository,
     private val getSingleDayEventUseCase: GetSingleDayEventUseCase,
     private val getFormatDateUseCase: GetFormatDateUseCase
 ) : AndroidViewModel(application) {
 
-    val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()
+    val readAllEvent: LiveData<List<Event>> = repository.eventDataList
 
     fun deleteEvent(eventType: Event) {
         viewModelScope.launch(Dispatchers.IO) {
-            daoDataUseCase.deleteEvent(eventType)
+            repository.deleteEvent(eventType)
         }
     }
     fun addEvent(eventType: Event){
         viewModelScope.launch(Dispatchers.IO) {
-            daoDataUseCase.insertEvent(eventType)
+            repository.insertEvent(eventType)
         }
     }
 

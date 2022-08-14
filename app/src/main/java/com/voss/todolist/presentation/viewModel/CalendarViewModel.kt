@@ -3,26 +3,24 @@ package com.voss.todolist.presentation.viewModel
 import android.app.Application
 import androidx.lifecycle.*
 import com.voss.todolist.data.Event
-import com.voss.todolist.domain.DaoDataUseCase
+import com.voss.todolist.data.EventRepository
 import com.voss.todolist.domain.GetFormatDateUseCase
 import com.voss.todolist.domain.GetMonthlyEventUseCase
 import com.voss.todolist.domain.GetSingleDayEventUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class CalendarViewModel @Inject constructor(
     application: Application,
-    private val daoDataUseCase: DaoDataUseCase,
+    private val repository: EventRepository,
     private val getFormatDateUseCase: GetFormatDateUseCase,
     private val getMonthlyEventUseCase: GetMonthlyEventUseCase,
     private val getSingleDayEventUseCase: GetSingleDayEventUseCase
 ) : AndroidViewModel(application) {
 
-    val readAllEvent: LiveData<List<Event>> = daoDataUseCase.getAll()
+    val readAllEvent: LiveData<List<Event>> = repository.eventDataList
 
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
 
@@ -34,6 +32,7 @@ class CalendarViewModel @Inject constructor(
 
     private val _currentMonth = MutableLiveData<Int>()
     val currentMonth: LiveData<Int> = _currentMonth
+
     // -------------------------------------------------------------
 
     init {

@@ -6,14 +6,14 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="eventCar" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ViewModel" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ] :&#10;UpdateEventFragment :&#10;1. 新增動畫&#10;2. 將update Button 移到Toolbar&#10;EditDialogFragment :&#10;將 datePicker 移到上方 &#10;&#10;Author: @VossCG">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ] :&#10;EventCardFragment :&#10;1. 新增toolbar&#10;2. 將edit delete 按鈕，放入toolbar 的 menu 當中&#10;&#10;Author: @VossCG">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -22,19 +22,23 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/EventCardAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/EventCardAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepositoryImp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepositoryImp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/EventDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/EventDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/DaoDataUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/CalendarViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/CalendarViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_edit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_eventcard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_eventcard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_update_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_event_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_event_card.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/style.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/style.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/UpdateEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/UpdateEventViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,9 +103,9 @@
         <option value="Kotlin Interface" />
         <option value="Kotlin File" />
         <option value="valueResourceFile" />
-        <option value="Kotlin Class" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -261,13 +265,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00011" summary="SearchFragment 相關更動&#10;&#10;1.新增切換搜尋功能，能透過filter icon 來切換 title or content 搜尋條件 點選會跳出一個bottomsheet&#10;2.新增bottomsheet 讓使用者透過點選裡面的button，切換想要搜尋的條件&#10;3.新增一個textView 用來顯示現在搜尋的條件為何 是title or content">
-      <created>1649928271828</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1649928271828</updated>
     </task>
     <task id="LOCAL-00012" summary="SearchFragment 相關更動&#10;&#10;1.將原本的bottomSheet,更改成BottomSheetDialog&#10;2.toolbar更換為imageButton作為切換filter，並生出bottomSheetDialog&#10;3.把filter list的過濾搜尋資料的功能，放到viewModel當中，包成名為filterDataWithFactor的方法">
       <created>1649952921852</created>
@@ -605,7 +602,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660039301287</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="[ prev ] :&#10;EventCardFragment :&#10;1. 新增toolbar&#10;2. 將edit delete 按鈕，放入toolbar 的 menu 當中&#10;&#10;Author: @VossCG">
+      <created>1660299279148</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1660299279149</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -638,7 +642,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 新增下方顯示當前選擇日期的event，透過設置在ViewModel的selectDay的屬性，讓在calendarView 點選日期的當下去改變，並在BrowseEvent去監聽，並刷新當年當月當日的event，讓eventList不斷的去更新畫面&#10;2. 新增一個checkSlide方法，透過positionOffset判斷當前ViewPager的滑動方向，並不再透過currentItem去改變viewModel的month value&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 修改拿取當前月份資料的方式，原本是透過eventDao，使用SQL語法篩選出當月的資料，但其實只要在ViewModel注入repo資料，再透過自定義的 getMonthEvent 過濾出想要月份的資料就可，這樣在頁面創建的時候，透過當前的position，載入資料，如果是使用之前設計的viewModel month，來篩選，會因為ViewPager 預先載入的特性，讓前後的頁面會先創建，並吃到當前頁面的month value，所以拿不到對應的月份資料給當下的頁面&#10;2. 透過adapter的itemCallback，拿取使用者點選的日期，傳遞到ViewModel的selectItemDay的屬性值，讓外部的頁面，能知道當前所選取的itemDay&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. ViewPager 滑動事件的判斷，更改當前的月分與年份都透過覆寫 onPageSelected 的position改變的時候，去注入相對應的資料&#10;2. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;3. 設立下方List item 事件若沒有的話，顯示一個TextView 告知使用者現在沒有活動事件&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. item expand content 會自動撐開&#10; &#10;CalendarFragment :&#10;1. 透過calendar拿到每個月分的第一天的week，算出offset，並在adapter的建構子新增WeekOffset注入，使得onBindView item的時候，必須大於偏移值的position item，才會有動應的日期，size也會因為偏移加大&#10;&#10;SearChFragment:&#10;1. item expand content 會自動撐開&#10;&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 修改CalendarView 刪除event 刷新畫面icon 異常(將CalendarViewAdapter 改成ListAdatper)" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面" />
@@ -663,6 +666,7 @@
     <MESSAGE value="[ refactor ] : &#10;editDialogFragment 編輯 event 功能完成&#10;[ prev ] :&#10;SearchFragment toolbar &#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ prev ] :&#10;1. UpdateEventFragment toolbar、datePicker &#10;2. EditDialogFragment datePicker will hide softInputKeyboard  &#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ prev ] :&#10;UpdateEventFragment :&#10;1. 新增動畫&#10;2. 將update Button 移到Toolbar&#10;EditDialogFragment :&#10;將 datePicker 移到上方 &#10;&#10;Author: @VossCG" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ prev ] :&#10;UpdateEventFragment :&#10;1. 新增動畫&#10;2. 將update Button 移到Toolbar&#10;EditDialogFragment :&#10;將 datePicker 移到上方 &#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ prev ] :&#10;EventCardFragment :&#10;1. 新增toolbar&#10;2. 將edit delete 按鈕，放入toolbar 的 menu 當中&#10;&#10;Author: @VossCG" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ prev ] :&#10;EventCardFragment :&#10;1. 新增toolbar&#10;2. 將edit delete 按鈕，放入toolbar 的 menu 當中&#10;&#10;Author: @VossCG" />
   </component>
 </project>
