@@ -1,14 +1,12 @@
 package com.voss.todolist.domain
 
 import com.voss.todolist.data.Event
-import com.voss.todolist.data.EventRepository
-import javax.inject.Inject
 
-class GetMonthlyEventUseCase @Inject constructor(private val repository: EventRepository) {
+class GetMonthlyEventUseCase  {
 
-    operator fun invoke (year: Int, month: Int): List<Event> {
-        return repository.eventDataList.value?.filter {
+    operator fun invoke (year: Int, month: Int,events:List<Event>): List<Event> {
+        return events.filter {
             it.getYear() == year && it.getMonth() == month
-        } ?: emptyList()
+        }
     }
 }

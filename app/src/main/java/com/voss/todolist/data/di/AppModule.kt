@@ -39,8 +39,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesSearchFactorChangeUseCase(repository: EventRepository): GetEventByKeyWordUseCase {
-        return GetEventByKeyWordUseCase(repository)
+    fun providesSearchFactorChangeUseCase(): GetEventByKeyWordUseCase {
+        return GetEventByKeyWordUseCase()
     }
 
     @Provides
@@ -50,13 +50,13 @@ object AppModule {
     }
     @Provides
     @Singleton
-    fun providesMonthlyEventUseCase(repository: EventRepository):GetMonthlyEventUseCase {
-        return GetMonthlyEventUseCase(repository)
+    fun providesMonthlyEventUseCase():GetMonthlyEventUseCase {
+        return GetMonthlyEventUseCase()
     }
     @Provides
     @Singleton
     fun provideSingleDayEventUseCase(repository: EventRepository):GetSingleDayEventUseCase{
-        return GetSingleDayEventUseCase(repository)
+        return GetSingleDayEventUseCase()
     }
 
     @Provides

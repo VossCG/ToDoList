@@ -1,6 +1,5 @@
 package com.voss.todolist.presentation.ui.fragment
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels

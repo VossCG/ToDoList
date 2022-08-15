@@ -40,6 +40,7 @@ class EventCardFragment :
 
     private fun initAttributes() {
         date = viewModel.getDateFormat(contentArgs.year, contentArgs.month, contentArgs.day)
+        viewModel.setCurrentDate(date)
     }
 
     private fun initView() {
@@ -73,8 +74,13 @@ class EventCardFragment :
             viewModel.deleteEvent(event)
             showUndoSnackBar(event)
         }
-        mAdapter.submitList(viewModel.getSingleDayEvent(date))
+//        lifecycleScope.launch {
+//            viewModel.getFlowData().collect { events ->
+//                mAdapter.submitList(events.filter { it.date == date })
+//            }
+//        }
     }
+
     private fun showUndoSnackBar(event: Event) {
         Snackbar.make(binding.root, "已完成刪除", Snackbar.LENGTH_SHORT)
             .setAction("undo") {
@@ -82,9 +88,11 @@ class EventCardFragment :
                 displayToastShort(requireContext(), "回復刪除")
             }.show()
     }
+
     private fun setObserver() {
-        viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            mAdapter.submitList(viewModel.getSingleDayEvent(date))
+        // 使用LiveData 從主頁面跳轉 刷新畫面 不會出現 閃爍的狀況
+        viewModel.dateEvent.observe(viewLifecycleOwner) { events ->
+            mAdapter.submitList(events)
         }
     }
 }

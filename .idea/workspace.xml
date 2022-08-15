@@ -6,14 +6,14 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ViewModel" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Search" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ] :&#10;EventCardFragment :&#10;1. 新增toolbar&#10;2. 將edit delete 按鈕，放入toolbar 的 menu 當中&#10;&#10;Author: @VossCG">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ refactor ] :&#10;1. 將UseCase 中 依賴Repo都刪除，能呼叫到repo的層級只能在ViewModel去實現，讓UseCase 只單純的幫資料做邏輯處理&#10;2. EventCardViewModel 成功將讀取資料改為Flow型態，並透過asLiveData 傳給View層級去使用&#10;&#10;&#10;[ next ]&#10;下次將移除dao 回傳LiveData的形式，每個ViewModel從repo拿到的，都會是Flow的型態&#10;&#10;Author: @VossCG">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -24,21 +24,19 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepositoryImp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepositoryImp.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/EventDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/EventDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/DaoDataUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetEventByKeyWordUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetEventByKeyWordUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetMonthlyEventUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetMonthlyEventUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetSingleDayEventUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetSingleDayEventUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/CalendarViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/CalendarViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/UpdateEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/UpdateEventViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,13 +263,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00012" summary="SearchFragment 相關更動&#10;&#10;1.將原本的bottomSheet,更改成BottomSheetDialog&#10;2.toolbar更換為imageButton作為切換filter，並生出bottomSheetDialog&#10;3.把filter list的過濾搜尋資料的功能，放到viewModel當中，包成名為filterDataWithFactor的方法">
-      <created>1649952921852</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1649952921852</updated>
     </task>
     <task id="LOCAL-00013" summary="刪除多餘的元件與class">
       <created>1649995719533</created>
@@ -609,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660299279149</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="[ refactor ] :&#10;DaoUseCase Delete&#10;是屬於業務邏輯層級，不能與資料庫藕合。所以DaoUseCase是多於的設計，也會讓兩個層級無法分離，是個錯誤的設計方式。資料庫的存取功能直接透過repo傳給ViewModel 執行即可&#10;&#10;Author: @VossCG">
+      <created>1660480613100</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1660480613101</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -642,8 +640,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. ViewPager 滑動事件的判斷，更改當前的月分與年份都透過覆寫 onPageSelected 的position改變的時候，去注入相對應的資料&#10;2. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;3. 設立下方List item 事件若沒有的話，顯示一個TextView 告知使用者現在沒有活動事件&#10; ------------------------------------------&#10; &#10;CalendarFragment :&#10;1. 設立readAllEvent監聽，當資料庫改變的時候，去刷新當前的頁面&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 將CalendarView的日期依照星期對準&#10;2. Demo與測試 整個 自定義CalendarView" />
-    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. item expand content 會自動撐開&#10; &#10;CalendarFragment :&#10;1. 透過calendar拿到每個月分的第一天的week，算出offset，並在adapter的建構子新增WeekOffset注入，使得onBindView item的時候，必須大於偏移值的position item，才會有動應的日期，size也會因為偏移加大&#10;&#10;SearChFragment:&#10;1. item expand content 會自動撐開&#10;&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 修改CalendarView 刪除event 刷新畫面icon 異常(將CalendarViewAdapter 改成ListAdatper)" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. EventList新增 update delete功能&#10;2. CalendarViewAdapter 改為 遞延初始化 因為在navigation 跳轉的時候，是從ViewCreated 開始，不會重新創建屬性，所以在popStack 回來的時候，不會重新設定adapter。&#10;由於是FragmentStateAdapter 建構子必須要得到一個Fragment 作為初始的畫面。但由於by lazy的初始化方式，讓adapter沒有重製，應該放在ViewCreated之後，才能成功設置&#10;3. Calendar 實體 原本透過 by lazy生成，但在跳轉update 呼叫viewModel的 getDateFormat 裡面的 calendar set 改變了本體，導致每次update回來後，view從calendar取得的 day 匯市剛剛update的日期。所以應該在畫面回來的時候，初始化calendar，依樣也用lateinit 來設定，並在onViewCreated之後，重新拿取實體&#10;&#10;CalendarFragment :&#10;1. 修正資料庫更新後，刷新畫面異常&#10;2. 將offset的itemView 設為GONE&#10;&#10;Update &amp; Edit Fragment :&#10;1. 將輸入title 的字元提高到 40&#10;&#10;HomeFragment :&#10;1. 新增一個tv 來告知使用者當前沒有event&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 點擊currentDay icon item 跳轉到當天的頁面" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment :&#10;1. 修正一些畫面跳轉初始化異常 (adapter calendar instance)&#10;2. 新增 currentDay Icon item 跳轉當天日期，並刷新當前ViewModel的日期資料，避免再slide其他頁面的資料不同步&#10;3. currentDay 點擊會有 ripple 效果&#10;&#10;HomeFragment : &#10;1. layout 改為motionLayout 讓title下拉縮起&#10;&#10;SearchFragment : &#10;1. cardView 點擊expand 可透過arrow or root&#10;2. cardView 點擊 會有ripple效果&#10;&#10;## 待修正&#10;1. BrowseFragment and CalendarView 再檢查一下，有些ViewModel的LiveData使否需要&#10;2. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but" />
@@ -667,6 +663,8 @@
     <MESSAGE value="[ prev ] :&#10;1. UpdateEventFragment toolbar、datePicker &#10;2. EditDialogFragment datePicker will hide softInputKeyboard  &#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ prev ] :&#10;UpdateEventFragment :&#10;1. 新增動畫&#10;2. 將update Button 移到Toolbar&#10;EditDialogFragment :&#10;將 datePicker 移到上方 &#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ prev ] :&#10;EventCardFragment :&#10;1. 新增toolbar&#10;2. 將edit delete 按鈕，放入toolbar 的 menu 當中&#10;&#10;Author: @VossCG" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ prev ] :&#10;EventCardFragment :&#10;1. 新增toolbar&#10;2. 將edit delete 按鈕，放入toolbar 的 menu 當中&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ refactor ] :&#10;DaoUseCase Delete&#10;是屬於業務邏輯層級，不能與資料庫藕合。所以DaoUseCase是多於的設計，也會讓兩個層級無法分離，是個錯誤的設計方式。資料庫的存取功能直接透過repo傳給ViewModel 執行即可&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ refactor ] :&#10;1. 將UseCase 中 依賴Repo都刪除，能呼叫到repo的層級只能在ViewModel去實現，讓UseCase 只單純的幫資料做邏輯處理&#10;2. EventCardViewModel 成功將讀取資料改為Flow型態，並透過asLiveData 傳給View層級去使用&#10;&#10;&#10;[ next ]&#10;下次將移除dao 回傳LiveData的形式，每個ViewModel從repo拿到的，都會是Flow的型態&#10;&#10;Author: @VossCG" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ refactor ] :&#10;1. 將UseCase 中 依賴Repo都刪除，能呼叫到repo的層級只能在ViewModel去實現，讓UseCase 只單純的幫資料做邏輯處理&#10;2. EventCardViewModel 成功將讀取資料改為Flow型態，並透過asLiveData 傳給View層級去使用&#10;&#10;&#10;[ next ]&#10;下次將移除dao 回傳LiveData的形式，每個ViewModel從repo拿到的，都會是Flow的型態&#10;&#10;Author: @VossCG" />
   </component>
 </project>

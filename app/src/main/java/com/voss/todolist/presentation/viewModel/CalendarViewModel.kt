@@ -1,6 +1,7 @@
 package com.voss.todolist.presentation.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.voss.todolist.data.Event
 import com.voss.todolist.data.EventRepository
@@ -8,6 +9,8 @@ import com.voss.todolist.domain.GetFormatDateUseCase
 import com.voss.todolist.domain.GetMonthlyEventUseCase
 import com.voss.todolist.domain.GetSingleDayEventUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import java.util.*
 import javax.inject.Inject
 
@@ -58,14 +61,19 @@ class CalendarViewModel @Inject constructor(
     }
 
     fun getMonthEvent(month: Int): List<Event> {
-        return getMonthlyEventUseCase(_currentYear.value!!, month)
+        return getMonthlyEventUseCase(
+            _currentYear.value!!,
+            month,
+            repository.eventDataList.value ?: emptyList()
+        )
     }
 
     fun getSingleDayEvent(): List<Event> {
         return getSingleDayEventUseCase.invoke(
             _currentYear.value!!,
             _currentMonth.value!!,
-            _selectItemDay.value!!
+            _selectItemDay.value!!,
+            repository.eventDataList.value ?: emptyList()
         )
     }
 

@@ -1,10 +1,7 @@
 package com.voss.todolist.presentation.viewModel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.voss.todolist.data.Event
 import com.voss.todolist.data.EventRepository
 import com.voss.todolist.domain.GetEventByKeyWordUseCase
@@ -22,6 +19,7 @@ class SearchViewModel @Inject constructor(
 
     private val _filterFactor = MutableLiveData<String>("title")
     val filterFactor: LiveData<String> = _filterFactor
+
     private val _keyWord = MutableLiveData<String>("")
     val keyWord: LiveData<String> = _keyWord
 
@@ -43,7 +41,7 @@ class SearchViewModel @Inject constructor(
 
     fun addEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
-           repository.insertEvent(eventTypes)
+            repository.insertEvent(eventTypes)
         }
     }
 
@@ -51,6 +49,10 @@ class SearchViewModel @Inject constructor(
         return if (keyWord.isEmpty())
             emptyList()
         else
-            getEventByKeyWordUseCase(keyWord, _filterFactor.value ?: "null")
+            getEventByKeyWordUseCase(
+                repository.eventDataList.value ?: emptyList(),
+                keyWord,
+                _filterFactor.value ?: "null"
+            )
     }
 }
