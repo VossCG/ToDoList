@@ -25,14 +25,11 @@ class UpdateEventViewModel @Inject constructor(
     private val _type = MutableLiveData<String>("")
     val type: LiveData<String> get() = _type
 
-    private val _title = MutableLiveData<String>("")
-    val title: LiveData<String> get() = _title
+    var curTitle: String = ""
 
-    private val _content = MutableLiveData<String>("")
-    val content: LiveData<String> get() = _content
+    var curContent: String = ""
 
-    private val _dateInteger = MutableLiveData<Int>()
-    val dateInteger: LiveData<Int> get() = _dateInteger
+    var currentDateInteger: Int = 0
 
     fun setDate(date: String) {
         _date.postValue(date)
@@ -43,15 +40,15 @@ class UpdateEventViewModel @Inject constructor(
     }
 
     fun setTitle(title: String) {
-        _title.postValue(title)
+        curTitle = title
     }
 
     fun setContent(content: String) {
-        _content.postValue(content)
+        curContent = content
     }
 
     fun setDateInteger(dateInteger: Int) {
-        _dateInteger.postValue(dateInteger)
+        currentDateInteger = dateInteger
     }
 
     fun getDateFormat(year: Int, month: Int, day: Int): String {

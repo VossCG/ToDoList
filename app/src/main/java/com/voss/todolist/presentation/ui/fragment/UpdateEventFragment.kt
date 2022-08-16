@@ -5,7 +5,7 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
-import android.widget.Button
+import android.widget.EditText
 import androidx.core.view.forEach
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -29,6 +29,8 @@ class UpdateEventFragment() :
     private val argsEventTypes get() = args.event
     private val viewModel: UpdateEventViewModel by viewModels()
     private val navController: NavController by lazy { findNavController() }
+    private lateinit var edTitle: EditText
+    private lateinit var edContent: EditText
 
     private val datePickerListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
@@ -39,17 +41,21 @@ class UpdateEventFragment() :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
+        initViewModel()
+
         setObserver()
         setClickListener()
         setInputChangeListener()
-
-        initView()
-        initViewModel()
     }
 
     private fun initView() {
-        binding.updateEventContentEdt.setText(argsEventTypes.content)
-        binding.updateEventTitleEdt.setText(argsEventTypes.title)
+        edTitle = binding.updateEventTitleEdt
+        edContent = binding.updateEventContentEdt
+
+        edContent.setText(argsEventTypes.content)
+        edTitle.setText(argsEventTypes.title)
+
         binding.updateEventTypeChipGroup.forEach { view ->
             view as Chip
             view.isChecked = (view).text == argsEventTypes.type
@@ -65,12 +71,11 @@ class UpdateEventFragment() :
     }
 
     private fun setInputChangeListener() {
-
-        binding.updateEventContentEdt.addTextChangedListener {
-            viewModel.setContent(binding.updateEventContentEdt.text.toString())
+        edTitle.addTextChangedListener {
+            checkInputIsEmpty()
         }
-        binding.updateEventTitleEdt.addTextChangedListener {
-            viewModel.setTitle(binding.updateEventTitleEdt.text.toString())
+        edContent.addTextChangedListener {
+            checkInputIsEmpty()
         }
         binding.updateEventTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId != -1) {
@@ -85,7 +90,7 @@ class UpdateEventFragment() :
             updateEvent()
             navController.navigateUp()
         }
-        binding.updateEventToolbar.setNavigationOnClickListener{
+        binding.updateEventToolbar.setNavigationOnClickListener {
             showCancelDialog()
         }
         binding.updateEventCalendarTv.inputType = InputType.TYPE_NULL
@@ -109,12 +114,6 @@ class UpdateEventFragment() :
         viewModel.date.observe(viewLifecycleOwner) { date ->
             binding.updateEventCalendarTv.setText(date)
         }
-        viewModel.title.observe(viewLifecycleOwner) { title ->
-            checkInputIsEmpty()
-        }
-        viewModel.content.observe(viewLifecycleOwner) { content ->
-            checkInputIsEmpty()
-        }
         viewModel.type.observe(viewLifecycleOwner) { type ->
             checkInputIsEmpty()
         }
@@ -123,10 +122,10 @@ class UpdateEventFragment() :
     private fun updateEvent() {
         val newEvent =
             Event(
-                viewModel.title.value!!,
-                viewModel.content.value!!,
+                edTitle.text.toString(),
+                edContent.text.toString(),
                 viewModel.date.value!!,
-                viewModel.dateInteger.value!!,
+                viewModel.currentDateInteger,
                 viewModel.type.value!!
             )
         newEvent.id = argsEventTypes.id
@@ -135,22 +134,25 @@ class UpdateEventFragment() :
     }
 
     private fun checkInputIsEmpty() {
-        with(viewModel) {
-            if (title.value!!.isNotEmpty() && content.value!!.isNotEmpty() && type.value!!.isNotEmpty()) {
-                openInsertBtn(binding.updateEventInsertBtn)
-            } else
-                closeInsertBtn(binding.updateEventInsertBtn)
-        }
+        if (!edTitle.text.isNullOrEmpty()
+            && !edContent.text.isNullOrEmpty()
+            && viewModel.type.value!!.isNotEmpty()
+        ) {
+            openInsertBtn()
+        } else
+            closeInsertBtn()
     }
 
-    private fun closeInsertBtn(insertBtn: Button) {
-        insertBtn.backgroundTintList = resources.getColorStateList(R.color.darkGrey, null)
-        insertBtn.isClickable = false
+    private fun closeInsertBtn() {
+        binding.updateEventInsertBtn.backgroundTintList =
+            resources.getColorStateList(R.color.darkGrey, null)
+        binding.updateEventInsertBtn.isClickable = false
     }
 
-    private fun openInsertBtn(insertBtn: Button) {
-        insertBtn.backgroundTintList = resources.getColorStateList(R.color.lightYellow, null)
-        insertBtn.isClickable = true
+    private fun openInsertBtn() {
+        binding.updateEventInsertBtn.backgroundTintList =
+            resources.getColorStateList(R.color.lightYellow, null)
+        binding.updateEventInsertBtn.isClickable = true
     }
 
     private fun showDatePickerDialog() {
@@ -163,6 +165,5 @@ class UpdateEventFragment() :
             argsEventTypes.getDay()
         ).show()
     }
-
 }
 
