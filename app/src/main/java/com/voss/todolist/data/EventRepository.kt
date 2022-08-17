@@ -1,11 +1,8 @@
 package com.voss.todolist.data
 
-import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
 
 interface EventRepository {
-    val eventDataList: LiveData<List<Event>>
-
     val eventFlow:Flow<List<Event>>
 
     suspend fun insertEvent(event: Event)

@@ -45,29 +45,37 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesFormatDateUseCase():GetFormatDateUseCase {
+    fun provideGetEventFlowByDateUseCase(): GetEventFlowByDateUseCase {
+        return GetEventFlowByDateUseCase()
+    }
+
+    @Provides
+    @Singleton
+    fun providesFormatDateUseCase(): GetFormatDateUseCase {
         return GetFormatDateUseCase()
     }
+
     @Provides
     @Singleton
-    fun providesMonthlyEventUseCase():GetMonthlyEventUseCase {
+    fun providesMonthlyEventUseCase(): GetMonthlyEventUseCase {
         return GetMonthlyEventUseCase()
     }
+
     @Provides
     @Singleton
-    fun provideSingleDayEventUseCase(repository: EventRepository):GetSingleDayEventUseCase{
+    fun provideSingleDayEventUseCase(): GetSingleDayEventUseCase {
         return GetSingleDayEventUseCase()
     }
 
     @Provides
     @Singleton
-    fun provideDateIntegerUseCase():GetDateIntegerUseCase{
+    fun provideDateIntegerUseCase(): GetDateIntegerUseCase {
         return GetDateIntegerUseCase()
     }
 
     @Provides
     @Singleton
-    fun provideTransformDateToTimeUseCase():TransformDateToTimeUseCase{
+    fun provideTransformDateToTimeUseCase(): TransformDateToTimeUseCase {
         return TransformDateToTimeUseCase()
     }
 }

@@ -3,6 +3,7 @@ package com.voss.todolist.presentation.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,6 +17,8 @@ import com.voss.todolist.presentation.viewModel.EventCardViewModel
 import com.voss.todolist.databinding.FragmentEventcardBinding
 import com.voss.todolist.util.displayToastShort
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class EventCardFragment :
@@ -26,21 +29,22 @@ class EventCardFragment :
     private val navController: NavController by lazy { findNavController() }
     private val args: EventCardFragmentArgs by navArgs()
     private val contentArgs get() = args.contentArgs
+    private var eventFlowJob: Job? = null
     private lateinit var date: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setObserver()
-        setClickListener()
-
         initAttributes()
         initView()
+
+        setClickListener()
+        subscribeToObserver()
     }
 
     private fun initAttributes() {
         date = viewModel.getDateFormat(contentArgs.year, contentArgs.month, contentArgs.day)
-        viewModel.setCurrentDate(date)
+        viewModel.setUiStateEvent(date)
     }
 
     private fun initView() {
@@ -64,6 +68,7 @@ class EventCardFragment :
             addItemDecoration(LinearItemDecoration(dpToPx(requireContext(), 10f)))
         }
     }
+
     private fun setEventCardAdapter() {
         mAdapter.itemClickUpdate = { event ->
             val direction =
@@ -74,11 +79,6 @@ class EventCardFragment :
             viewModel.deleteEvent(event)
             showUndoSnackBar(event)
         }
-//        lifecycleScope.launch {
-//            viewModel.getFlowData().collect { events ->
-//                mAdapter.submitList(events.filter { it.date == date })
-//            }
-//        }
     }
 
     private fun showUndoSnackBar(event: Event) {
@@ -89,10 +89,21 @@ class EventCardFragment :
             }.show()
     }
 
-    private fun setObserver() {
-        // 使用LiveData 從主頁面跳轉 刷新畫面 不會出現 閃爍的狀況
-        viewModel.dateEvent.observe(viewLifecycleOwner) { events ->
-            mAdapter.submitList(events)
+    private fun subscribeToObserver() {
+//        eventFlowJob = lifecycleScope.launchWhenStarted {
+//            viewModel.getEventFlow(date).collectLatest { events ->
+//                mAdapter.submitList(events)
+//            }
+//        }
+        eventFlowJob = lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collectLatest { events ->
+                mAdapter.submitList(events)
+            }
         }
+    }
+
+    override fun onDestroy() {
+        eventFlowJob?.cancel()
+        super.onDestroy()
     }
 }

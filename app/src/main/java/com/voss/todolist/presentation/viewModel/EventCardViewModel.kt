@@ -15,19 +15,23 @@ import javax.inject.Inject
 class EventCardViewModel @Inject constructor(
     application: Application,
     private val repository: EventRepository,
-    private val getFormatDateUseCase: GetFormatDateUseCase
+    private val getFormatDateUseCase: GetFormatDateUseCase,
+    private val getEventFlowByDateUseCase: GetEventFlowByDateUseCase
 ) : AndroidViewModel(application) {
 
-    private val currentDate = MutableLiveData<String>()
+    private val _uiState = MutableStateFlow<List<Event>>(emptyList())
+    val uiState: StateFlow<List<Event>> = _uiState
 
-    val dateEvent: LiveData<List<Event>> = liveData {
-        repository.eventFlow.collect { events ->
-            emit(events.filter { it.date == currentDate.value })
-        }
+    fun getEventFlow(date: String): Flow<List<Event>> {
+        return getEventFlowByDateUseCase.invoke(date, repository).distinctUntilChanged()
     }
 
-    fun setCurrentDate(date: String) {
-        currentDate.postValue(date)
+    fun setUiStateEvent(date: String) {
+        viewModelScope.launch {
+            getEventFlowByDateUseCase.invoke(date, repository).collectLatest { events ->
+                _uiState.value = events
+            }
+        }
     }
 
     fun deleteEvent(eventType: Event) {
@@ -35,6 +39,7 @@ class EventCardViewModel @Inject constructor(
             repository.deleteEvent(eventType)
         }
     }
+
     fun addEvent(eventType: Event) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertEvent(eventType)
@@ -44,5 +49,4 @@ class EventCardViewModel @Inject constructor(
     fun getDateFormat(year: Int, month: Int, day: Int): String {
         return getFormatDateUseCase.invoke(year, month - 1, day)
     }
-
 }
