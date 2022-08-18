@@ -39,8 +39,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesSearchFactorChangeUseCase(): GetEventByKeyWordUseCase {
-        return GetEventByKeyWordUseCase()
+    fun providesSearchFactorChangeUseCase(): GetSearchFlowUseCase {
+        return GetSearchFlowUseCase()
     }
 
     @Provides

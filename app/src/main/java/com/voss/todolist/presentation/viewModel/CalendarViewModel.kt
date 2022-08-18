@@ -23,7 +23,7 @@ class CalendarViewModel @Inject constructor(
     private val getSingleDayEventUseCase: GetSingleDayEventUseCase
 ) : AndroidViewModel(application) {
 
-    val readAllEvent: LiveData<List<Event>> = repository.eventDataList
+    val readAllEvent: LiveData<List<Event>> = repository.eventFlow.asLiveData()
 
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
 
@@ -64,7 +64,7 @@ class CalendarViewModel @Inject constructor(
         return getMonthlyEventUseCase(
             _currentYear.value!!,
             month,
-            repository.eventDataList.value ?: emptyList()
+            readAllEvent.value ?: emptyList()
         )
     }
 
@@ -73,7 +73,7 @@ class CalendarViewModel @Inject constructor(
             _currentYear.value!!,
             _currentMonth.value!!,
             _selectItemDay.value!!,
-            repository.eventDataList.value ?: emptyList()
+            readAllEvent.value ?: emptyList()
         )
     }
 

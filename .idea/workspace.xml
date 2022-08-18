@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Filter" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Search" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
@@ -14,7 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ refactor ] :&#10;EventCardFragment 將資料的導入改為Flow的，UI層用StateFlow 取代 LiveData&#10;&#10; &#10;&#10;Author: @VossCG">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetEventFlowByDateUseCase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetSearchFlowUseCase.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -27,18 +27,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepositoryImp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/EventRepositoryImp.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/di/AppModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/EventDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/EventDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetEventByKeyWordUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetEventByKeyWordUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetEventByKeyWordUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearChRecyclerAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/CalendarViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/CalendarViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_edit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_event_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_event_card.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +47,7 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[4d756a6a]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -251,9 +247,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="KotlinPlaygroundKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.KotlinPlaygroundKt" />
-      <module name="ToDoList.app" />
+    <configuration name="SearchViewModelKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.presentation.viewModel.SearchViewModelKt" />
+      <module name="ToDoList.app.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -267,6 +263,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.SearchViewModelKt" />
         <item itemvalue="Kotlin.GetEventFlowByDateUseCaseKt" />
         <item itemvalue="Kotlin.GetSingleDayEventUseCaseKt" />
         <item itemvalue="Kotlin.EventTypesKt" />
@@ -281,13 +278,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00015" summary="SearchFragment 相關優化&#10;1.rowItem新增arrow提醒使用者，點即箭頭即可expand&#10;2.cardView點擊expand更改為arrow icon">
-      <created>1650010231173</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1650010231173</updated>
     </task>
     <task id="LOCAL-00016" summary="1.部分畫面元件優化調整&#10;2.修改theme colorPrimary &#10;3.新增一個TextView Style">
       <created>1650275413695</created>
@@ -625,7 +615,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660647428679</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="[ refactor ] :&#10;EventCardFragment 將資料的導入改為Flow的，UI層用StateFlow 取代 LiveData&#10;&#10; &#10;&#10;Author: @VossCG">
+      <created>1660729479797</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1660729479799</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

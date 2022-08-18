@@ -5,17 +5,17 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.voss.todolist.R
-import com.voss.todolist.data.Event
 import com.voss.todolist.presentation.ui.adapter.SearChRecyclerAdapter
 import com.voss.todolist.util.setPreventQuickerClick
 import com.voss.todolist.databinding.FragmentSearchBinding
 import com.voss.todolist.presentation.viewModel.SearchViewModel
-import com.voss.todolist.util.displayToastShort
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
 
 
 @AndroidEntryPoint
@@ -24,14 +24,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private val navController by lazy { findNavController() }
     private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
     private var isTitle: Boolean = true
+    private var searchJob: Job? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setObserver()
         setListener()
+        setObserver()
         setRecyclerView()
+
     }
+
     private fun setListener() {
         binding.filterFab.setPreventQuickerClick {
             changeSearchFactor()
@@ -45,24 +48,41 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun setObserver() {
-        viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            mAdapter.submitList(viewModel.getSearchEvent(viewModel.keyWord.value!!))
-        }
         viewModel.keyWord.observe(viewLifecycleOwner) { keyWord ->
-            mAdapter.submitList(viewModel.getSearchEvent(keyWord))
+
+            // filter flow & emit value to searchState
+            // viewModel.setUiEvent(keyWord)
+
+            // this a cold flow - use flow
+            lifecycleScope.launchWhenStarted {
+                viewModel.getSearchEventFlow(keyWord).collectLatest {
+                    mAdapter.submitList(it)
+                }
+            }
         }
-        viewModel.filterFactor.observe(viewLifecycleOwner){ factor ->
-            when(factor){
-                "title" ->{
+
+        viewModel.filterFactor.observe(viewLifecycleOwner) { factor ->
+            when (factor) {
+                "title" -> {
                     binding.filterFab.setImageResource(R.drawable.ic_baseline_title_24)
                     Toast.makeText(requireContext(), "Search Title", Toast.LENGTH_SHORT).show()
                 }
-                "content"->{
+                "content" -> {
                     binding.filterFab.setImageResource(R.drawable.ic_baseline_content_paste_24)
                     Toast.makeText(requireContext(), "Search Content", Toast.LENGTH_SHORT).show()
                 }
             }
         }
+
+        // this is a hot flow - stateFlow
+//        searchJob = lifecycleScope.launchWhenStarted {
+//            viewModel.searchEventState.collectLatest { events ->
+//                // collect when stateflow change
+//                mAdapter.submitList(events)
+//                Log.d("SearchFragment","consume collect, adapter.submitList($events)")
+//            }
+//            Log.d("SearchFragment","searchJob finish")
+//        }
     }
 
     private fun setRecyclerView() {
@@ -81,7 +101,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }
             itemDelete = { event ->
                 viewModel.deleteEvent(event)
-                showUndoSnackBar(event)
             }
             itemUpdate = { event ->
                 val direction =
@@ -99,16 +118,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             layoutManager.scrollToPositionWithOffset(clickPosition, 0)
         }
     }
-
-    private fun showUndoSnackBar(event: Event) {
-        Snackbar.make(binding.root, "已完成刪除", Snackbar.LENGTH_SHORT)
-            .setAnchorView(binding.filterFab)
-            .setAction("undo") {
-                viewModel.addEvent(event)
-                displayToastShort(requireContext(), "回復刪除")
-            }.show()
-    }
-
     private fun changeSearchFactor() {
         isTitle = !isTitle
         if (isTitle) {
@@ -116,5 +125,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         } else {
             viewModel.setSearchFactor("content")
         }
+    }
+
+    override fun onDestroy() {
+        searchJob = null
+        super.onDestroy()
     }
 }
