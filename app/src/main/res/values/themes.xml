@@ -14,6 +14,8 @@
         <!-- Customize your theme here. -->
         <item name="android:textViewStyle">@style/DefaultTextViewStyle</item>
         <item name="android:windowBackground">@color/black</item>
-    </style>
 
+        <!-- let all the CardView shape will be it -->
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance_Radius_10dp</item>
+    </style>
 </resources>

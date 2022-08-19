@@ -41,11 +41,13 @@
         android:padding="5dp">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/search_item_header_lv"
+            android:id="@+id/search_title_cardview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:shapeAppearance="@style/ShapeAppearance_Radius_10dp"
-            app:cardBackgroundColor="@color/darkGrey"
+            android:clickable="true"
+            android:focusable="true"
+            android:checkable="true"
+            app:cardBackgroundColor="@color/cardview_check_selector"
             app:rippleColor="@color/white"
             >
 

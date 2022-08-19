@@ -102,8 +102,8 @@ class EventCardFragment :
         }
     }
 
-    override fun onDestroy() {
+    override fun onStop() {
         eventFlowJob?.cancel()
-        super.onDestroy()
+        super.onStop()
     }
 }

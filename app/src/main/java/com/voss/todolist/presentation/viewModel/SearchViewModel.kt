@@ -15,54 +15,28 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     application: Application,
     private val repository: EventRepository,
-    private val getSearchFlowUseCase: GetSearchFlowUseCase,
+    private val getSearchFlowUseCase: GetSearchFlowUseCase
 ) : AndroidViewModel(application) {
 
-    private val _filterFactor = MutableLiveData<String>("title")
-    val filterFactor: LiveData<String> = _filterFactor
+    private val _keyWordState = MutableStateFlow("")
+    val keyWordState: StateFlow<String> = _keyWordState
 
-    private val _keyWord = MutableLiveData<String>("")
-    val keyWord: LiveData<String> = _keyWord
+    private val _factorState = MutableLiveData(SearchFactor.Title)
+    val factorState: LiveData<SearchFactor> = _factorState
 
-    private val _searchEventState: MutableStateFlow<List<Event>> = MutableStateFlow(emptyList())
-    val searchEventState: StateFlow<List<Event>> = _searchEventState
-
-    // this is a cold flow
-    fun setUiEvent(keyWord: String) {
-        viewModelScope.launch {
-            getSearchFlowUseCase(
-                repository,
-                keyWord,
-                _filterFactor.value!!
-            ).collectLatest { events ->
-                if (keyWord.isEmpty())
-                    _searchEventState.value = emptyList()
-                else
-                    _searchEventState.value = events
-            }
-        }
+    fun setSearchStateFactor(factor: SearchFactor) {
+        _factorState.value = factor
     }
+
+    fun setSearchStateKeyWord(keyWord: String) {
+        _keyWordState.value = keyWord
+    }
+
 
     // return flow to Ui without use stateFlow. this is a one time shot flow
     fun getSearchEventFlow(keyWord: String): Flow<List<Event>> {
         if (keyWord.isEmpty()) return flow { emit(emptyList()) }
-        return when (_filterFactor.value) {
-            "title" -> {
-                repository.eventFlow.map { events -> events.filter { it.title.contains(keyWord) } }
-            }
-            "content" -> {
-                repository.eventFlow.map { events -> events.filter { it.content.contains(keyWord) } }
-            }
-            else -> emptyFlow()
-        }
-    }
-
-    fun setSearchFactor(factor: String) {
-        _filterFactor.postValue(factor)
-    }
-
-    fun setKeyWord(keyWord: String) {
-        _keyWord.postValue(keyWord)
+        return getSearchFlowUseCase.invoke(repository,keyWord,_factorState.value!!)
     }
 
     fun deleteEvent(eventTypes: Event) {
@@ -70,4 +44,8 @@ class SearchViewModel @Inject constructor(
             repository.deleteEvent(eventTypes)
         }
     }
+}
+
+enum class SearchFactor {
+    Title, Content
 }

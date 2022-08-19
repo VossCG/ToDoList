@@ -2,7 +2,6 @@ package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,7 +11,9 @@ import com.voss.todolist.R
 import com.voss.todolist.presentation.ui.adapter.SearChRecyclerAdapter
 import com.voss.todolist.util.setPreventQuickerClick
 import com.voss.todolist.databinding.FragmentSearchBinding
+import com.voss.todolist.presentation.viewModel.SearchFactor
 import com.voss.todolist.presentation.viewModel.SearchViewModel
+import com.voss.todolist.util.displayToastShort
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -43,46 +44,31 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             navController.navigateUp()
         }
         binding.searchEdt.addTextChangedListener {
-            viewModel.setKeyWord(binding.searchEdt.text.toString())
+            viewModel.setSearchStateKeyWord(binding.searchEdt.text.toString())
         }
     }
 
     private fun setObserver() {
-        viewModel.keyWord.observe(viewLifecycleOwner) { keyWord ->
+        viewModel.factorState.observe(viewLifecycleOwner) { factor ->
+                when (factor) {
+                    SearchFactor.Title -> {
+                        binding.filterFab.setImageResource(R.drawable.ic_baseline_title_24)
+                        displayToastShort(requireContext(), "Search Title")
+                    }
+                    SearchFactor.Content -> {
+                        binding.filterFab.setImageResource(R.drawable.ic_baseline_content_paste_24)
+                        displayToastShort(requireContext(), "Search Content")
+                    }
+                }
+            }
 
-            // filter flow & emit value to searchState
-            // viewModel.setUiEvent(keyWord)
-
-            // this a cold flow - use flow
-            lifecycleScope.launchWhenStarted {
-                viewModel.getSearchEventFlow(keyWord).collectLatest {
-                    mAdapter.submitList(it)
+        searchJob = lifecycleScope.launchWhenStarted {
+            viewModel.keyWordState.collectLatest { keyWord ->
+                viewModel.getSearchEventFlow(keyWord).collectLatest { events ->
+                    mAdapter.submitList(events)
                 }
             }
         }
-
-        viewModel.filterFactor.observe(viewLifecycleOwner) { factor ->
-            when (factor) {
-                "title" -> {
-                    binding.filterFab.setImageResource(R.drawable.ic_baseline_title_24)
-                    Toast.makeText(requireContext(), "Search Title", Toast.LENGTH_SHORT).show()
-                }
-                "content" -> {
-                    binding.filterFab.setImageResource(R.drawable.ic_baseline_content_paste_24)
-                    Toast.makeText(requireContext(), "Search Content", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-        // this is a hot flow - stateFlow
-//        searchJob = lifecycleScope.launchWhenStarted {
-//            viewModel.searchEventState.collectLatest { events ->
-//                // collect when stateflow change
-//                mAdapter.submitList(events)
-//                Log.d("SearchFragment","consume collect, adapter.submitList($events)")
-//            }
-//            Log.d("SearchFragment","searchJob finish")
-//        }
     }
 
     private fun setRecyclerView() {
@@ -121,14 +107,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun changeSearchFactor() {
         isTitle = !isTitle
         if (isTitle) {
-            viewModel.setSearchFactor("title")
+            viewModel.setSearchStateFactor(SearchFactor.Title)
         } else {
-            viewModel.setSearchFactor("content")
+            viewModel.setSearchStateFactor(SearchFactor.Content)
         }
     }
 
-    override fun onDestroy() {
+    override fun onStop() {
         searchJob = null
-        super.onDestroy()
+        super.onStop()
     }
 }

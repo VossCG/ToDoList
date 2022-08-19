@@ -50,7 +50,7 @@ class SearChRecyclerAdapter() :
     inner class SearChViewHolder(private val binding: ItemviewSearchEventCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val expandContent: LinearLayoutCompat = binding.searchItemExpandedContentLl
-        val header = binding.searchItemHeaderLv
+        val header = binding.searchTitleCardview
 
         init {
             header.setOnLongClickListener {
