@@ -37,7 +37,7 @@ class EditDialogFragment :
         // let editText can't edit
         binding.editEventCalendarTv.inputType = InputType.TYPE_NULL
         binding.editEventCalendarTv.setOnClickListener {
-            closeKeyboard(it,requireActivity())
+            closeKeyboard(it, requireActivity())
             showDatePickerDialog()
         }
         binding.editTb.setOnMenuItemClickListener {
@@ -53,14 +53,8 @@ class EditDialogFragment :
 
     private fun insertInputData() {
         if (checkInputData()) {
-            with(viewModel) {
-                val newEvent = Event(
-                    title.value!!,
-                    content.value!!,
-                    getCurrentDate(),
-                    getDateInteger(),
-                    type.value!!
-                )
+            with(viewModel.editUiState) {
+                val newEvent = Event(title, content, date, dateInteger, eventType)
                 viewModel.insertEvent(newEvent)
                 displayToastShort(requireContext(), "successful save the event")
                 dismiss()
@@ -68,36 +62,36 @@ class EditDialogFragment :
         } else
             displayToastShort(requireContext(), "Please filled all data")
     }
+
     private fun setInputChangeListener() {
         binding.editEventTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
             // chip 沒有選取狀態下 id 為 -1
             if (checkedId != -1) {
-                viewModel.setType(group.findViewById<Chip>(checkedId).text.toString())
+                viewModel.editUiState.eventType =
+                    group.findViewById<Chip>(checkedId).text.toString()
             } else
-                viewModel.setType("")
+                viewModel.editUiState.eventType = ""
         }
         binding.editEventTitleEdt.addTextChangedListener {
-            viewModel.setTitle(binding.editEventTitleEdt.text.toString())
+            viewModel.editUiState.title = binding.editEventTitleEdt.text.toString()
         }
         binding.editEventContentEdt.addTextChangedListener {
-            viewModel.setContent(binding.editEventContentEdt.text.toString())
+            viewModel.editUiState.content = binding.editEventContentEdt.text.toString()
         }
     }
 
     private fun checkInputData(): Boolean {
-        with(viewModel) {
-            return !(title.value.isNullOrEmpty() || content.value.isNullOrEmpty() || binding.editEventCalendarTv.text.toString() == dateDefaultVale || type.value.isNullOrEmpty())
+        with(viewModel.editUiState) {
+            return title.isNotEmpty() && content.isNotEmpty() && binding.editEventCalendarTv.text.toString() != dateDefaultVale && eventType.isNotEmpty()
         }
     }
 
     private val datePickerListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            binding.editEventCalendarTv.setText(viewModel.getFormatData(year, month, dayOfMonth))
-            viewModel.apply {
-                setYear(year)
-                setMonth(month + 1)
-                setDay(dayOfMonth)
-            }
+            val pickDate = viewModel.getFormatData(year, month, dayOfMonth)
+            binding.editEventCalendarTv.setText(pickDate)
+            viewModel.editUiState.date = pickDate
+            viewModel.editUiState.dateInteger = viewModel.getDateInteger(year, month, dayOfMonth)
         }
 
     private fun showDatePickerDialog() {

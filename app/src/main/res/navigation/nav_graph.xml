@@ -6,16 +6,6 @@
     app:startDestination="@id/browseEventFragment">
 
     <fragment
-        android:id="@+id/editEventFragment"
-        tools:layout="@layout/fragment_edit_event"
-        android:name="com.voss.todolist.presentation.ui.fragment.EditEventFragment"
-        android:label="EditEventFragment" >
-        <argument
-            android:name="dateTime"
-            app:argType="com.voss.todolist.data.args.EditArgs" />
-    </fragment>
-
-    <fragment
         android:id="@+id/searchFragment"
         tools:layout="@layout/fragment_search"
         android:name="com.voss.todolist.presentation.ui.fragment.SearchFragment"
