@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ] :&#10;1. Style 設定 shapeAppearanceMediumComponent 讓CardView shape 同一規格&#10;2.SearchFragment、ViewModel :&#10;keyWord 改為stateFlow 去刷新搜尋資料 &#10;Fab Factor 保持LiveData 只單純變更fab 圖標提示&#10;[ next ]:&#10;把常用的間距dp 設定成dimen 資源檔&#10; &#10;&#10;Author: @VossCG">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ] :&#10;EditFragment、ViewModel 將所有頁面要用的資料，都放在uiState當中。並把 LiveData 都移除&#10;&#10;[ next ]:&#10;把常用的間距dp 設定成dimen 資源檔&#10; &#10;&#10;Author: @VossCG">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -24,14 +24,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditDialogFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditDialogFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditEventFragment.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_event.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EventCardViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/SearchViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/UpdateEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/UpdateEventViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,13 +273,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00018" summary="部分畫面元件優化調整">
-      <created>1650522215906</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1650522215906</updated>
     </task>
     <task id="LOCAL-00019" summary="部分畫面 action 跳轉動畫優化">
       <created>1650612240345</created>
@@ -619,7 +610,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660884254366</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="[ prev ] :&#10;EditFragment、ViewModel 將所有頁面要用的資料，都放在uiState當中。並把 LiveData 都移除&#10;&#10;[ next ]:&#10;把常用的間距dp 設定成dimen 資源檔&#10; &#10;&#10;Author: @VossCG">
+      <created>1660894775981</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1660894775981</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -652,7 +650,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="## 修改與優化&#10;1. 架構優化，把資料邏輯的層次切開來，data Ui Presentation Domain layer&#10;2. domain Layer : 把ViewModel 當中的資料業務邏輯抽離到 UseCase，讓ViewModel專心提供資料給UI&#10;&#10;## 待修正&#10;1.. BrowseEventFragment與其他頁面的邏輯與資料傳遞，再思考一下如何更加精簡與讓可讀性高且維護容易&#10;&#10;## 下次工程&#10;1. 檢查 UI data Layer&#10;2. 使用motionLayout 優化 SearchFragment 畫面，下拉可收起editText，下拉到最後一個item 隱藏 floating but&#10;3. 考慮是否要拿掉BottomNavigation 因為目前BrowseEvent，就能夠呈現足夠的畫面給使用者，已經不太需要原本的Home，感覺可以做替換在優化" />
     <MESSAGE value="## 修改與優化&#10;BrowseEventFragment&#10;1. 將BottomNav 拿掉，將 BrowseEventFragment作為首頁，並透過Menu item 作為操作跳轉頁面&#10;&#10;EditEventFragment&#10;1. 資料讀取都透過ViewModel&#10;2. 將多餘的本地變數與屬性刪除&#10;&#10;UpdateEventFragment&#10;1. 資料讀取都透過ViewModel&#10;2. 將多餘的本地變數與屬性刪除&#10;&#10;SearchFragment&#10;1. 新增Update功能，長壓item cardView可觸發&#10;2. 將本地讀取ViewModel資料的變數都刪除，以後直接透過ViewModel拿取相關的資料，並透過UseCase filter出想要的資料&#10;3. Calendar 實體 以後只放在ViewModel當中&#10;4. 任何資料的改動都會透過ViewModel，不得再Fragment當中去處理，只專心與使用者互動與傳遞event觸發LiveData Observer刷新UI&#10;5. filterActionButton 將expand的樣式刪除，因為只需要切換兩個，不需要用到expand的方式，單純透過click更換filterFactor與icon&#10;&#10;UseCase &#10;1. 修正GetMonth Day EventList 初始化會有nullPointerException的異常，在filter Room資料的時候，尚為讀取到repo，透過?:來解決&#10;2. 優化部分UseCase，將一些資料邏輯抽離出來&#10;&#10;ViewModel&#10;1. 新增editViewModel&#10;2. 新增UpdateModel&#10;&#10;## 待修正&#10;-- 目前未發現&#10;&#10;## 下次工程&#10;1. 檢查 每個資料層級與架構邏輯是否 有衝突&#10;2. 繼續檢查 當前每個畫面的流暢與跳轉邏輯&#10;3. 再重新檢視每個畫面與元件的配置是否符合 Material Design UI/UX 的設計" />
     <MESSAGE value="## 修改與優化&#10;AndroidManifest&#10;1. 更改app icon&#10;&#10;EventTypes&#10;1. 新增資料欄位 type&#10;&#10;SplashActivity&#10;1. 更換登入過場圖片 splash_screen.xml&#10;&#10;BrowseEventFragment&#10;1.dayEvent 新增icon 來區分事件類型&#10;&#10;EditEventFragment&#10;1. 新增chip choice 讓使用者快速設定活動類型&#10;2. 新增edit button 變色功能，在check使用者輸入的資料格式可以寫入資料庫的時候，將按鈕變為亮色，提醒使用者可以進行儲存&#10;&#10;UpdateEventFragment&#10;1. 新增chip choice 讓使用者快速設定活動類型&#10;2. 判斷跳轉過來event的type屬性是哪個，並更改當前的chipGroup item 的 isChecked 為true&#10;&#10;SearchFragment&#10;1. 新增Update功能，長壓item cardView可觸發&#10;2. 將本地讀取ViewModel資料的變數都刪除，以後直接透過ViewModel拿取相關的資料，並透過UseCase filter出想要的資料&#10;3. Calendar 實體 以後只放在ViewModel當中&#10;4. 任何資料的改動都會透過ViewModel，不得再Fragment當中去處理，只專心與使用者互動與傳遞event觸發LiveData Observer刷新UI&#10;5. filterActionButton 將expand的樣式刪除，因為只需要切換兩個，不需要用到expand的方式，單純透過click更換filterFactor與icon&#10;&#10;ViewModel&#10;1. 新增SearchViewModel&#10;&#10;## 待修正&#10;-- 目前未發現&#10;&#10;## 下次工程&#10;1. 檢查 每個資料層級與架構邏輯是否 有衝突&#10;2. 繼續檢查 當前每個畫面的流暢與跳轉邏輯&#10;3. 再重新檢視每個畫面與元件的配置是否符合 Material Design UI/UX 的設計" />
     <MESSAGE value="## 修改與優化&#10;&#10;GlobalFunction : &#10;將所有的top fun 都放入這裡&#10;&#10;EventTypes&#10;1. 更改class 名稱為 Event&#10;&#10;BrowseEventFragment&#10;1.新增 SnackBar 用來顯示delete undo，讓使用者可以在刪除之後反悔回復&#10;&#10;EditEventFragment&#10;1. 讓 edit Button 初始為 clickable = false，必須在使用者輸入完資料後，才會改為true 得以點選&#10;&#10;SearchFragment&#10;1.新增 SnackBar 用來顯示delete undo，讓使用者可以在刪除之後反悔回復&#10;&#10;## 待修正&#10;-- 目前未發現&#10;&#10;## 下次工程&#10;1. 檢查 每個資料層級與架構邏輯是否 有衝突&#10;2. 繼續檢查 當前每個畫面的流暢與跳轉邏輯&#10;3. 再重新檢視每個畫面與元件的配置是否符合 Material Design UI/UX 的設計" />
@@ -677,6 +674,7 @@
     <MESSAGE value="[ refactor ] :&#10;EventCardFragment 將資料的導入改為Flow的，UI層用StateFlow 取代 LiveData&#10;&#10; &#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ prev ] :&#10;1. SearchFragment: 資料導入改為用Flow collect 去導入搜尋的資料&#10;2. SearchFragment.xml : title container 改為 CardView。還有把delete icon拿掉，之後想改為actionMode 切換 刪除選取 方式&#10;3. SearchViewModel: 將event data 改用Flow 形式導入。但目前有cold flow 與 hot flow 兩種形式，目前暫定使用cold flow&#10;&#10; &#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ prev ] :&#10;1. Style 設定 shapeAppearanceMediumComponent 讓CardView shape 同一規格&#10;2.SearchFragment、ViewModel :&#10;keyWord 改為stateFlow 去刷新搜尋資料 &#10;Fab Factor 保持LiveData 只單純變更fab 圖標提示&#10;[ next ]:&#10;把常用的間距dp 設定成dimen 資源檔&#10; &#10;&#10;Author: @VossCG" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ prev ] :&#10;1. Style 設定 shapeAppearanceMediumComponent 讓CardView shape 同一規格&#10;2.SearchFragment、ViewModel :&#10;keyWord 改為stateFlow 去刷新搜尋資料 &#10;Fab Factor 保持LiveData 只單純變更fab 圖標提示&#10;[ next ]:&#10;把常用的間距dp 設定成dimen 資源檔&#10; &#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ prev ] :&#10;EditFragment、ViewModel 將所有頁面要用的資料，都放在uiState當中。並把 LiveData 都移除&#10;&#10;[ next ]:&#10;把常用的間距dp 設定成dimen 資源檔&#10; &#10;&#10;Author: @VossCG" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ prev ] :&#10;EditFragment、ViewModel 將所有頁面要用的資料，都放在uiState當中。並把 LiveData 都移除&#10;&#10;[ next ]:&#10;把常用的間距dp 設定成dimen 資源檔&#10; &#10;&#10;Author: @VossCG" />
   </component>
 </project>

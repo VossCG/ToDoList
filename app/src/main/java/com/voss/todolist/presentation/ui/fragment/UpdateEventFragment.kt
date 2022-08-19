@@ -34,8 +34,10 @@ class UpdateEventFragment() :
 
     private val datePickerListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            viewModel.setDateInteger(viewModel.getDateInteger(year, month + 1, dayOfMonth))
-            viewModel.setDate((viewModel.getDateFormat(year, month, dayOfMonth)))
+            val pickDate = viewModel.getDateFormat(year, month, dayOfMonth)
+            viewModel.uiState.dateInteger = viewModel.getDateInteger(year, month + 1, dayOfMonth)
+            viewModel.uiState.date = pickDate
+            binding.updateEventCalendarTv.setText(pickDate)
         }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +46,6 @@ class UpdateEventFragment() :
         initView()
         initViewModel()
 
-        setObserver()
         setClickListener()
         setInputChangeListener()
     }
@@ -55,6 +56,7 @@ class UpdateEventFragment() :
 
         edContent.setText(argsEventTypes.content)
         edTitle.setText(argsEventTypes.title)
+        binding.updateEventCalendarTv.setText(argsEventTypes.date)
 
         binding.updateEventTypeChipGroup.forEach { view ->
             view as Chip
@@ -63,25 +65,30 @@ class UpdateEventFragment() :
     }
 
     private fun initViewModel() {
-        viewModel.setDate(argsEventTypes.date)
-        viewModel.setTitle(argsEventTypes.title)
-        viewModel.setContent(argsEventTypes.content)
-        viewModel.setType(argsEventTypes.type)
-        viewModel.setDateInteger(argsEventTypes.dateInteger)
+        with(viewModel.uiState) {
+            date = argsEventTypes.date
+            title = argsEventTypes.title
+            content = argsEventTypes.content
+            eventType = argsEventTypes.type
+            dateInteger = argsEventTypes.dateInteger
+        }
     }
 
     private fun setInputChangeListener() {
         edTitle.addTextChangedListener {
-            checkInputIsEmpty()
+            viewModel.uiState.title = edTitle.text.toString()
+            checkInputEvent()
         }
         edContent.addTextChangedListener {
-            checkInputIsEmpty()
+            viewModel.uiState.content = edContent.text.toString()
+            checkInputEvent()
         }
         binding.updateEventTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
+            checkInputEvent()
             if (checkedId != -1) {
-                viewModel.setType(group.findViewById<Chip>(checkedId).text.toString())
+                viewModel.uiState.eventType = (group.findViewById<Chip>(checkedId).text.toString())
             } else
-                viewModel.setType("")
+                viewModel.uiState.eventType = ""
         }
     }
 
@@ -110,37 +117,22 @@ class UpdateEventFragment() :
             .show()
     }
 
-    private fun setObserver() {
-        viewModel.date.observe(viewLifecycleOwner) { date ->
-            binding.updateEventCalendarTv.setText(date)
-        }
-        viewModel.type.observe(viewLifecycleOwner) { type ->
-            checkInputIsEmpty()
-        }
-    }
-
     private fun updateEvent() {
-        val newEvent =
-            Event(
-                edTitle.text.toString(),
-                edContent.text.toString(),
-                viewModel.date.value!!,
-                viewModel.currentDateInteger,
-                viewModel.type.value!!
-            )
-        newEvent.id = argsEventTypes.id
-        viewModel.updateEvent(newEvent)
-        displayToastShort(requireContext(), "Change Successful!!")
+        with(viewModel.uiState){
+            val newEvent = Event(title, content, date, dateInteger, eventType)
+            newEvent.id = argsEventTypes.id
+            viewModel.updateEvent(newEvent)
+            displayToastShort(requireContext(), "Change Successful!!")
+        }
     }
 
-    private fun checkInputIsEmpty() {
-        if (!edTitle.text.isNullOrEmpty()
-            && !edContent.text.isNullOrEmpty()
-            && viewModel.type.value!!.isNotEmpty()
-        ) {
-            openInsertBtn()
-        } else
-            closeInsertBtn()
+    private fun checkInputEvent() {
+        with(viewModel.uiState){
+            if (title.isNotEmpty() && content.isNotEmpty() && eventType.isNotEmpty()) {
+                openInsertBtn()
+            } else
+                closeInsertBtn()
+        }
     }
 
     private fun closeInsertBtn() {

@@ -17,6 +17,7 @@ import com.voss.todolist.util.displayToastShort
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -49,23 +50,26 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun setObserver() {
-        viewModel.factorState.observe(viewLifecycleOwner) { factor ->
-                when (factor) {
-                    SearchFactor.Title -> {
-                        binding.filterFab.setImageResource(R.drawable.ic_baseline_title_24)
-                        displayToastShort(requireContext(), "Search Title")
-                    }
-                    SearchFactor.Content -> {
-                        binding.filterFab.setImageResource(R.drawable.ic_baseline_content_paste_24)
-                        displayToastShort(requireContext(), "Search Content")
+        searchJob = lifecycleScope.launchWhenStarted {
+            launch {
+                viewModel.keyWordState.collectLatest { keyWord ->
+                    viewModel.getSearchEventFlow(keyWord).collectLatest { events ->
+                        mAdapter.submitList(events)
                     }
                 }
             }
-
-        searchJob = lifecycleScope.launchWhenStarted {
-            viewModel.keyWordState.collectLatest { keyWord ->
-                viewModel.getSearchEventFlow(keyWord).collectLatest { events ->
-                    mAdapter.submitList(events)
+            launch {
+                viewModel.factorState.collectLatest { factor ->
+                    when (factor) {
+                        SearchFactor.Title -> {
+                            binding.filterFab.setImageResource(R.drawable.ic_baseline_title_24)
+                            displayToastShort(requireContext(), "Search Title")
+                        }
+                        SearchFactor.Content -> {
+                            binding.filterFab.setImageResource(R.drawable.ic_baseline_content_paste_24)
+                            displayToastShort(requireContext(), "Search Content")
+                        }
+                    }
                 }
             }
         }
@@ -104,6 +108,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             layoutManager.scrollToPositionWithOffset(clickPosition, 0)
         }
     }
+
     private fun changeSearchFactor() {
         isTitle = !isTitle
         if (isTitle) {

@@ -22,10 +22,6 @@ class EventCardViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<List<Event>>(emptyList())
     val uiState: StateFlow<List<Event>> = _uiState
 
-    fun getEventFlow(date: String): Flow<List<Event>> {
-        return getEventFlowByDateUseCase.invoke(date, repository).distinctUntilChanged()
-    }
-
     fun setUiStateEvent(date: String) {
         viewModelScope.launch {
             getEventFlowByDateUseCase.invoke(date, repository).collectLatest { events ->
