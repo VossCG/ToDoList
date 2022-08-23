@@ -17,5 +17,7 @@
 
         <!-- let all the CardView shape will be it -->
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance_Radius_10dp</item>
+        <item name="floatingActionButtonStyle">@style/Custom.FAB</item>
+        <item name="extendedFloatingActionButtonStyle">@style/Custom.ExtendedFAB</item>
     </style>
 </resources>

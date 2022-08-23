@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.voss.todolist.presentation.ui.adapter.CalendarViewAdapter
 import com.voss.todolist.R
 import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentCalendarBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.util.*
 
 @AndroidEntryPoint
@@ -22,6 +26,7 @@ class CalendarFragment() : Fragment() {
     private var pagePosition: Int = 0
     private val viewModel: CalendarViewModel by activityViewModels()
     private val calendar = Calendar.getInstance()
+    private var calendarJob: Job? = null
     private lateinit var mAdapter: CalendarViewAdapter
 
     constructor(position: Int) : this() {
@@ -37,16 +42,33 @@ class CalendarFragment() : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        setObserver()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setObserver()
         setCalendarRecyclerView()
     }
 
     private fun setObserver() {
-        viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            mAdapter.setData(viewModel.getMonthEvent(pagePosition))
+        calendarJob = lifecycleScope.launch {
+
+            launch {
+                viewModel.monthState.collectLatest { month ->
+                    viewModel.getMonthEvent(viewModel.yearState.value, month).collectLatest {
+                        viewModel.setMonthEvent(it)
+                    }
+                }
+            }
+            launch {
+                viewModel.monthEventState.collectLatest {
+                    mAdapter.setData(it)
+                }
+            }
+
         }
     }
 
@@ -58,14 +80,13 @@ class CalendarFragment() : Fragment() {
                 GridLayoutManager(requireContext(), 7, GridLayoutManager.VERTICAL, false)
             adapter = mAdapter
         }
-        mAdapter.setData(viewModel.getMonthEvent(pagePosition))
     }
 
     private fun setCalendarAdapter() {
         // -1 是因為week 是從 1 開始，要丟給adapter，如果是星期日為1，但在GridView呈現是，是不需要位移的
         // 所以在 size offset 上面是要為 0
         val dayWeekOffset = viewModel.getFirstWeekOfMonth(pagePosition, calendar) - 1
-        val dayOfMonth = viewModel.getCurrentMonthOfDays(pagePosition, viewModel.currentYear.value!!)
+        val dayOfMonth = viewModel.getCurrentMonthOfDays(pagePosition, viewModel.yearState.value)
         mAdapter = CalendarViewAdapter(dayOfMonth, dayWeekOffset)
 
         mAdapter.setDrawableCallBack = {
@@ -78,7 +99,12 @@ class CalendarFragment() : Fragment() {
                 else -> resources.getDrawable(R.drawable.shape_calendar_icon_default, null)
             }
         }
-        mAdapter.getItemDayCallback = { viewModel.setSelectItemDay(it) }
+        mAdapter.getItemDayCallback = { day -> viewModel.setDay(day) }
+    }
+
+    override fun onStop() {
+        calendarJob = null
+        super.onStop()
     }
 
     override fun onDestroy() {

@@ -1,7 +1,6 @@
 package com.voss.todolist.presentation.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.voss.todolist.data.Event
 import com.voss.todolist.data.EventRepository
@@ -9,8 +8,7 @@ import com.voss.todolist.domain.GetFormatDateUseCase
 import com.voss.todolist.domain.GetMonthlyEventUseCase
 import com.voss.todolist.domain.GetSingleDayEventUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import java.util.*
 import javax.inject.Inject
 
@@ -19,70 +17,61 @@ class CalendarViewModel @Inject constructor(
     application: Application,
     private val repository: EventRepository,
     private val getFormatDateUseCase: GetFormatDateUseCase,
-    private val getMonthlyEventUseCase: GetMonthlyEventUseCase,
-    private val getSingleDayEventUseCase: GetSingleDayEventUseCase
+    private val getSingleDayEventUseCase: GetSingleDayEventUseCase,
+    private val getMonthlyEventUseCase: GetMonthlyEventUseCase
 ) : AndroidViewModel(application) {
-
-    val readAllEvent: LiveData<List<Event>> = repository.eventFlow.asLiveData()
 
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
 
-    private val _selectItemDay = MutableLiveData<Int>()
-    val selectItemDay: LiveData<Int> = _selectItemDay
+    private val _yearState = MutableStateFlow<Int>(calendar.get(Calendar.YEAR))
+    val yearState: StateFlow<Int> = _yearState
 
-    private val _currentYear = MutableLiveData<Int>()
-    val currentYear: LiveData<Int> = _currentYear
+    private val _monthState = MutableStateFlow<Int>(calendar.get(Calendar.MONTH)+1)
+    val monthState: StateFlow<Int> = _monthState
 
-    private val _currentMonth = MutableLiveData<Int>()
-    val currentMonth: LiveData<Int> = _currentMonth
+    private val _selectDayState = MutableStateFlow<Int>(calendar.get(Calendar.DAY_OF_MONTH))
+    val selectDayState: StateFlow<Int> = _selectDayState
 
-    // -------------------------------------------------------------
+    private val _monthEventState = MutableStateFlow<List<Event>>(emptyList())
+    val monthEventState :StateFlow<List<Event>> = _monthEventState
 
-    init {
-        _selectItemDay.value = calendar.get(Calendar.DAY_OF_MONTH)
-        _currentYear.value = calendar.get(Calendar.YEAR)
-        _currentMonth.value = calendar.get(Calendar.MONTH) + 1
+    private val _dateState = MutableStateFlow<String>("yyyy/mm/dd")
+    val dateState: StateFlow<String> = _dateState
+
+    fun setMonthEvent(events:List<Event>){
+        _monthEventState.value = events
     }
 
-    fun setSelectItemDay(day: Int) {
-        _selectItemDay.value = day
+    fun changeYear(year: Int) {
+        _yearState.value += year
     }
 
     fun setYear(year: Int) {
-        _currentYear.value = year
+        _yearState.value = year
     }
 
     fun setMonth(month: Int) {
-        _currentMonth.value = month
+        _monthState.value = month
     }
 
-    fun plusYear(plus: Int) {
-        _currentYear.value = _currentYear.value?.plus(plus)
+    fun setDay(day: Int) {
+        _selectDayState.value = day
     }
 
-    fun getMonthEvent(month: Int): List<Event> {
-        return getMonthlyEventUseCase(
-            _currentYear.value!!,
-            month,
-            readAllEvent.value ?: emptyList()
-        )
+    fun setDate(date: String) {
+        _dateState.value = date
     }
 
-    fun getSingleDayEvent(): List<Event> {
-        return getSingleDayEventUseCase.invoke(
-            _currentYear.value!!,
-            _currentMonth.value!!,
-            _selectItemDay.value!!,
-            readAllEvent.value ?: emptyList()
-        )
+    fun getSingleDayEvent(date: String): Flow<List<Event>> {
+        return getSingleDayEventUseCase.invoke(date, repository)
+    }
+
+    fun getMonthEvent(year: Int, month: Int): Flow<List<Event>> {
+        return getMonthlyEventUseCase.invoke(year, month, repository)
     }
 
     fun getCurrentDate(): String {
-        return getFormatDateUseCase(
-            _currentYear.value!!,
-            _currentMonth.value!! - 1,
-            _selectItemDay.value!!
-        )
+        return getFormatDateUseCase(_yearState.value, _monthState.value-1, _selectDayState.value)
     }
 
     fun getCurrentMonthOfDays(month: Int, year: Int): Int {
@@ -99,7 +88,7 @@ class CalendarViewModel @Inject constructor(
     }
 
     fun getFirstWeekOfMonth(pagePosition: Int, mCalendar: Calendar): Int {
-        mCalendar.set(Calendar.YEAR, currentYear.value!!)
+        mCalendar.set(Calendar.YEAR, _yearState.value)
         mCalendar.set(Calendar.MONTH, pagePosition - 1)
         mCalendar.set(Calendar.DAY_OF_MONTH, 1)
         return mCalendar.get(Calendar.DAY_OF_WEEK)

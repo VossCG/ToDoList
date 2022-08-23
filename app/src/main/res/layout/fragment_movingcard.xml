@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/card_1"
+        layout="@layout/itemview_cardview"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+
+    <include
+        android:id="@+id/card_2"
+        layout="@layout/itemview_cardview"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal" />
+
+    <include
+        android:id="@+id/card_3"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        layout="@layout/itemview_cardview" />
+
+    <include
+        android:id="@+id/card_4"
+        android:layout_width="@dimen/cardWidth"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        layout="@layout/itemview_cardview" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -3,6 +3,7 @@ package com.voss.todolist.presentation.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -17,6 +18,9 @@ import com.voss.todolist.data.args.EventCardArgs
 import com.voss.todolist.presentation.viewModel.CalendarViewModel
 import com.voss.todolist.databinding.FragmentBrowseEventBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.util.*
 
 @AndroidEntryPoint
@@ -26,7 +30,7 @@ class BrowseEventFragment :
     private val dayEventAdapter: CalendarDayEventListAdapter by lazy { CalendarDayEventListAdapter() }
     private val viewModel: CalendarViewModel by activityViewModels()
     private val navController: NavController by lazy { findNavController() }
-//    private val editDialogFragment:EditDialogFragment by lazy { EditDialogFragment() }
+    private var browseJob: Job? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,21 +41,21 @@ class BrowseEventFragment :
         initView()
     }
 
-    private fun initView(){
+    private fun initView() {
         setCalendarViewPager()
         setDayEventRecyclerView()
     }
 
     private fun setClickListener() {
         // menu item click event
-        binding.browseEventTb.setOnMenuItemClickListener {
+        binding.browseEventMonthTv.setOnMenuItemClickListener {
             when (it.title) {
                 "today" -> {
                     moveToCurrentDate()
                     return@setOnMenuItemClickListener true
                 }
                 "add" -> {
-                    EditDialogFragment().show(childFragmentManager,"Edit")
+                    EditDialogFragment().show(childFragmentManager, "Edit")
                     return@setOnMenuItemClickListener true
                 }
                 "search" -> {
@@ -64,20 +68,30 @@ class BrowseEventFragment :
     }
 
     private fun setObserver() {
-        viewModel.currentYear.observe(viewLifecycleOwner) {
-            binding.browseEventYearTv.text = "$it 年"
-        }
-        viewModel.currentMonth.observe(viewLifecycleOwner) {
-            binding.browseEventTb.title = it.toString() + "月"
-        }
-        viewModel.selectItemDay.observe(viewLifecycleOwner) {
-            binding.browseEventSelectedDayTv.text = viewModel.getCurrentDate()
-            checkEventIsEmpty(viewModel.getSingleDayEvent())
-            dayEventAdapter.submitList(viewModel.getSingleDayEvent())
-        }
-        viewModel.readAllEvent.observe(viewLifecycleOwner) {
-            checkEventIsEmpty(viewModel.getSingleDayEvent())
-            dayEventAdapter.submitList(viewModel.getSingleDayEvent())
+        browseJob = lifecycleScope.launchWhenStarted {
+            launch {
+                viewModel.yearState.collectLatest { year ->
+                    binding.browseEventYearTv.text = "$year 年"
+                }
+            }
+            launch {
+                viewModel.monthState.collectLatest { month ->
+                    binding.browseEventMonthTv.title = "$month 月"
+                }
+            }
+            launch {
+                viewModel.selectDayState.collectLatest { day ->
+                    viewModel.setDate(viewModel.getCurrentDate())
+                }
+            }
+            launch {
+                viewModel.dateState.collectLatest { date ->
+                    binding.browseEventSelectedDayTv.text = date
+                    viewModel.getSingleDayEvent(date).collectLatest { events ->
+                        dayEventAdapter.submitList(events)
+                    }
+                }
+            }
         }
     }
 
@@ -87,7 +101,7 @@ class BrowseEventFragment :
         viewpager.apply {
             adapter = calendarAdapter
             setPageTransformer(MarginPageTransformer(10))
-            setCurrentItem(viewModel.currentMonth.value!!, false)
+            setCurrentItem(viewModel.monthState.value, false)
 
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -98,7 +112,7 @@ class BrowseEventFragment :
                             viewModel.apply {
                                 // 刷新當前年月的資料
                                 setMonth(1)
-                                plusYear(1)
+                                changeYear(+1)
                             }
                         }
                         0 -> {
@@ -106,7 +120,7 @@ class BrowseEventFragment :
                             viewModel.apply {
                                 // 刷新當前年月的資料
                                 setMonth(12)
-                                plusYear(-1)
+                                changeYear(-1)
                             }
                         }
                         else -> viewModel.setMonth(position)
@@ -128,20 +142,19 @@ class BrowseEventFragment :
                 )
             )
             adapter = dayEventAdapter
-            dayEventAdapter.submitList(viewModel.getSingleDayEvent())
         }
     }
 
-    private fun setDayEventAdapter(adapter:CalendarDayEventListAdapter) {
+    private fun setDayEventAdapter(adapter: CalendarDayEventListAdapter) {
         adapter.apply {
             navigateToContentCard = { itemPosition ->
                 val direction =
                     BrowseEventFragmentDirections.actionBrowseEventFragmentToEventCardFragment(
                         EventCardArgs(
                             itemPosition,
-                            viewModel.currentYear.value!!,
-                            viewModel.currentMonth.value!!,
-                            viewModel.selectItemDay.value!!
+                            viewModel.yearState.value,
+                            viewModel.monthState.value,
+                            viewModel.selectDayState.value
                         )
                     )
                 navController.navigate(direction)
@@ -156,7 +169,7 @@ class BrowseEventFragment :
     }
 
     private fun resetCurrentDate(calendar: Calendar) {
-        viewModel.setSelectItemDay(calendar.get(Calendar.DAY_OF_MONTH))
+        viewModel.setDay(calendar.get(Calendar.DAY_OF_MONTH))
         viewModel.setMonth(calendar.get(Calendar.MONTH) + 1)
         viewModel.setYear(calendar.get(Calendar.YEAR))
     }
@@ -166,5 +179,11 @@ class BrowseEventFragment :
             binding.browseEventHintTv.visibility = View.VISIBLE
         } else
             binding.browseEventHintTv.visibility = View.GONE
+    }
+
+
+    override fun onStop() {
+        browseJob = null
+        super.onStop()
     }
 }

@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.presentation.ui.adapter.EventCardAdapter
 import com.voss.todolist.util.LinearItemDecoration
@@ -86,15 +87,11 @@ class EventCardFragment :
             .setAction("undo") {
                 viewModel.addEvent(event)
                 displayToastShort(requireContext(), "回復刪除")
-            }.show()
+            }
+            .show()
     }
 
     private fun subscribeToObserver() {
-//        eventFlowJob = lifecycleScope.launchWhenStarted {
-//            viewModel.getEventFlow(date).collectLatest { events ->
-//                mAdapter.submitList(events)
-//            }
-//        }
         eventFlowJob = lifecycleScope.launchWhenStarted {
             viewModel.uiState.collectLatest { events ->
                 mAdapter.submitList(events)
