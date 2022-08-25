@@ -42,33 +42,17 @@ class CalendarFragment() : Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        setObserver()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setCalendarRecyclerView()
+        setObserver()
     }
 
     private fun setObserver() {
         calendarJob = lifecycleScope.launch {
-
-            launch {
-                viewModel.monthState.collectLatest { month ->
-                    viewModel.getMonthEvent(viewModel.yearState.value, month).collectLatest {
-                        viewModel.setMonthEvent(it)
-                    }
-                }
+            viewModel.getMonthEvent(pagePosition).collectLatest { events ->
+                mAdapter.setData(events)
             }
-            launch {
-                viewModel.monthEventState.collectLatest {
-                    mAdapter.setData(it)
-                }
-            }
-
         }
     }
 

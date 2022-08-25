@@ -87,9 +87,13 @@ class BrowseEventFragment :
             launch {
                 viewModel.dateState.collectLatest { date ->
                     binding.browseEventSelectedDayTv.text = date
-                    viewModel.getSingleDayEvent(date).collectLatest { events ->
-                        dayEventAdapter.submitList(events)
-                    }
+                    viewModel.setDayEvent(date)
+                }
+            }
+            launch {
+                viewModel.dayEventState.collectLatest { dayEvent ->
+                    checkEventIsEmpty(dayEvent)
+                    dayEventAdapter.submitList(dayEvent)
                 }
             }
         }
