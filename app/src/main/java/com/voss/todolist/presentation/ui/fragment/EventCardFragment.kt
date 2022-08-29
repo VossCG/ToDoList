@@ -38,9 +38,12 @@ class EventCardFragment :
 
         initAttributes()
         initView()
-
         setClickListener()
+    }
+
+    override fun onStart() {
         subscribeToObserver()
+        super.onStart()
     }
 
     private fun initAttributes() {

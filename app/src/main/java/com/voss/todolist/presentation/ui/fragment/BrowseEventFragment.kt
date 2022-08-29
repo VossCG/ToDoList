@@ -36,9 +36,12 @@ class BrowseEventFragment :
         super.onViewCreated(view, savedInstanceState)
 
         setClickListener()
-        setObserver()
-
         initView()
+    }
+
+    override fun onStart() {
+        setObserver()
+        super.onStart()
     }
 
     private fun initView() {

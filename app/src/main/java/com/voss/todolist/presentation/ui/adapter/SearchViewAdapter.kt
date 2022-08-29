@@ -10,7 +10,8 @@ import com.voss.todolist.databinding.ItemviewSearchCardBinding
 import com.voss.todolist.util.EventTypeDiffUtil
 
 
-class SearchViewAdapter : ListAdapter<Event, SearchViewAdapter.SearchViewHolder>(EventTypeDiffUtil()) {
+class SearchViewAdapter :
+    ListAdapter<Event, SearchViewAdapter.SearchViewHolder>(EventTypeDiffUtil()) {
 
     var itemExpand: (Int) -> Unit = {}
 
@@ -26,13 +27,16 @@ class SearchViewAdapter : ListAdapter<Event, SearchViewAdapter.SearchViewHolder>
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         holder.bind(getItem(position))
-        if (position > 0)
+        if (position == 0)
+            holder.dateTitle.visibility =View.VISIBLE
+        else
             holder.checkDateEventIsMul(getItem(position).date, getItem(position - 1).date)
     }
 
     inner class SearchViewHolder(private val binding: ItemviewSearchCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val expandContent = binding.searchItemExpandContentTv
+        val dateTitle = binding.searchItemDateTv
 
         init {
             binding.searchItemTitleCard.setOnClickListener {

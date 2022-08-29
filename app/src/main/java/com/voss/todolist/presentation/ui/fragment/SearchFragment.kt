@@ -38,6 +38,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     }
 
+    override fun onStart() {
+        setObserver()
+        super.onStart()
+    }
+
     private fun setListener() {
         binding.filterFab.setPreventQuickerClick {
             changeSearchFactor()

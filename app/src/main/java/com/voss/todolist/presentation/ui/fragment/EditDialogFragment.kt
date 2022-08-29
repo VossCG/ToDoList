@@ -22,7 +22,8 @@ class EditDialogFragment(private val focusDate: String) :
     BaseDialogFragment<DialogFragmentEditBinding>(DialogFragmentEditBinding::inflate) {
     private val viewModel: EditEventViewModel by viewModels()
     private var currentDate: DateUiState
-    private val datePickerListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+    private val datePickerListener =
+        DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             val pickDate = viewModel.getFormatData(year, month, dayOfMonth)
             binding.editEventCalendarTv.setText(pickDate)
             viewModel.editUiState.date = pickDate
@@ -68,7 +69,10 @@ class EditDialogFragment(private val focusDate: String) :
         binding.editTb.setOnMenuItemClickListener {
             return@setOnMenuItemClickListener when (it.itemId) {
                 R.id.menu_item_save -> {
-                    insertInputData()
+                    if (checkInputData())
+                        insertInputData()
+                    else
+                        displayToastShort(requireContext(), "Please filled all data")
                     true
                 }
                 else -> false
@@ -77,14 +81,11 @@ class EditDialogFragment(private val focusDate: String) :
     }
 
     private fun insertInputData() {
-        if (checkInputData()) {
-            with(viewModel.editUiState) {
-                viewModel.insertEvent( Event(title, content, date, dateInteger, eventType) )
-                displayToastShort(requireContext(), "successful save the event")
-                dismiss()
-            }
-        } else
-            displayToastShort(requireContext(), "Please filled all data")
+        with(viewModel.editUiState) {
+            viewModel.insertEvent(Event(title, content, date, dateInteger, eventType))
+            displayToastShort(requireContext(), "successful save the event")
+            dismiss()
+        }
     }
 
     private fun setInputChangeListener() {
