@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp">
+    >
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
         android:id="@+id/search_item_date_tv"
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_width="match_parent"
@@ -31,19 +31,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="Title"
-            android:paddingVertical="16dp"
             android:paddingHorizontal="12dp"
+            android:paddingVertical="16dp"
+            android:text="Title"
             android:textSize="22sp"
             app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
     </com.google.android.material.card.MaterialCardView>
+
     <TextView
         android:id="@+id/search_item_expand_content_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:visibility="gone"
         android:text="Content will filled out this area"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:visibility="gone" />
 </androidx.appcompat.widget.LinearLayoutCompat>

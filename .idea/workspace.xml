@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ]:&#10;1. SearchFragment : &#10;修改原本的itemView，日期呈現改為橫幅，若event有相同的日期，則不會重複顯示日期  &#10;2. SearchViewModel : &#10;新增 event的uiState，來保存當前的搜尋結果&#10;3. EditDialogFragment :&#10;新增 dateTime的 state，保存當前的年月日。初始化的時候，會透過建構子屬性的focusDate來給予，也就是在外面選取 CalendarItem 就能改變dialog裡面的初始日期&#10;&#10;&#10;Author: @VossCG">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ]:&#10;SearchFragment itemView 的間距 使用 ItemDecoration &#10;&#10;Author: @VossCG">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -25,11 +25,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearchViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearchViewAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/CalendarFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/CalendarFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditDialogFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditDialogFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EventCardFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/SearchFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/itemview_search_card.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +40,7 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[4d756a6a]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -274,13 +272,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00022" summary="repo Room ViewModel 改為Hilt注入">
-      <created>1650949651184</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1650949651184</updated>
     </task>
     <task id="LOCAL-00023" summary="repo Room ViewModel 改為Hilt注入">
       <created>1650949708086</created>
@@ -618,7 +609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661763638766</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="[ fix ]:&#10;1. 每個Fragment的job，開始與結束依照生命週期的onStart與onStop&#10;2. SearchViewAdapter itemView 在position == 0 的時候，永遠顯示其date&#10;&#10;Author: @VossCG">
+      <created>1661765649541</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1661765649542</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -651,8 +649,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment&#10;1.資料庫更動時，沒有刷新browse_event_hint_tv的狀態。現在透過一個refresh fun，讓資料庫變動時，連動刷新當前的View還有注入adapter資料&#10;&#10;UpdateEventFragment&#10;1. chipGroup 取消使用 include導入，以解決預設chip clicked 問題&#10;2. 新增 judgeButtonState方法，讓updateButton會隨著使用者輸入的狀況，更換顏色與是否能點擊&#10;&#10;EditEventFragment&#10;1. chipGroup 取消使用 include導入，以解決預設chip clicked 問題&#10;2. 新增 judgeButtonState方法，讓EditButton會隨著使用者輸入的狀況，更換顏色與是否能點擊&#10;&#10;SearchFragment&#10;1.新增一個imageButton 來返回當前頁面&#10;&#10;## 待修正&#10;1. dayEventList的expand效果，會因為ViewHolder複用的關係，讓其他的item隨著連動，影響使用者體驗&#10;&#10;## 下次工程&#10;1. 將dayEventList的expand呈現資料的方式改掉，直接跳轉到ContentFragment 來呈現完整的title與Content" />
-    <MESSAGE value="## 修改與優化&#10;BrowseEventFragment&#10;1.資料庫更動時，沒有刷新browse_event_hint_tv的狀態。現在透過一個refresh fun，讓資料庫變動時，連動刷新當前的View還有注入adapter資料&#10;&#10;UpdateEventFragment&#10;1. chipGroup 取消使用 include導入，以解決預設chip clicked 問題&#10;2. 新增 judgeButtonState方法，讓updateButton會隨著使用者輸入的狀況，更換顏色與是否能點擊&#10;&#10;EditEventFragment&#10;1. chipGroup 取消使用 include導入，以解決預設chip clicked 問題&#10;2. 新增 judgeButtonState方法，讓EditButton會隨著使用者輸入的狀況，更換顏色與是否能點擊&#10;&#10;SearchFragment&#10;1.新增一個imageButton 來返回當前頁面&#10;&#10;## 待修正&#10;1. dayEventList的expand效果，會因為ViewHolder複用的關係，讓其他的item隨著連動，影響使用者體驗&#10;&#10;## 下次工程&#10;1. 將dayEventList的expand呈現資料的方式改掉，直接跳轉到ContentFragment 來呈現完整的title與Content&#10;2. UserCase部分，再看看還有哪些資料邏輯可以抽離出來分類" />
     <MESSAGE value="## 新增&#10;1. Edit/Event Fragment Args 的 dataClass&#10;&#10;## 修改與優化&#10;BrowseEventFragment&#10;1. 把dayEventList 的expand功能移除，改用導航至EventCardFragment 呈現當前event的body content&#10;&#10;EditEventFragment&#10;1. 新增 navigation Args，在編輯的時候，直接透過args 設定 datePicker 的 年月日&#10;&#10;EventCardFragment&#10;1. UI 大改，原本的是呈現每月的event，改為每日&#10;2. title textView 顯示當前的日期&#10;&#10;EventCardViewModel&#10;1. 取得資料邏輯優化&#10;2. getDateFormat fun 因為當前ViewModel的月份都是從1開始，所以要轉換的時候-1，再給calendar&#10;&#10;## 待修正&#10;1. CalendarView 選取框的效果，再點選回到當天日期的menuItem，如何讓選取框跟著回來，還待解決&#10;&#10;## 下次工程&#10;1. adapter 檢查與優化&#10;2. Fragment 設置UI data 與邏輯 優化" />
     <MESSAGE value="[style] : 修改 Fragment 所有fun 的風格 &#10;畫面邏輯的fun 命名，透過 lowerCamelCase 風格編寫，通常是動詞或動詞短語&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[features] : ChipGroup 新增 學習 item&#10;&#10;Author: @VossCG" />
@@ -676,6 +672,8 @@
     <MESSAGE value="[ prev ] :&#10;1.UpdateFragment、ViewModel 將所有頁面要用的資料，都放在uiState當中。並把 LiveData 都移除&#10;2.SearchFragment、ViewModel: 將factor 也改為StateFlow，然後再將他放入searchJob，各別用launch 去run 不同的StateFlow&#10;&#10;[ next ]:&#10;把常用的間距dp 設定成dimen 資源檔&#10; &#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ prev ]:&#10;CalendarFragment ViewPager 滑動讀取當月份資料 透過 pagePosition，因為ViewPager 性質 會做預載入，如果設置 UiState 在 ViewModel，這樣每個 Pager都會吃到相同的資料&#10; &#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ prev ]:&#10;1. SearchFragment : &#10;修改原本的itemView，日期呈現改為橫幅，若event有相同的日期，則不會重複顯示日期  &#10;2. SearchViewModel : &#10;新增 event的uiState，來保存當前的搜尋結果&#10;3. EditDialogFragment :&#10;新增 dateTime的 state，保存當前的年月日。初始化的時候，會透過建構子屬性的focusDate來給予，也就是在外面選取 CalendarItem 就能改變dialog裡面的初始日期&#10;&#10;&#10;Author: @VossCG" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ prev ]:&#10;1. SearchFragment : &#10;修改原本的itemView，日期呈現改為橫幅，若event有相同的日期，則不會重複顯示日期  &#10;2. SearchViewModel : &#10;新增 event的uiState，來保存當前的搜尋結果&#10;3. EditDialogFragment :&#10;新增 dateTime的 state，保存當前的年月日。初始化的時候，會透過建構子屬性的focusDate來給予，也就是在外面選取 CalendarItem 就能改變dialog裡面的初始日期&#10;&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ fix ]:&#10;1. 每個Fragment的job，開始與結束依照生命週期的onStart與onStop&#10;2. SearchViewAdapter itemView 在position == 0 的時候，永遠顯示其date&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ prev ]:&#10;SearchFragment itemView 的間距 使用 ItemDecoration &#10;&#10;Author: @VossCG" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ prev ]:&#10;SearchFragment itemView 的間距 使用 ItemDecoration &#10;&#10;Author: @VossCG" />
   </component>
 </project>

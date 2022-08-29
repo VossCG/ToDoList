@@ -14,7 +14,9 @@ import com.voss.todolist.databinding.FragmentSearchBinding
 import com.voss.todolist.presentation.ui.adapter.SearchViewAdapter
 import com.voss.todolist.presentation.viewModel.SearchFactor
 import com.voss.todolist.presentation.viewModel.SearchViewModel
+import com.voss.todolist.util.LinearItemDecoration
 import com.voss.todolist.util.displayToastShort
+import com.voss.todolist.util.dpToPx
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -89,6 +91,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.searchRcv.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@SearchFragment.context)
+            addItemDecoration(LinearItemDecoration(dpToPx(requireContext(), 10f)))
             adapter = mAdapter
         }
     }
