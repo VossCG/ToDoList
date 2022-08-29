@@ -55,7 +55,7 @@ class BrowseEventFragment :
                     return@setOnMenuItemClickListener true
                 }
                 "add" -> {
-                    EditDialogFragment().show(childFragmentManager, "Edit")
+                    EditDialogFragment(viewModel.getCurrentDate()).show(childFragmentManager, "Edit")
                     return@setOnMenuItemClickListener true
                 }
                 "search" -> {
@@ -185,8 +185,8 @@ class BrowseEventFragment :
             binding.browseEventHintTv.visibility = View.GONE
     }
 
-
     override fun onStop() {
+        browseJob?.cancel()
         browseJob = null
         super.onStop()
     }

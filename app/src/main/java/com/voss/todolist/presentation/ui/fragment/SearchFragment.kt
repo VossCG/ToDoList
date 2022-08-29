@@ -1,6 +1,7 @@
 package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -8,9 +9,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.voss.todolist.R
-import com.voss.todolist.presentation.ui.adapter.SearChRecyclerAdapter
 import com.voss.todolist.util.setPreventQuickerClick
 import com.voss.todolist.databinding.FragmentSearchBinding
+import com.voss.todolist.presentation.ui.adapter.SearchViewAdapter
 import com.voss.todolist.presentation.viewModel.SearchFactor
 import com.voss.todolist.presentation.viewModel.SearchViewModel
 import com.voss.todolist.util.displayToastShort
@@ -24,7 +25,7 @@ import kotlinx.coroutines.launch
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
     private val viewModel: SearchViewModel by viewModels()
     private val navController by lazy { findNavController() }
-    private val mAdapter: SearChRecyclerAdapter by lazy { SearChRecyclerAdapter() }
+    private val mAdapter: SearchViewAdapter by lazy { SearchViewAdapter() }
     private var isTitle: Boolean = true
     private var searchJob: Job? = null
 
@@ -53,9 +54,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         searchJob = lifecycleScope.launchWhenStarted {
             launch {
                 viewModel.keyWordState.collectLatest { keyWord ->
-                    viewModel.getSearchEventFlow(keyWord).collectLatest { events ->
-                        mAdapter.submitList(events)
-                    }
+                    viewModel.setEventState(keyWord)
                 }
             }
             launch {
@@ -72,6 +71,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                     }
                 }
             }
+            launch {
+                viewModel.eventState.collectLatest { events ->
+                    mAdapter.submitList(events)
+                }
+            }
         }
     }
 
@@ -84,18 +88,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
-    private fun setAdapter(adapter: SearChRecyclerAdapter) {
+    private fun setAdapter(adapter: SearchViewAdapter) {
         adapter.apply {
             itemExpand = { clickPosition ->
                 scrollToExpanded(clickPosition)
-            }
-            itemDelete = { event ->
-                viewModel.deleteEvent(event)
-            }
-            itemUpdate = { event ->
-                val direction =
-                    SearchFragmentDirections.actionSearchFragmentToUpdateEventFragment(event)
-                navController.navigate(direction)
             }
         }
     }
@@ -119,6 +115,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     override fun onStop() {
+        searchJob?.cancel()
         searchJob = null
         super.onStop()
     }

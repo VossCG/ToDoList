@@ -101,6 +101,7 @@ class EventCardFragment :
 
     override fun onStop() {
         eventFlowJob?.cancel()
+        eventFlowJob = null
         super.onStop()
     }
 }

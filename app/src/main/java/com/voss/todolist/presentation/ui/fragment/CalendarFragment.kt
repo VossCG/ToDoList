@@ -87,6 +87,7 @@ class CalendarFragment() : Fragment() {
     }
 
     override fun onStop() {
+        calendarJob?.cancel()
         calendarJob = null
         super.onStop()
     }

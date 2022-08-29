@@ -11,25 +11,50 @@ import com.google.android.material.chip.Chip
 import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.DialogFragmentEditBinding
+import com.voss.todolist.presentation.uiState.DateUiState
 import com.voss.todolist.presentation.viewModel.EditEventViewModel
 import com.voss.todolist.util.closeKeyboard
 import com.voss.todolist.util.displayToastShort
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
-class EditDialogFragment :
+class EditDialogFragment(private val focusDate: String) :
     BaseDialogFragment<DialogFragmentEditBinding>(DialogFragmentEditBinding::inflate) {
     private val viewModel: EditEventViewModel by viewModels()
-    private val calendar by lazy { Calendar.getInstance(Locale.TAIWAN) }
-    private val dateDefaultVale: String = "設定活動時間"
+    private var currentDate: DateUiState
+    private val datePickerListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            val pickDate = viewModel.getFormatData(year, month, dayOfMonth)
+            binding.editEventCalendarTv.setText(pickDate)
+            viewModel.editUiState.date = pickDate
+            viewModel.setDateInteger(year, month + 1, dayOfMonth)
+        }
+
+    init {
+        currentDate = DateUiState(
+            year = focusDate.subSequence(0..3).toString().toInt(),
+            month = focusDate.subSequence(5..6).toString().toInt(),
+            day = focusDate.subSequence(8..9).toString().toInt()
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
+        initUiState()
         setOnClickListener()
         setInputChangeListener()
     }
+
+    private fun initView() {
+        binding.editEventCalendarTv.setText(focusDate)
+    }
+
+    private fun initUiState() {
+        viewModel.editUiState.date = focusDate
+        viewModel.setDateInteger(currentDate.year, currentDate.month, currentDate.day)
+    }
+
     private fun setOnClickListener() {
         binding.editTb.setNavigationOnClickListener {
             showCancelAlertDialog()
@@ -38,7 +63,7 @@ class EditDialogFragment :
         binding.editEventCalendarTv.inputType = InputType.TYPE_NULL
         binding.editEventCalendarTv.setOnClickListener {
             closeKeyboard(it, requireActivity())
-            showDatePickerDialog()
+            showDatePickerDialog(currentDate.year, currentDate.month, currentDate.day)
         }
         binding.editTb.setOnMenuItemClickListener {
             return@setOnMenuItemClickListener when (it.itemId) {
@@ -54,8 +79,7 @@ class EditDialogFragment :
     private fun insertInputData() {
         if (checkInputData()) {
             with(viewModel.editUiState) {
-                val newEvent = Event(title, content, date, dateInteger, eventType)
-                viewModel.insertEvent(newEvent)
+                viewModel.insertEvent( Event(title, content, date, dateInteger, eventType) )
                 displayToastShort(requireContext(), "successful save the event")
                 dismiss()
             }
@@ -82,23 +106,12 @@ class EditDialogFragment :
 
     private fun checkInputData(): Boolean {
         with(viewModel.editUiState) {
-            return title.isNotEmpty() && content.isNotEmpty() && binding.editEventCalendarTv.text.toString() != dateDefaultVale && eventType.isNotEmpty()
+            return title.isNotEmpty() && content.isNotEmpty() && eventType.isNotEmpty()
         }
     }
 
-    private val datePickerListener =
-        DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            val pickDate = viewModel.getFormatData(year, month, dayOfMonth)
-            binding.editEventCalendarTv.setText(pickDate)
-            viewModel.editUiState.date = pickDate
-            viewModel.editUiState.dateInteger = viewModel.getDateInteger(year, month, dayOfMonth)
-        }
-
-    private fun showDatePickerDialog() {
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        DatePickerDialog(requireContext(), datePickerListener, year, month, day).show()
+    private fun showDatePickerDialog(year: Int, month: Int, day: Int) {
+        DatePickerDialog(requireContext(), datePickerListener, year, month - 1, day).show()
     }
 
     private fun showCancelAlertDialog() {

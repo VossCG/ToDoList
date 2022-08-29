@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/search_item_date_tv"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="2022年 11月 25號 "
+        android:visibility="visible" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/search_item_title_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/cardview_check_selector"
+        app:rippleColor="@color/white">
+
+        <TextView
+            android:id="@+id/search_item_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="Title"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="12dp"
+            android:textSize="22sp"
+            app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+    </com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:id="@+id/search_item_expand_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:text="Content will filled out this area"
+        android:textSize="18sp" />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -24,6 +24,9 @@ class SearchViewModel @Inject constructor(
     private val _factorState = MutableStateFlow(SearchFactor.Title)
     val factorState: StateFlow<SearchFactor> = _factorState
 
+    private val _eventState = MutableStateFlow<List<Event>>(emptyList())
+    val eventState: StateFlow<List<Event>> = _eventState
+
     fun setSearchStateFactor(factor: SearchFactor) {
         _factorState.value = factor
     }
@@ -32,11 +35,16 @@ class SearchViewModel @Inject constructor(
         _keyWordState.value = keyWord
     }
 
-
-    // return flow to Ui without use stateFlow. this is a one time shot flow
-    fun getSearchEventFlow(keyWord: String): Flow<List<Event>> {
+    fun setEventState(keyWord: String) {
+        viewModelScope.launch {
+            getSearchEventFlow(keyWord).collectLatest { events ->
+                _eventState.value = events
+            }
+        }
+    }
+    private fun getSearchEventFlow(keyWord: String): Flow<List<Event>> {
         if (keyWord.isEmpty()) return flow { emit(emptyList()) }
-        return getSearchFlowUseCase.invoke(repository,keyWord,_factorState.value)
+        return getSearchFlowUseCase.invoke(repository, keyWord, _factorState.value)
     }
 
     fun deleteEvent(eventTypes: Event) {
@@ -49,3 +57,4 @@ class SearchViewModel @Inject constructor(
 enum class SearchFactor {
     Title, Content
 }
+
