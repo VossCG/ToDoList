@@ -18,6 +18,9 @@ import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.FragmentUpdateEventBinding
 import com.voss.todolist.presentation.viewModel.UpdateEventViewModel
 import com.voss.todolist.util.displayToastShort
+import com.voss.todolist.util.getDay
+import com.voss.todolist.util.getMonth
+import com.voss.todolist.util.getYear
 import dagger.hilt.android.AndroidEntryPoint
 
 

@@ -5,14 +5,14 @@
 
     <include
         android:id="@+id/card_1"
-        layout="@layout/itemview_cardview"
+        layout="@layout/test_itemview"
         android:layout_width="@dimen/cardWidth"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical" />
 
     <include
         android:id="@+id/card_2"
-        layout="@layout/itemview_cardview"
+        layout="@layout/test_itemview"
         android:layout_width="@dimen/cardWidth"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center_horizontal" />
@@ -22,13 +22,13 @@
         android:layout_width="@dimen/cardWidth"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        layout="@layout/itemview_cardview" />
+        layout="@layout/test_itemview" />
 
     <include
         android:id="@+id/card_4"
         android:layout_width="@dimen/cardWidth"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"
-        layout="@layout/itemview_cardview" />
+        layout="@layout/test_itemview" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

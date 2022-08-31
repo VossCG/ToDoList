@@ -2,6 +2,8 @@ package com.voss.todolist.domain
 
 import com.voss.todolist.data.Event
 import com.voss.todolist.data.EventRepository
+import com.voss.todolist.util.getMonth
+import com.voss.todolist.util.getYear
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

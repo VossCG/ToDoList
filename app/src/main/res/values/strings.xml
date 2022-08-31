@@ -89,5 +89,9 @@
         <item>31</item>
     </integer-array>
 
+    <integer-array name="sliderRanger">
+        <item>0</item>
+        <item>100</item>
+    </integer-array>
 
 </resources>

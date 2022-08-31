@@ -51,7 +51,7 @@ class BrowseEventFragment :
 
     private fun setClickListener() {
         // menu item click event
-        binding.browseEventMonthTv.setOnMenuItemClickListener {
+        binding.browseEventTb.setOnMenuItemClickListener {
             when (it.title) {
                 "today" -> {
                     moveToCurrentDate()
@@ -68,6 +68,9 @@ class BrowseEventFragment :
                 else -> return@setOnMenuItemClickListener false
             }
         }
+        binding.browseEventTb.setOnClickListener {
+            navController.navigate(R.id.action_browseEventFragment_to_testUiFragment)
+        }
     }
 
     private fun setObserver() {
@@ -79,7 +82,7 @@ class BrowseEventFragment :
             }
             launch {
                 viewModel.monthState.collectLatest { month ->
-                    binding.browseEventMonthTv.title = "$month 月"
+                    binding.browseEventTb.title = "$month 月"
                 }
             }
             launch {

@@ -63,5 +63,12 @@
         <action
             android:id="@+id/action_browseEventFragment_to_eventCardFragment"
             app:destination="@id/eventCardFragment" />
+        <action
+            android:id="@+id/action_browseEventFragment_to_testUiFragment"
+            app:destination="@id/testUiFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/testUiFragment"
+        android:name="com.voss.todolist.presentation.ui.fragment.TestUiFragment"
+        android:label="TestUiFragment" />
 </navigation>

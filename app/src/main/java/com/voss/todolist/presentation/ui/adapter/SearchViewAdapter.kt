@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.ItemviewSearchCardBinding
 import com.voss.todolist.util.EventTypeDiffUtil
+import com.voss.todolist.util.getDay
+import com.voss.todolist.util.getMonth
 
 
 class SearchViewAdapter :
@@ -49,7 +51,7 @@ class SearchViewAdapter :
         }
 
         fun bind(event: Event) {
-            binding.searchItemDateTv.text = getDateFormatText(event.getYear(), event.getMonth(), event.getDay())
+            binding.searchItemDateTv.text = getDateFormatText(event.getDay(), event.getMonth(), event.getDay())
             binding.searchItemTitleTv.text = event.title
             binding.searchItemExpandContentTv.text = event.content
             binding.searchItemExpandContentTv.visibility = View.GONE

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.ItemviewCalendarIconBinding
+import com.voss.todolist.util.getDay
 
 class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset: Int) :
     RecyclerView.Adapter<CalendarViewAdapter.CalendarViewHolder>() {
