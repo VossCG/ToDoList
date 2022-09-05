@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/darkGrey"
-        android:paddingVertical="5dp"
+        android:paddingVertical="@dimen/toolbar_vertical_padding"
         app:navigationIcon="@drawable/ic_baseline_keyboard_arrow_left_24"
         app:title="yyyy/mm/dd">
     </androidx.appcompat.widget.Toolbar>
@@ -20,6 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="10dp" />
+        android:paddingHorizontal="@dimen/contentPadding" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

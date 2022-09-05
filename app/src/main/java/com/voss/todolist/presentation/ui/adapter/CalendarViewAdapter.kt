@@ -17,8 +17,8 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
     private var isFirstSelected = true
     private lateinit var oldSelectItemView: View
 
-    var setDrawableCallBack : ((String) -> Drawable)? = null
-    var getItemDayCallback : (Int) -> Unit = { }
+    var setDrawableCallBack: ((String) -> Drawable)? = null
+    var getItemDayCallback: (Int) -> Unit = { }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarViewHolder {
         return CalendarViewHolder(
@@ -55,7 +55,8 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
         init {
             // calendarItem selected effect
             container.setOnClickListener {
-                showSelectedCursor(it)
+                if (adapterPosition >= weekDayOffset)
+                    showSelectedCursor(it)
             }
         }
 
@@ -64,9 +65,9 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
             day.text = currentDay.toString()
             // 當事件數量 到某一個數值時候，顯示不同的顏色
             showItemEventSizeDiff(currentDay)
-
         }
-        private fun showItemEventSizeDiff(currentDay:Int){
+
+        private fun showItemEventSizeDiff(currentDay: Int) {
             val currentDayEvent: List<Event> = event.filter {
                 it.getDay() == currentDay
             }
@@ -79,17 +80,15 @@ class CalendarViewAdapter(private val dayOfMonth: Int, private val weekDayOffset
         }
 
         private fun showSelectedCursor(view: View) {
-            if (adapterPosition >= weekDayOffset) {
-                getItemDayCallback.invoke(adapterPosition + 1 - weekDayOffset)
-                if (isFirstSelected) {
-                    oldSelectItemView = view
-                    view.background = setDrawableCallBack?.invoke("stroke")
-                    isFirstSelected = false
-                } else {
-                    oldSelectItemView.background = setDrawableCallBack?.invoke("default")
-                    view.background = setDrawableCallBack?.invoke("stroke")
-                    oldSelectItemView = view
-                }
+            getItemDayCallback.invoke(adapterPosition + 1 - weekDayOffset)
+            if (isFirstSelected) {
+                oldSelectItemView = view
+                view.background = setDrawableCallBack?.invoke("stroke")
+                isFirstSelected = false
+            } else {
+                oldSelectItemView.background = setDrawableCallBack?.invoke("default")
+                view.background = setDrawableCallBack?.invoke("stroke")
+                oldSelectItemView = view
             }
         }
     }

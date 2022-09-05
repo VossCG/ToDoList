@@ -16,7 +16,7 @@ abstract class BaseDialogFragment<VB : ViewBinding>(private val inflate: (Layout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL,R.style.FullDialogTheme)
+        setStyle(STYLE_NORMAL,R.style.Widget_App_Dialog_Full)
     }
 
     override fun onCreateView(

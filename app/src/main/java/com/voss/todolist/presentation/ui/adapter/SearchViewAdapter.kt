@@ -10,12 +10,15 @@ import com.voss.todolist.databinding.ItemviewSearchCardBinding
 import com.voss.todolist.util.EventTypeDiffUtil
 import com.voss.todolist.util.getDay
 import com.voss.todolist.util.getMonth
+import com.voss.todolist.util.getYear
 
 
 class SearchViewAdapter :
     ListAdapter<Event, SearchViewAdapter.SearchViewHolder>(EventTypeDiffUtil()) {
 
-    var itemExpand: (Int) -> Unit = {}
+    var itemClickExpand: (Int) -> Unit = {}
+    var itemClickUpdate: (data: Event) -> Unit = {}
+    var itemClickDelete: (data: Event) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         return SearchViewHolder(
@@ -44,14 +47,14 @@ class SearchViewAdapter :
             binding.searchItemTitleCard.setOnClickListener {
                 if (expandContent.visibility == View.GONE) {
                     expandContent.visibility = View.VISIBLE
-                    itemExpand.invoke(adapterPosition)
+                    itemClickExpand.invoke(adapterPosition)
                 } else
                     expandContent.visibility = View.GONE
             }
         }
 
         fun bind(event: Event) {
-            binding.searchItemDateTv.text = getDateFormatText(event.getDay(), event.getMonth(), event.getDay())
+            binding.searchItemDateTv.text = getDateFormatText(event.getYear(), event.getMonth(), event.getDay())
             binding.searchItemTitleTv.text = event.title
             binding.searchItemExpandContentTv.text = event.content
             binding.searchItemExpandContentTv.visibility = View.GONE

@@ -19,5 +19,6 @@
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance_Radius_10dp</item>
         <item name="floatingActionButtonStyle">@style/Custom.FAB</item>
         <item name="extendedFloatingActionButtonStyle">@style/Custom.ExtendedFAB</item>
+        <item name="circularProgressIndicatorStyle">@style/Widget.Material.Custom.CircularIndicatorStyle</item>
     </style>
 </resources>

@@ -75,8 +75,7 @@ class EventCardFragment :
 
     private fun setEventCardAdapter() {
         mAdapter.itemClickUpdate = { event ->
-            val direction =
-                EventCardFragmentDirections.actionEventCardFragmentToUpdateEventFragment(event)
+            val direction = EventCardFragmentDirections.actionEventCardFragmentToUpdateEventFragment(event)
             navController.navigate(direction)
         }
         mAdapter.itemClickDelete = { event ->

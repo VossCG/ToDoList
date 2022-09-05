@@ -35,11 +35,11 @@ class EventCardAdapter :
         init {
             binding.eventCardItemTb.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
-                    R.id.eventCard_delete_menuItem -> {
+                    R.id.more_delete_menuItem -> {
                         itemClickDelete.invoke(getItem(adapterPosition))
                         return@setOnMenuItemClickListener true
                     }
-                    R.id.eventCard_edit_menuItem -> {
+                    R.id.more_edit_menuItem -> {
                         itemClickUpdate.invoke(getItem(adapterPosition))
                         return@setOnMenuItemClickListener true
                     }

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/darkGrey"
-        android:paddingVertical="5dp"
+        android:paddingVertical="@dimen/toolbar_vertical_padding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,6 +26,7 @@
             android:alpha="0.5"
             android:text="2022年" />
     </com.google.android.material.appbar.MaterialToolbar>
+
 
     <LinearLayout
         android:id="@+id/browse_event_week_ll"
@@ -92,6 +93,7 @@
         android:id="@+id/browse_event_calendar_vp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/browse_event_di"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/text_icon_padding"
             android:text="No Event or Activity"
             android:textColor="@color/darkYellow"
             android:visibility="gone"

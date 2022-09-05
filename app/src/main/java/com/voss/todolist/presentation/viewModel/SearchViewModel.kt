@@ -57,4 +57,3 @@ class SearchViewModel @Inject constructor(
 enum class SearchFactor {
     Title, Content
 }
-

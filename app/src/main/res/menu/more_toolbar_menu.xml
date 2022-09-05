@@ -4,19 +4,18 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/eventCard_more_action_menuGroup"
             android:icon="@drawable/ic_baseline_more_vert_24"
             android:title="設定"
             app:showAsAction="always">
             <menu>
                 <item
-                    android:id="@+id/eventCard_edit_menuItem"
+                    android:id="@+id/more_edit_menuItem"
                     android:icon="@drawable/ic_baseline_edit_24"
                     android:title="編輯"
                     app:showAsAction="ifRoom" />
 
                 <item
-                    android:id="@+id/eventCard_delete_menuItem"
+                    android:id="@+id/more_delete_menuItem"
                     android:icon="@drawable/ic_baseline_delete_24"
                     android:title="刪除"
                     app:showAsAction="ifRoom" />

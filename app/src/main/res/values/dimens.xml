@@ -2,4 +2,7 @@
 <resources>
     <dimen name="chipStroke">0.2dp</dimen>
     <dimen name="cardWidth">180dp</dimen>
+    <dimen name="contentPadding">8dp</dimen>
+    <dimen name="text_icon_padding">10dp</dimen>
+    <dimen name="toolbar_vertical_padding">5dp</dimen>
 </resources>

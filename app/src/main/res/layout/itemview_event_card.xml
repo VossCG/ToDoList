@@ -13,7 +13,7 @@
         app:title="工作"
         app:titleTextColor="@color/lightYellow"
         app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-        app:menu="@menu/event_card_toolbar_menu"
+        app:menu="@menu/more_toolbar_menu"
         android:textColor="@color/lightBrown"
         style="@style/TextAppearance.MaterialComponents.Headline4"
         />

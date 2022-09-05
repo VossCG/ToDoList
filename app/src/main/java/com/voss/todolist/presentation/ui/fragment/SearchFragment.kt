@@ -1,7 +1,6 @@
 package com.voss.todolist.presentation.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -98,8 +97,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     private fun setAdapter(adapter: SearchViewAdapter) {
         adapter.apply {
-            itemExpand = { clickPosition ->
-                scrollToExpanded(clickPosition)
+            itemClickExpand = { clickPosition -> scrollToExpanded(clickPosition) }
+            itemClickDelete = { event -> viewModel.deleteEvent(event) }
+            itemClickUpdate = { event ->
+                val direction = SearchFragmentDirections.actionSearchFragmentToUpdateEventFragment(event)
+                navController.navigate(direction)
             }
         }
     }
