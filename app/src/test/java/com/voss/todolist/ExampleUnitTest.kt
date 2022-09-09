@@ -1,8 +1,9 @@
 package com.voss.todolist
 
+import com.voss.todolist.util.mock.*
+import io.mockk.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,7 +12,32 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun testRequestTextString() {
+        val view = mockk<IMockView>()
+        val presenter = MockFragmentPresenter(view)
+
+        every {
+            view.setOnTextView(any())
+        } just Runs
+
+        presenter.setTextView()
+
+        verify {
+            view.setOnTextView(any())
+        }
+    }
+
+    @Test
+    fun testStatic() {
+        val expected = UserData("Voss", 26)
+        val serviceManager = ServiceManager()
+
+        val actual = serviceManager.getUserData()
+
+        mockkObject(ObjectService)
+        every {
+            ObjectService.instance.requestUserData()
+        }.returns(expected)
+        assertEquals(expected, actual)
     }
 }

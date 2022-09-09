@@ -11,7 +11,7 @@ import com.google.android.material.chip.Chip
 import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.DialogFragmentEditBinding
-import com.voss.todolist.presentation.uiState.DateUiState
+import com.voss.todolist.data.DateStore
 import com.voss.todolist.presentation.viewModel.EditEventViewModel
 import com.voss.todolist.util.closeKeyboard
 import com.voss.todolist.util.displayToastShort
@@ -21,17 +21,18 @@ import dagger.hilt.android.AndroidEntryPoint
 class EditDialogFragment(private val focusDate: String) :
     BaseDialogFragment<DialogFragmentEditBinding>(DialogFragmentEditBinding::inflate) {
     private val viewModel: EditEventViewModel by viewModels()
-    private var currentDate: DateUiState
+    private var currentDate: DateStore
+
     private val datePickerListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             val pickDate = viewModel.getFormatData(year, month, dayOfMonth)
             binding.editEventCalendarTv.setText(pickDate)
-            viewModel.editUiState.date = pickDate
-            viewModel.setDateInteger(year, month + 1, dayOfMonth)
+            viewModel.setStateDate(pickDate)
+            viewModel.setStateDateInteger(year, month + 1, dayOfMonth)
         }
 
     init {
-        currentDate = DateUiState(
+        currentDate = DateStore(
             year = focusDate.subSequence(0..3).toString().toInt(),
             month = focusDate.subSequence(5..6).toString().toInt(),
             day = focusDate.subSequence(8..9).toString().toInt()
@@ -52,8 +53,8 @@ class EditDialogFragment(private val focusDate: String) :
     }
 
     private fun initUiState() {
-        viewModel.editUiState.date = focusDate
-        viewModel.setDateInteger(currentDate.year, currentDate.month, currentDate.day)
+        viewModel.setStateDate(focusDate)
+        viewModel.setStateDateInteger(currentDate.year, currentDate.month, currentDate.day)
     }
 
     private fun setOnClickListener() {
@@ -92,16 +93,15 @@ class EditDialogFragment(private val focusDate: String) :
         binding.editEventTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
             // chip 沒有選取狀態下 id 為 -1
             if (checkedId != -1) {
-                viewModel.editUiState.eventType =
-                    group.findViewById<Chip>(checkedId).text.toString()
+               viewModel.setStateType(group.findViewById<Chip>(checkedId).text.toString())
             } else
-                viewModel.editUiState.eventType = ""
+                viewModel.setStateType("")
         }
         binding.editEventTitleEdt.addTextChangedListener {
-            viewModel.editUiState.title = binding.editEventTitleEdt.text.toString()
+           viewModel.setStateTitle(binding.editEventTitleEdt.text.toString())
         }
         binding.editEventContentEdt.addTextChangedListener {
-            viewModel.editUiState.content = binding.editEventContentEdt.text.toString()
+           viewModel.setStateContent(binding.editEventContentEdt.text.toString())
         }
     }
 

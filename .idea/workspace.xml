@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ]:&#10;SearchFragment itemView 的間距 使用 ItemDecoration &#10;&#10;Author: @VossCG">
+    <list default="true" id="c1549120-c2af-47d6-85bc-cbb43545675e" name="Default Changelist" comment="[ prev ]:&#10;1. Adapter : 優化各個 Adapter，將要不斷刷新元素的相關View Item(例如 TextView ImageView)，將只是會設定固定存在的 ( 例如 item 點擊事件)放在ViewHolder去實作&#10;2. Dimen : 把常用的padding dp 作為dimen 資源檔 復用&#10;&#10;Author: @VossCG">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -25,22 +25,29 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/DateSource.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/Event.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/data/room/Event.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetMonthlyEventUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetMonthlyEventUseCase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetSingleDayEventUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/domain/GetSingleDayEventUseCase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/CalendarViewAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearchViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/adapter/SearchViewAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/BrowseEventFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditDialogFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/EditDialogFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/ui/fragment/UpdateEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_browse_event.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_movingcard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_movingcard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_cardview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/test_itemview.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/uiState/DateUiState.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/uiState/EditEventUiState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/uiState/EditEventUiState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/uiState/UpdateUiState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/uiState/UpdateUiState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/EditEventViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/UpdateEventViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/voss/todolist/presentation/viewModel/UpdateEventViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_back_arrow.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_edit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_movingcard.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/itemview_cardview.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/style.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/style.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/voss/todolist/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/voss/todolist/ExampleUnitTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +60,6 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -104,10 +110,11 @@
         <option value="navigationResourceFile" />
         <option value="Kotlin File" />
         <option value="valueResourceFile" />
+        <option value="JUnit5 Test Class" />
         <option value="resourceFile" />
         <option value="Kotlin Interface" />
-        <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -148,6 +155,9 @@
     <property name="android-custom-viewC:/Users/USER/AppData/Local/Android/Sdk/sources/android-31/android/widget/ImageButton.java_SELECTED" value="ImageButton" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="com.android.tools.idea.sqlite.queryhistory" value="select * from EventTypes order by id&#10;select * from EventTypes where year= '2022' and month= '4'&#10;select * from EventTypes where year= '2022' and month= '3'&#10;select * from EventTypes where year like 2022 AND month like  3&#10;select * from EventTypes where id= '0'" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/com/voss/todolist" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="Errors" />
@@ -164,7 +174,11 @@
       <recent name="C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\java\com\voss\todolist\Adapter" />
       <recent name="C:\Users\USER\AndroidStudioProjects\ToDoList\app\src\main\java\com\voss\todolist\Data" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.voss.todolist.data" />
       <recent name="com.voss.todolist.presentation.ui" />
       <recent name="com.voss.todolist.Fragment" />
     </key>
@@ -173,8 +187,11 @@
       <recent name="com.voss.todolist.Data" />
       <recent name="com.voss.todolist.ui" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.voss.todolist.domain" />
+    </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Gradle.ExampleUnitTest.testStatic">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="ToDoList.app" />
       <option name="DEPLOY" value="true" />
@@ -232,36 +249,92 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EventTypesKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.data.EventTypesKt" />
-      <module name="ToDoList.app.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="ExampleUnitTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.voss.todolist.ExampleUnitTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <configuration name="GetEventFlowByDateUseCaseKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.domain.GetEventFlowByDateUseCaseKt" />
-      <module name="ToDoList.app.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="ExampleUnitTest.testDateFormat" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.voss.todolist.ExampleUnitTest.testDateFormat&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <configuration name="GetSingleDayEventUseCaseKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.domain.GetSingleDayEventUseCaseKt" />
-      <module name="ToDoList.app.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="ExampleUnitTest.testRequestTextString" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.voss.todolist.ExampleUnitTest.testRequestTextString&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <configuration name="MyApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.data.di.MyApplicationKt" />
-      <module name="ToDoList.app.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="ExampleUnitTest.testStatic" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.voss.todolist.ExampleUnitTest.testStatic&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <configuration name="SearchViewModelKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.presentation.viewModel.SearchViewModelKt" />
+    <configuration name="GlobalFunctionKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.voss.todolist.util.GlobalFunctionKt" />
       <module name="ToDoList.app.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -269,11 +342,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MyApplicationKt" />
-        <item itemvalue="Kotlin.SearchViewModelKt" />
-        <item itemvalue="Kotlin.GetEventFlowByDateUseCaseKt" />
-        <item itemvalue="Kotlin.GetSingleDayEventUseCaseKt" />
-        <item itemvalue="Kotlin.EventTypesKt" />
+        <item itemvalue="Gradle.ExampleUnitTest.testStatic" />
+        <item itemvalue="Gradle.ExampleUnitTest.testRequestTextString" />
+        <item itemvalue="Gradle.ExampleUnitTest.testDateFormat" />
+        <item itemvalue="Kotlin.GlobalFunctionKt" />
+        <item itemvalue="Gradle.ExampleUnitTest" />
       </list>
     </recent_temporary>
   </component>
@@ -285,20 +358,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647244621096</updated>
-    </task>
-    <task id="LOCAL-00024" summary="ContentMonthlyFragment 優化&#10;&#10;1. 改為ListAdapter，帶入diffCallBack&#10;2. update資料後 position item 綁定異常修正">
-      <created>1650965729283</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1650965729283</updated>
-    </task>
-    <task id="LOCAL-00025" summary="ContentMonthlyFragment 優化&#10;&#10;1. 改為ListAdapter，帶入diffCallBack&#10;2. update資料後 position item 綁定異常修正">
-      <created>1650965742509</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1650965742509</updated>
     </task>
     <task id="LOCAL-00026" summary="ContentMonthlyFragment 優化&#10;&#10;1.修正更改日期之後 position 綁定資料異常&#10;2.將update &amp; delete 的interface 改為 高階函數寫法">
       <created>1651031330447</created>
@@ -629,7 +688,21 @@
       <option name="project" value="LOCAL" />
       <updated>1661767415849</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="[ prev ]:&#10;Event 將 getYear、Month、Day 改為 extension function&#10;&#10;Author: @VossCG">
+      <created>1661940034083</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1661940034084</updated>
+    </task>
+    <task id="LOCAL-00074" summary="[ prev ]:&#10;1. Adapter : 優化各個 Adapter，將要不斷刷新元素的相關View Item(例如 TextView ImageView)，將只是會設定固定存在的 ( 例如 item 點擊事件)放在ViewHolder去實作&#10;2. Dimen : 把常用的padding dp 作為dimen 資源檔 復用&#10;&#10;Author: @VossCG">
+      <created>1662354232671</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1662354232671</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -662,8 +735,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="## 新增&#10;1. Edit/Event Fragment Args 的 dataClass&#10;&#10;## 修改與優化&#10;BrowseEventFragment&#10;1. 把dayEventList 的expand功能移除，改用導航至EventCardFragment 呈現當前event的body content&#10;&#10;EditEventFragment&#10;1. 新增 navigation Args，在編輯的時候，直接透過args 設定 datePicker 的 年月日&#10;&#10;EventCardFragment&#10;1. UI 大改，原本的是呈現每月的event，改為每日&#10;2. title textView 顯示當前的日期&#10;&#10;EventCardViewModel&#10;1. 取得資料邏輯優化&#10;2. getDateFormat fun 因為當前ViewModel的月份都是從1開始，所以要轉換的時候-1，再給calendar&#10;&#10;## 待修正&#10;1. CalendarView 選取框的效果，再點選回到當天日期的menuItem，如何讓選取框跟著回來，還待解決&#10;&#10;## 下次工程&#10;1. adapter 檢查與優化&#10;2. Fragment 設置UI data 與邏輯 優化" />
-    <MESSAGE value="[style] : 修改 Fragment 所有fun 的風格 &#10;畫面邏輯的fun 命名，透過 lowerCamelCase 風格編寫，通常是動詞或動詞短語&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[features] : ChipGroup 新增 學習 item&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ style ] : 修改所有 xml檔名和id 改為一致的風格&#10;## xml檔名 命名格式  &#10;[類型]_[頁面邏輯名稱]&#10;## 元件id  命名格式&#10;[xml檔名]_[代表某種資料/功能]_[元件類型縮寫]&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ refactor ] : 重構SearchFragment 的ˊ搜尋功能&#10;之前為按下ime按鈕後搜尋，現在改成動態搜尋，在使用者輸入字元後，observer會監聽並submit adapter&#10;&#10;Author: @VossCG" />
@@ -687,6 +758,8 @@
     <MESSAGE value="[ prev ]:&#10;1. SearchFragment : &#10;修改原本的itemView，日期呈現改為橫幅，若event有相同的日期，則不會重複顯示日期  &#10;2. SearchViewModel : &#10;新增 event的uiState，來保存當前的搜尋結果&#10;3. EditDialogFragment :&#10;新增 dateTime的 state，保存當前的年月日。初始化的時候，會透過建構子屬性的focusDate來給予，也就是在外面選取 CalendarItem 就能改變dialog裡面的初始日期&#10;&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ fix ]:&#10;1. 每個Fragment的job，開始與結束依照生命週期的onStart與onStop&#10;2. SearchViewAdapter itemView 在position == 0 的時候，永遠顯示其date&#10;&#10;Author: @VossCG" />
     <MESSAGE value="[ prev ]:&#10;SearchFragment itemView 的間距 使用 ItemDecoration &#10;&#10;Author: @VossCG" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ prev ]:&#10;SearchFragment itemView 的間距 使用 ItemDecoration &#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ prev ]:&#10;Event 將 getYear、Month、Day 改為 extension function&#10;&#10;Author: @VossCG" />
+    <MESSAGE value="[ prev ]:&#10;1. Adapter : 優化各個 Adapter，將要不斷刷新元素的相關View Item(例如 TextView ImageView)，將只是會設定固定存在的 ( 例如 item 點擊事件)放在ViewHolder去實作&#10;2. Dimen : 把常用的padding dp 作為dimen 資源檔 復用&#10;&#10;Author: @VossCG" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ prev ]:&#10;1. Adapter : 優化各個 Adapter，將要不斷刷新元素的相關View Item(例如 TextView ImageView)，將只是會設定固定存在的 ( 例如 item 點擊事件)放在ViewHolder去實作&#10;2. Dimen : 把常用的padding dp 作為dimen 資源檔 復用&#10;&#10;Author: @VossCG" />
   </component>
 </project>

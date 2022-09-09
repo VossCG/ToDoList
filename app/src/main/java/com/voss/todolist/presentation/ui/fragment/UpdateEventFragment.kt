@@ -16,6 +16,7 @@ import com.google.android.material.chip.Chip
 import com.voss.todolist.R
 import com.voss.todolist.data.Event
 import com.voss.todolist.databinding.FragmentUpdateEventBinding
+import com.voss.todolist.presentation.uiState.UpdateUiState
 import com.voss.todolist.presentation.viewModel.UpdateEventViewModel
 import com.voss.todolist.util.displayToastShort
 import com.voss.todolist.util.getDay
@@ -38,8 +39,8 @@ class UpdateEventFragment() :
     private val datePickerListener =
         DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             val pickDate = viewModel.getDateFormat(year, month, dayOfMonth)
-            viewModel.uiState.dateInteger = viewModel.getDateInteger(year, month + 1, dayOfMonth)
-            viewModel.uiState.date = pickDate
+            viewModel.setStateDateInteger(year, month + 1, dayOfMonth)
+            viewModel.setStateDate(pickDate)
             binding.updateEventCalendarTv.setText(pickDate)
         }
 
@@ -68,30 +69,26 @@ class UpdateEventFragment() :
     }
 
     private fun initViewModel() {
-        with(viewModel.uiState) {
-            date = argsEventTypes.date
-            title = argsEventTypes.title
-            content = argsEventTypes.content
-            eventType = argsEventTypes.type
-            dateInteger = argsEventTypes.dateInteger
+        with(argsEventTypes) {
+            viewModel.setUiState(UpdateUiState(type, title, content, date, dateInteger))
         }
     }
 
     private fun setInputChangeListener() {
         edTitle.addTextChangedListener {
-            viewModel.uiState.title = edTitle.text.toString()
+            viewModel.setStateTitle(edTitle.text.toString())
             checkInputEvent()
         }
         edContent.addTextChangedListener {
-            viewModel.uiState.content = edContent.text.toString()
+            viewModel.setStateContent(edContent.text.toString())
             checkInputEvent()
         }
         binding.updateEventTypeChipGroup.setOnCheckedChangeListener { group, checkedId ->
             checkInputEvent()
             if (checkedId != -1) {
-                viewModel.uiState.eventType = (group.findViewById<Chip>(checkedId).text.toString())
+                viewModel.setStateType(group.findViewById<Chip>(checkedId).text.toString())
             } else
-                viewModel.uiState.eventType = ""
+                viewModel.setStateType("")
         }
     }
 
@@ -121,7 +118,7 @@ class UpdateEventFragment() :
     }
 
     private fun updateEvent() {
-        with(viewModel.uiState){
+        with(viewModel.uiState) {
             val newEvent = Event(title, content, date, dateInteger, eventType)
             newEvent.id = argsEventTypes.id
             viewModel.updateEvent(newEvent)
@@ -130,7 +127,7 @@ class UpdateEventFragment() :
     }
 
     private fun checkInputEvent() {
-        with(viewModel.uiState){
+        with(viewModel.uiState) {
             if (title.isNotEmpty() && content.isNotEmpty() && eventType.isNotEmpty()) {
                 openInsertBtn()
             } else

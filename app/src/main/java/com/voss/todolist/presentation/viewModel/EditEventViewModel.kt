@@ -18,7 +18,10 @@ class EditEventViewModel @Inject constructor(
     private val getDateIntegerUseCase: GetDateIntegerUseCase
 ) : ViewModel() {
 
-    val editUiState: EditEventUiState = EditEventUiState("工作", "", "", "yyyy/mm/dd", 0)
+    // to write
+    private var _editUiState: EditEventUiState = EditEventUiState("工作", "", "", "yyyy/mm/dd", 0)
+    // to read
+    val editUiState: EditEventUiState get() = _editUiState
 
     fun insertEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -26,8 +29,24 @@ class EditEventViewModel @Inject constructor(
         }
     }
 
-    fun setDateInteger(year: Int, month: Int, day: Int) {
-        editUiState.dateInteger = getDateIntegerUseCase.invoke(year, month, day)
+    fun setStateDateInteger(year: Int, month: Int, day: Int) {
+        _editUiState = _editUiState.copy(dateInteger = getDateIntegerUseCase(year, month, day))
+    }
+
+    fun setStateDate(date: String) {
+        _editUiState = _editUiState.copy(date = date)
+    }
+
+    fun setStateType(eventType: String) {
+        _editUiState = _editUiState.copy(eventType = eventType)
+    }
+
+    fun setStateContent(content: String) {
+        _editUiState = _editUiState.copy(content = content)
+    }
+
+    fun setStateTitle(title: String) {
+        _editUiState = _editUiState.copy(title = title)
     }
 
     fun getFormatData(year: Int, month: Int, day: Int): String {

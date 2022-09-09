@@ -20,11 +20,8 @@ class UpdateEventViewModel @Inject constructor(
     private val getDateIntegerUseCase: GetDateIntegerUseCase
 ) : AndroidViewModel(application) {
 
-    val uiState: UpdateUiState = UpdateUiState("","", "", "", 0)
-
-    fun getDateFormat(year: Int, month: Int, day: Int): String {
-        return formatDateUseCase.invoke(year, month, day)
-    }
+    private var _updateUiState: UpdateUiState = UpdateUiState("", "", "", "", 0)
+    val uiState: UpdateUiState get() = _updateUiState
 
     fun updateEvent(eventTypes: Event) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -32,7 +29,31 @@ class UpdateEventViewModel @Inject constructor(
         }
     }
 
-    fun getDateInteger(year: Int, month: Int, day: Int): Int {
-        return getDateIntegerUseCase(year, month, day)
+    fun setUiState(uiState: UpdateUiState) {
+        _updateUiState = uiState
+    }
+
+    fun setStateDateInteger(year: Int, month: Int, day: Int) {
+        _updateUiState = _updateUiState.copy(dateInteger = getDateIntegerUseCase(year, month, day))
+    }
+
+    fun setStateDate(date: String) {
+        _updateUiState = _updateUiState.copy(date = date)
+    }
+
+    fun setStateType(eventType: String) {
+        _updateUiState = _updateUiState.copy(eventType = eventType)
+    }
+
+    fun setStateContent(content: String) {
+        _updateUiState = _updateUiState.copy(content = content)
+    }
+
+    fun setStateTitle(title: String) {
+        _updateUiState = _updateUiState.copy(title = title)
+    }
+
+    fun getDateFormat(year: Int, month: Int, day: Int): String {
+        return formatDateUseCase.invoke(year, month, day)
     }
 }

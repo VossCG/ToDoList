@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.voss.todolist.presentation.ui.adapter.CalendarDayEventListAdapter
 import com.voss.todolist.presentation.ui.adapter.CalendarViewPagerAdapter
 import com.voss.todolist.R
@@ -67,9 +68,6 @@ class BrowseEventFragment :
                 }
                 else -> return@setOnMenuItemClickListener false
             }
-        }
-        binding.browseEventTb.setOnClickListener {
-            navController.navigate(R.id.action_browseEventFragment_to_testUiFragment)
         }
     }
 
